@@ -2,7 +2,22 @@
 
 Claude Code + Codex 교차검증 협업 워크스페이스. 한 PC · 개인 GitHub · 배심원2/판사 모델.
 
-## 쓰는 순서 (매번)
+## 자동 모드 — 한 번 실행 (권장)
+
+```powershell
+cd "J:\Desktop\공학\ai-crosscheck"
+.\orchestrate.ps1 "이번에 풀 문제"
+```
+
+스크립트가 알아서: `PROBLEM.md` 기록 → 두 AI **blind 병렬** 독립 조사 → 서로 교차검증
+→ `DECISION.md` 초안 → 화면에 출력. 매 단계 git commit/push 도 자동.
+마지막에 `DECISION.md` 의 **`## 내 최종 결정`** 만 내가 채우면 끝.
+
+- 이전 라운드 내용은 `rounds/<시각>/` 로 자동 보관 후 새 라운드 시작.
+- git(pull/commit/push)은 스크립트가, 파일 작성은 각 AI(`claude -p` / `codex exec`)가 담당.
+- 전제: `claude`, `codex` 둘 다 PATH에 있고 로그인 완료. PowerShell 5.1 이상.
+
+## 수동 모드 — 쓰는 순서 (매번)
 
 1. **문제 적기** — `PROBLEM.md`에 이번에 풀 문제를 쓴다. 특정 답으로 유도하지 말 것.
 2. **두 AI에게 각각 (서로 안 보게)**
