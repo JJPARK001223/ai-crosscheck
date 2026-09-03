@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>선형탄성파괴역학(LEFM) — 초보자용 설명</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#555; --line:#ddd; --accent:#123a6b; --box:#f4f7fb; --warn:#fff6e5; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:2.2rem 1.2rem 4rem; color:var(--ink);
+         font:16px/1.7 "Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+         max-width:820px; margin-inline:auto; }
+  h1 { font-size:1.7rem; line-height:1.35; border-bottom:3px solid var(--accent); padding-bottom:.5rem; }
+  h2 { font-size:1.28rem; margin-top:2.4rem; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:.3rem; }
+  h3 { font-size:1.08rem; margin-top:1.6rem; }
+  p, li { color:var(--ink); }
+  .lead { font-size:1.05rem; color:var(--muted); }
+  blockquote { margin:1rem 0; padding:.8rem 1rem; background:var(--box);
+               border-left:4px solid var(--accent); border-radius:4px; }
+  .eq { display:block; margin:.9rem 0; padding:.7rem 1rem; background:var(--box);
+        border:1px solid var(--line); border-radius:6px; font-size:1.05rem;
+        text-align:center; overflow-x:auto; }
+  .eq .ref { display:block; margin-top:.3rem; font-size:.82rem; color:var(--muted); }
+  var { font-style:italic; font-family:"Cambria Math","Times New Roman",serif; }
+  sub, sup { font-size:.72em; }
+  .note { background:var(--warn); border:1px solid #e8c98a; border-radius:6px; padding:.9rem 1rem; margin:1.2rem 0; }
+  figure { margin:1.8rem 0; padding:1rem; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  figure canvas { width:100%; height:auto; display:block; }
+  figcaption { font-size:.9rem; color:var(--muted); margin-top:.6rem; }
+  table { border-collapse:collapse; width:100%; margin:1rem 0; font-size:.94rem; }
+  th, td { border:1px solid var(--line); padding:.5rem .6rem; text-align:left; vertical-align:top; }
+  th { background:var(--box); }
+  code { background:#eef1f4; padding:.05rem .3rem; border-radius:3px; }
+  .src { font-size:.9rem; color:var(--muted); }
+  .src li { margin-bottom:.5rem; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4rem 0; }
+</style>
+</head>
+<body>
+
+<h1>선형탄성파괴역학(LEFM) 초보자용 설명<br><small style="font-weight:400;font-size:1rem;color:var(--muted)">— 균열선단 응력집중과 <var>K</var> 대 <var>K</var><sub>Ic</sub> 파손판정</small></h1>
+
+<p class="lead">이 문서는 아래 두 논문의 <strong>본문에 실제로 쓰여 있는 문장·수식만</strong> 모아
+초보자용으로 재구성한 것이다. 두 논문 밖의 교과서 내용(Griffith 유도, K-지배영역 등)은
+넣지 않았다.</p>
+
+<blockquote class="src">
+<strong>사용 출처 (이 두 개만)</strong>
+<ol style="margin:.4rem 0 0">
+<li><strong>[선행연구 1]</strong> Y. W. Kwon, &ldquo;Revisiting Failure of Brittle Materials,&rdquo;
+    <em>Journal of Pressure Vessel Technology</em>, <strong>143</strong>(6), 064503, Dec. 2021.
+    DOI: 10.1115/1.4050989.</li>
+<li><strong>[선행연구 3]</strong> Y. W. Kwon, E. K. Markoff, S. DeFisher,
+    &ldquo;Unified Failure Criterion Based on Stress and Stress Gradient Conditions,&rdquo;
+    <em>Materials</em>, <strong>17</strong>(3), 569, Jan. 2024. DOI: 10.3390/ma17030569.</li>
+</ol>
+</blockquote>
+
+<div class="note">
+<strong>자료의 한계 (먼저 읽을 것).</strong>
+두 논문은 LEFM을 설명하려고 쓴 글이 아니다. 둘 다 Kwon 그룹의
+<strong>&ldquo;응력 + 응력구배(stress gradient) 통합 파손 기준&rdquo;</strong>을 제안·검증하는 논문이고,
+LEFM은 그 <em>비교 대상(기존 이론)</em>으로 짧게 언급될 뿐이다.
+따라서 <var>K</var> = <var>σ</var>&radic;(<var>πa</var>) 같은 무한판 표준식의 명시적 형태,
+Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
+<strong>두 논문 본문에 없고 참고문헌 목록에만</strong> 등장한다. 그 부분은 이 문서에서 다루지 않는다.
+</div>
+
+<h2>1. LEFM 한 줄 정의</h2>
+
+<blockquote>
+<strong>LEFM(Linear Elastic Fracture Mechanics, 선형탄성파괴역학)</strong>은
+재료가 파손 직전까지 <strong>선형 탄성</strong>(응력 &prop; 변형률, Hooke 법칙)으로 거동한다고 가정하고,
+<strong>날카로운 균열(line crack)</strong>이 있는 부재의 파손 하중을 예측하는 이론이다.
+균열선단 응력장의 세기를 하나의 값 <strong><var>K</var>(응력확대계수)</strong>로 나타내고,
+<strong><var>K</var>가 재료 고유의 임계값(파괴인성 <var>K</var><sub>Ic</sub>)에 도달하면 균열이 진전(파손)</strong>한다고 본다.
+</blockquote>
+
+<p class="src"><strong>근거 문장</strong></p>
+<ul class="src">
+<li>[선행연구 1] Introduction: &ldquo;If there is a line crack, the linear fracture mechanics
+    approach has been applied to determine the failure load.&rdquo;</li>
+<li>[선행연구 1] Introduction: 취성재료는 &ldquo;in general, can be considered as linear elastic
+    until failure&rdquo; &rarr; &lsquo;선형탄성&rsquo;의 의미.</li>
+<li>[선행연구 3] Introduction: &ldquo;A structural member with a crack has stress singularity at
+    the crack tip if the material behaves linearly elastically. Thus, fracture mechanics was
+    also developed for structural members with cracks.&rdquo;</li>
+</ul>
+
+<h2>2. 왜 &lsquo;일반 강도 기준&rsquo;으로는 균열을 못 다루나</h2>
+
+<p>[선행연구 1]은 파손을 두 조건으로 설명한다. 첫째 조건은 국부응력이 재료 파손강도 이상일 것:</p>
+
+<span class="eq"><var>σ</var><sub>l</sub> &ge; <var>σ</var><sub>f</sub>
+  <span class="ref">[선행연구 1] Eq. (1) / [선행연구 3] Eq. (1) — <var>σ</var><sub>l</sub>: 국부응력, <var>σ</var><sub>f</sub>: 파손강도</span></span>
+
+<p>그런데 <strong>날카로운 균열이 있으면 균열선단의 응력이 무한대</strong>가 된다
+([선행연구 1] Case 2: &ldquo;The stress at the crack tip is infinite&rdquo;;
+[선행연구 3]: &ldquo;stress singularity at the crack tip&rdquo;).
+응력이 무한대이면 &ldquo;<var>σ</var><sub>l</sub> &ge; <var>σ</var><sub>f</sub>&rdquo;는 선단 근처에서 항상 만족된다
+&rarr; 이 기준만으로는 &ldquo;얼마의 하중에서 부서지나&rdquo;를 정할 수 없다.
+그래서 균열 문제 전용 이론인 <strong>파괴역학</strong>이 따로 만들어졌다.</p>
+
+<h3>&lsquo;선형탄성&rsquo;이란</h3>
+<p>하중을 주면 재료가 Hooke 법칙대로 늘어나고 하중을 빼면 원래대로 돌아온다(소성·비선형 없음).
+취성재료(유리·세라믹·경화 시멘트·PMMA 등)는 부서지기 직전까지 거의 이렇게 거동한다
+&rarr; LEFM 적용 대상. [선행연구 3] &sect;4.1은 경화 시멘트 페이스트를
+&ldquo;behaved in a brittle manner with an elastic modulus of 20.8 GPa&rdquo;로 기술한다.</p>
+
+<h2>3. 균열선단 응력집중과 응력확대계수 <var>K</var></h2>
+
+<p>균열선단 근처에서 응력은 &ldquo;선단으로부터의 거리의 제곱근에 반비례&rdquo;하는 특정 형태를 가진다.</p>
+
+<span class="eq">
+  <var>σ</var><sub>x</sub> = <var>K</var> / &radic;(2<var>πr</var>)
+  <span class="ref">[선행연구 1] Eq. (4) — Irwin(1957) 인용. <var>σ</var><sub>x</sub>: 하중 방향(균열면에 수직) 응력,
+  <var>r</var>: 균열선단으로부터의 반경거리</span></span>
+
+<span class="eq">
+  <var>σ</var><sub>e</sub> = <var>K</var> / &radic;<var>s</var>
+  <span class="ref">[선행연구 3] Eq. (3) — 간략형(&radic;(2<var>π</var>) 생략). <var>s</var>: 균열선단에서 잰 균열진행 방향 좌표</span></span>
+
+<p><strong>핵심 개념.</strong> 균열선단 응력장의 &lsquo;모양&rsquo;은 항상 1/&radic;<var>r</var>로 같고,
+그 <strong>세기(크기)를 결정하는 단 하나의 숫자가 <var>K</var></strong>다.
+<var>K</var>는 (작용응력)&times;(균열길이·형상에 의존하는 항)으로 정해진다
+&rarr; 균열 문제를 &lsquo;무한대 응력&rsquo;이 아니라 &lsquo;유한한 <var>K</var> 값 하나&rsquo;로 다룰 수 있게 해준다.
+([선행연구 3] &sect;4.3에서는 균열시편의 <var>K</var>를 2D 유한요소해석 + Eq. (3) 곡선맞춤으로 구했다.)</p>
+
+<figure>
+  <canvas id="figA" width="760" height="430"></canvas>
+  <figcaption><strong>그림 1. 균열선단 응력집중(특이성).</strong>
+  <var>σ</var><sub>x</sub> = <var>K</var>/&radic;(2<var>πr</var>) 을 거리 <var>r</var>에 대해 그린 것.
+  <var>r</var> &rarr; 0에서 응력이 무한대로 발산한다. 빨간 파선(<var>σ</var><sub>f</sub>) 위쪽 영역은
+  &ldquo;<var>σ</var> &ge; <var>σ</var><sub>f</sub>&rdquo;가 만족되는 곳 &mdash; 선단 근처에서는 언제나 만족되므로
+  강도 기준만으로는 파손하중을 정할 수 없고, 그래서 <var>K</var>가 필요하다.
+  (근거: [선행연구 1] Eq. (4), Case 2. 수치는 개념 설명용 예시값
+  <var>K</var> = 1.0 MPa&middot;&radic;m, <var>σ</var><sub>f</sub> = 70 MPa.)</figcaption>
+</figure>
+
+<figure>
+  <canvas id="figB" width="760" height="380"></canvas>
+  <figcaption><strong>그림 2. 같은 응력장을 로그&ndash;로그 축으로.</strong>
+  직선의 기울기가 &minus;1/2 &mdash; 이것이 &ldquo;1/&radic;<var>r</var> 특이성&rdquo;의 의미다.</figcaption>
+</figure>
+
+<h3>응력구배 (두 논문의 핵심이지만 LEFM 이해에도 도움)</h3>
+<span class="eq">
+  |d<var>σ</var><sub>x</sub>/d<var>y</var>| = <var>K</var> / (2&radic;(2<var>π</var>) &middot; <var>y</var><sup>3/2</sup>)
+  <span class="ref">[선행연구 1] Eq. (5) — 균열은 <var>y</var>축(하중에 수직)으로 진전하므로 구배도 <var>y</var>축으로 계산</span></span>
+
+<h2>4. 파손 판정 &mdash; <var>K</var> 대 <var>K</var><sub>Ic</sub></h2>
+
+<p><var>K</var>가 커지다가 <strong>재료 고유의 임계값에 도달하면 균열이 진전</strong>한다.
+이 임계값이 <strong>파괴인성(fracture toughness) <var>K</var><sub>Ic</sub></strong>이다
+(첨자 I = mode I = opening mode, 열림모드).</p>
+
+<p>[선행연구 1] Case 2는 Eq. (4)&ndash;(5)로부터 다음을 유도한다.</p>
+
+<span class="eq">
+  <var>w</var><sub>f</sub> = <var>K</var><sup>2</sup> / (2<var>πE</var>)
+  <span class="ref">[선행연구 1] Eq. (6) — <var>w</var><sub>f</sub>: 파손구배(critical value), <var>E</var>: 탄성계수</span></span>
+
+<span class="eq">
+  <var>K</var><sub>Ic</sub> = &radic;(2<var>πE</var> &middot; <var>w</var><sub>f</sub>)
+  <span class="ref">[선행연구 1] Eq. (7) — 파손구배가 임계값에 도달할 때의 <var>K</var>가 곧 <var>K</var><sub>Ic</sub></span></span>
+
+<p><var>w</var><sub>f</sub>의 단위는 Pa&middot;m = N/m = J/m<sup>2</sup> &mdash; 즉 <strong>단위면적당 에너지(에너지방출률)</strong> 차원이다
+([선행연구 1] 본문 명시).</p>
+
+<p>[선행연구 3]은 <var>K</var><sub>Ic</sub> 대신 &lsquo;재료 파손값 <var>Y</var>&rsquo;로 같은 관계를 표현한다.</p>
+
+<span class="eq">
+  <var>Y</var> = <var>K</var><sup>2</sup> / <var>E</var>
+  <span class="ref">[선행연구 3] Eq. (4) — 본문: &ldquo;the material failure value <var>Y</var> is equivalent to the
+  critical energy release rate in fracture mechanics&rdquo;</span></span>
+
+<div class="note">
+<strong>주의 &mdash; 두 논문의 2<var>π</var> 차이.</strong>
+[선행연구 1]은 <var>σ</var> = <var>K</var>/&radic;(2<var>πr</var>) (2<var>π</var> 포함, Irwin 표준)를,
+[선행연구 3]은 <var>σ</var><sub>e</sub> = <var>K</var>/&radic;<var>s</var> (2<var>π</var> 생략)를 썼다.
+그 결과 <var>w</var><sub>f</sub> = <var>K</var><sup>2</sup>/(2<var>πE</var>) 와 <var>Y</var> = <var>K</var><sup>2</sup>/<var>E</var> 는
+<strong>2<var>π</var>(&asymp;6.28)배 차이</strong>가 난다. 각 논문 내부에서는 일관되지만
+<strong>두 식을 섞어 쓰면 안 된다.</strong>
+</div>
+
+<p><strong>정리 &mdash; 파손 판정의 두 등가 관점:</strong></p>
+<ul>
+<li><strong>응력 관점:</strong> <var>K</var> &ge; <var>K</var><sub>Ic</sub></li>
+<li><strong>에너지 관점:</strong> 에너지방출률(<var>K</var><sup>2</sup>/<var>E</var> 꼴) &ge; 임계값(<var>Y</var> 또는 <var>G</var><sub>c</sub>)</li>
+</ul>
+<p>두 논문 모두 <var>K</var><sup>2</sup>/<var>E</var> (&prop; 에너지방출률)라는 관계로 이 둘을 연결한다.</p>
+
+<figure>
+  <canvas id="figC" width="760" height="430"></canvas>
+  <figcaption><strong>그림 3. <var>K</var> 대 <var>K</var><sub>Ic</sub> 파손 판정.</strong>
+  선형탄성이므로 <var>K</var>는 작용하중 <var>P</var>에 비례해 직선으로 증가한다(파란 선).
+  <var>K</var>가 재료의 <var>K</var><sub>Ic</sub>(검은 파선)에 도달하는 하중 <var>P</var><sub>f</sub>에서 균열이 진전 &mdash; 파손.
+  오른쪽 막대는 하중 단계별 <var>K</var>를 <var>K</var><sub>Ic</sub>와 비교한 것.
+  (근거: [선행연구 1] Eq. (6)&ndash;(7); 에너지 관점은 [선행연구 3] Eq. (4).
+  <var>K</var> &prop; <var>P</var>는 두 논문이 공유하는 선형탄성 가정의 결과이며, 비례상수는 형상에 의존한다
+  &mdash; [선행연구 3] &sect;4.3에서는 FEA로 구했다. 수치는 개념 설명용 예시값
+  <var>E</var> = 3.0 GPa, <var>K</var><sub>Ic</sub> = 1.0 MPa&middot;&radic;m.)</figcaption>
+</figure>
+
+<h2>5. 적용 범위 / 한계</h2>
+<ul>
+<li><strong>균열(날카로운 특이점)에는 적합, 구멍·둔한 노치에는 부적합.</strong>
+    [선행연구 3] Introduction은 구멍(hole)에는 임계거리(critical distance) 기준, 응집영역(cohesive zone)
+    모델 등 &ldquo;an entirely different set of failure criteria&rdquo;를 써야 한다고 서술한다.
+    &rarr; LEFM은 &lsquo;균열 전용&rsquo;이며, 그래서 두 논문이 균열·구멍·무결함을 한꺼번에 다루는
+    <strong>통합 기준</strong>을 새로 제안하는 것.</li>
+<li><strong>재료가 선형탄성이어야 한다</strong>(취성/준취성). 연성재료(예: [선행연구 3] &sect;3 알루미늄 합금)는
+    균열선단 소성역이 커서 이 가정이 깨지고, 파손이 응력구배 조건이 아니라 <strong>응력 조건</strong>으로
+    지배된다고 [선행연구 3]이 보고한다.</li>
+</ul>
+
+<h2>6. 핵심 수식 요약표</h2>
+<table>
+<thead><tr><th>항목</th><th>식</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>강도 조건(균열 없을 때)</td><td><var>σ</var><sub>l</sub> &ge; <var>σ</var><sub>f</sub></td><td>[선행연구 1] Eq. (1) / [선행연구 3] Eq. (1)</td></tr>
+<tr><td>균열선단 응력장</td><td><var>σ</var><sub>x</sub> = <var>K</var>/&radic;(2<var>πr</var>)</td><td>[선행연구 1] Eq. (4) (Irwin 1957 인용)</td></tr>
+<tr><td>균열선단 응력장(간략형)</td><td><var>σ</var><sub>e</sub> = <var>K</var>/&radic;<var>s</var></td><td>[선행연구 3] Eq. (3)</td></tr>
+<tr><td>응력구배</td><td>|d<var>σ</var><sub>x</sub>/d<var>y</var>| = <var>K</var>/(2&radic;(2<var>π</var>)&middot;<var>y</var><sup>3/2</sup>)</td><td>[선행연구 1] Eq. (5)</td></tr>
+<tr><td>응력구배 파손조건</td><td><var>σ</var><sub>e</sub> &ge; (2<var>EY</var>&middot;|d<var>σ</var><sub>e</sub>/d<var>s</var>|)<sup>1/3</sup></td><td>[선행연구 3] Eq. (2)</td></tr>
+<tr><td>파손구배 &harr; <var>K</var></td><td><var>w</var><sub>f</sub> = <var>K</var><sup>2</sup>/(2<var>πE</var>)</td><td>[선행연구 1] Eq. (6)</td></tr>
+<tr><td>파괴인성</td><td><var>K</var><sub>Ic</sub> = &radic;(2<var>πE</var>&middot;<var>w</var><sub>f</sub>)</td><td>[선행연구 1] Eq. (7)</td></tr>
+<tr><td>재료 파손값 &harr; <var>K</var> (에너지방출률)</td><td><var>Y</var> = <var>K</var><sup>2</sup>/<var>E</var></td><td>[선행연구 3] Eq. (4)</td></tr>
+</tbody>
+</table>
+
+<h2>7. 결론</h2>
+<p>이 두 논문이 답하는 범위 내에서 LEFM =</p>
+<ol>
+<li><strong>선형탄성 가정</strong> (취성재료, 파손까지 <var>σ</var> &prop; <var>ε</var>) +</li>
+<li><strong>날카로운 균열</strong> 문제 전용 +</li>
+<li>균열선단 응력장을 <strong><var>K</var> 하나</strong>로 요약 (<var>σ</var> &prop; <var>K</var>/&radic;<var>r</var>) +</li>
+<li>파손 판정은 <strong><var>K</var> = <var>K</var><sub>Ic</sub></strong> (동등하게 에너지방출률 = 임계값, <var>K</var><sup>2</sup>/<var>E</var> &prop; <var>G</var><sub>c</sub>).</li>
+</ol>
+<p>구멍·둔한 노치·연성재료에는 그대로 못 쓰며(두 논문의 통합 기준이 나온 이유),
+Griffith/Irwin 유도 등 표준 이론사는 이 두 논문 본문 밖(참고문헌)이다.</p>
+
+<hr>
+<p class="src">그림 1&ndash;3은 외부 라이브러리 없이 이 문서 안의 <code>&lt;canvas&gt;</code> + 순수 자바스크립트로
+그린다(단일 HTML 파일 유지). 수치는 모두 개념 설명용 예시값이며, 곡선의 <strong>형태</strong>가
+위 수식에서 직접 나온다.</p>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- 개념 설명용 예시 수치 (두 논문의 수식 형태만 재현) ----
+  var K    = 1.0e6;   // 응력확대계수 [Pa*sqrt(m)]
+  var E    = 3.0e9;   // 탄성계수 [Pa]  (PMMA 급)
+  var SIGF = 70e6;    // 파손강도 sigma_f [Pa]
+  var KIC  = 1.0e6;   // 파괴인성 [Pa*sqrt(m)]  (예시)
+
+  function ctxOf(id) {
+    var cv = document.getElementById(id);
+    var dpr = window.devicePixelRatio || 1;
+    var w = cv.width, h = cv.height;
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = (h) + "px";
+    var c = cv.getContext("2d");
+    c.scale(dpr, dpr);
+    c.font = "13px 'Malgun Gothic',sans-serif";
+    return { c: c, w: w, h: h };
+  }
+
+  // 공통 축 그리기: 선형 스케일 매핑 반환
+  function axes(c, box, opt) {
+    var L = box.x0, R = box.x1, T = box.y0, B = box.y1;
+    c.strokeStyle = "#333"; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(L, T); c.lineTo(L, B); c.lineTo(R, B); c.stroke();
+    c.fillStyle = "#333"; c.textAlign = "center";
+    c.fillText(opt.xlabel, (L + R) / 2, B + 34);
+    c.save(); c.translate(L - 40, (T + B) / 2); c.rotate(-Math.PI / 2);
+    c.fillText(opt.ylabel, 0, 0); c.restore();
+    // 눈금
+    c.textAlign = "center"; c.fillStyle = "#666";
+    for (var i = 0; i <= opt.xn; i++) {
+      var xv = opt.xmin + (opt.xmax - opt.xmin) * i / opt.xn;
+      var px = L + (R - L) * i / opt.xn;
+      c.beginPath(); c.moveTo(px, B); c.lineTo(px, B + 4); c.stroke();
+      c.fillText(opt.xfmt(xv), px, B + 18);
+    }
+    c.textAlign = "right";
+    for (var j = 0; j <= opt.yn; j++) {
+      var yv = opt.ymin + (opt.ymax - opt.ymin) * j / opt.yn;
+      var py = B - (B - T) * j / opt.yn;
+      c.beginPath(); c.moveTo(L - 4, py); c.lineTo(L, py); c.stroke();
+      c.fillText(opt.yfmt(yv), L - 8, py + 4);
+    }
+    return {
+      X: function (v) { return L + (R - L) * (v - opt.xmin) / (opt.xmax - opt.xmin); },
+      Y: function (v) { return B - (B - T) * (v - opt.ymin) / (opt.ymax - opt.ymin); }
+    };
+  }
+
+  // ===== 그림 1: sigma_x = K / sqrt(2*pi*r) =====
+  (function () {
+    var o = ctxOf("figA"), c = o.c;
+    var box = { x0: 70, x1: o.w - 20, y0: 20, y1: o.h - 50 };
+    var rmax = 5e-3;                       // 5 mm
+    var sigMax = 350e6;                    // 표시 상한 350 MPa
+    var m = axes(c, box, {
+      xmin: 0, xmax: rmax * 1e3, xn: 5, xlabel: "균열선단으로부터의 거리 r  [mm]",
+      ymin: 0, ymax: sigMax / 1e6, yn: 7, ylabel: "응력  [MPa]",
+      xfmt: function (v) { return v.toFixed(0); }, yfmt: function (v) { return v.toFixed(0); }
+    });
+    // sigma_f 파선
+    c.strokeStyle = "#d11"; c.setLineDash([6, 4]); c.lineWidth = 1.5;
+    c.beginPath(); c.moveTo(m.X(0), m.Y(SIGF / 1e6)); c.lineTo(m.X(rmax * 1e3), m.Y(SIGF / 1e6)); c.stroke();
+    c.setLineDash([]);
+    c.fillStyle = "#d11"; c.textAlign = "left";
+    c.fillText("파손강도 σ_f = 70 MPa", m.X(rmax * 1e3) - 190, m.Y(SIGF / 1e6) - 8);
+    // 곡선
+    c.strokeStyle = "#123a6b"; c.lineWidth = 2.5; c.beginPath();
+    var started = false;
+    for (var px = box.x0; px <= box.x1; px++) {
+      var r = ((px - box.x0) / (box.x1 - box.x0)) * rmax;
+      if (r <= 0) continue;
+      var s = K / Math.sqrt(2 * Math.PI * r);   // Pa
+      var py = m.Y(Math.min(s, sigMax) / 1e6);
+      if (!started) { c.moveTo(px, py); started = true; } else { c.lineTo(px, py); }
+    }
+    c.stroke();
+    c.fillStyle = "#123a6b";
+    c.fillText("σ_x = K / √(2πr)   ([선행연구 1] Eq. 4)", box.x0 + 90, box.y0 + 24);
+    c.fillStyle = "#666";
+    c.fillText("r → 0  ⇒  σ → ∞ :  강도 기준은 선단 근처에서 언제나 만족 ⇒ 파손하중을 못 정함 ⇒ K 도입", box.x0 - 30, box.y1 + 46);
+  })();
+
+  // ===== 그림 2: 같은 곡선 log-log =====
+  (function () {
+    var o = ctxOf("figB"), c = o.c;
+    var box = { x0: 70, x1: o.w - 20, y0: 20, y1: o.h - 50 };
+    var rMinE = -5, rMaxE = -2.3;   // log10(m): 1e-5 .. ~5e-3
+    var sMinE = 6, sMaxE = 9;       // log10(Pa)
+    var m = axes(c, box, {
+      xmin: rMinE, xmax: rMaxE, xn: 5, xlabel: "log₁₀ r   (r [m])",
+      ymin: sMinE, ymax: sMaxE, yn: 3, ylabel: "log₁₀ σ   (σ [Pa])",
+      xfmt: function (v) { return v.toFixed(1); }, yfmt: function (v) { return v.toFixed(0); }
+    });
+    c.strokeStyle = "#123a6b"; c.lineWidth = 2.5; c.beginPath();
+    for (var i = 0; i <= 200; i++) {
+      var le = rMinE + (rMaxE - rMinE) * i / 200;
+      var r = Math.pow(10, le);
+      var s = K / Math.sqrt(2 * Math.PI * r);
+      var ls = Math.log(s) / Math.LN10;
+      var px = m.X(le), py = m.Y(ls);
+      if (i === 0) c.moveTo(px, py); else c.lineTo(px, py);
+    }
+    c.stroke();
+    c.fillStyle = "#123a6b"; c.textAlign = "left";
+    c.fillText("기울기 = −1/2  ⇒  '1/√r' 특이성", box.x0 + 60, box.y0 + 22);
+  })();
+
+  // ===== 그림 3: K vs K_Ic 파손 판정 =====
+  (function () {
+    var o = ctxOf("figC"), c = o.c;
+    // 왼쪽: K–하중 직선
+    var boxL = { x0: 70, x1: o.w / 2 - 30, y0: 20, y1: o.h - 55 };
+    var mL = axes(c, boxL, {
+      xmin: 0, xmax: 1.3, xn: 13, xlabel: "작용하중  P / P_f",
+      ymin: 0, ymax: 1.3, yn: 13, ylabel: "K / K_Ic",
+      xfmt: function (v) { return (v % 0.5 < 1e-9 || Math.abs(v - 1) < 1e-9) ? v.toFixed(1) : ""; },
+      yfmt: function (v) { return (v % 0.5 < 1e-9 || Math.abs(v - 1) < 1e-9) ? v.toFixed(1) : ""; }
+    });
+    // K = K_Ic 파선
+    c.strokeStyle = "#333"; c.setLineDash([6, 4]);
+    c.beginPath(); c.moveTo(mL.X(0), mL.Y(1)); c.lineTo(mL.X(1.3), mL.Y(1)); c.stroke();
+    c.beginPath(); c.moveTo(mL.X(1), mL.Y(0)); c.lineTo(mL.X(1), mL.Y(1)); c.stroke();
+    c.setLineDash([]);
+    // K ∝ P 직선
+    c.strokeStyle = "#123a6b"; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(mL.X(0), mL.Y(0)); c.lineTo(mL.X(1.3), mL.Y(1.3)); c.stroke();
+    // 파손점
+    c.fillStyle = "#d11"; c.beginPath(); c.arc(mL.X(1), mL.Y(1), 5, 0, 2 * Math.PI); c.fill();
+    c.textAlign = "left";
+    c.fillText("파손: K = K_Ic", mL.X(1) - 6, mL.Y(1) - 12);
+    c.fillStyle = "#333"; c.fillText("K_Ic", mL.X(0) + 6, mL.Y(1) - 6);
+    c.fillStyle = "#123a6b"; c.fillText("K ∝ P  (선형탄성)", mL.X(0.05), mL.Y(1.15));
+
+    // 오른쪽: 하중 단계별 K 막대
+    var boxR = { x0: o.w / 2 + 55, x1: o.w - 20, y0: 20, y1: o.h - 55 };
+    var mR = axes(c, boxR, {
+      xmin: 0, xmax: 3, xn: 3, xlabel: "하중 단계",
+      ymin: 0, ymax: 1.3, yn: 13, ylabel: "K / K_Ic",
+      xfmt: function () { return ""; },
+      yfmt: function (v) { return (Math.abs(v - 1) < 1e-9 || v % 0.5 < 1e-9) ? v.toFixed(1) : ""; }
+    });
+    var vals = [0.4, 0.7, 1.0], labs = ["낮음", "중간", "파손"];
+    var cols = ["#8ab6e0", "#8ab6e0", "#d11"];
+    for (var i = 0; i < 3; i++) {
+      var xc = mR.X(0.5 + i), bw = (mR.X(1) - mR.X(0)) * 0.5;
+      c.fillStyle = cols[i];
+      c.fillRect(xc - bw / 2, mR.Y(vals[i]), bw, mR.Y(0) - mR.Y(vals[i]));
+      c.fillStyle = "#333"; c.textAlign = "center";
+      c.fillText(labs[i], xc, mR.Y(0) + 18);
+    }
+    c.strokeStyle = "#333"; c.setLineDash([6, 4]);
+    c.beginPath(); c.moveTo(mR.X(0), mR.Y(1)); c.lineTo(mR.X(3), mR.Y(1)); c.stroke();
+    c.setLineDash([]);
+    c.fillStyle = "#333"; c.textAlign = "left";
+    c.fillText("K_Ic = √(2πE·w_f)   ([선행연구 1] Eq. 7)", boxR.x0 - 10, boxR.y0 + 6);
+    c.fillText("에너지 관점: K²/E ≥ Y   ([선행연구 3] Eq. 4)", boxR.x0 - 10, boxR.y0 + 24);
+  })();
+
+  // ---- 최소 self-check: 식이 안 깨졌는지 (콘솔) ----
+  var s1 = K / Math.sqrt(2 * Math.PI * 1e-6);   // 선단 매우 가까이
+  var s2 = K / Math.sqrt(2 * Math.PI * 5e-3);   // 멀리
+  console.assert(s1 > SIGF && s2 < SIGF, "그림1: 선단 근처 σ>σ_f, 멀리서 σ<σ_f 여야 함");
+  console.assert(Math.abs(Math.sqrt(2 * Math.PI * E * (KIC * KIC / (2 * Math.PI * E))) - KIC) < 1, "Eq.6↔7 왕복 일치 여야 함");
+  console.log("LEFM viz self-check OK");
+})();
+</script>
+
+</body>
+</html>
