@@ -92,7 +92,12 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 <p>[선행연구 1]은 파손을 두 조건으로 설명한다. 첫째 조건은 국부응력이 재료 파손강도 이상일 것:</p>
 
 <span class="eq"><var>σ</var><sub>l</sub> &ge; <var>σ</var><sub>f</sub>
-  <span class="ref">[선행연구 1] Eq. (1) / [선행연구 3] Eq. (1) — <var>σ</var><sub>l</sub>: 국부응력, <var>σ</var><sub>f</sub>: 파손강도</span></span>
+  <span class="ref">[선행연구 1] Eq. (1) — <var>σ</var><sub>l</sub>: 국부응력(local stress), <var>σ</var><sub>f</sub>: 파손강도</span></span>
+
+<p class="src" style="margin-top:.6rem">[선행연구 3] Eq. (1)은 같은 형태를 <var>σ</var><sub>e</sub> &ge; <var>σ</var><sub>f</sub>로 쓰는데,
+여기서 <var>σ</var><sub>e</sub>는 &lsquo;유효응력(effective stress)&rsquo;으로 재료 거동에 따라 정의가 달라진다
+(취성: 최대주응력, 연성: 전단 계열 등). [선행연구 3]이 균열뿐 아니라 연성·이방성·복합재까지
+확장되는 것이 바로 이 유효응력 개념 덕분이다.</p>
 
 <p>그런데 <strong>날카로운 균열이 있으면 균열선단의 응력이 무한대</strong>가 된다
 ([선행연구 1] Case 2: &ldquo;The stress at the crack tip is infinite&rdquo;;
@@ -103,9 +108,11 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 
 <h3>&lsquo;선형탄성&rsquo;이란</h3>
 <p>하중을 주면 재료가 Hooke 법칙대로 늘어나고 하중을 빼면 원래대로 돌아온다(소성·비선형 없음).
-취성재료(유리·세라믹·경화 시멘트·PMMA 등)는 부서지기 직전까지 거의 이렇게 거동한다
-&rarr; LEFM 적용 대상. [선행연구 3] &sect;4.1은 경화 시멘트 페이스트를
-&ldquo;behaved in a brittle manner with an elastic modulus of 20.8 GPa&rdquo;로 기술한다.</p>
+취성재료는 부서지기 직전까지 거의 이렇게 거동한다 &rarr; LEFM 적용 대상.
+[선행연구 1] Introduction은 등방성 취성재료가 &ldquo;can be considered as linear elastic until failure&rdquo;라고 하고,
+[선행연구 3] &sect;4.1은 경화 시멘트 페이스트를
+&ldquo;behaved in a brittle manner with an elastic modulus of 20.8 GPa&rdquo;로 기술한다.
+(구체적 재료명은 이 두 논문 본문이 든 예에 한정한다.)</p>
 
 <h2>3. 균열선단 응력집중과 응력확대계수 <var>K</var></h2>
 
@@ -127,7 +134,10 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 ([선행연구 3] &sect;4.3에서는 균열시편의 <var>K</var>를 2D 유한요소해석 + Eq. (3) 곡선맞춤으로 구했다.)</p>
 
 <figure>
-  <canvas id="figA" width="760" height="430"></canvas>
+  <canvas id="figA" width="760" height="430" role="img"
+    aria-label="σx = K/√(2πr) 곡선. r이 0에 가까워질수록 응력이 무한대로 발산하며, 파손강도 σf 파선을 선단 근처에서 항상 넘는다.">
+    그림 1: σx = K/√(2πr). 균열선단으로부터의 거리 r이 작아질수록 응력이 1/√r 꼴로 무한대로 발산한다(자바스크립트 필요).
+  </canvas>
   <figcaption><strong>그림 1. 균열선단 응력집중(특이성).</strong>
   <var>σ</var><sub>x</sub> = <var>K</var>/&radic;(2<var>πr</var>) 을 거리 <var>r</var>에 대해 그린 것.
   <var>r</var> &rarr; 0에서 응력이 무한대로 발산한다. 빨간 파선(<var>σ</var><sub>f</sub>) 위쪽 영역은
@@ -138,7 +148,10 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 </figure>
 
 <figure>
-  <canvas id="figB" width="760" height="380"></canvas>
+  <canvas id="figB" width="760" height="380" role="img"
+    aria-label="같은 응력장을 로그-로그 축으로 그리면 기울기 -1/2의 직선이 된다. 이것이 1/√r 특이성의 의미다.">
+    그림 2: 같은 응력장의 로그-로그 그래프. 직선의 기울기가 -1/2이며 이것이 1/√r 특이성이다(자바스크립트 필요).
+  </canvas>
   <figcaption><strong>그림 2. 같은 응력장을 로그&ndash;로그 축으로.</strong>
   직선의 기울기가 &minus;1/2 &mdash; 이것이 &ldquo;1/&radic;<var>r</var> 특이성&rdquo;의 의미다.</figcaption>
 </figure>
@@ -164,8 +177,9 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
   <var>K</var><sub>Ic</sub> = &radic;(2<var>πE</var> &middot; <var>w</var><sub>f</sub>)
   <span class="ref">[선행연구 1] Eq. (7) — 파손구배가 임계값에 도달할 때의 <var>K</var>가 곧 <var>K</var><sub>Ic</sub></span></span>
 
-<p><var>w</var><sub>f</sub>의 단위는 Pa&middot;m = N/m = J/m<sup>2</sup> &mdash; 즉 <strong>단위면적당 에너지(에너지방출률)</strong> 차원이다
-([선행연구 1] 본문 명시).</p>
+<p><var>w</var><sub>f</sub>의 단위는 Pa&middot;m = N/m = J/m<sup>2</sup> &mdash; 즉 <strong>단위면적당 에너지(=에너지방출률과 같은 차원)</strong>이다
+([선행연구 1] 본문 명시). [선행연구 1]은 <var>w</var><sub>f</sub>를 응력구배 조건에서 나온 파손 임계값으로 도입하며,
+그 차원이 에너지/면적과 같다고 설명한다(차원 일치이지 &lsquo;<var>w</var><sub>f</sub> = 고전 LEFM 에너지방출률&rsquo;이라는 뜻은 아니다).</p>
 
 <p>[선행연구 3]은 <var>K</var><sub>Ic</sub> 대신 &lsquo;재료 파손값 <var>Y</var>&rsquo;로 같은 관계를 표현한다.</p>
 
@@ -186,12 +200,18 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 <p><strong>정리 &mdash; 파손 판정의 두 등가 관점:</strong></p>
 <ul>
 <li><strong>응력 관점:</strong> <var>K</var> &ge; <var>K</var><sub>Ic</sub></li>
-<li><strong>에너지 관점:</strong> 에너지방출률(<var>K</var><sup>2</sup>/<var>E</var> 꼴) &ge; 임계값(<var>Y</var> 또는 <var>G</var><sub>c</sub>)</li>
+<li><strong>에너지 관점:</strong> <var>K</var><sup>2</sup>/<var>E</var> 꼴의 양이 재료 임계값 <var>Y</var>에 도달
+    ([선행연구 3]은 이 <var>Y</var>가 &ldquo;equivalent to the critical energy release rate&rdquo;라고 서술한다)</li>
 </ul>
-<p>두 논문 모두 <var>K</var><sup>2</sup>/<var>E</var> (&prop; 에너지방출률)라는 관계로 이 둘을 연결한다.</p>
+<p>두 논문은 &lsquo;<var>K</var>가 임계값에 도달하면 파손&rsquo;이라는 판정을
+[선행연구 1]은 <var>w</var><sub>f</sub> = <var>K</var><sup>2</sup>/(2<var>πE</var>)로,
+[선행연구 3]은 <var>Y</var> = <var>K</var><sup>2</sup>/<var>E</var>로 표현한다. 계수 차이(2<var>π</var>)는 위 주의 박스 참조.</p>
 
 <figure>
-  <canvas id="figC" width="760" height="430"></canvas>
+  <canvas id="figC" width="760" height="430" role="img"
+    aria-label="왼쪽: K는 하중 P에 비례해 직선으로 증가하고 K가 K_Ic에 도달하는 하중 P_f에서 파손. 오른쪽: 하중 단계별 K/K_Ic 막대(0.4 낮음, 0.7 중간, 1.0 파손)와 K_Ic 파선.">
+    그림 3: K는 하중 P에 비례해 증가하며, K = K_Ic에 도달하는 하중에서 균열이 진전(파손)한다(자바스크립트 필요).
+  </canvas>
   <figcaption><strong>그림 3. <var>K</var> 대 <var>K</var><sub>Ic</sub> 파손 판정.</strong>
   선형탄성이므로 <var>K</var>는 작용하중 <var>P</var>에 비례해 직선으로 증가한다(파란 선).
   <var>K</var>가 재료의 <var>K</var><sub>Ic</sub>(검은 파선)에 도달하는 하중 <var>P</var><sub>f</sub>에서 균열이 진전 &mdash; 파손.
@@ -204,11 +224,11 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 
 <h2>5. 적용 범위 / 한계</h2>
 <ul>
-<li><strong>균열(날카로운 특이점)에는 적합, 구멍·둔한 노치에는 부적합.</strong>
+<li><strong>날카로운 균열의 특이 응력장과 구멍의 유한 응력장을 구분해야 한다.</strong>
     [선행연구 3] Introduction은 구멍(hole)에는 임계거리(critical distance) 기준, 응집영역(cohesive zone)
-    모델 등 &ldquo;an entirely different set of failure criteria&rdquo;를 써야 한다고 서술한다.
-    &rarr; LEFM은 &lsquo;균열 전용&rsquo;이며, 그래서 두 논문이 균열·구멍·무결함을 한꺼번에 다루는
-    <strong>통합 기준</strong>을 새로 제안하는 것.</li>
+    모델 등 &ldquo;an entirely different set of failure criteria&rdquo;를 써 왔다고 서술한다.
+    &rarr; 이 두 논문에서 쓰는 <var>K</var> 대 <var>K</var><sub>Ic</sub> 판정은 <strong>날카로운 균열</strong>에 적용하는 것이며,
+    그래서 두 논문이 균열·구멍·무결함을 한꺼번에 다루는 <strong>통합 기준</strong>을 새로 제안한다.</li>
 <li><strong>재료가 선형탄성이어야 한다</strong>(취성/준취성). 연성재료(예: [선행연구 3] &sect;3 알루미늄 합금)는
     균열선단 소성역이 커서 이 가정이 깨지고, 파손이 응력구배 조건이 아니라 <strong>응력 조건</strong>으로
     지배된다고 [선행연구 3]이 보고한다.</li>
@@ -235,7 +255,7 @@ Griffith 에너지평형 유도, 소규모 항복(SSY)·K-지배영역 설명은
 <li><strong>선형탄성 가정</strong> (취성재료, 파손까지 <var>σ</var> &prop; <var>ε</var>) +</li>
 <li><strong>날카로운 균열</strong> 문제 전용 +</li>
 <li>균열선단 응력장을 <strong><var>K</var> 하나</strong>로 요약 (<var>σ</var> &prop; <var>K</var>/&radic;<var>r</var>) +</li>
-<li>파손 판정은 <strong><var>K</var> = <var>K</var><sub>Ic</sub></strong> (동등하게 에너지방출률 = 임계값, <var>K</var><sup>2</sup>/<var>E</var> &prop; <var>G</var><sub>c</sub>).</li>
+<li>파손 판정은 <strong><var>K</var> = <var>K</var><sub>Ic</sub></strong> (동등하게 <var>K</var><sup>2</sup>/<var>E</var> 꼴의 양이 재료 임계값 <var>Y</var>에 도달; [선행연구 3]은 <var>Y</var>를 임계 에너지방출률과 등가라고 서술).</li>
 </ol>
 <p>구멍·둔한 노치·연성재료에는 그대로 못 쓰며(두 논문의 통합 기준이 나온 이유),
 Griffith/Irwin 유도 등 표준 이론사는 이 두 논문 본문 밖(참고문헌)이다.</p>
@@ -250,10 +270,10 @@ Griffith/Irwin 유도 등 표준 이론사는 이 두 논문 본문 밖(참고�
   "use strict";
 
   // ---- 개념 설명용 예시 수치 (두 논문의 수식 형태만 재현) ----
-  var K    = 1.0e6;   // 응력확대계수 [Pa*sqrt(m)]
-  var E    = 3.0e9;   // 탄성계수 [Pa]  (PMMA 급)
-  var SIGF = 70e6;    // 파손강도 sigma_f [Pa]
-  var KIC  = 1.0e6;   // 파괴인성 [Pa*sqrt(m)]  (예시)
+  var K    = 1.0e6;   // 응력확대계수 [Pa*sqrt(m)] (개념 설명용 예시)
+  var E    = 3.0e9;   // 탄성계수 [Pa] (개념 설명용 예시)
+  var SIGF = 70e6;    // 파손강도 sigma_f [Pa] (개념 설명용 예시)
+  var KIC  = 1.0e6;   // 파괴인성 [Pa*sqrt(m)] (개념 설명용 예시)
 
   function ctxOf(id) {
     var cv = document.getElementById(id);
@@ -412,6 +432,11 @@ Griffith/Irwin 유도 등 표준 이론사는 이 두 논문 본문 밖(참고�
   var s2 = K / Math.sqrt(2 * Math.PI * 5e-3);   // 멀리
   console.assert(s1 > SIGF && s2 < SIGF, "그림1: 선단 근처 σ>σ_f, 멀리서 σ<σ_f 여야 함");
   console.assert(Math.abs(Math.sqrt(2 * Math.PI * E * (KIC * KIC / (2 * Math.PI * E))) - KIC) < 1, "Eq.6↔7 왕복 일치 여야 함");
+  // 그림2: log-log 기울기가 -1/2 (1/√r 특이성) 이어야 함
+  var la = Math.log(K / Math.sqrt(2 * Math.PI * 1e-5)) / Math.LN10;
+  var lb = Math.log(K / Math.sqrt(2 * Math.PI * 1e-3)) / Math.LN10;
+  var slope = (lb - la) / (Math.log10(1e-3) - Math.log10(1e-5));
+  console.assert(Math.abs(slope + 0.5) < 1e-9, "그림2: log-log 기울기 = -1/2 여야 함");
   console.log("LEFM viz self-check OK");
 })();
 </script>
