@@ -13,3 +13,18 @@
 - 시작할 때 git pull.
 - 끝나면 커밋하고 push.
 - 비번·API키는 절대 파일에 쓰지 않는다.
+
+## 자동 실행 모드 (표준)
+
+사용자가 문제를 주면 아래를 한 세션에서 순차 실행한다. 확인 없이 진행.
+
+1. 문제를 `PROBLEM.md`에 기록 → commit/push.
+2. **Claude(blind)**: 독립 조사 → `roundN/claude.md`. Codex 답은 보지 않는다.
+3. **Codex(blind)**: `codex exec -C <repo> -s workspace-write --skip-git-repo-check "..."`
+   포그라운드로 실행 → `roundN/codex.md`. (백그라운드 중첩 AI 실행은 classifier가 막음)
+4. commit/push.
+5. **교차검증**: Claude는 `codex.md` 읽고 맞는 점/틀린 점/놓친 점 검토.
+   Codex에 `claude.md` 검증 시킴 (codex exec 재실행).
+6. **최종 답은 Claude가** `DECISION.md`에 작성: 공통 / 충돌(중요) / 최종 결정+근거.
+   채팅으로도 요약 보고.
+7. 3·5번 Codex 실행 동안 **1분마다** git 커밋 진행 여부 체크. 멈춰 있으면 사용자에게 알림.
