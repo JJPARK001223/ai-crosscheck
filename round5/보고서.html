@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>보고서 — LEFM·에너지 접근법·HCP 3점굽힘 모델 수치 역산</title>
+<script>
+window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'none' }, svg:{fontCache:'global'} };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+<style>
+  :root{
+    --navy:#1f3a5f; --navy2:#2f5688; --accent:#c0392b; --accent2:#1e8449;
+    --ink:#1a2230; --sub:#5b6572; --line:#d4dae2; --bg:#eef1f5; --panel:#f6f8fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;line-height:1.65;font-size:15px}
+  .doc{max-width:900px;margin:0 auto;padding:40px 26px 90px;background:#fff;
+    box-shadow:0 2px 30px rgba(20,40,70,.09)}
+
+  .cover{border-bottom:3px solid var(--navy);padding-bottom:22px;margin-bottom:30px}
+  .cover .kicker{font-size:.72rem;font-weight:800;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+  .cover h1{font-size:1.6rem;font-weight:900;color:var(--navy);line-height:1.35;margin:8px 0 12px}
+  .cover .meta{font-size:.82rem;color:var(--sub);line-height:1.9}
+
+  h2{font-size:1.24rem;font-weight:900;color:#fff;background:var(--navy);
+    padding:9px 16px;border-radius:7px;margin:38px 0 16px;scroll-margin-top:14px}
+  h3{font-size:1.03rem;font-weight:800;color:var(--navy);margin:22px 0 8px;
+    border-left:4px solid var(--accent);padding-left:10px}
+  h4{font-size:.92rem;font-weight:800;color:var(--navy2);margin:14px 0 5px}
+  p{margin:7px 0}
+  ul,ol{margin:7px 0 7px 6px;padding-left:20px}
+  li{margin:4px 0}
+  b{color:var(--navy)}
+  .doc a{color:var(--navy2)}
+
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 20px;margin:6px 0 10px}
+  .toc h4{margin:0 0 6px}
+  .toc ol{margin:0;padding-left:22px;font-size:.9rem}
+  .toc li{margin:3px 0}
+
+  .eq{background:#1e2235;color:#eef1f7;border-radius:9px;padding:11px 18px;margin:12px 0;text-align:center;overflow-x:auto}
+  .eq .n{color:#8fb4e0;font-size:.8rem;margin-left:12px}
+
+  /* 박스-화살표-박스 유도 체인 */
+  .chain{display:flex;flex-direction:column;align-items:center;gap:0;margin:16px 0}
+  .dbox{border:2px solid var(--ink);border-radius:11px;padding:9px 20px;background:#fff;
+    max-width:100%;text-align:center;overflow-x:auto}
+  .dbox.hl{border-color:var(--accent2);background:#f1fbf4}
+  .dbox.start{border-color:var(--navy2);background:#eef4fb}
+  .dbox .lbl{display:block;font-size:.68rem;color:var(--accent);font-weight:800;margin-bottom:3px;letter-spacing:.4px}
+  .dbox .sub{display:block;font-size:.76rem;color:var(--sub);margin-top:3px}
+  .darrow{color:var(--accent);font-size:1.35rem;font-weight:900;line-height:1.1;margin:2px 0}
+  .darrow small{display:block;font-size:.66rem;color:var(--sub);font-weight:600;margin-top:-2px}
+
+  figure{margin:16px 0;text-align:center}
+  figure svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+  figcaption{font-size:.78rem;color:var(--sub);margin-top:6px;text-align:center}
+
+  table{border-collapse:collapse;width:100%;font-size:.82rem;margin:12px 0}
+  caption{font-size:.8rem;color:var(--sub);text-align:left;margin-bottom:4px}
+  th,td{border:1px solid var(--line);padding:5px 9px;text-align:center;vertical-align:middle}
+  th{background:var(--navy);color:#fff;font-weight:700}
+  tbody tr:nth-child(even) td{background:#f4f6f9}
+  td.l{text-align:left}
+
+  .box{border:1px solid var(--line);border-left:4px solid var(--navy2);background:var(--panel);
+    border-radius:7px;padding:10px 16px;margin:12px 0;font-size:.9rem}
+  .box.warn{border-left-color:var(--accent);background:#fdf4ec}
+  .box.ok{border-left-color:var(--accent2);background:#f1fbf4}
+  .box h4{margin-top:0}
+  .tag{display:inline-block;font-size:.68rem;font-weight:800;padding:1px 7px;border-radius:4px;color:#fff;vertical-align:middle}
+  .tag.fix{background:var(--navy2)}      /* 논문 고정값 */
+  .tag.read{background:#b9770e}          /* 그림 판독값 */
+  .tag.assume{background:var(--accent)}  /* 가정값 */
+  .tag.fe{background:var(--accent2)}     /* FE로 결정 */
+  .legend{font-size:.8rem;margin:8px 0}
+  .legend .tag{margin-right:4px}
+
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;font-size:.76rem;color:var(--sub)}
+  @media print{ body{background:#fff} .doc{box-shadow:none;max-width:none;padding:0} h2{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<div class="cover">
+  <div class="kicker">연구 보고서</div>
+  <h1>선형탄성파괴역학과 에너지 접근법에 기반한<br>경화 시멘트 페이스트 3점굽힘 균열시편 — FE 재현을 위한 모델 수치 역산</h1>
+  <div class="meta">
+    대상 논문 : Y.W. Kwon, E.K. Markoff, S. DeFisher, <i>Unified Failure Criterion Based on Stress and Stress Gradient Conditions</i>, <i>Materials</i> <b>2024</b>, 17(3), 569 — §4 (Hardened Cement Pastes with Cracks)<br>
+    선행 : Y.W. Kwon, <i>Revisiting Failure of Brittle Materials</i>, <i>J. Pressure Vessel Technol.</i> <b>2021</b>, 143(6), 064503<br>
+    실험 원출처 : B.L. Karihaloo, H.M. Abdalla, Q.Z. Xiao, <i>Size effect in concrete beams</i>, <i>Eng. Fract. Mech.</i> <b>2003</b>, 70, 979–993 (Kwon 2024 ref [39])<br>
+    검증 : Claude ↔ Codex 교차검증 round 1 (수식 유도) · round 2 (인용) · round 3 (식 경로) · round 4 (FE 계획)<br>
+    작성일 : 2026-09-04
+  </div>
+</div>
+
+<div class="toc">
+  <h4>목차</h4>
+  <ol>
+    <li>선형탄성파괴역학(LEFM)의 개념</li>
+    <li>파괴해석의 에너지 접근법 — Griffith · Irwin · 본 파괴기준의 $Y$</li>
+    <li>응력·응력구배 파괴기준의 식 유도 (박스→화살표→박스)</li>
+    <li>Fig 8·9 기반 모델 수치 역산 — 6 케이스 표</li>
+    <li>$K/P \to Y \to$ 파괴하중 예측 워크플로우</li>
+    <li>교차검증 결과 종합 — 확정 / 정정 / 열림</li>
+    <li>부록 : 기호표 · 참고문헌</li>
+  </ol>
+</div>
+
+
+<!-- ================= 1. LEFM ================= -->
+<h2>1. 선형탄성파괴역학(LEFM)의 개념</h2>
+
+<h3>1.1 파괴해석이 답하려는 질문</h3>
+<p>
+파괴해석은 재료의 거동을 분석하여, <b>균열이 발생·성장하는 데 필요한 임계 응력 또는 임계 변위(하중)를 예측</b>하는 것을 목적으로 한다.
+하중을 받는 부재에 균열이 있으면 균열 선단에서 응력이 국소적으로 크게 상승하므로, 노치가 없는 부재에 쓰던
+파괴강도 기준(단축 강도 $\sigma_f$)만으로는 파괴하중을 신뢰성 있게 예측할 수 없다(Kwon 2024, §1).
+</p>
+
+<h3>1.2 균열 선단 특이응력장과 응력확대계수 $K$</h3>
+<p>
+재료가 <b>선형탄성(linear elastic)</b> 거동을 한다고 가정하면, 균열 선단 근방의 응력장은 선단으로부터의 거리 $r$에 대해
+$r^{-1/2}$로 발산한다. 모드 I(개구모드)에서 균열 전방($\theta=0$)의 개구응력은
+</p>
+<div class="eq">$$ \sigma_{x} \;=\; \dfrac{K_{I}}{\sqrt{2\pi r}} \qquad (r \to 0) $$ <span class="n">— Kwon 2021, 식(4)</span></div>
+<p>
+로 표현되며, 응력장의 세기 전체를 하나의 상수 <b>$K_I$ (모드 I 응력확대계수, 단위 $\mathrm{MPa\sqrt{m}}$)</b>가 결정한다.
+$K_I$는 하중·형상·균열 길이에 의존하고, 선형탄성이므로 <b>하중에 정비례</b>한다 ($K_I \propto P$).
+파괴는 $K_I$가 재료 고유의 임계값 $K_{IC}$(파괴인성)에 도달할 때 일어난다는 것이 고전적 LEFM 기준이다.
+</p>
+
+<figure>
+<svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+  <rect width="820" height="300" fill="#fff"/>
+  <!-- axes -->
+  <line x1="90" y1="255" x2="770" y2="255" stroke="#1a2230" stroke-width="1.5"/>
+  <line x1="90" y1="255" x2="90" y2="35" stroke="#1a2230" stroke-width="1.5"/>
+  <text x="430" y="288" font-size="13" text-anchor="middle" fill="#1a2230">균열 선단으로부터의 거리  r</text>
+  <text x="30" y="150" font-size="13" text-anchor="middle" fill="#1a2230" transform="rotate(-90 30 150)">개구응력  σx</text>
+  <!-- crack tip -->
+  <line x1="90" y1="255" x2="90" y2="270" stroke="#c0392b" stroke-width="2"/>
+  <text x="90" y="285" font-size="11" text-anchor="middle" fill="#c0392b">균열선단 r=0</text>
+  <!-- singular curve  sigma = C / sqrt(r) -->
+  <path d="M 96,40 C 120,150 170,205 260,225 C 380,250 550,253 760,254" fill="none" stroke="#1f3a5f" stroke-width="2.5"/>
+  <text x="250" y="70" font-size="12" fill="#1f3a5f" font-weight="700">σx = K_I / √(2πr)</text>
+  <!-- yield cutoff -->
+  <line x1="90" y1="110" x2="770" y2="110" stroke="#b9770e" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <text x="762" y="103" font-size="11" text-anchor="end" fill="#b9770e">파괴강도 σf (실제 재료는 여기서 항복/미세균열)</text>
+  <!-- plastic zone -->
+  <rect x="90" y="110" width="46" height="145" fill="#c0392b" opacity="0.12"/>
+  <line x1="136" y1="255" x2="136" y2="265" stroke="#c0392b" stroke-width="1.3"/>
+  <text x="136" y="278" font-size="10" text-anchor="middle" fill="#c0392b">rp</text>
+  <!-- K-dominant zone -->
+  <line x1="136" y1="35" x2="136" y2="255" stroke="#1e8449" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="330" y1="35" x2="330" y2="255" stroke="#1e8449" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="233" y="30" font-size="11" text-anchor="middle" fill="#1e8449" font-weight="700">K-지배영역 (σ ∝ K/√r 성립)</text>
+  <path d="M 140,20 L 326,20" stroke="#1e8449" stroke-width="1"/>
+</svg>
+<figcaption>그림 1-1. 균열 선단 특이응력장. 실제 재료에서는 선단 극근방에 소성역($r_p$)이 생기지만, 소성역이 K-지배영역보다
+충분히 작으면(소규모 항복, SSY) 그 바깥의 응력장은 여전히 $K_I$ 하나로 기술된다 → LEFM 적용 가능.</figcaption>
+</figure>
+
+<h3>1.3 LEFM 성립 조건</h3>
+<ul>
+  <li><b>소규모 항복(small-scale yielding)</b> : 선단 소성역 $r_p \ll$ (균열 길이 $a$, 리거먼트 $H-a$, 시편 치수). 이 조건에서 $K_I$가 유일한 하중 파라미터가 된다.</li>
+  <li>경화 시멘트 페이스트는 <b>취성(brittle)</b> 재료로 거동하며($E=20.8$ GPa, Kwon 2024 §4.1), 선단 비선형역이 매우 작아 LEFM 가정이 타당하다.</li>
+  <li>취성재의 유효응력 $\sigma_e$는 <b>최대 수직응력(개구응력)</b>을 쓰고, 파괴 경로 $s$는 최대 주응력축에 수직이다(Kwon 2024, 식(1) 해설).</li>
+</ul>
+
+
+<!-- ================= 2. Energy approach ================= -->
+<h2>2. 파괴해석의 에너지 접근법 — Griffith · Irwin · 본 파괴기준의 $Y$</h2>
+
+<p>
+본 논문(Kwon 2024)이 파괴하중을 예측하는 데 사용하는 재료 파괴값 $Y$(선행연구 1의 $w_f$)는
+<b>에너지 차원의 양(J/m² = N/m)</b>이며, 그 뿌리는 파괴역학의 <b>에너지 접근법</b>에 있다.
+에너지 접근법은 "균열이 전파하여 <b>새로운 표면을 만드는 데 필요한 에너지</b>"와
+"균열 선단 주변에서 <b>방출되는 변형에너지</b>" 사이의 균형을 분석하며, 취성·연성 재료 모두에 적용된다.
+</p>
+
+<h3>2.1 Griffith(1921) — 에너지 균형</h3>
+<p>
+Griffith는 균열이 길이 $dA$만큼 성장할 때, 방출되는 퍼텐셜에너지가 새 표면 생성에 드는 표면에너지 이상이면
+균열이 자발적으로 전파한다고 보았다.
+</p>
+<div class="eq">$$ -\dfrac{d\Pi}{dA} \;\geq\; \dfrac{dW_s}{dA} \;=\; 2\gamma_s
+\qquad\Longrightarrow\qquad G \;\geq\; 2\gamma_s $$</div>
+<p>
+여기서 $\Pi$ = 퍼텐셜에너지, $\gamma_s$ = 단위면적당 표면에너지, 계수 2는 균열이 <b>두 개의 새 면</b>을 만들기 때문이다.
+$G \equiv -d\Pi/dA$를 <b>에너지방출률(energy release rate)</b>이라 한다.
+</p>
+
+<figure>
+<svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+  <rect width="820" height="320" fill="#fff"/>
+  <line x1="80" y1="250" x2="770" y2="250" stroke="#1a2230" stroke-width="1.5"/>
+  <line x1="80" y1="300" x2="80" y2="30" stroke="#1a2230" stroke-width="1.5"/>
+  <text x="425" y="292" font-size="13" text-anchor="middle" fill="#1a2230">균열 길이  a</text>
+  <text x="26" y="165" font-size="13" text-anchor="middle" fill="#1a2230" transform="rotate(-90 26 165)">에너지</text>
+  <!-- surface energy: linear up  Ws = 4 gamma_s a  -->
+  <line x1="80" y1="250" x2="720" y2="70" stroke="#b9770e" stroke-width="2.2"/>
+  <text x="600" y="95" font-size="12" fill="#b9770e" font-weight="700">표면에너지  Ws ∝ +a</text>
+  <!-- released strain energy: parabola down  -pi sigma^2 a^2 / E -->
+  <path d="M 80,250 C 300,256 500,240 720,120" fill="none" stroke="#1f3a5f" stroke-width="2.2"/>
+  <text x="560" y="200" font-size="12" fill="#1f3a5f" font-weight="700">방출 변형에너지  −U ∝ −a²</text>
+  <!-- total: up then down -->
+  <path d="M 80,250 C 260,175 360,150 430,150 C 520,150 640,190 745,255" fill="none" stroke="#c0392b" stroke-width="2.6"/>
+  <text x="150" y="150" font-size="12" fill="#c0392b" font-weight="700">전체 에너지 Π+Ws</text>
+  <!-- critical point -->
+  <circle cx="430" cy="150" r="4.5" fill="#c0392b"/>
+  <line x1="430" y1="150" x2="430" y2="250" stroke="#c0392b" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="430" y="268" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="700">a_c</text>
+  <text x="445" y="140" font-size="11" fill="#c0392b">극대 → dΠ/da=0 → G=2γs</text>
+</svg>
+<figcaption>그림 2-1. Griffith 에너지 균형. 표면에너지는 균열 길이에 비례해 증가(+), 방출 변형에너지는 $a^2$에 비례해 감소(−).
+전체 에너지가 극대가 되는 $a_c$에서 균열이 불안정 전파를 시작한다.</figcaption>
+</figure>
+
+<h3>2.2 Irwin(1957) — $G$와 $K$의 연결</h3>
+<p>
+Irwin은 에너지방출률 $G$를 균열 선단 응력장의 세기 $K$와 직접 연결했다.
+</p>
+<div class="eq">$$ G \;=\; \dfrac{K_I^{2}}{E'}, \qquad
+E' = \begin{cases} E & \text{평면응력}\\[2pt] E/(1-\nu^{2}) & \text{평면변형}\end{cases}
+\qquad\Longrightarrow\qquad G_c = \dfrac{K_{IC}^{2}}{E'} $$</div>
+<p>
+이로써 "에너지 균형"(Griffith)과 "응력장 세기"(LEFM의 $K$)가 하나의 틀로 통합된다.
+비가역 파괴에서는 $\gamma_s$ 대신 파괴 저항 전체를 담은 임계값 $G_c$를 쓴다.
+</p>
+
+<h3>2.3 본 파괴기준의 $Y$ ($w_f$)와 $G$의 관계</h3>
+<div class="chain">
+  <div class="dbox start"><span class="lbl">Griffith 1921 · 에너지 균형</span>
+    $G \geq 2\gamma_s$ &nbsp;(균열이 새 표면을 만드는 데 필요한 에너지 = 방출 에너지)</div>
+  <div class="darrow">▼<small>Irwin: 에너지방출률을 응력장 세기 K로 표현</small></div>
+  <div class="dbox"><span class="lbl">Irwin 1957 · G–K 관계</span>
+    $G = \dfrac{K_I^{2}}{E'}$ &nbsp;→&nbsp; $G_c = \dfrac{K_{IC}^{2}}{E'}$</div>
+  <div class="darrow">▼<small>Kwon: 국소점에서 변형에너지밀도 ÷ 응력구배 (3장에서 유도)</small></div>
+  <div class="dbox hl"><span class="lbl">본 파괴기준 · 재료 파괴값</span>
+    $w_f = Y = \dfrac{K_I^{2}}{2\pi E}$ &nbsp;(선1 식(6) / 선3 식(4), $K_{\text{선3}}=K_I/\sqrt{2\pi}$)</div>
+  <div class="darrow">▼<small>두 식을 비교</small></div>
+  <div class="dbox"><span class="lbl">관계</span>
+    $Y = \dfrac{G}{2\pi}$ (평면응력) &nbsp;<b>≠</b>&nbsp; $G_c$ &nbsp;— 같은 차원·비례관계이나 <b>수치는 약 6.28배 다름</b></div>
+</div>
+
+<div class="box warn">
+  <h4>⚠ 교차검증 정정 (round 1·3)</h4>
+  Kwon 2024는 "재료 파괴값 $Y$는 임계 에너지방출률과 동등하다"고 서술하나(§2), 이 문장은 <b>수치적으로 부정확</b>하다.
+  논문 자신의 식(3) $\sigma_e=K/\sqrt{s}$ 에는 $2\pi$가 없으므로, 일관되게 적용하면 $Y = G/(2\pi)$(평면응력),
+  $Y = G/[2\pi(1-\nu^2)]$(평면변형)이다.
+  <br><b>실무 영향은 없음</b> — $Y$를 시험 결과에서 역산하므로 정규화 상수가 예측식에서 상쇄된다.
+  <br><b>절대 금지</b> — 문헌의 $G_c$ 값을 $Y$ 자리에 직접 대입 (약 $2\pi \approx 6.28$배 오차).
+</div>
+
+<div class="box ok">
+  <h4>✔ 참고문헌 확인 (Kwon 2024 References)</h4>
+  에너지 접근법의 근거 문헌은 모두 논문에 인용되어 있다(균열 있는 부재의 파괴역학 배경으로 [9–16]):
+  <ul>
+    <li>[11] Griffith, A.A. <i>The phenomena of rupture and flow in solids.</i> Philos. Trans. R. Soc. A <b>1921</b>, 221, 163–198.</li>
+    <li>[12] Griffith, A.A. <i>The theory of rupture.</i> Proc. 1st Int. Congr. Applied Mechanics, Delft, <b>1924</b>; pp. 55–63.</li>
+    <li>[9] Irwin, G.R. <i>Analysis of stresses and strains near the end of a crack traversing a plate.</i> J. Appl. Mech. <b>1957</b>, 24, 361–364.</li>
+    <li>[10] Irwin, G.R.; Kies, J.A.; Smith, H.L. <i>Fracture strengths relative to onset and arrest of crack propagation.</i> Proc. ASTM <b>1958</b>, 58, 640–660.</li>
+  </ul>
+  단, 이 문헌들은 <b>배경·대비</b>로 인용된 것이며, 본 논문의 파괴기준은 Griffith의 전역 에너지 균형이 아니라
+  <b>국소점(균열 선단)의 응력·응력구배 조건</b>이다.
+</div>
+
+
+<!-- ================= 3. Equation derivation ================= -->
+<h2>3. 응력·응력구배 파괴기준의 식 유도 (박스→화살표→박스)</h2>
+
+<p>
+본 파괴기준은 두 조건이 <b>모두</b> 만족될 때 파괴로 판정한다.
+</p>
+<div class="eq">$$ \text{① 응력조건: } \sigma_e \geq \sigma_f $$ <span class="n">식(1)</span></div>
+<div class="eq">$$ \text{② 응력구배조건: } \dfrac{\sigma_e^{3}}{2E}\left|\dfrac{ds}{d\sigma_e}\right| \geq w_f
+\;\;\Longleftrightarrow\;\; \sigma_e \geq \big(2EY\,|d\sigma_e/ds|\big)^{1/3} $$ <span class="n">선1 식(3) / 선3 식(2)</span></div>
+<p>
+② 의 좌변 분자 $\sigma_e^2/2E$는 <b>변형에너지밀도</b>, 분모 $(1/\sigma_e)|d\sigma_e/ds|$는 <b>단위응력당 응력구배</b>이다.
+즉 "얼마나 많은 에너지가 쌓였는가"를 "응력이 얼마나 빨리 식는가"로 나눈 것이 임계값 $w_f$를 넘으면 파괴다.
+</p>
+
+<h3>3.1 균열 문제에 대입 — $w_f$ ($Y$)의 정체</h3>
+<div class="chain">
+  <div class="dbox start"><span class="lbl">1 · 균열 근접장 (LEFM)</span>
+    $\sigma_x = \dfrac{K_I}{\sqrt{2\pi}}\,r^{-1/2}$</div>
+  <div class="darrow">▼<small>r로 미분</small></div>
+  <div class="dbox"><span class="lbl">2 · 응력구배</span>
+    $\dfrac{d\sigma_x}{dr} = \dfrac{K_I}{\sqrt{2\pi}}\left(-\tfrac12\right)r^{-3/2}
+    = -\dfrac{K_I}{2\sqrt{2\pi}\,r^{3/2}}$</div>
+  <div class="darrow">▼<small>1·2 를 응력구배조건 식(3)에 대입</small></div>
+  <div class="dbox"><span class="lbl">3 · 응력구배조건 대입</span>
+    $\dfrac{\sigma_x^{3}}{2E}\left|\dfrac{dr}{d\sigma_x}\right| \geq w_f$
+    <span class="sub">$= \dfrac{1}{2E}\!\left(\dfrac{K_I}{\sqrt{2\pi r}}\right)^{3}\cdot \dfrac{2\sqrt{2\pi}\,r^{3/2}}{K_I}$</span></div>
+  <div class="darrow">▼<small>지수 정리 — r<sup>−3/2</sup> · r<sup>3/2</sup> = 1 → r 완전 소거</small></div>
+  <div class="dbox"><span class="lbl">4 · r 소거</span>
+    $\dfrac{K_I^{3}}{(2\pi)^{3/2}}\cdot\dfrac{1}{2E}\cdot\dfrac{2(2\pi)^{1/2}}{K_I}
+    = \dfrac{K_I^{2}}{2\pi E} \geq w_f$</div>
+  <div class="darrow">▼<small>파괴 개시 = 등호</small></div>
+  <div class="dbox hl"><span class="lbl">5 · 재료 파괴값 (선1 식(6))</span>
+    $w_f = \dfrac{K_I^{2}}{2\pi E}$
+    &nbsp;→&nbsp; $K_{IC} = \sqrt{2\pi E\,w_f}$ &nbsp;(식(7))</div>
+</div>
+
+<div class="box">
+  <h4>선행연구 3의 평행 유도 (같은 결과, 표기만 다름)</h4>
+  <div class="chain" style="margin:8px 0">
+    <div class="dbox start">$\sigma_e = \dfrac{K}{\sqrt{s}}$ &nbsp;(식(3), <b>$2\pi$ 없음</b>)</div>
+    <div class="darrow">▼<small>식(3)과 도함수를 식(2)에 대입 → s 소거</small></div>
+    <div class="dbox">$Y = \dfrac{K^{2}}{E}$ &nbsp;(식(4))</div>
+    <div class="darrow">▼<small>표준 K로 환산: $K = K_I/\sqrt{2\pi}$</small></div>
+    <div class="dbox hl">$Y = \dfrac{K_I^{2}}{2\pi E} = w_f$ &nbsp;— 두 논문 완전 일치</div>
+  </div>
+  <b>핵심</b> : $s$(또는 $r$)가 유도 과정에서 완전히 소거된다 → $w_f=Y$는 <b>균열 길이·위치와 무관한 재료상수</b>.
+  이것이 이 기준을 "국소점 기준이면서 균열 문제에도 통하는" 통합 기준으로 만드는 이유다.
+</div>
+
+<div class="box warn">
+  <h4>⚠ 두 K 관례를 섞지 말 것 (round 1)</h4>
+  <table style="margin-top:6px">
+    <thead><tr><th>표기</th><th>응력장 식</th><th>파괴값</th><th>예측식</th></tr></thead>
+    <tbody>
+      <tr><td>선1 (표준 $K_I$)</td><td>$\sigma=K_I/\sqrt{2\pi r}$</td><td>$w_f=K_I^2/(2\pi E)$</td><td>$P_{pred}=\sqrt{2\pi E\,w_f}\,/\,(K_I/P)$</td></tr>
+      <tr><td>선3 (비표준 $K$)</td><td>$\sigma_e=K/\sqrt{s}$</td><td>$Y=K^2/E$</td><td>$P_{pred}=\sqrt{E\,Y}\,/\,(K/P)$</td></tr>
+    </tbody>
+  </table>
+  두 예측식은 $\sqrt{2\pi}$가 상쇄되어 <b>수치적으로 동일</b>하다. 단 FE 후처리에서 곡선맞춤 상수를
+  $K_I$로 쓸지 $K$로 쓸지 <b>변수·CSV 컬럼 단위로 명시</b>해야 2π배 오차를 피한다.
+</div>
+
+
+<!-- ================= 4. Back-calculation ================= -->
+<h2>4. Fig 8·9 기반 모델 수치 역산 — 6 케이스 표</h2>
+
+<p>
+Kwon 2024 §4는 재현에 필요한 치수를 <b>일부만</b> 명시한다. Fig 8(형상 스케치)·Fig 9(3D 메시·BC)·Fig 11(케이스 매트릭스)과
+본문·참고문헌을 대조하여 나머지 값을 역산한다.
+</p>
+
+<div class="legend">
+  <span class="tag fix">고정</span> 논문 본문 명시값 &nbsp;
+  <span class="tag read">판독</span> 그림에서 읽은 값 (근사) &nbsp;
+  <span class="tag assume">가정</span> 논문 미기재, 재현 채택값 &nbsp;
+  <span class="tag fe">FE</span> 재현 FE 해석으로 결정
+</div>
+
+<h3>4.1 논문이 직접 주는 값</h3>
+<table>
+  <thead><tr><th>변수</th><th>값</th><th>구분</th><th>근거</th></tr></thead>
+  <tbody>
+    <tr><td>폭 $W$</td><td class="l">100 mm (고정)</td><td><span class="tag fix">고정</span></td><td class="l">§4.1 "the width $W$ = 100 mm"</td></tr>
+    <tr><td>길이/높이 비 $L/H$</td><td class="l">4</td><td><span class="tag fix">고정</span></td><td class="l">§4.1 "$L/H$ = 4"</td></tr>
+    <tr><td>탄성계수 $E$</td><td class="l">20.8 GPa = 20 800 MPa</td><td><span class="tag fix">고정</span></td><td class="l">§4.1 "elastic modulus of 20.8 GPa"</td></tr>
+    <tr><td>거동</td><td class="l">선형탄성·취성</td><td><span class="tag fix">고정</span></td><td class="l">§4.1 "behaved in a brittle manner"</td></tr>
+    <tr><td>요소</td><td class="l">2D 4절점 사각형, 약 10 000개</td><td><span class="tag fix">고정</span></td><td class="l">§4.2 "four-node quadrilateral … around 10,000 elements"</td></tr>
+    <tr><td>균열 위치</td><td class="l">길이 중앙, 하단면, 폭 전체 관통</td><td><span class="tag fix">고정</span></td><td class="l">§4.1 + Fig 8</td></tr>
+  </tbody>
+</table>
+
+<h3>4.2 Fig 8 형상 판독 — 반(半)대칭 모델</h3>
+<figure>
+<svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+  <rect width="780" height="340" fill="#fff"/>
+  <!-- half beam -->
+  <rect x="120" y="90" width="480" height="150" fill="#eef4fb" stroke="#1f3a5f" stroke-width="2"/>
+  <!-- crack at right-bottom (mid-span symmetry plane) -->
+  <line x1="600" y1="240" x2="600" y2="185" stroke="#c0392b" stroke-width="3.5"/>
+  <text x="612" y="220" font-size="12" fill="#c0392b" font-weight="700">균열면</text>
+  <text x="612" y="236" font-size="12" fill="#c0392b" font-weight="700">깊이 a</text>
+  <!-- symmetry plane -->
+  <line x1="600" y1="90" x2="600" y2="185" stroke="#1e8449" stroke-width="2.5" stroke-dasharray="7 4"/>
+  <text x="612" y="120" font-size="11" fill="#1e8449" font-weight="700">대칭면 (U1=0,</text>
+  <text x="612" y="135" font-size="11" fill="#1e8449" font-weight="700">균열구간 제외)</text>
+  <!-- support roller at left-bottom -->
+  <circle cx="140" cy="252" r="11" fill="none" stroke="#1a2230" stroke-width="2"/>
+  <line x1="123" y1="266" x2="157" y2="266" stroke="#1a2230" stroke-width="2"/>
+  <text x="140" y="288" font-size="11" text-anchor="middle" fill="#1a2230">롤러 지지 (U2=0), x=0</text>
+  <!-- load at right-top (mid-span) -->
+  <g stroke="#c0392b" stroke-width="2">
+    <line x1="500" y1="55" x2="500" y2="88"/><line x1="530" y1="55" x2="530" y2="88"/>
+    <line x1="560" y1="55" x2="560" y2="88"/><line x1="590" y1="55" x2="590" y2="88"/>
+  </g>
+  <path d="M 495,88 L 500,80 M 500,88 L 505,80" stroke="#c0392b" stroke-width="2" fill="none"/>
+  <text x="545" y="45" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="700">중앙 상단 분포하중  P0/2  (반모델)</text>
+  <!-- dims -->
+  <line x1="120" y1="270" x2="600" y2="270" stroke="#5b6572" stroke-width="1"/>
+  <text x="360" y="285" font-size="12" text-anchor="middle" fill="#5b6572">L/2  (전체 스팬 S = L 의 절반)</text>
+  <line x1="100" y1="90" x2="100" y2="240" stroke="#5b6572" stroke-width="1"/>
+  <text x="84" y="168" font-size="13" text-anchor="middle" fill="#5b6572">H</text>
+  <!-- coord -->
+  <g stroke="#1a2230" stroke-width="1.5">
+    <line x1="360" y1="315" x2="395" y2="315"/><line x1="360" y1="315" x2="360" y2="300"/>
+  </g>
+  <text x="402" y="319" font-size="11" fill="#1a2230">X (길이·개구방향)</text>
+  <text x="366" y="296" font-size="11" fill="#1a2230">Y (깊이·균열성장 s)</text>
+</svg>
+<figcaption>그림 4-1. Fig 8 재현. 대칭성으로 절반만 모델링: 왼쪽 하단 롤러 지지, 오른쪽(중앙 대칭면) 상단에 하중,
+오른쪽 하단에 깊이 $a$ 균열. <b>개구방향 = X → 모드 I 개구응력 = $\sigma_{xx}$ (S11)</b>, 균열성장 $s$ = +Y.</figcaption>
+</figure>
+
+<h3>4.3 Fig 11 케이스 매트릭스 판독</h3>
+<p>
+Fig 11의 범례는 <b>"Exp/Theory for H = 0.05 m"</b> 와 <b>"Exp/Theory for H = 0.1 m"</b>, 가로축은 <b>Crack Ratio (a/H)</b>이며
+데이터 점은 <b>a/H = 0.1, 0.3, 0.5</b> 세 곳에 찍혀 있다.
+</p>
+<figure>
+<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+  <rect width="640" height="300" fill="#fff"/>
+  <text x="320" y="26" font-size="13" text-anchor="middle" font-weight="800" fill="#1f3a5f">시험된 케이스 = 2 높이 × 3 균열비 = 6</text>
+  <!-- grid -->
+  <g font-size="12" text-anchor="middle">
+    <text x="150" y="70">a/H = 0.1</text><text x="320" y="70">a/H = 0.3</text><text x="490" y="70">a/H = 0.5</text>
+    <text x="60" y="130" fill="#b9770e" font-weight="700">H = 50 mm</text>
+    <text x="60" y="220" fill="#1f3a5f" font-weight="700">H = 100 mm</text>
+  </g>
+  <g>
+    <rect x="100" y="95" width="100" height="60" rx="7" fill="#fdf4ec" stroke="#b9770e" stroke-width="1.6"/>
+    <rect x="270" y="95" width="100" height="60" rx="7" fill="#fdf4ec" stroke="#b9770e" stroke-width="1.6"/>
+    <rect x="440" y="95" width="100" height="60" rx="7" fill="#fdf4ec" stroke="#b9770e" stroke-width="1.6"/>
+    <rect x="100" y="185" width="100" height="60" rx="7" fill="#eef4fb" stroke="#1f3a5f" stroke-width="1.6"/>
+    <rect x="270" y="185" width="100" height="60" rx="7" fill="#eef4fb" stroke="#1f3a5f" stroke-width="1.6"/>
+    <rect x="440" y="185" width="100" height="60" rx="7" fill="#eef4fb" stroke="#1f3a5f" stroke-width="1.6"/>
+  </g>
+  <g font-size="12" text-anchor="middle" fill="#1a2230">
+    <text x="150" y="120">Case 1</text><text x="150" y="140" font-size="10">a=5mm</text>
+    <text x="320" y="120">Case 2</text><text x="320" y="140" font-size="10">a=15mm</text>
+    <text x="490" y="120">Case 3</text><text x="490" y="140" font-size="10">a=25mm</text>
+    <text x="150" y="210">Case 4</text><text x="150" y="230" font-size="10">a=10mm · Y 보정</text>
+    <text x="320" y="210">Case 5</text><text x="320" y="230" font-size="10">a=30mm · 이상치</text>
+    <text x="490" y="210">Case 6</text><text x="490" y="230" font-size="10">a=50mm</text>
+  </g>
+  <text x="320" y="278" font-size="11" text-anchor="middle" fill="#5b6572">Case 4 (H=100, a/H=0.1) 에서 Y 1회 역산 → 나머지 5개 예측 (Kwon 2024 §4.3)</text>
+</svg>
+<figcaption>그림 4-2. Fig 11에서 읽은 6 케이스. Case 5(H=100, a/H=0.3)는 논문에서 이론−실험 불일치가 유일하게 큰 시편이다.</figcaption>
+</figure>
+
+<h3>4.4 역산이 필요한 값과 근거</h3>
+<table>
+  <thead><tr><th>변수</th><th>역산 값</th><th>구분</th><th>근거 / 판단</th></tr></thead>
+  <tbody>
+    <tr><td>높이 $H$</td><td class="l">50, 100 mm</td><td><span class="tag read">판독</span></td>
+      <td class="l">Fig 11 범례 "H = 0.05 m / 0.1 m". Karihaloo 2003 원 실험 깊이 범위(50–400 mm)에 포함, Kwon §4.3이 $H$=100 mm 사례 명시.</td></tr>
+    <tr><td>스팬 $S$ = 길이 $L$</td><td class="l">$4H$ = 200, 400 mm</td><td><span class="tag assume">가정</span></td>
+      <td class="l">$L/H$=4는 고정. 지지 스팬 $S=L$(끝단 지지)은 Fig 8 판독 — Karihaloo 원 도면으로 확정 필요 (열림 항목).</td></tr>
+    <tr><td>균열 $a$</td><td class="l">$a/H\cdot H$</td><td><span class="tag read">판독</span></td>
+      <td class="l">$a/H$ = 0.1, 0.3, 0.5 (Fig 11 데이터 점). 세 값 모두 Karihaloo 노치비 0.05/0.10/0.30/<b>0.50</b>에 실재.</td></tr>
+    <tr><td>푸아송비 $\nu$</td><td class="l">0.20</td><td><span class="tag assume">가정</span></td>
+      <td class="l">논문 미기재. 시멘트계 통상값. 평면 가정과 함께 민감도 대상.</td></tr>
+    <tr><td>기준 하중 $P_0$</td><td class="l">1000 N (임의 기준)</td><td><span class="tag assume">가정</span></td>
+      <td class="l">선형탄성이라 $K\propto P$ → 절대값 무관. 반모델엔 $P_0/2$ 입력.</td></tr>
+    <tr><td>평면 가정</td><td class="l">평면변형 / 평면응력 (둘 다 실행)</td><td><span class="tag fe">FE</span></td>
+      <td class="l">논문 §4.2에 명시 없음. $Y=K^2/E$만으로 평면응력 단정 금지 → 두 formulation 대조 (열림 항목).</td></tr>
+    <tr><td>단위하중당 $K_I/P$</td><td class="l">케이스별 상이</td><td><span class="tag fe">FE</span></td>
+      <td class="l">재현 FE에서 $\sigma_{xx}$–거리 데이터를 $\sigma_e=K/\sqrt{s}$에 곡선맞춤 (§5).</td></tr>
+    <tr><td>파괴값 $Y$</td><td class="l">Case 4에서 1회 역산</td><td><span class="tag fe">FE</span></td>
+      <td class="l">$Y = (K_I/P)_4^2\cdot P_{f,4}^2/(2\pi E)$. 그 뒤 5개 예측.</td></tr>
+  </tbody>
+</table>
+
+<h3>4.5 최종 6 케이스 표</h3>
+<table>
+  <caption>표 4-1. 재현 FE 모델 입력. $W$=100 mm, $E$=20 800 MPa, $\nu$=0.20(가정), 2D 4절점, 팁 요소 ≈0.3 mm 공통.</caption>
+  <thead>
+    <tr><th>Case</th><th>$H$ (mm)</th><th>$a/H$</th><th>$a$ (mm)</th><th>$L=S$ (mm)</th><th>리거먼트 $H-a$ (mm)</th><th>비고</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>50</td><td>0.1</td><td>5</td><td>200</td><td>45</td><td class="l">—</td></tr>
+    <tr><td>2</td><td>50</td><td>0.3</td><td>15</td><td>200</td><td>35</td><td class="l">—</td></tr>
+    <tr><td>3</td><td>50</td><td>0.5</td><td>25</td><td>200</td><td>25</td><td class="l">깊은 균열</td></tr>
+    <tr><td><b>4</b></td><td>100</td><td>0.1</td><td>10</td><td>400</td><td>90</td><td class="l"><b>$Y$ 보정 기준</b> (이론=실험 정확히 일치)</td></tr>
+    <tr><td><b>5</b></td><td>100</td><td>0.3</td><td>30</td><td>400</td><td>70</td><td class="l"><b>이상치</b> — 논문에서 이론이 실험을 과소예측</td></tr>
+    <tr><td>6</td><td>100</td><td>0.5</td><td>50</td><td>400</td><td>50</td><td class="l">깊은 균열</td></tr>
+  </tbody>
+</table>
+
+<h3>4.6 Fig 11 실험·이론 파괴하중 판독표</h3>
+<div class="box warn">
+  아래 값은 Fig 11 <b>산점도에서 눈으로 읽은 근사값(±0.1–0.2 kN)</b>이다.
+  정량 재현 판정에는 <b>Karihaloo, Abdalla, Xiao (2003) 원 데이터 표</b> 확보가 필요하다 (round 4 열림 항목).
+</div>
+<table>
+  <caption>표 4-2. Fig 11 파괴하중 판독 (kN). Exp = 실험(적색), Theory = 본 기준 예측(흑색).</caption>
+  <thead>
+    <tr><th rowspan="2">$a/H$</th><th colspan="2">$H$ = 50 mm</th><th colspan="2">$H$ = 100 mm</th></tr>
+    <tr><th>Exp</th><th>Theory</th><th>Exp</th><th>Theory</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0.1</td><td>≈ 2.2</td><td>≈ 2.35</td><td>≈ 3.5</td><td>≈ 3.5 <span class="tag fe" style="background:#b9770e">보정점</span></td></tr>
+    <tr><td>0.3</td><td>≈ 1.65</td><td>≈ 1.45</td><td>≈ 2.9</td><td>≈ 2.35 <span class="tag assume">이상치</span></td></tr>
+    <tr><td>0.5</td><td>≈ 0.9</td><td>≈ 0.8</td><td>≈ 1.35</td><td>≈ 0.95</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.85rem;color:var(--sub)">
+경향: 균열비가 커질수록 파괴하중 급감(응력구배 급증), 같은 $a/H$에서 $H$가 크면 파괴하중 증가.
+Case 4에서 Exp=Theory는 <b>검증이 아니라 $Y$ 보정</b>이며, 나머지 5개의 일치도만이 독립 검증 자료다.
+</p>
+
+
+<!-- ================= 5. Workflow ================= -->
+<h2>5. $K/P \to Y \to$ 파괴하중 예측 워크플로우</h2>
+
+<div class="chain">
+  <div class="dbox start"><span class="lbl">1 · 재현 FE (6 케이스, 2D)</span>
+    선형탄성 해석 → 균열선 $s$(=+Y)를 따라 $\sigma_{xx}(s)$ path 출력 &nbsp;(하중 $P_0$)</div>
+  <div class="darrow">▼<small>선단 근방 절점 제외, K-지배구간 곡선맞춤 (식(3))</small></div>
+  <div class="dbox"><span class="lbl">2 · 곡선맞춤</span>
+    $\ln\sigma_{xx} = \ln\hat K - \tfrac12\ln s$ &nbsp;→&nbsp; 기울기 $-\tfrac12$ 확인 후 $\hat K$ 추출</div>
+  <div class="darrow">▼<small>정규화 거리면 √ℓ₀ 복원 · 표준 K 환산</small></div>
+  <div class="dbox"><span class="lbl">3 · 단위하중당 SIF</span>
+    $K_{I,\text{fit}} = \sqrt{2\pi}\,\hat K$ &nbsp;→&nbsp; $\left(\dfrac{K_I}{P}\right)_i = \dfrac{K_{I,\text{fit}}}{P_0}$ &nbsp;(케이스 $i$)</div>
+  <div class="darrow">▼<small>Case 4 실험 파괴하중 P_f,4 대입</small></div>
+  <div class="dbox hl"><span class="lbl">4 · Y 역산 (1회, Case 4)</span>
+    $Y = \dfrac{K_{f,4}^{2}}{2\pi E}, \quad K_{f,4} = \left(\dfrac{K_I}{P}\right)_4\! P_{f,4}$</div>
+  <div class="darrow">▼<small>같은 Y로 나머지 5개</small></div>
+  <div class="dbox"><span class="lbl">5 · 파괴하중 예측 (식(4))</span>
+    $P_{\text{pred},i} = \dfrac{\sqrt{2\pi E\,Y}}{(K_I/P)_i}$</div>
+  <div class="darrow">▼</div>
+  <div class="dbox"><span class="lbl">6 · 검증</span>
+    $P_{\text{pred},i}$ vs Fig 11 / Karihaloo 실험 &nbsp;·&nbsp; 무차원 $\dfrac{K_I W\sqrt{H}}{P} = \dfrac{S}{H}F(a/H)$ 로 $H$=50·100 collapse 확인</div>
+</div>
+
+<div class="box">
+  <h4>표준 SENB 폐형식 교차검산 (round 1·4)</h4>
+  $$ \frac{K_I}{P} = \frac{S}{W\,H^{3/2}}\,F(a/H), \qquad
+  F(\alpha)=\frac{3\sqrt{\alpha}\,[1.99-\alpha(1-\alpha)(2.15-3.93\alpha+2.7\alpha^{2})]}{2(1+2\alpha)(1-\alpha)^{3/2}} $$
+  ($W$ = 두께 = 우리 폭 100 mm, $S$ = 스팬 = $4H$). FE에서 얻은 $K_I/P$가 이 값과 맞는지 케이스 1개로 대조.
+</div>
+
+
+<!-- ================= 6. Verification summary ================= -->
+<h2>6. 교차검증 결과 종합 — 확정 / 정정 / 열림</h2>
+
+<h3>6.1 확정 (양측 blind 독립 재유도 일치)</h3>
+<ul>
+  <li>선1 식(1)–(13), 선3 식(1)–(4) 유도가 <b>수학적으로 정확</b>. 핵심은 대입 시 $r$(또는 $s$) 완전 소거 → $w_f=Y=K_I^2/(2\pi E)$ = 균열 크기·위치 무관 재료상수.</li>
+  <li>예측식 $P_{pred}=\sqrt{2\pi EY}/(K_I/P)$ — 두 논문 표기가 $\sqrt{2\pi}$ 상쇄로 동일.</li>
+  <li>Fig 8·9 = <b>FE 모델 그림</b>(형상 스케치 + 3D 메시·BC), 수식 아님. 여기서 얻는 것은 형상 규칙.</li>
+  <li>고정값: $W$=100 mm, $L/H$=4, $E$=20.8 GPa. 케이스: $H$∈{50,100} mm × $a/H$∈{0.1,0.3,0.5} = <b>6</b>.</li>
+  <li>$a/H$ 세 값 모두 Karihaloo 2003 원 실험 노치비(0.05/0.10/0.30/<b>0.50</b>)에 실재. 실험 원출처 = Karihaloo, Abdalla, Xiao, <i>Size effect in concrete beams</i>, EFM 2003, 70, 979–993 (ref [39]).</li>
+  <li>K 추출 방법(선형탄성 → $\sigma_e=K/\sqrt{s}$ 곡선맞춤 → 단위하중당 $K$)의 발상은 타당.</li>
+</ul>
+
+<h3>6.2 정정 (교차검증으로 바뀐 것)</h3>
+<ul>
+  <li><b>"$Y \equiv G_c$" 는 부정확</b> → $Y = G/(2\pi)$(평면응력). 같은 차원·비례이나 수치 약 6.28배. 문헌 $G_c$를 $Y$에 대입 금지.</li>
+  <li><b>곡선맞춤 응력 = $\sigma_{xx}$ (S11)</b>, $\sigma_{yy}$ 아님 (개구방향 = X). [round 4]</li>
+  <li><b>무차원 형상계수 = $K_I W\sqrt{H}/P$</b> — $K H^{3/2}/P$ 는 $H$=100을 2배 이동시켜 틀림. [round 4]</li>
+  <li><b>2D 6케이스가 본체, 3D는 대표 1케이스 $K(z)$ 검증</b> — 논문 §4.2 순서. 현행 스크립트(3D 3케이스)는 역할이 뒤바뀜. [round 4]</li>
+  <li>유도 경로에 2식 추가: <b>정규화 거리 역변환</b>($\times\sqrt{\ell_0}$, 누락 시 $H$군 간 $\sqrt{2}$ 오차), <b>반모델 하중 환산</b>($P_{half}=P_{total}/2$, 누락 시 2배 오차). [round 3]</li>
+  <li>인용 정정: ASTM 0.5:1:4 = D5045(플라스틱) 표준형상, 고정 규격·HCP 형상 선정 표준 아님. "코너 특이성 ∝ 리거먼트 → $W/H\approx1$" 논리 <b>근거 없음, 삭제</b> (Nakamura–Parks: 코너역 ≈ 판 두께의 3%). [round 2]</li>
+  <li>현행 스크립트 버그 2건: `centerVerts`(Z=W/2 vertex 없음 → U3 구속 조용히 생략 → singular), `02_read_K.py` K1 평탄화(위치·contour 혼합). [round 4]</li>
+</ul>
+
+<h3>6.3 열림 (재현 시 확인 필요)</h3>
+<ul>
+  <li>평면응력 vs 평면변형이 $K$·$Y$·$P_{pred}$에 주는 실제 영향 — 두 formulation 실행 후 표 비교.</li>
+  <li>$S=L$ (지지 스팬 = 전체 길이) — 현재 Fig 8 판독, Karihaloo 원 도면으로 확정.</li>
+  <li>논문 $\sigma_e$가 전역 S11인지 최대 주응력인지 — 원문 §2 확인.</li>
+  <li>$\nu$ = 0.20 가정값 — 민감도 대상.</li>
+  <li>Karihaloo 2003 원 실험 데이터 표(케이스 조합·파괴하중) 확보 — 없으면 정량 재현 판정 불가.</li>
+  <li>Abaqus 2020 설치본 `ContourIntegral` API·`crackNormal` 형식 최종 확인.</li>
+</ul>
+
+
+<!-- ================= 7. Appendix ================= -->
+<h2>7. 부록</h2>
+
+<h3>7.1 기호표</h3>
+<table>
+  <thead><tr><th>기호</th><th>의미</th><th>단위</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>$\sigma_e$ ($\sigma_l$)</td><td class="l">유효응력 = 취성재의 최대 수직(개구)응력</td><td>MPa</td><td class="l">재현 모델에서 $\sigma_{xx}$ (S11)</td></tr>
+    <tr><td>$\sigma_f$</td><td class="l">파괴강도 (단축)</td><td>MPa</td><td class="l">응력조건 식(1)</td></tr>
+    <tr><td>$K_I$</td><td class="l">모드 I 응력확대계수 (표준, $\sigma=K_I/\sqrt{2\pi r}$)</td><td>MPa$\sqrt{\text{m}}$</td><td class="l">$K_I \propto P$</td></tr>
+    <tr><td>$K$ (선3)</td><td class="l">비표준 SIF, $\sigma_e=K/\sqrt{s}$</td><td>MPa$\sqrt{\text{m}}$</td><td class="l">$K = K_I/\sqrt{2\pi}$</td></tr>
+    <tr><td>$K_{IC}$</td><td class="l">파괴인성 (임계 $K_I$)</td><td>MPa$\sqrt{\text{m}}$</td><td class="l">$K_{IC}=\sqrt{2\pi E w_f}$</td></tr>
+    <tr><td>$w_f$ (선1) = $Y$ (선3)</td><td class="l">재료 파괴값 = $K_I^2/(2\pi E)$</td><td>J/m² = N/m</td><td class="l">$Y=G/(2\pi)$ 평면응력</td></tr>
+    <tr><td>$G$, $G_c$</td><td class="l">에너지방출률, 임계값</td><td>J/m²</td><td class="l">$G=K_I^2/E'$</td></tr>
+    <tr><td>$E$, $E'$</td><td class="l">탄성계수 / 유효($E$ 평면응력, $E/(1-\nu^2)$ 평면변형)</td><td>MPa</td><td class="l">20 800 MPa</td></tr>
+    <tr><td>$\nu$</td><td class="l">푸아송비</td><td>—</td><td class="l">0.20 가정</td></tr>
+    <tr><td>$s$ ($r$, $y$)</td><td class="l">균열 선단으로부터 균열 성장방향 거리</td><td>m</td><td class="l">재현 모델에서 +Y</td></tr>
+    <tr><td>$H$</td><td class="l">시편 높이(깊이)</td><td>mm</td><td class="l">50, 100</td></tr>
+    <tr><td>$W$</td><td class="l">시편 폭 (= SENB 두께 $B$)</td><td>mm</td><td class="l">100 고정</td></tr>
+    <tr><td>$L$, $S$</td><td class="l">시편 길이, 지지 스팬</td><td>mm</td><td class="l">$L=4H$, $S=L$ 가정</td></tr>
+    <tr><td>$a$</td><td class="l">균열 깊이</td><td>mm</td><td class="l">$a/H$ = 0.1/0.3/0.5</td></tr>
+    <tr><td>$P$, $P_0$, $P_f$</td><td class="l">하중, 기준 하중, 파괴 하중</td><td>N</td><td class="l">반모델 입력 $P_0/2$</td></tr>
+  </tbody>
+</table>
+
+<h3>7.2 참고문헌</h3>
+<ol style="font-size:.84rem">
+  <li>Y.W. Kwon, E.K. Markoff, S. DeFisher. <i>Unified Failure Criterion Based on Stress and Stress Gradient Conditions.</i> <b>Materials</b> 2024, 17(3), 569. (PMC10856633)</li>
+  <li>Y.W. Kwon. <i>Revisiting Failure of Brittle Materials.</i> <b>J. Pressure Vessel Technol.</b> 2021, 143(6), 064503.</li>
+  <li>B.L. Karihaloo, H.M. Abdalla, Q.Z. Xiao. <i>Size effect in concrete beams.</i> <b>Eng. Fract. Mech.</b> 2003, 70, 979–993. (Kwon 2024 ref [39])</li>
+  <li>A.A. Griffith. <i>The phenomena of rupture and flow in solids.</i> <b>Philos. Trans. R. Soc. A</b> 1921, 221, 163–198. (ref [11])</li>
+  <li>G.R. Irwin. <i>Analysis of stresses and strains near the end of a crack traversing a plate.</i> <b>J. Appl. Mech.</b> 1957, 24, 361–364. (ref [9])</li>
+  <li>H. Tada, P.C. Paris, G.R. Irwin. <i>The Stress Analysis of Cracks Handbook</i>, 3rd ed.; ASME Press, 2000. (SENB 형상함수)</li>
+</ol>
+
+<footer>
+검증 이력 : Claude ↔ Codex 교차검증 (규칙 #20) — round 1 (수식 유도) / round 2 (인용) / round 3 (식 경로 완전성) / round 4 (FE 재현 계획).
+관련 파일 : <code>ai-crosscheck/DISCUSSION.md</code>, <code>DECISION_round1_수식검증.md</code>, <code>DECISION_round2_인용검증.md</code>, <code>DECISION.md</code>(round3), <code>DECISION_round4_FE재현계획.md</code>.<br>
+원문 근거 : 선행연구 3 §4 (Fig 8·9·10·11), §2 (식 1–4) — <code>선행연구3_원문번역_영한대역_Unified_Failure_Criterion.html</code> 및 page-06/07/08 스캔.
+</footer>
+
+</div>
+</body>
+</html>
