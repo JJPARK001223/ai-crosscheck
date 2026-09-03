@@ -42,7 +42,7 @@ r = np.linspace(1e-6, 5e-3, 800)          # 균열선단으로부터 거리 [m]
 sig = K / np.sqrt(2 * np.pi * r)
 
 fig, ax = plt.subplots(figsize=(6, 4.2))
-ax.plot(r * 1e3, sig / 1e6, lw=2, label=r"$\sigma = K/\sqrt{2\pi r}$  ([선행연구1] Eq.4)")
+ax.plot(r * 1e3, sig / 1e6, lw=2, label=r"$\sigma = K/\sqrt{2\pi r}$  (Ref.1 Eq.4)")
 ax.axhline(sig_f / 1e6, color="crimson", ls="--", lw=1.5,
            label=r"failure strength $\sigma_f$")
 ax.set_xlabel("distance from crack tip  r  [mm]")
@@ -76,7 +76,7 @@ fig, ax = plt.subplots(figsize=(6, 4.2))
 ax.plot(y * 1e3, grad / 1e9, lw=2, color="teal")
 ax.set_xlabel("y  [mm]  (along crack-growth direction)")
 ax.set_ylabel(r"$|d\sigma_x/dy|$  [GPa/m]")
-ax.set_title("Fig C. Stress gradient near crack tip  ([선행연구1] Eq.5)")
+ax.set_title("Fig C. Stress gradient near crack tip  (Ref.1 Eq.5)")
 fig.tight_layout(); fig.savefig(os.path.join(OUTDIR, "figC_gradient.png"), dpi=150)
 
 # =========================================================
@@ -113,7 +113,7 @@ axR.axhline(K_Ic / 1e6, color="k", ls="--", lw=1.5)
 axR.text(2.05, K_Ic / 1e6, r"  $K_{Ic}$ (fracture toughness)", va="center", fontsize=9)
 axR.set_ylabel(r"stress intensity factor $K$  [MPa$\sqrt{m}$]")
 axR.set_title(r"Fig D-2. Failure when  $K = K_{Ic}$" "\n"
-              r"(energy view: $K^2/E \geq$ critical, [선행연구3] Eq.4)", fontsize=9)
+              r"(energy view: $K^2/E \geq$ critical, Ref.3 Eq.4)", fontsize=9)
 
 fig.tight_layout(); fig.savefig(os.path.join(OUTDIR, "figD_concept.png"), dpi=150)
 
