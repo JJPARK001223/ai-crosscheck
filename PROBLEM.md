@@ -1,42 +1,46 @@
-# 이번에 풀 문제
+# 문제 (Round 2)
 
 ## 배경
-석사연구 선행연구 검증. 두 논문의 **수식 유도**가 수학적으로 옳은지 독립 검증한다.
+사용자(재료공학/파괴역학 석사생)가 Abaqus로 경화 시멘트 페이스트(HCP) 3점굽힘
+균열시편을 재현 모델링 중. 원 논문은 Kwon, Markoff, DeFisher (2024), *Materials* 17,
+569, "Unified Failure Criterion Based on Stress and Stress Gradient Conditions"
+(PMC10856633) §4 "Hardened Cement Pastes with Cracks"인데, 이 논문엔 시편의 절대
+치수(H, L, a)가 없어서 H=100mm(W=100mm 고정, L=4H=400mm, a/H=0.1/0.3/0.5)를
+채택값으로 정했다. 이 결정을 뒷받침하려고 Claude가 사용자에게 아래 근거들을 제시했는데,
+**이 근거들이 실제로 맞는지(출처·인용이 정확한지) 검증**해야 한다. 사용자가 발표자료/
+논문에 이 근거를 그대로 쓸 예정이라 정확도가 중요함.
 
-- **선행연구 1**: Y. W. Kwon, "Revisiting Failure of Brittle Materials",
-  *J. Pressure Vessel Technol.* 2021, 143, 064503. (3쪽)
-  원문 PDF: `J:\Desktop\선행연구 관련\[선행연구 1] Revisintg Failure of Brittle Materials (2021-12).pdf`
-- **선행연구 3**: Y. W. Kwon, E. K. Markoff, S. DeFisher, "Unified Failure Criterion
-  Based on Stress and Stress Gradient Conditions", *Materials* 2024, 17, 569. (19쪽)
-  원문 PDF: `J:\Desktop\선행연구 관련\[선행연구 3] Unified Failure Criterion Based on Stress ans Stress Gradient Conditions (2024-01).pdf`
-  페이지 이미지: `J:\Desktop\공학\claude_code\2026_09_01_선행연구분석\images\paper3_page-01..19.png`
+## 검증해야 할 구체적 주장들
 
-## 검증할 항목 (각각 "유도가 맞는가 / 어디가 느슨한가"를 답하라)
+1. **Karihaloo, Abdalla, Xiao (2003)** 논문이 실제로 존재하며, 다음 서지사항이 맞는가:
+   - 저널: *Engineering Fracture Mechanics*, 70권, 979–993쪽
+   - 논문 제목이 "Size effect in concrete beams" (또는 이와 유사한 제목)인지
+   - 이 논문이 실제로 시편 깊이 H를 50~400mm 범위에서, 폭(두께) W=100mm로 고정하고
+     노치비(notch ratio) α(=a/H)를 0.05/0.10/0.30 정도로 변화시킨 **크기효과(size
+     effect)** 실험을 했는지
+   - Kwon et al. (2024) Materials 17,569 논문의 참고문헌 39번이 실제로 이 논문을
+     가리키는지 (PMC10856633 본문에서 확인)
 
-### 선행연구 1
-1. 식(2)→식(3): 변형에너지밀도 ÷ (단위응력당 응력구배) 를 정리하면
-   `wf = (σ_l³ / 2E) · |ds/dσ_l|` 이 되는가?
-2. Case 2 (무한판 중앙균열):
-   - 식(4) `σx = K/√(2πr)` 에서 식(5) `|dσx/dy| = K / (2√(2π) y^{3/2})` 유도.
-   - 식(6) `wf = K² / (2πE)` 유도.
-   - 식(7) `K_IC = √(2πE wf)` 유도.
-3. Case 3 (무한판 원형홀, Kirsch 해):
-   - 식(9)에서 `σθ(R, π/2) = 3σo` 확인.
-   - 식(11) `|∂σθ/∂r (R,π/2)| = 7σo/R` 유도.
-   - 식(12)(13) 파괴조건.
+2. **Bažant, Z.P., Estenssoro, L.F. (1979)** 논문이 실제로 존재하며, 다음이 맞는가:
+   - 저널: *International Journal of Solids and Structures*, 15권 5호, 405–426쪽
+   - 제목이 "Surface singularity and crack propagation" (또는 유사)인지
+   - 이 논문이 실제로 균열끝단(crack front)이 자유표면과 만나는 지점의 3D
+     코너 특이점(corner/vertex singularity) — 응력특이지수가 통상적인
+     1/√r(0.5)에서 벗어나는 현상 — 을 다루는지
 
-### 선행연구 3
-4. 식(1)(2): 응력조건 `σe ≥ σf`, 응력구배조건 `σe ≥ (2EY·|dσe/ds|)^{1/3}`.
-   선행연구 1의 `wf` 와 선행연구 3의 `Y` 는 같은 양인가?
-5. 식(3) `σe = K/√s` → 식(4) `Y = K²/E` 유도.
-6. 논문 주장 "Y 는 파괴역학의 임계 에너지방출률(G_c)과 동등하다" 는 맞는가?
-   선행연구 1의 `wf = K²/(2πE)` 와 선행연구 3의 `Y = K²/E` 의 2π 차이는 무엇인가?
-7. Figure 8·9 (경화 시멘트 페이스트 3점굽힘):
-   - 반쪽 모델 형상(H, L/2, W, 균열깊이 a), 경계조건, 하중.
-   - K 를 FEA + 식(3) 곡선맞춤으로 뽑는 절차가 타당한가?
-   - 참고용: SENB 3점굽힘 표준 K 핸드북식(ASTM E399, S/W=4)과 개념 비교.
+3. **ASTM E399 (또는 D5045) SENB(3점굽힘) 시편 표준 규격**에서, 두께(B):깊이(W):스팬(S)
+   = 0.5:1:4 비율이 실제로 표준에 명시된 값인지 (정확한 비율과 각 기호의 의미 포함).
 
-## 규칙
-- Blind. 상대 답 보지 말 것. 각자 `round1/claude.md`, `round1/codex.md` 에 작성 후 commit/push.
-- 손으로 미분·대입해서 확인. "맞다"가 아니라 유도 스텝을 보여라.
-- 최종 종합·판정은 Claude 가 `DECISION.md` 에 작성.
+4. **파괴역학 논리 검증**: "균열끝단(폭 방향)이 자유표면과 만나는 코너 근방 영향 구간의
+   폭 방향 크기는 대략 리가먼트(H-a) 또는 균열 관련 특성길이에 비례한다"는 주장이
+   문헌적으로 타당한 일반론인지, 그리고 이로부터 "H≫W(크랙 프론트가 얇음)면 코너 영향이
+   crack front 전체를 잠식할 위험, W≫H면 코너 영향은 국소적이지만 보 이론 가정이
+   깨질 위험 — 따라서 극단적 비율을 피하고 W/H≈1 근방이 무난하다"는 결론이 논리적으로
+   따라오는지, 혹은 이것이 과도한 일반화/오류인지.
+
+## 원하는 결과물
+- 위 1~4번 각각에 대해: 사실 확인됨 / 부분적으로 맞음(정정 필요) / 확인 불가 / 틀림
+  중 하나로 판정하고, 근거(실제 검색·조회한 출처, 접근 가능했던 자료의 범위)를 명시.
+- 접근이 막혀(paywall 등) 원문을 못 봤다면 "확인 불가"라고 명확히 밝힐 것 — 추측 금지.
+- 최종적으로 "H=100mm를 채택한 근거로 이 인용들을 발표자료에 써도 되는지"에 대한
+  권고를 포함.
