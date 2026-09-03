@@ -66,7 +66,7 @@ function Invoke-Pair($claudePrompt, $codexPrompt) {
     param($repo, $prompt, $exe)
     Set-Location $repo
     $last = Join-Path $repo '.codex_last.txt'
-    & $exe exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last $prompt 2>&1 | Out-Null
+    '' | & $exe exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last $prompt 2>&1 | Out-Null
     $code = $LASTEXITCODE
     $text = if (Test-Path $last) { Get-Content $last -Raw -Encoding UTF8 } else { '(출력 없음)' }
     Remove-Item $last -Force -ErrorAction SilentlyContinue

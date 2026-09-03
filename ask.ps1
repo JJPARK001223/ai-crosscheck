@@ -52,7 +52,7 @@ Sync-Repo "ask: Claude 초안"
 
 Write-Host "`n[3/4] Codex 검증 + 최종답 작성" -ForegroundColor Green
 $last = Join-Path $repo '.codex_last.txt'
-& codex exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last `
+'' | & codex exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last `
   "git pull 하지 말고 현재 파일 그대로 본다. PROBLEM.md 와 round1/claude.md(Claude 초안)를 읽어라. Claude 초안을 코드/실행/데이터/공식문서로 검증해라. 그런 다음 FINAL.md 를 새로 써라. FINAL.md 구성: '## 최종 답'(네가 검증해 확정한 답), '## Claude 초안에서 고친 점', '## 남은 불확실성 / 확인 필요'. 최종 답의 근거를 반드시 붙여라. 파일 저장까지만. git 은 건드리지 마라." `
   2>&1 | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "codex 실패" }
