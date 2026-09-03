@@ -4,6 +4,7 @@
 *.pem
 secrets*
 credentials*
+.codex_last.txt
 
 # OS / 에디터
 .DS_Store
