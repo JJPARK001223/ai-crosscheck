@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCP 3점굽힘 균열 — FE 재현 계획 (6케이스 · 15식 매핑 · 교차검증 반영)</title>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+<style>
+  :root{
+    --bg:#14161a;--panel:#1c1f26;--panel2:#22262f;--text:#e7e9ee;--sub:#a7adba;--line:#31363f;
+    --accent:#6fa8ff;--accent2:#8ad6c0;--ok:#57c785;--ok-bg:#123322;--warn:#e0b34d;--warn-bg:#3a2f10;
+    --miss:#e07a6b;--miss-bg:#3a1f1a;--mono:'JetBrains Mono','Consolas',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif;line-height:1.7;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:44px 26px 90px}
+  header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}
+  .kicker{color:var(--accent2);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px}
+  h1{font-size:26px;margin:0 0 10px;line-height:1.35}
+  .src{color:var(--sub);font-size:13.5px}
+  .src code{background:var(--panel2);padding:1px 6px;border-radius:4px;font-family:var(--mono);font-size:12px}
+  h2{font-size:19px;margin:40px 0 14px;padding-top:8px;border-top:1px solid var(--line);color:#fff}
+  h2 .num{color:var(--accent);font-family:var(--mono);margin-right:8px}
+  h3{font-size:15.5px;margin:22px 0 9px;color:var(--accent2)}
+  p{margin:9px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.3px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent2);font-weight:600}
+  tr:nth-child(even) td{background:#181a20}
+  td.c,th.c{text-align:center}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+  .tag.ok{background:var(--ok-bg);color:var(--ok)}
+  .tag.warn{background:var(--warn-bg);color:var(--warn)}
+  .tag.miss{background:var(--miss-bg);color:var(--miss)}
+  .fixnote{background:var(--warn-bg);border:1px solid #6b5a22;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .fixnote .label{color:var(--warn);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  .oknote{background:var(--ok-bg);border:1px solid #2c5c3f;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .oknote .label{color:var(--ok);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  code{font-family:var(--mono);background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:12.5px}
+  pre{background:#0e1013;border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6}
+  ul,ol{padding-left:22px}li{margin:5px 0}
+  .eq{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 16px;margin:8px 0;text-align:center;overflow-x:auto}
+  .overflow{overflow-x:auto}
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--sub);font-size:12.5px}
+  .step{display:flex;gap:10px;margin:6px 0}
+  .step .n{flex-shrink:0;width:26px;height:26px;border-radius:6px;background:var(--accent);color:#0e1013;font-weight:700;font-family:var(--mono);text-align:center;line-height:26px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">경화 시멘트 페이스트(HCP) 3점굽힘 균열시편 · Abaqus 재현 계획</div>
+  <h1>FE 재현 계획 — 6케이스 · 유도 15식 매핑 · 교차검증 반영</h1>
+  <div class="src">
+    대상: Kwon, Markoff, DeFisher (2024), <em>Unified Failure Criterion Based on Stress and Stress
+    Gradient Conditions</em>, <em>Materials</em> 17, 569, §4 · <code>PMC10856633</code><br>
+    반영: Claude↔Codex 교차검증 <code>ai-crosscheck/DISCUSSION.md</code> (round1 수식 / round2 인용 / round3 식 경로)
+  </div>
+</header>
+
+<h2><span class="num">1</span>대상 — 6 케이스</h2>
+<p>$H$∈{50, 100} mm × $a/H$∈{0.1, 0.3, 0.5} = 6 케이스. 논문 Fig 11 이 이 6개를 비교한다.</p>
+<div class="overflow">
+<table>
+  <tr><th class="c">#</th><th class="c">$H$ (mm)</th><th class="c">$L=S=4H$ (mm)</th><th class="c">$a/H$</th><th class="c">$a$ (mm)</th><th class="c">$W$ (mm)</th><th class="c">실험 $P_f$ (kN)†</th><th class="c">역할</th></tr>
+  <tr><td class="c">1</td><td class="c">50</td><td class="c">200</td><td class="c">0.1</td><td class="c">5</td><td class="c">100</td><td class="c">~2.2</td><td class="c">예측 검증</td></tr>
+  <tr><td class="c">2</td><td class="c">50</td><td class="c">200</td><td class="c">0.3</td><td class="c">15</td><td class="c">100</td><td class="c">~1.6</td><td class="c">예측 검증</td></tr>
+  <tr><td class="c">3</td><td class="c">50</td><td class="c">200</td><td class="c">0.5</td><td class="c">25</td><td class="c">100</td><td class="c">~0.85</td><td class="c">예측 검증</td></tr>
+  <tr><td class="c"><b>4</b></td><td class="c"><b>100</b></td><td class="c"><b>400</b></td><td class="c"><b>0.1</b></td><td class="c"><b>10</b></td><td class="c"><b>100</b></td><td class="c"><b>~3.5</b></td><td class="c"><span class="tag warn">$Y$ 보정</span></td></tr>
+  <tr><td class="c">5</td><td class="c">100</td><td class="c">400</td><td class="c">0.3</td><td class="c">30</td><td class="c">100</td><td class="c">~2.9</td><td class="c">예측 (논문 유일 불일치)</td></tr>
+  <tr><td class="c">6</td><td class="c">100</td><td class="c">400</td><td class="c">0.5</td><td class="c">50</td><td class="c">100</td><td class="c">~1.35</td><td class="c">예측 검증</td></tr>
+</table>
+</div>
+<p style="font-size:12.5px;color:var(--sub)">† Fig 11 그래프 판독값 (±0.15 kN). 원 실험: Karihaloo, Abdalla, Xiao, <em>Eng. Fract. Mech.</em> 2003, 70, 979–993 (Kwon ref [39]).</p>
+
+<h3>1.1 각 값의 출처</h3>
+<div class="overflow">
+<table>
+  <tr><th>값</th><th>크기</th><th>출처 · 근거 (교차검증 등급)</th></tr>
+  <tr><td>$W$</td><td>100 mm</td><td>논문 §4.1 본문 명시 <span class="tag ok">확정</span></td></tr>
+  <tr><td>$L/H$</td><td>4</td><td>논문 §4.1 본문 명시 <span class="tag ok">확정</span></td></tr>
+  <tr><td>$E$</td><td>20.8 GPa</td><td>논문 §4.1 본문 명시 (준취성) <span class="tag ok">확정</span></td></tr>
+  <tr><td>$H$</td><td>50 · 100 mm</td><td>Fig 11 범례. <b>원 실험(Karihaloo 2003) 깊이 50–400 mm 범위에 포함</b>, Kwon §4.3 이 $H$=100 mm 사례 명시 <span class="tag ok">확정</span></td></tr>
+  <tr><td>$a/H$</td><td>0.1·0.3·0.5</td><td>Fig 11 $x$축. <b>세 값 모두 Karihaloo 원 실험 노치비(0.05/0.10/0.30/<u>0.50</u>)에 포함</b> <span class="tag ok">확정</span></td></tr>
+  <tr><td>$a$, $L$, $S$</td><td>계산</td><td>$a=(a/H)H$, $L=S=4H$ <span class="tag ok">확정</span> (단 $S=L$ 은 Fig 8 판독 — 아래 §7)</td></tr>
+  <tr><td>$\nu$</td><td>0.20</td><td>논문 미기재. 시멘트 페이스트 통상값 <span class="tag warn">가정</span> → 민감도</td></tr>
+  <tr><td>$P_0$</td><td>1000 N (기준)</td><td>절대값 미기재. 선형탄성이라 $K\propto P$ <span class="tag warn">가정</span> (형태 무관)</td></tr>
+</table>
+</div>
+
+<div class="fixnote">
+  <div class="label">정정 — 이전 스펙 문서(00_모델링_스펙_출처정리.md)에서 뺄 것</div>
+  <p>이전에 "$H$=100 mm 를 고른 이유"로 <b>"$W\gg H$ 면 자유표면 코너 특이성이 crack front 전체를 잠식 →
+  ASTM 0.5:1:4 처럼 $W/H\approx1$ 이 이상적"</b> 이라고 적었으나, round2 교차검증에서 <b>이 논리는 문헌 근거 없음(틀림)</b>
+  으로 판정됨.</p>
+  <ul>
+    <li>Nakamura–Parks: 코너 특이영역 ≈ <b>판 두께의 약 3%</b> — 리거먼트 $(H-a)$ 비례 아님.</li>
+    <li>ASTM 0.5:1:4 는 <b>D5045(플라스틱) 표준형상</b>, 고정 규격 아님 ($S/W=4$ 유지, $B/W$ 가변). HCP 형상 선정 표준 아님.</li>
+    <li>"$W\gg H$ → 보 이론 깨짐" 도 틀림 (보 세장성은 $L/H$ 문제).</li>
+  </ul>
+  <p><b>남길 근거:</b> "$H$=100 mm 는 Karihaloo(2003) 실험계열(깊이 50–400 mm)에 포함되고 Kwon §4.3 이 명시하므로
+  재현 대표치로 채택." $H$=50 mm 도 같은 이유로 유효. — 대신 3D 자유표면 효과는 <b>"2D 재현 결과에 대한 3D 민감도 확인 대상"</b>
+  으로 열어둔다(§7).</p>
+</div>
+
+<h2><span class="num">2</span>형상 & 경계조건 (Fig 8 · 9)</h2>
+<div class="card">
+  <p>절반 대칭 모델. 좌표: $X$ = 길이(0~$L/2$), $Y$ = 깊이(0~$H$), $Z$ = 폭(0~$W$).</p>
+  <ul>
+    <li><b>대칭면</b> $X=L/2$ : $Y\in[a,H]$ 에 $U_1=0$ (대칭 BC). <b>$Y\in[0,a]$ (균열면) 은 구속 없음</b> — 이것이 균열을 만드는 방법 (논문: "symmetric BC except for the crack face at the bottom").</li>
+    <li><b>지지 (롤러)</b> : $X=0$, $Y=0$ 모서리에 $U_2=0$.</li>
+    <li><b>강체이동 방지</b> : 지지 모서리 폭중앙 한 점에서 $U_3=0$.</li>
+    <li><b>하중</b> : $X=L/2$ 쪽 상단($Y=H$) 스트립에 분포하중. 반모델이므로 <b>총하중의 절반 $P_0/2$</b> 적용
+      → 압력 $= (P_0/2)/(\text{strip}\times W)$.</li>
+  </ul>
+  <p>메시: 균열 선단 요소 ≈ 0.3 mm (논문), 원거리 조대. 논문 최종 2D ≈ 10,000 요소.</p>
+</div>
+
+<h2><span class="num">3</span>유도 15식 → FE 워크플로우 매핑</h2>
+<p>round3 DECISION §7.2 의 15개 식이 FE 재현의 어느 단계에 쓰이는지.</p>
+<div class="overflow">
+<table>
+  <tr><th class="c">식</th><th>내용</th><th>FE 단계에서의 역할</th></tr>
+  <tr><td class="c">1–3</td><td>$U=\sigma^2/2E$ → 응력구배조건 $(\sigma_e^3/2E)|ds/d\sigma_e|\ge Y$</td><td>파괴 판정의 근거식. FE 자체엔 직접 안 쓰이나 §5 예측식의 뿌리.</td></tr>
+  <tr><td class="c">4–6</td><td>$\sigma_x=K_I/\sqrt{2\pi r}$ → $|d\sigma_x/dr|$ → $w_f=K_I^2/2\pi E$</td><td>K 추출 시 곡선맞춤 이론형 $\sigma=K/\sqrt s$ 의 근거. 거리 소거로 $Y$ 가 위치무관 재료상수임을 보장.</td></tr>
+  <tr><td class="c">7</td><td>$K_{IC}=\sqrt{2\pi E w_f}$</td><td>이론 검산용 (필수 아님).</td></tr>
+  <tr><td class="c">8</td><td>$w_f=Y=K_I^2/2\pi E=G/2\pi$ (평면변형 $/(1{-}\nu^2)$)</td><td>$K$ 정의 일관성 확인. <b>표준 $K_I$ 와 논문 $K$ 를 섞지 말 것.</b></td></tr>
+  <tr><td class="c">9</td><td>$K_i(P)=\hat K_i\,P/P_0$</td><td>단위하중 $P_0$ 로 1회 해석 → 모든 하중에 선형 스케일. $(K/P)_i=\hat K_i/P_0$.</td></tr>
+  <tr><td class="c">10</td><td>정규화 거리 역변환 $\sigma=(K/\sqrt{\ell_0})/\sqrt{\bar s}$</td><td>곡선맞춤 시 $s$ 를 <b>물리 길이(mm)</b> 로 쓸 것. 무차원 $\bar s$ 쓰면 절편에 $\sqrt{\ell_0}$ 복원. $H$=50·100 혼재 → 누락 시 $\sqrt2$ 오차.</td></tr>
+  <tr><td class="c">11</td><td>반모델 하중 환산 $P_{half}=P_{total}/2$</td><td>FE 입력=반모델 $P_0/2$. $(K/P)$ 는 <b>총하중 $P_0$ 기준</b> 으로 통일. 실험 $P_f$ 도 총하중. → $(K/P)_{total}=K_{contour}/P_0$.</td></tr>
+  <tr><td class="c">12</td><td>$\sigma_e(s)=\hat K/\sqrt s$ 곡선맞춤 (Fig 10)</td><td><b>K 추출 경로 A.</b> 균열선 $\sigma_{yy}(s)$ → log–log 기울기 $-\tfrac12$ 확인 → $\hat K$.</td></tr>
+  <tr><td class="c">13</td><td>케이스4 : $K_{f,4}=(K/P)_4 P_{f,4}$ → $Y=K_{f,4}^2/E$</td><td>딱 1회. $Y$ = 재료상수, 나머지 5개에 재사용.</td></tr>
+  <tr><td class="c">14</td><td>$P_{pred,i}=\sqrt{EY}/(K/P)_i=\sqrt{2\pi EY}/(K_I/P)_i$</td><td>나머지 5개 파괴하중 예측 → Fig 11 비교.</td></tr>
+  <tr><td class="c">15</td><td>SENB $f(\alpha)$, $S/W=4$ (Srawley 1976)</td><td>$(K/P)_i$ 사전 검산용. $D\!=\!H$, $B\!=\!W$, $S\!=\!4H$. 정식 재현엔 불필요.</td></tr>
+</table>
+</div>
+
+<h2><span class="num">4</span>K 추출 — 두 경로 교차검산</h2>
+<div class="card">
+  <h3>경로 A — 논문 방식 (곡선맞춤, Fig 10)</h3>
+  <ol>
+    <li>선형탄성 FE, 반모델, 하중 $P_0/2$.</li>
+    <li>균열 선단에서 균열면 연장선($s$ 축, 최대 주응력에 수직) 따라 절점 응력 $\sigma_{yy}(s)$ 추출.</li>
+    <li>$\ln\sigma_{yy} = \ln\hat K - \tfrac12\ln s$ 최소자승. <b>기울기 $\approx -0.5$ 확인</b> (아니면 K-지배영역 밖).</li>
+    <li>팁 극근방 절점 1~2층 제외, 맞춤 구간 $[s_{\min}, s_{\max}]$ 를 바꿔가며 $\hat K$ 수렴 확인.</li>
+    <li>$s$ 는 <b>mm 단위 물리 길이</b> (식 10).</li>
+  </ol>
+  <h3>경로 B — Abaqus Contour Integral (스크립트 <code>01</code>·<code>02</code>)</h3>
+  <ul>
+    <li><code>ContourIntegral(symmetric=True, crackNormal=(1,0,0))</code>, <code>kFactor=ON</code>, 6 경로.</li>
+    <li>첫 1~2 경로(팁 근접) 제외, 나머지 평균.</li>
+    <li>선배 <code>Practice.cae</code> 와 같은 계열 → 대조 가능.</li>
+  </ul>
+  <div class="oknote">
+    <div class="label">두 경로를 모두 돌린다</div>
+    A(논문 재현) 와 B(표준 기능) 의 $K/P$ 가 ±5% 내로 일치하면 신뢰. 크게 벌어지면
+    메시·맞춤구간·평면가정 중 하나 문제 → 원인 추적. 논문 Fig 11 정량 비교는 A 기준.
+  </div>
+</div>
+
+<h2><span class="num">5</span>역산 절차</h2>
+<div class="step"><div class="n">1</div><div>6케이스 각각 FE (단위하중 $P_0$) → $(K/P)_i$ (경로 A·B).</div></div>
+<div class="step"><div class="n">2</div><div><b>케이스 4</b> ($a/H$=0.1, $H$=100): $K_{f,4}=(K/P)_4\cdot P_{f,4}^{\text{exp}}$ → $Y=K_{f,4}^2/E$. <b>1회.</b></div></div>
+<div class="step"><div class="n">3</div><div>나머지 5개: $P_{pred,i}=\sqrt{E\,Y}\,/\,(K/P)_i$. ($Y$ 고정)</div></div>
+<div class="step"><div class="n">4</div><div>$P_{pred,i}$ vs $P_{f,i}^{\text{exp}}$ 표·그래프 → Fig 11 재현. 케이스 4 는 보정점(자동 일치), 검증은 1·2·3·5·6.</div></div>
+<div class="eq">$Y = K_{f,4}^2 / E \qquad\Rightarrow\qquad P_{pred,i} = \dfrac{\sqrt{E\,Y}}{(K/P)_i}$</div>
+<p style="font-size:13px;color:var(--sub)">주의: $(K/P)_i$ 를 경로 A(논문 $K$)로 뽑았으면 $\sqrt{EY}$, 표준 $K_I$ 로 뽑았으면 $\sqrt{2\pi EY}$. 섞지 말 것.</p>
+
+<h2><span class="num">6</span>스크립트 수정 사항</h2>
+<div class="fixnote">
+  <div class="label">01_cement_paste_3PB_model.py · 02_read_K.py</div>
+  <ul>
+    <li><b>6케이스로 확장</b> : 현재 <code>H_MM=100.0</code>, <code>A_OVER_H_LIST=[0.10,0.30,0.50]</code> (3개) →
+      <code>H_LIST=[50.0, 100.0]</code> 이중 루프 (6개). 태그에 $H$ 포함 (<code>H050_aH010</code> 등).</li>
+    <li><b>경로 A 스크립트 추가</b> : 균열선 $\sigma_{yy}(s)$ 를 path/history 로 추출 → 별도 <code>03_curvefit_K.py</code>
+      에서 log–log 최소자승. 현재는 경로 B(Contour Integral)만 있음.</li>
+    <li><b>하중 규약 주석 명확화</b> : <code>pressure=(LOAD_N/2)/(STRIP_MM*W)</code> — <code>LOAD_N</code>=총하중,
+      절반 적용. $K/P$ 는 <code>K_contour / LOAD_N</code> (총하중 기준). ← round3 식 11 부합, 유지.</li>
+    <li>2D 병행 옵션 : 논문 최종은 2D 4절점. 3D 반모델과 2D(평면응력·평면변형) 결과를 표로 비교 (§7 열림 항목).</li>
+  </ul>
+</div>
+<pre>실행 순서
+  1. abaqus cae noGUI=01_cement_paste_3PB_model.py   # 6 모델 생성·해석 (경로 B: Contour Integral)
+  2. abaqus python 02_read_K.py                      # odb → K1 → K_results.csv
+  3. abaqus python 03_curvefit_K.py                  # (추가) 균열선 σ_yy → σ=K/√s 곡선맞춤 (경로 A)
+  4. python 04_backcalc.py                           # (추가) 케이스4 Y 보정 → 나머지 예측 → Fig 11 비교표
+</pre>
+
+<h2><span class="num">7</span>확정 / 가정 / 열림 (DISCUSSION.md 반영)</h2>
+<div class="overflow">
+<table>
+  <tr><th style="width:33%">✅ 확정</th><th style="width:33%">⚠️ 가정</th><th>❓ 열림 (재현 중 확인)</th></tr>
+  <tr>
+    <td>
+      · $W$=100, $L/H$=4, $E$=20.8 GPa (본문)<br>
+      · BC 구조 (Fig 8·9: 대칭면 $U_1$=0 단 균열면 제외, 롤러, 폭전체 하중)<br>
+      · 6케이스 $a/H$·$H$ 값 (원 실험 + Kwon §4.3)<br>
+      · 식 유도 15개 (round1·3 양측 blind 일치)<br>
+      · 역산 절차 (케이스4 보정 → 예측)
+    </td>
+    <td>
+      · 절대 $H$·$L$·$a$ (원 실험 범위 내 채택)<br>
+      · $\nu$ = 0.20<br>
+      · $P_0$ = 1000 N (선형이라 형태 무관)<br>
+      · 하중 스트립 폭, 원거리 메시 크기<br>
+      · $S = L$ (Fig 8 판독)
+    </td>
+    <td>
+      · 2D(평면응력/평면변형) vs 3D 선택이 $K$·$Y$·$P_{pred}$ 에 주는 영향 → <b>둘 다 돌려 표 비교</b><br>
+      · $S=L$ 확정 → Karihaloo 원 도면<br>
+      · 6개 $(H,a/H)$ 조합이 각각 실제 시험됐는지 원 실험표 행 대조<br>
+      · 경로 A vs B 의 $K/P$ 일치 여부<br>
+      · FE $K$ 수렴 (맞춤구간·메시)
+    </td>
+  </tr>
+</table>
+</div>
+<p>결과 판정 기준: 절대 수치 일치가 아니라 <b>무차원 형상계수 $K/(P\,H^{-3/2})$ 의 $a/H$·$H$ 경향</b>이
+논문 Fig 10·11 과 정성적으로 맞는지 (LEFM 상사성). 케이스 5(논문도 불일치)는 예외로 둔다.</p>
+
+<footer>
+  이 문서는 발표자료가 아니라 <b>FE 재현 작업 계획서</b>. 교차검증 근거는
+  <code>J:\Desktop\공학\ai-crosscheck\DISCUSSION.md</code> 및 <code>DECISION*.md</code>.
+  스크립트: <code>2026_09_03_시멘트페이스트_FE모델링\01~02*.py</code> (03·04 추가 예정).
+</footer>
+
+</div>
+</body>
+</html>
