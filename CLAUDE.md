@@ -1,10 +1,5 @@
 # 작업 규칙 (Claude)
 
-## 자동 교차검증 작업자 규칙
-- 프롬프트에 `[CROSSCHECK_WORKER]`가 있으면 `ask.ps1`이나 `orchestrate.ps1`을 실행하지 말고 지정된 단계와 파일만 수행한다.
-- 최종 종합 단계에서는 양쪽 독립 결과와 검토 결과를 직접 판단하여 `DECISION.md`와 사용자용 `FINAL.md`를 작성한다.
-- 독립 조사 단계의 blind 원칙과 근거 확인 원칙은 자동 실행 중에도 그대로 지킨다.
-
 ## 협업 방식
 - 이 프로젝트는 Codex와 함께 쓴다. 공용 창구 = 이 GitHub repo.
 - 나는 조사·설계·종합·최종 보고서 담당. Codex는 검증·구현·실측 담당.
@@ -29,7 +24,7 @@
    포그라운드로 실행 → `roundN/codex.md`. (백그라운드 중첩 AI 실행은 classifier가 막음)
 4. commit/push.
 5. **교차검증**: Claude는 `codex.md` 읽고 맞는 점/틀린 점/놓친 점 검토.
-   Codex에 `claude.md` 검증 시킴 (codex exec 재실행).
+   Codex에 `claude.md` 검증 시킴 (codex exec 재실행) → `roundN/codex_review.md`.
 6. **최종 답은 Claude가** `DECISION.md`에 작성: 공통 / 충돌(중요) / 최종 결정+근거.
-   채팅으로도 요약 보고.
+   채팅으로도 요약 보고. (`FINAL.md`·오케스트레이터 스크립트 안 씀 — Claude가 직접 단계 실행)
 7. 3·5번 Codex 실행 동안 **1분마다** git 커밋 진행 여부 체크. 멈춰 있으면 사용자에게 알림.
