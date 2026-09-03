@@ -5,11 +5,6 @@
 secrets*
 credentials*
 
-# 오케스트레이터 임시 파일
-.codex_last.txt
-.codex/
-*.log
-
 # OS / 에디터
 .DS_Store
 Thumbs.db
