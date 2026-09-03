@@ -51,12 +51,22 @@ if ($LASTEXITCODE -ne 0) { throw "claude 실패" }
 Sync-Repo "ask: Claude 초안"
 
 Write-Host "`n[3/4] Codex 검증 + 최종답 작성" -ForegroundColor Green
-$last = Join-Path $repo '.codex_last.txt'
-'' | & codex exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last `
-  "git pull 하지 말고 현재 파일 그대로 본다. PROBLEM.md 와 round1/claude.md(Claude 초안)를 읽어라. Claude 초안을 코드/실행/데이터/공식문서로 검증해라. 그런 다음 FINAL.md 를 새로 써라. FINAL.md 구성: '## 최종 답'(네가 검증해 확정한 답), '## Claude 초안에서 고친 점', '## 남은 불확실성 / 확인 필요'. 최종 답의 근거를 반드시 붙여라. 파일 저장까지만. git 은 건드리지 마라." `
-  2>&1 | Out-Null
-if ($LASTEXITCODE -ne 0) { throw "codex 실패" }
-if (Test-Path $last) { Get-Content $last -Raw -Encoding UTF8 | Write-Host -ForegroundColor Cyan; Remove-Item $last -Force }
+# codex는 Start-Job 안에서 실행해야 stdin 문제(-File 실행 시 "Reading from stdin" 멈춤)를 피한다
+$codexExe = (Get-Command codex).Source
+$codexPrompt = "git pull 하지 말고 현재 파일 그대로 본다. PROBLEM.md 와 round1/claude.md(Claude 초안)를 읽어라. Claude 초안을 코드/실행/데이터/공식문서로 검증해라. 그런 다음 FINAL.md 를 새로 써라. FINAL.md 구성: '## 최종 답'(네가 검증해 확정한 답), '## Claude 초안에서 고친 점', '## 남은 불확실성 / 확인 필요'. 최종 답의 근거를 반드시 붙여라. 파일 저장까지만. git 은 건드리지 마라."
+$job = Start-Job -ScriptBlock {
+  param($repo, $prompt, $exe)
+  Set-Location $repo
+  $last = Join-Path $repo '.codex_last.txt'
+  '' | & $exe exec -C $repo -s workspace-write --skip-git-repo-check --ephemeral -o $last $prompt 2>&1 | Out-Null
+  $code = $LASTEXITCODE
+  $text = if (Test-Path $last) { Get-Content $last -Raw -Encoding UTF8 } else { '(출력 없음)' }
+  Remove-Item $last -Force -ErrorAction SilentlyContinue
+  [pscustomobject]@{ code = $code; text = "$text" }
+} -ArgumentList $repo, $codexPrompt, $codexExe
+$cx = Receive-Job -Job $job -Wait -AutoRemoveJob
+Write-Host $cx.text -ForegroundColor Cyan
+if ($cx.code -ne 0) { throw "codex 실패 (exit $($cx.code))" }
 Sync-Repo "ask: Codex 검증 + FINAL.md"
 
 Write-Host "`n[4/4] 최종 결과 (Codex 작성)" -ForegroundColor Green
