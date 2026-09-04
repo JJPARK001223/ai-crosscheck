@@ -221,11 +221,11 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     <text x="516" y="162" text-anchor="middle" font-size="11" font-weight="800" fill="#c0392b">K&#8202;<tspan baseline-shift="super">Fixed</tspan> = (∂K/∂N)(N&#8202;<tspan baseline-shift="sub">I</tspan>−N&#8202;<tspan baseline-shift="sub">II</tspan>) + (∂K/∂M)(M&#8202;<tspan baseline-shift="sub">I</tspan>−M&#8202;<tspan baseline-shift="sub">II</tspan>)</text>
   </g>
 </svg>
-<figcaption><b>고정단 SIF 의 중첩 분해.</b> Problem I(자유단에 균열면 응력만) 의 변위를 상쇄하도록 Problem II 의 반력 $N_{II},M_{II}$ 를 컴플라이언스 관계로 구한다. 최종 고정단 SIF 는 자유단 해($K^{\text{Free}}$)의 $\partial K/\partial N,\ \partial K/\partial M$ 에 $(N_I-N_{II}),\ (M_I-M_{II})$ 를 곱해 얻는다. [원문]</figcaption>
+<figcaption><b>고정단 SIF 의 중첩 분해.</b> Problem I(자유단에 균열면 응력만) 의 변위를 상쇄하도록 Problem II 의 반력 $N_{II},M_{II}$ 를 컴플라이언스 관계로 구한다. 최종 고정단 SIF 는 자유단 해($K^{\text{Free}}$)의 $\partial K/\partial N,\ \partial K/\partial M$ 에 $(N_I-N_{II}),\ (M_I-M_{II})$ 를 곱해 얻는다. [원문] 그림의 $N,M$ 환원은 발표자료가 다룬 균일·선형 traction 성분에 대한 축약이다. [교차검증]</figcaption>
 </figure>
 
 <ul>
-  <li><b>6 자유도 논거</b>[원문]: 균열면에 작용하는 임의의 응력분포는 3개의 병진·3개의 회전 자유도로 표현되므로, 결국 <b>힘 $N$ 과 모멘트 $M$</b> 로 대표할 수 있다. 그래서 반력을 $N,M$ 으로만 잡는다.</li>
+  <li><b>6 자유도 논거</b>[원문 주장 — 검증 필요]: 발표자는 "임의의 응력분포도 3병진·3회전 자유도, 곧 <b>힘 $N$·모멘트 $M$</b> 로 대표되므로 반력을 $N,M$ 으로만 잡는다"고 설명한다. 다만 <b>합력·합모멘트가 같아도 균열면 weight function 적분값($K$)이 다를 수 있으므로</b> 이 축약은 발표자료가 실제로 다룬 <b>균일·선형 traction 성분</b> 범위에서만 안전하다. [교차검증]</li>
   <li><b>변위 계산</b>[원문]: 균열 있는 시편의 변위는 내부에너지 $U(N,M)$ 에서 유도되고($\partial U/\partial a = \tfrac12[NM]\,[\partial\delta_c/\partial a,\ \partial\theta_c/\partial a]^{\!\top}$), 에너지방출률–SIF 관계 $\partial U/\partial a = \tfrac12\pi c\,(K^{*})^2/E$ 와 결합해 컴플라이언스 성분 $C_{ij}=\tfrac{\pi c}{E}\int_0^a (\partial K^{*}/\partial N_i)(\partial K^{*}/\partial N_j)\,da$ 를 만든다.</li>
   <li><b>Wang &amp; Lambert 형상함수</b>[원문]: 최종 고정단 SIF 는 $K^{\text{Fixed}}=\sigma_0\sqrt{\pi a/Q}\,(\alpha_i F_0 - \beta_i F_1)$ 꼴. $Q=1+1.464(a/c)^{1.65}$ (반타원 균열), $F_0$=균일응력, $F_1$=선형응력 형상계수.</li>
 </ul>
@@ -275,11 +275,11 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <!-- axes -->
   <line x1="70" y1="215" x2="600" y2="215" stroke="#1a2230" stroke-width="1.3"/>
   <line x1="70" y1="215" x2="70" y2="40" stroke="#1a2230" stroke-width="1.3"/>
-  <text x="335" y="245" text-anchor="middle" font-size="10" fill="#5b6572">메시 크기 (mm) — 리거먼트 49.22 mm 로 정규화 (%)</text>
-  <text x="24" y="130" text-anchor="middle" font-size="10" fill="#5b6572" transform="rotate(-90 24 130)">예측 $w_f$ (N/mm)</text>
+  <text x="335" y="245" text-anchor="middle" font-size="10" fill="#5b6572">메시 크기 (mm) — 리거먼트 49.22 mm 대비 0.05~2.5%</text>
+  <text x="24" y="130" text-anchor="middle" font-size="10" fill="#5b6572" transform="rotate(-90 24 130)">예측 w_f (N/mm)</text>
   <!-- experiment line J_IC = 104 -->
   <line x1="70" y1="120" x2="600" y2="120" stroke="#1e8449" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="590" y="113" text-anchor="end" font-size="9.5" font-weight="700" fill="#1e8449">실험 $J_{IC}$ = 104 N/mm</text>
+  <text x="590" y="113" text-anchor="end" font-size="9.5" font-weight="700" fill="#1e8449">실험 J_IC = 104 N/mm</text>
   <!-- predicted points: mesh 0.025->34.9, 0.05->49.2, 0.125->154.3 -->
   <g fill="#c0392b">
     <circle cx="120" cy="188" r="4.5"/><circle cx="200" cy="170" r="4.5"/><circle cx="330" cy="52" r="4.5"/>
@@ -313,7 +313,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 <div class="parthead">파트 B — 선행연구 1·3의 참고문헌 (논문당 1챕터)</div>
 
 <h2>B-1. Irwin 1957 — 균열선단 응력장, 에너지방출률 $G$, $K$ 의 기원</h2>
-<div class="refline">G.R. Irwin, "Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate," ASME J. Appl. Mech. 24 (Trans. 79), 361–364 (1957). · 선1 참고문헌 [1], 선3 참고문헌 [9]. · 원 PDF 뒤에 C.B. Ling, "Stresses in a Perforated Strip"(JAM 1957) 스캔 2쪽이 함께 묶여 있다.</div>
+<div class="refline">G.R. Irwin, "Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate," ASME J. Appl. Mech. 24 (Trans. 79), 361–364 (1957). DOI 10.1115/1.4011547. · 선1 참고문헌 [1], 선3 참고문헌 [9]. · 핵심식은 원문 pp. 362–363, Eqs. (12)~(14). · 원 PDF 뒤에 C.B. Ling, "Stresses in a Perforated Strip"(JAM 1957) 스캔 2쪽이 함께 묶여 있다.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -328,14 +328,14 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   $\sigma_y(p) = \left(\dfrac{\mathcal{G}E}{\pi}\right)^{\!1/2}\dfrac{1}{\sqrt{2x}}$ 형태(Eq. 12) — 즉 <b>$\sigma \propto r^{-1/2}$ 특이응력장</b>.</li>
   <li>균열 닫힘 변위 $v(p) \propto \sqrt{2(\alpha-x)}$ (Eq. 13). 두 식을 곱해 균열면을 따라 적분하면
   $\displaystyle\int_0^{\alpha}\!\sigma_y(x)\,v(\alpha-x)\,dx = \alpha\,\mathcal{G}$ (Eq. 14) — <b>Irwin 의 균열닫힘적분(crack-closure integral)</b>: 균열이 $\alpha$ 만큼 닫히며 한 일 = $\alpha\mathcal{G}$.</li>
-  <li>계수 $\left(\mathcal{G}E/\pi\right)^{1/2}$ 가 응력장의 세기를 결정한다. 훗날 이 계수를 <b>$K = \sqrt{\pi}\,\left(\mathcal{G}E\right)^{1/2}$ 꼴로 묶어 응력확대계수 $K$</b> 로 부르게 된다. 여기서 이미 <b>$\mathcal{G} = K^2/E$</b>(평면응력) 관계가 들어 있다.</li>
+  <li>응력장의 세기 계수는 $\left(\mathcal{G}E/\pi\right)^{1/2}$ 다. 위 식을 표준 표기 $\sigma_y = K_I/\sqrt{2\pi x}$ 와 나란히 놓으면 <b>$K_I = \left(\mathcal{G}E\right)^{1/2}$</b>, 곧 <b>$\mathcal{G} = K_I^2/E$</b>(평면응력) — 훗날 이 계수를 <b>응력확대계수 $K$</b> 로 부르게 된다. 여기에 이미 $\mathcal{G}\leftrightarrow K$ 관계가 들어 있다.</li>
   <li><b>평면변형 보정</b>[원문, 각주]: 평면변형에서는 $E$ 대신 $E/(1-\nu^2)$ 를 넣는다. 즉 $\mathcal{G}_{\text{평면변형}} = (1-\nu^2)\,K^2/E$. 이것이 오늘날 $E' = E$(평면응력) / $E'=E/(1-\nu^2)$(평면변형) 규약의 원조.</li>
   <li><b>측정 관련</b>[원문]: 균열선단 근방 응력장은 (a) 인가하중 크기와 (b) $(\mathcal{G}E)^{1/2}$ 두 파라미터만으로 근사되며, 스트레인게이지를 균열선단에서 조금 떨어진 곳에 붙여도 $\mathcal{G}$ 를 추정할 수 있다. 소성역이 균열길이에 비해 작아야 유효.</li>
 </ul>
 
 <figure>
 <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
-  <text x="320" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">Irwin: 균열선단 특이장과 $\mathcal{G} \leftrightarrow K$</text>
+  <text x="320" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">Irwin: 균열선단 특이장과 G ↔ K</text>
   <!-- crack -->
   <line x1="60" y1="150" x2="300" y2="150" stroke="#1a2230" stroke-width="2"/>
   <path d="M60 150 Q 180 128 300 150 Q 180 172 60 150 Z" fill="#eef4fb" stroke="#2f5688" stroke-width="1"/>
@@ -346,14 +346,14 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <path d="M310 150 C 330 40, 360 55, 430 95 C 480 120, 540 138, 600 143" fill="none" stroke="#c0392b" stroke-width="2"/>
   <line x1="305" y1="150" x2="305" y2="45" stroke="#1a2230" stroke-width="1"/>
   <line x1="305" y1="150" x2="605" y2="150" stroke="#1a2230" stroke-width="1"/>
-  <text x="455" y="205" text-anchor="middle" font-size="10" fill="#5b6572">선단으로부터 거리 $r$</text>
-  <text x="325" y="60" font-size="11" font-weight="700" fill="#c0392b">$\sigma_y \propto r^{-1/2}$</text>
-  <text x="360" y="80" font-size="9.5" fill="#5b6572">계수 = $(\mathcal{G}E/\pi)^{1/2} \equiv K/\sqrt{\pi}$</text>
+  <text x="455" y="205" text-anchor="middle" font-size="10" fill="#5b6572">선단으로부터 거리 r</text>
+  <text x="325" y="60" font-size="11" font-weight="700" fill="#c0392b">σ_y ∝ r^(−1/2)</text>
+  <text x="360" y="80" font-size="9.5" fill="#5b6572">σ_y=√(GE)/√(2πr) ≡ K/√(2πr)</text>
   <!-- box -->
   <rect x="330" y="160" width="270" height="60" rx="7" fill="#f1fbf4" stroke="#1e8449" stroke-width="1.2"/>
-  <text x="465" y="180" text-anchor="middle" font-size="11" font-weight="800" fill="#1e8449">$\mathcal{G} = K^2/E$ (평면응력)</text>
-  <text x="465" y="200" text-anchor="middle" font-size="11" font-weight="800" fill="#1e8449">$\mathcal{G} = (1-\nu^2)K^2/E$ (평면변형)</text>
-  <text x="465" y="214" text-anchor="middle" font-size="8.5" fill="#5b6572">Irwin 각주: 평면변형이면 $E \to E/(1-\nu^2)$</text>
+  <text x="465" y="180" text-anchor="middle" font-size="11" font-weight="800" fill="#1e8449">G = K²/E (평면응력)</text>
+  <text x="465" y="200" text-anchor="middle" font-size="11" font-weight="800" fill="#1e8449">G = (1−ν²)K²/E (평면변형)</text>
+  <text x="465" y="214" text-anchor="middle" font-size="8.5" fill="#5b6572">Irwin 각주: 평면변형이면 E → E/(1−ν²)</text>
 </svg>
 <figcaption><b>Irwin 의 두 파라미터 그림.</b> 균열선단 응력은 $\propto r^{-1/2}$ 이고 그 세기 계수가 곧 $K$(에너지방출률 $\mathcal{G}$ 와 $\mathcal{G}=K^2/E'$ 로 연결). 선행연구 1의 식(4) $\sigma_x = K/\sqrt{2\pi r}$, 선행연구 3의 식(3) $\sigma_e = K/\sqrt{s}$, 그리고 $w_f = Y = K_{IC}^2/(2\pi E)$ 는 모두 이 결과의 직계 후손이다.</figcaption>
 </figure>
@@ -368,7 +368,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 </div>
 
 <h2>B-2. Kirsch 1898 — 원형 홀 응력집중 (개념)</h2>
-<div class="refline">G. Kirsch, "Die Theorie der Elastizität und die Bedürfnisse der Festigkeitslehre," Z. Ver. Dtsch. Ing. 42, 797–807 (1898). · 선1 참고문헌 [2]. · 원 PDF 는 폴더에 없다(개념만 정리). 참고로 Irwin PDF 뒤에 묶인 C.B. Ling, "Stresses in a Perforated Strip"(1957)은 유한폭 띠의 홀 문제를 이중조화함수로 푼 관련 고전이다.</div>
+<div class="refline">G. Kirsch, "Die Theorie der Elastizität und die Bedürfnisse der Festigkeitslehre," Z. Ver. Dtsch. Ing. 42, 797–807 (1898). DOI 없음(1898). · 선1 참고문헌 [2]. · 원 PDF 는 폴더에 없다(개념만 정리). 참고로 Irwin PDF 뒤에 묶인 C.B. Ling, "Stresses in a Perforated Strip"(1957)은 유한폭 띠의 홀 문제를 이중조화함수로 푼 관련 고전이다.</div>
 
 <h4>내용 [교차검증 — 표준 탄성론]</h4>
 <p>
@@ -384,7 +384,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
 <figure>
 <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
-  <text x="320" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">Kirsch: $\sigma_\theta = \sigma_o(1-2\cos 2\theta)$</text>
+  <text x="320" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">Kirsch: σ_θ = σ_o(1−2cos2θ)</text>
   <!-- load arrows horizontal -->
   <g stroke="#2f5688" stroke-width="1.6" fill="none">
     <line x1="30" y1="130" x2="70" y2="130" marker-end="url(#k7)"/>
@@ -396,40 +396,40 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     <marker id="k7" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#2f5688"/></marker>
     <marker id="k7b" markerWidth="9" markerHeight="9" refX="2" refY="4.5" orient="auto"><path d="M9,0 L0,4.5 L9,9 z" fill="#2f5688"/></marker>
   </defs>
-  <text x="180" y="118" text-anchor="middle" font-size="9" fill="#2f5688">원거리 인장 $\sigma_o$ (수평)</text>
+  <text x="180" y="118" text-anchor="middle" font-size="9" fill="#2f5688">원거리 인장 σ_o (수평)</text>
   <!-- hole -->
   <circle cx="180" cy="140" r="42" fill="#eef4fb" stroke="#1a2230" stroke-width="1.5"/>
   <circle cx="180" cy="98" r="4" fill="#c0392b"/>
-  <text x="180" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#c0392b">$\theta=\pi/2$ : $3\sigma_o$</text>
+  <text x="180" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#c0392b">θ=π/2 : 3σ_o</text>
   <circle cx="222" cy="140" r="3.5" fill="#2f5688"/>
-  <text x="238" y="143" font-size="9" fill="#2f5688">$\theta=0$ : $-\sigma_o$</text>
+  <text x="238" y="143" font-size="9" fill="#2f5688">θ=0 : −σ_o</text>
   <!-- gradient arrow up -->
   <line x1="180" y1="94" x2="180" y2="52" stroke="#c0392b" stroke-width="1.6" marker-end="url(#k7)"/>
   <text x="188" y="50" font-size="8.5" fill="#c0392b">파괴는 이 방향으로</text>
   <!-- graph -->
   <line x1="380" y1="200" x2="610" y2="200" stroke="#1a2230" stroke-width="1"/>
   <line x1="380" y1="200" x2="380" y2="50" stroke="#1a2230" stroke-width="1"/>
-  <text x="495" y="222" text-anchor="middle" font-size="9" fill="#5b6572">반경좌표 $r$ (홀 중심 기준, 가장자리 $r=R$)</text>
-  <text x="372" y="45" text-anchor="end" font-size="9" fill="#5b6572">$\sigma_y$</text>
+  <text x="495" y="222" text-anchor="middle" font-size="9" fill="#5b6572">반경좌표 r (홀 중심 기준, 가장자리 r=R)</text>
+  <text x="372" y="45" text-anchor="end" font-size="9" fill="#5b6572">σ_y</text>
   <path d="M400 70 C 430 130, 470 175, 520 190 C 555 197, 585 199, 608 200" fill="none" stroke="#c0392b" stroke-width="2"/>
   <line x1="400" y1="70" x2="400" y2="200" stroke="#1a2230" stroke-width="0.7" stroke-dasharray="3 3"/>
-  <text x="400" y="64" text-anchor="middle" font-size="8.5" fill="#c0392b">$3\sigma_o$</text>
+  <text x="400" y="64" text-anchor="middle" font-size="8.5" fill="#c0392b">3σ_o</text>
   <line x1="380" y1="150" x2="610" y2="150" stroke="#5b6572" stroke-width="0.6" stroke-dasharray="2 3"/>
-  <text x="614" y="153" font-size="8" fill="#5b6572">$\sigma_o$</text>
-  <text x="470" y="95" font-size="9" fill="#c0392b">구배 $|d\sigma_y/dr|_{R} = 7\sigma_o/R$</text>
+  <text x="614" y="153" font-size="8" fill="#5b6572">σ_o</text>
+  <text x="470" y="95" font-size="9" fill="#c0392b">구배 |dσ_y/dr|_R = 7σ_o/R</text>
 </svg>
-<figcaption><b>Kirsch 해의 두 얼굴.</b> 수평 하중이면 원주응력 최대점은 홀 <b>상단</b>($\theta=\pi/2$)에서 $3\sigma_o$, 파괴는 그 지점에서 하중에 수직(수직 방향)으로 전파. 하중축을 따라 홀에서 멀어지는 개구응력은 $x=R$ 의 $3\sigma_o$ 에서 급강하하고 구배는 $7\sigma_o/R$. [교차검증]</figcaption>
+<figcaption><b>Kirsch 해의 두 얼굴.</b> 수평 하중이면 원주응력 최대점은 홀 <b>상단</b>($\theta=\pi/2$)에서 $3\sigma_o$, 파괴는 그 지점에서 하중에 수직(수직 방향)으로 전파. 하중축을 따라 홀에서 멀어지는 개구응력은 $x=R$ 의 $3\sigma_o$ 에서 급강하하고 구배는 $7\sigma_o/R$. (그림은 하중을 수평으로 그려 감쇠 경로가 수직 — 본문 식 $\sigma_y(x)$ 의 교과서 표기(하중 수직·$x$축 수평)와 축 이름이 90° 돌아가 있을 뿐 물리는 같다. round 6 과 동일한 규약.) [교차검증]</figcaption>
 </figure>
 
 <div class="box ok">
   <h4>선행연구 1·3 에서의 역할 [교차검증]</h4>
   선행연구 1의 <b>사례 3(무한평판 + 원형 홀)</b> 이 정확히 Kirsch 해다. 국소응력 $3\sigma_o \ge \sigma_f$ 이면 조건①이 만족되고($\sigma_o \ge \sigma_f/3$),
   구배조건에 $7\sigma_o/R$ 를 넣으면 임계 공칭응력 $\sigma_{o,c} = \max\!\big(\sigma_f/3,\ \sqrt{14 E w_f/27 R}\big)$ 가 나온다(round 1).
-  즉 <b>큰 홀은 응력조건이, 작은 홀은 구배조건이 지배</b> — 홀 크기에 따라 지배조건이 갈리는 대표 예다. 선행연구 3의 알루미늄·PLA·시멘트 페이스트 홀 예제도 모두 이 식을 기반으로 한다.
+  즉 <b>큰 홀은 응력조건이, 작은 홀은 구배조건이 지배</b> — 홀 크기에 따라 지배조건이 갈리는 대표 예다. 선행연구 3의 <b>홀 예제(알루미늄 §3 · PLA §5 · 유리섬유복합재 §6)</b> 는 모두 이 Kirsch 식을 기반으로 한다. (선행연구 3 §4 시멘트 페이스트는 홀이 아니라 노치 보 3점굽힘 균열 문제로, Kirsch 가 아니라 B-1 의 균열 근접장 $K$ 를 쓴다.)
 </div>
 
 <h2>B-3. Sapora et al. 2018 — 원형 홀로부터의 유한파괴역학 균열 개시</h2>
-<div class="refline">A. Sapora, A.R. Torabi, S. Etesam, P. Cornetti, "Finite Fracture Mechanics crack initiation from a circular hole," Fatigue Fract. Eng. Mater. Struct. 41(7), 1627–1636 (2018). · 선1 참고문헌 [3], 선3 참고문헌 [21].</div>
+<div class="refline">A. Sapora, A.R. Torabi, S. Etesam, P. Cornetti, "Finite Fracture Mechanics crack initiation from a circular hole," Fatigue Fract. Eng. Mater. Struct. 41(7), 1627–1636 (2018). DOI 10.1111/ffe.12801. · 선1 참고문헌 [3], 선3 참고문헌 [21]. · TCD 분류 pp. 1628–1629, 홀 식 p. 1630, 실험 pp. 1632–1634.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -453,27 +453,27 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <g>
     <rect x="35" y="86" width="150" height="48" rx="7" fill="#eef4fb" stroke="#2f5688"/>
     <text x="110" y="104" text-anchor="middle" font-size="10" font-weight="700" fill="#1f3a5f">① 응력 기반</text>
-    <text x="110" y="120" text-anchor="middle" font-size="8.5" fill="#5b6572">PM(점): $\sigma_y(R{+}\Delta)=\sigma_u$</text>
-    <text x="110" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">LM(선): 평균 $=\sigma_u$</text>
+    <text x="110" y="120" text-anchor="middle" font-size="8.5" fill="#5b6572">PM(점): σ_y(R+Δ)=σ_u</text>
+    <text x="110" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">LM(선): 평균 =σ_u</text>
   </g>
   <g>
     <rect x="245" y="86" width="150" height="48" rx="7" fill="#fdf8ef" stroke="#b9770e"/>
     <text x="320" y="104" text-anchor="middle" font-size="10" font-weight="700" fill="#b9770e">② 에너지 기반</text>
-    <text x="320" y="120" text-anchor="middle" font-size="8.5" fill="#5b6572">평균 $G(a)=G_c$ over $\Delta$</text>
-    <text x="320" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">$\to$ QFM(양자화 파괴역학)</text>
+    <text x="320" y="120" text-anchor="middle" font-size="8.5" fill="#5b6572">평균 G(a)=G_c over Δ</text>
+    <text x="320" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">→ QFM(양자화 파괴역학)</text>
   </g>
   <g>
     <rect x="455" y="86" width="150" height="48" rx="7" fill="#f1fbf4" stroke="#1e8449"/>
     <text x="530" y="104" text-anchor="middle" font-size="10" font-weight="700" fill="#1e8449">③ 결합 (FFM)</text>
     <text x="530" y="120" text-anchor="middle" font-size="8.5" fill="#5b6572">응력식 + 에너지식 연립</text>
-    <text x="530" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">$\Delta$ 가 미지수(재료상수 아님)</text>
+    <text x="530" y="131" text-anchor="middle" font-size="8.5" fill="#5b6572">Δ 가 미지수(재료상수 아님)</text>
   </g>
   <!-- FFM detail -->
   <rect x="120" y="155" width="400" height="72" rx="8" fill="#fff" stroke="#1e8449" stroke-width="1.3"/>
   <text x="320" y="174" text-anchor="middle" font-size="10" font-weight="800" fill="#1e8449">결합 FFM (식 8 또는 9)</text>
-  <text x="320" y="192" text-anchor="middle" font-size="9.5" fill="#1a2230">$\sigma_y(\Delta+R)=\sigma_u$ &nbsp;&amp;&nbsp; $\frac{1}{\Delta}\!\int_R^{R+\Delta}\! K_I^2(a)\,da = K_{Ic}^2$</text>
-  <text x="320" y="210" text-anchor="middle" font-size="8.7" fill="#5b6572">미지수 2개(임계응력 $\sigma_f$, 균열진전 $\Delta$), 방정식 2개 → 1점 보정 불필요</text>
-  <text x="320" y="222" text-anchor="middle" font-size="8.7" fill="#5b6572">$\Delta = \frac{1}{2\pi}(K_{Ic}/\sigma_u)^2 = \frac12 l_{ch}$ (PM), $\ \frac{2}{\pi}l_{ch}$ (LM)</text>
+  <text x="320" y="192" text-anchor="middle" font-size="9.5" fill="#1a2230">σ_y(Δ+R)=σ_u &nbsp;&amp;&nbsp; (1/Δ)∫[R,R+Δ] K_I²(a)da = K_Ic²</text>
+  <text x="320" y="210" text-anchor="middle" font-size="8.7" fill="#5b6572">미지수 2개(임계응력 σ_f, 균열진전 Δ), 방정식 2개 → 1점 보정 불필요</text>
+  <text x="320" y="222" text-anchor="middle" font-size="8.7" fill="#5b6572">Δ = (1/2π)(K_Ic/σ_u)² = ½l_ch (PM), (2/π)l_ch (LM)</text>
 </svg>
 <figcaption><b>TCD 지형도.</b> 응력 기반(PM 점법·LM 선법), 에너지 기반(평균 $G$, QFM), 결합(FFM). 결합 FFM 은 "응력이 유한거리 $\Delta$ 에서 강도에 도달" + "그 $\Delta$ 만큼 균열이 나며 방출되는 에너지가 인성에 도달"을 <b>동시에</b> 요구한다. [원문]</figcaption>
 </figure>
@@ -501,7 +501,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 </div>
 
 <h2>B-4. Han et al. 2015 — 유한요소해석 기반 mode I 응력확대계수 결정</h2>
-<div class="refline">Q. Han, Y. Wang, Y. Yin, D. Wang, "Determination of stress intensity factor for mode I fatigue crack based on finite element analysis," Eng. Fract. Mech. 138, 118–126 (2015). · 선3 참고문헌 [14].</div>
+<div class="refline">Q. Han, Y. Wang, Y. Yin, D. Wang, "Determination of stress intensity factor for mode I fatigue crack based on finite element analysis," Eng. Fract. Mech. 138, 118–126 (2015). DOI 10.1016/j.engfracmech.2015.02.019. · 선3 참고문헌 [14]. · 네 방법 식 pp. 119–121, 결론 p. 125.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -511,42 +511,42 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 
 <figure>
 <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
-  <text x="320" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">FE 에서 $K_I$ 를 뽑는 네 가지 방법</text>
+  <text x="320" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">FE 에서 K_I 를 뽑는 네 가지 방법</text>
   <g font-size="9" fill="#1a2230">
     <rect x="20" y="30" width="145" height="95" rx="7" fill="#eef4fb" stroke="#2f5688"/>
     <text x="92" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1f3a5f">① 변위 외삽</text>
-    <text x="92" y="64" text-anchor="middle">균열면 $\theta=\pi$ 열림변위 $V$</text>
-    <text x="92" y="80" text-anchor="middle">$K_I = \frac{E}{4}\sqrt{\frac{2\pi}{r}}\,V$</text>
-    <text x="92" y="96" text-anchor="middle" font-size="8" fill="#5b6572">$r\to0$ 으로 외삽</text>
+    <text x="92" y="64" text-anchor="middle">균열면 θ=π 열림변위 V</text>
+    <text x="92" y="80" text-anchor="middle">K_I = (E/4)√(2π/r)·V</text>
+    <text x="92" y="96" text-anchor="middle" font-size="8" fill="#5b6572">r→0 으로 외삽</text>
     <text x="92" y="112" text-anchor="middle" font-size="8" fill="#5b6572">모든 요소 가능</text>
 
     <rect x="180" y="30" width="145" height="95" rx="7" fill="#fdf8ef" stroke="#b9770e"/>
     <text x="252" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b9770e">② 응력 외삽</text>
-    <text x="252" y="64" text-anchor="middle">$\theta=0$ 수직응력 $\sigma_y$</text>
-    <text x="252" y="80" text-anchor="middle">$K_I = \sigma_{y,\theta=0}\sqrt{2\pi r}$</text>
-    <text x="252" y="96" text-anchor="middle" font-size="8" fill="#5b6572">$r\to0$ 으로 외삽</text>
+    <text x="252" y="64" text-anchor="middle">θ=0 수직응력 σ_y</text>
+    <text x="252" y="80" text-anchor="middle">K_I = σ_y|_θ=0 · √(2πr)</text>
+    <text x="252" y="96" text-anchor="middle" font-size="8" fill="#5b6572">r→0 으로 외삽</text>
     <text x="252" y="112" text-anchor="middle" font-size="8" fill="#5b6572">모든 요소 가능</text>
 
     <rect x="340" y="30" width="145" height="95" rx="7" fill="#f1fbf4" stroke="#1e8449"/>
     <text x="412" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e8449">③ 절점변위(1/4점)</text>
     <text x="412" y="64" text-anchor="middle">Barsoum 1/4점 특이요소</text>
-    <text x="412" y="80" text-anchor="middle">$K_I=\frac{E}{4}\sqrt{\frac{2\pi}{L}}(4V_B{-}V_C)$</text>
+    <text x="412" y="80" text-anchor="middle">K_I=(E/4)√(2π/L)·(4V_B−V_C)</text>
     <text x="412" y="96" text-anchor="middle" font-size="8" fill="#5b6572">특이요소 필수</text>
     <text x="412" y="112" text-anchor="middle" font-size="8" fill="#5b6572">외삽 불필요</text>
 
     <rect x="500" y="30" width="120" height="95" rx="7" fill="#eef4fb" stroke="#2f5688"/>
-    <text x="560" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1f3a5f">④ $J$-적분</text>
-    <text x="560" y="64" text-anchor="middle">경로적분 $J$</text>
-    <text x="560" y="80" text-anchor="middle">$K_I = \sqrt{J E}$</text>
-    <text x="560" y="96" text-anchor="middle" font-size="8" fill="#5b6572">(평면응력)</text>
+    <text x="560" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1f3a5f">④ J-적분</text>
+    <text x="560" y="64" text-anchor="middle">경로적분 J</text>
+    <text x="560" y="80" text-anchor="middle">K_I = √(JE)</text>
+    <text x="560" y="96" text-anchor="middle" font-size="8" fill="#5b6572">(평면응력; 평면변형은 √(JE'))</text>
     <text x="560" y="112" text-anchor="middle" font-size="8" fill="#5b6572">경로 무관·가장 편리</text>
   </g>
   <rect x="40" y="150" width="560" height="90" rx="8" fill="#fff" stroke="#c0392b" stroke-width="1.2"/>
   <text x="320" y="170" text-anchor="middle" font-size="10" font-weight="800" fill="#c0392b">논문의 결론 [원문]</text>
-  <text x="320" y="189" text-anchor="middle" font-size="9" fill="#1a2230">• $J$-적분이 가장 정확·편리 (모든 경우 오차 &lt; 1%)</text>
+  <text x="320" y="189" text-anchor="middle" font-size="9" fill="#1a2230">• J-적분이 가장 정확·편리 (모든 경우 오차 &lt; 1%)</text>
   <text x="320" y="205" text-anchor="middle" font-size="9" fill="#1a2230">• 특이요소를 쓰면 2.0 mm(균열길이 1/10) 거친 메시로도 오차 &lt; 5%</text>
   <text x="320" y="221" text-anchor="middle" font-size="9" fill="#1a2230">• 일반요소만 쓰면 변위·응력 외삽은 요소크기 ≤ 균열길이 1/10~1/20 필요</text>
-  <text x="320" y="235" text-anchor="middle" font-size="8.5" fill="#5b6572">일반 4절점 선형요소 + 2.0 mm 메시로 응력외삽하면 중앙균열 $K$ 가 17% 과대</text>
+  <text x="320" y="235" text-anchor="middle" font-size="8.5" fill="#5b6572">일반 4절점 선형요소 + 2.0 mm 메시로 응력외삽하면 중앙균열 K 가 17% 과대</text>
 </svg>
 <figcaption><b>FE-SIF 추출 네 방법.</b> 변위·응력 외삽은 $r\to0$ 외삽 필요, 1/4점 절점법은 특이요소 필요, $J$-적분은 경로 무관·가장 안정. [원문]</figcaption>
 </figure>
@@ -559,7 +559,7 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 </div>
 
 <h2>B-5. Braun et al. 2020 — 노치 구조의 응력구배 기반 피로평가 요건</h2>
-<div class="refline">M. Braun, A.M. Müller, A.-S. Milaković, W. Fricke, S. Ehlers, "Requirements for stress gradient-based fatigue assessment of notched structures according to theory of critical distance," Fatigue Fract. Eng. Mater. Struct. 43(7), 1541–1554 (2020). · 선3 참고문헌 [22].</div>
+<div class="refline">M. Braun, A.M. Müller, A.-S. Milaković, W. Fricke, S. Ehlers, "Requirements for stress gradient-based fatigue assessment of notched structures according to theory of critical distance," Fatigue Fract. Eng. Mater. Struct. 43(7), 1541–1554 (2020). DOI 10.1111/ffe.13232. · 선3 참고문헌 [22]. · 식 pp. 1542–1544, 결과·결론 pp. 1546–1552.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -584,13 +584,14 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 <div class="box ok">
   <h4>선행연구 1·3 에서의 역할 [교차검증]</h4>
   선행연구 3은 서론에서 임계거리이론(TCD)·유한파괴역학(FFM) 계열([17]~[25])을 자신과 구분하며, 그 중 <b>응력구배·피로 맥락의 대표 선행연구</b>로 이 논문을 든다([22]).
+  다만 이 논문은 <b>피로</b> 유효응력·수명평가 연구이며, 선행연구 3의 <b>정적</b> 취성파괴 FE 구배 추출을 이 논문이 직접 검증한 것은 아니다 — <b>방법론적 참고</b>로 읽어야 한다.
   방법론적으로는 (i) 응력구배를 FE로 뽑을 때 필요한 메시밀도, (ii) 곡선맞춤(PCHIP) 사용, (iii) 응력 성분(최대주응력 vs von-Mises) 선택이 결과를 좌우한다는 점이
   선행연구 3의 시멘트 페이스트 재현(round 4·5의 열린 항목: 메시 수렴, $\sigma_e$ 정의)에 그대로 참고된다.
   선행연구 1·3이 "PM/LM 중 무엇?"이라는 TCD 의 오래된 딜레마를 <b>구배조건에 근접장을 대입해 $\Delta$ 를 소거</b>함으로써 우회한다는 대비도 이 논문을 배경으로 이해된다.
 </div>
 
 <h2>B-6. Camanho et al. 2012 — 복합재 적층판 open-hole 강도의 FFM 모델</h2>
-<div class="refline">P.P. Camanho, G.H. Erçin, G. Catalanotti, S. Mahdi, P. Linde, "A finite fracture mechanics model for the prediction of the open-hole strength of composite laminates," Composites Part A 43, 1219–1225 (2012). · 선3 참고문헌 [24].</div>
+<div class="refline">P.P. Camanho, G.H. Erçin, G. Catalanotti, S. Mahdi, P. Linde, "A finite fracture mechanics model for the prediction of the open-hole strength of composite laminates," Composites Part A 43, 1219–1225 (2012). DOI 10.1016/j.compositesa.2012.03.004. · 선3 참고문헌 [24]. · 모델 식 pp. 1219–1221, 검증 pp. 1221–1223.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -608,22 +609,22 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 
 <figure>
 <svg viewBox="0 0 620 210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
-  <text x="310" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">결합 FFM: 두 방정식으로 미지수 2개($\bar\sigma^\infty$, $l$) 를 푼다</text>
+  <text x="310" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">결합 FFM: 두 방정식으로 미지수 2개(σ∞, l) 를 푼다</text>
   <!-- hole + crack -->
   <rect x="40" y="40" width="120" height="140" fill="#eef4fb" stroke="#1a2230"/>
   <circle cx="100" cy="110" r="24" fill="#fff" stroke="#1a2230"/>
   <line x1="124" y1="110" x2="150" y2="110" stroke="#c0392b" stroke-width="2.5"/>
-  <text x="137" y="103" text-anchor="middle" font-size="8.5" fill="#c0392b">$l$</text>
-  <text x="100" y="196" text-anchor="middle" font-size="8.5" fill="#5b6572">홀 반경 $R$, 폭 $W$</text>
+  <text x="137" y="103" text-anchor="middle" font-size="8.5" fill="#c0392b">l</text>
+  <text x="100" y="196" text-anchor="middle" font-size="8.5" fill="#5b6572">홀 반경 R, 폭 W</text>
   <!-- eq boxes -->
   <rect x="200" y="45" width="390" height="55" rx="7" fill="#f1fbf4" stroke="#1e8449"/>
   <text x="215" y="66" font-size="9.5" font-weight="700" fill="#1e8449">응력식:</text>
-  <text x="395" y="70" text-anchor="middle" font-size="10" fill="#1a2230">$\frac{1}{l}\int_R^{R+l}\sigma_{yy}(x)\,dx = X_T^{L}$ (무결점 강도)</text>
+  <text x="395" y="70" text-anchor="middle" font-size="10" fill="#1a2230">(1/l)∫[R,R+l] σ_yy(x)dx = X_T^L (무결점 강도)</text>
   <text x="395" y="90" text-anchor="middle" font-size="8" fill="#5b6572">홀 앞 평균응력이 적층판 무결점 인장강도에 도달</text>
   <rect x="200" y="115" width="390" height="55" rx="7" fill="#fdf8ef" stroke="#b9770e"/>
   <text x="215" y="136" font-size="9.5" font-weight="700" fill="#b9770e">에너지식:</text>
-  <text x="395" y="140" text-anchor="middle" font-size="10" fill="#1a2230">$\frac{1}{l}\int_R^{R+l} K_I^2(a)\,da = K_{Ic}^2$ (0°플라이 인성)</text>
-  <text x="395" y="160" text-anchor="middle" font-size="8" fill="#5b6572">$l$ 만큼 균열이 나며 방출되는 평균에너지가 인성에 도달</text>
+  <text x="395" y="140" text-anchor="middle" font-size="10" fill="#1a2230">(1/l)∫[R,R+l] K_I²(a)da = K_Ic² (0°플라이 인성)</text>
+  <text x="395" y="160" text-anchor="middle" font-size="8" fill="#5b6572">l 만큼 균열이 나며 방출되는 평균에너지가 인성에 도달</text>
   <text x="310" y="190" text-anchor="middle" font-size="8.7" fill="#c0392b">→ 특성거리 보정 불필요 · 예측 최대오차 7.6% (점법 8.1%, 무결함결함모델 13%)</text>
 </svg>
 <figcaption><b>Camanho 결합 FFM.</b> 홀 앞 평균응력 = 무결점 강도, 그 구간의 평균 에너지방출률 = 인성. 두 식으로 $\bar\sigma^\infty$ 와 $l$ 을 동시에 푼다. [원문]</figcaption>
@@ -637,7 +638,7 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 </div>
 
 <h2>B-7. Daniel 2007 — 복합재 파괴이론 개관</h2>
-<div class="refline">I.M. Daniel, "Failure of composite materials," Strain 43, 4–12 (2007). · 선3 참고문헌 [8]. (16th European Conference on Fracture 기조강연 기반.)</div>
+<div class="refline">I.M. Daniel, "Failure of composite materials," Strain 43, 4–12 (2007). DOI 10.1111/j.1475-1305.2007.00302.x. · 선3 참고문헌 [8]. (16th European Conference on Fracture 기조강연 기반.) · 개관 pp. 4–12.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -653,7 +654,7 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
   <li>WWFE(World-Wide Failure Exercise): 12년간 19개 이론, 14개 문제. 단방향 라미나조차 이론 간 예측이 200~300% 차이.</li>
   <li>단일 라미나: 곡선맞춤형 상호작용 이론(Tsai–Wu)이 대체로 실험에 잘 맞음. 한계이론은 $\theta\approx40°$ 파괴모드 전이 부근에서 벗어남.</li>
   <li>다방향 적층판: FPF 예측이 ULF 예측보다 이론 간 차이가 크고, 기지 지배 파괴가 섬유 지배보다 차이가 큼. 잔류응력·<i>in situ</i> 거동·점진손상 모델링 방식이 원인.</li>
-  <li>실용 권고: 각 범주에서 대표 이론 하나씩 고르고, 파괴모드 판별규칙으로 ULF 정의, 보수적 설계는 선택한 파괴포락선들의 <b>공통 영역</b> 안으로 하중 제한.</li>
+  <li>[교차검증 요약] 저자가 결론부에서 압축한 실용 권고: 각 범주에서 대표 이론 하나씩 고르고, 파괴모드 판별규칙으로 ULF 정의, 보수적 설계는 선택한 파괴포락선들의 <b>공통 영역</b> 안으로 하중 제한.</li>
 </ul>
 
 <div class="box ok">
@@ -665,7 +666,7 @@ FE 결과에서 $K$ 를 얻는 <b>네 가지 방법의 정확도·요소종류·
 </div>
 
 <h2>B-8. Podgórski 1985 — 등방성 매질의 일반 파괴기준</h2>
-<div class="refline">J. Podgórski, "General Failure Criterion for Isotropic Media," J. Eng. Mech. 111(2), 188–201 (1985). · 선3 참고문헌 [2].</div>
+<div class="refline">J. Podgórski, "General Failure Criterion for Isotropic Media," J. Eng. Mech. 111(2), 188–201 (1985). DOI 10.1061/(ASCE)0733-9399(1985)111:2(188). · 선3 참고문헌 [2]. · 일반형·형상함수 pp. 189–193, 콘크리트·모래 적용 pp. 194–198.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -685,34 +686,34 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
 
 <figure>
 <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
-  <text x="280" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">편차평면 단면: $\lambda$ 에 따라 삼각형↔원 사이</text>
+  <text x="280" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">편차평면 단면: λ 에 따라 삼각형↔원 사이</text>
   <!-- axes -->
   <line x1="280" y1="30" x2="280" y2="200" stroke="#5b6572" stroke-width="0.7"/>
   <line x1="180" y1="150" x2="380" y2="150" stroke="#5b6572" stroke-width="0.7"/>
-  <text x="284" y="40" font-size="8" fill="#5b6572">$\sigma_1$</text>
+  <text x="284" y="40" font-size="8" fill="#5b6572">σ_1</text>
   <!-- Tresca hexagon-ish (lambda ~ 0.5) -->
   <polygon points="280,55 340,90 340,155 280,190 220,155 220,90" fill="none" stroke="#5b6572" stroke-width="1" stroke-dasharray="4 3"/>
-  <text x="350" y="80" font-size="8" fill="#5b6572">$\lambda\to0.5$ (Coulomb–Mohr)</text>
+  <text x="350" y="80" font-size="8" fill="#5b6572">λ→0.5 (Coulomb–Mohr)</text>
   <!-- rounded triangle (concrete, lambda~0.7) -->
   <path d="M280,58 C 320,72 348,110 340,145 C 332,178 300,190 280,188 C 260,190 228,178 220,145 C 212,110 240,72 280,58 Z" fill="#eef4fb" stroke="#2f5688" stroke-width="1.6"/>
-  <text x="350" y="150" font-size="8" fill="#2f5688">$\lambda\approx0.7$ (콘크리트, 제안식)</text>
+  <text x="350" y="150" font-size="8" fill="#2f5688">λ≈0.7 (콘크리트, 제안식)</text>
   <!-- circle (Mises) -->
   <circle cx="280" cy="122" r="66" fill="none" stroke="#1e8449" stroke-width="1.2"/>
-  <text x="352" y="122" font-size="8" fill="#1e8449">$\lambda=1$ (von Mises)</text>
+  <text x="352" y="122" font-size="8" fill="#1e8449">λ=1 (von Mises)</text>
 </svg>
-<figcaption><b>Podgórski 의 편차평면 파괴면 단면.</b> 형상비 $\lambda$ 가 0.5(Coulomb–Mohr 육각형)에서 1(von Mises 원) 사이를 움직인다. 정수압축이 커질수록 단면이 원에 가까워진다. [원문 + 표준 소성론]</figcaption>
+<figcaption><b>Podgórski 의 편차평면 파괴면 단면 (정성 개념도, 원문 곡선의 정밀 재현 아님).</b> 형상비 $\lambda$ 가 0.5(Coulomb–Mohr 육각형)에서 1(von Mises 원) 사이를 움직인다. 정수압축이 커질수록 단면이 원에 가까워지는 경향만 보여준다. [원문 + 표준 소성론, 개념도]</figcaption>
 </figure>
 
 <div class="box ok">
   <h4>선행연구 1·3 에서의 역할 [교차검증]</h4>
   선행연구 3 서론에서 "기존의 일반 파괴기준"의 대표로 맨 앞에 인용([2]). 이 계열(불변량·다축·정수압축 의존)은
-  <b>주어진 응력상태에서 "파괴하는가?"</b> 는 판정하지만 <b>"어디서·어느 방향으로?"</b> 는 말하지 않고, 노치·균열의 응력집중·특이성 앞에서 무력하다.
-  선행연구 1·3이 강조하는 차별점 — "파괴 위치와 파괴 경로까지 준다" · "균열·노치·무결함 모두 하나의 기준으로" — 이 바로 Podgórski 류의 한계를 겨냥한 것이다.
+  <b>주어진 응력상태에서 "파괴하는가?"</b> 는 판정하지만, criterion 자체가 <b>국소 파괴위치를 찾는 절차나 균열진전 방향의 법칙을 별도로 주지는 않는다</b>(응력장을 따로 계산한 뒤 이 기준을 국소적으로 적용하는 것은 가능하다).
+  선행연구 1·3이 강조하는 차별점 — "응력조건+구배조건 두 줄로 파괴 위치와 경로까지 준다" · "균열·노치·무결함 모두 하나의 기준으로" — 은 이 지점의 대비로 이해하면 된다.
   선행연구 2(B-9)의 서론이 "임계거리이론의 네 범주"를 설명하며 이런 고전 기준과 자신을 구분하는 것도 같은 맥락.
 </div>
 
 <h2>B-9. Kwon·Diaz-Colon·DeFisher 2022 — 취성 노치 시편의 파괴기준 (사실상 "선행연구 2")</h2>
-<div class="refline">Y.W. Kwon, C. Diaz-Colon, S. DeFisher, "Failure Criteria for Brittle Notched Specimens," J. Press. Vessel Technol. 144, 051506 (2022). · 선3 참고문헌 [35]. · 미국 정부저작물(퍼블릭 도메인).</div>
+<div class="refline">Y.W. Kwon, C. Diaz-Colon, S. DeFisher, "Failure Criteria for Brittle Notched Specimens," J. Press. Vessel Technol. 144, 051506 (2022). DOI 10.1115/1.4053484. · 선3 참고문헌 [35]. · 미국 정부저작물(퍼블릭 도메인). · 파괴기준·홀 식 pp. 051506-2~3.</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -726,7 +727,7 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
 <div class="eq">$\dfrac{\sigma^3}{2E}\left|\dfrac{d\sigma}{ds}\right|^{-1} \ge \kappa_{\text{fail}}$ <span class="n">(2) 파괴하중 결정 · $\kappa_{\text{fail}}$ = 재료상수 [Pa·m]</span></div>
 <ul>
   <li>식(2)의 좌변이 여러 방향 중 최대가 되는 방향이 <b>파괴 방향</b>. 노치가 있는 시편의 파괴응력 $\sigma_{\text{fail}}^{\text{notch}}$ 와 파괴경로 응력구배로부터 $\kappa_{\text{fail}}$ 을 얻는다.</li>
-  <li>원형 홀에 대한 Kirsch 전개(Eq. 3): $\sigma = \dfrac12\Big[\big(1 + \tfrac{R^2}{r^2}\big) + \big(1 + \tfrac{3R^4}{r^4}\big)\Big]$, 홀 가장자리 구배(Eq. 4): $\left|\partial\sigma/\partial r\right|_{r=R} = 7/R$, 따라서 파괴응력(Eq. 5): $\sigma \propto R^{-1/3}$ — 홀이 클수록 가장자리 파괴응력이 반비례 1/3승으로 감소.</li>
+  <li>원형 홀에 대한 Kirsch 전개(Eq. 3): $\sigma = \dfrac12\Big[\big(1 + \tfrac{R^2}{r^2}\big) + \big(1 + \tfrac{3R^4}{r^4}\big)\Big]$ — 여기 $\sigma$ 는 실제 응력이 아니라 <b>원거리 단위응력으로 정규화한 응력</b>(무차원)이다. 홀 가장자리 구배(Eq. 4): $\left|\partial\sigma/\partial r\right|_{r=R} = 7/R$, 따라서 파괴응력(Eq. 5): $\sigma \propto R^{-1/3}$ — 홀이 클수록 가장자리 파괴응력이 반비례 1/3승으로 감소.</li>
   <li>PMMA: $E=2.96$ GPa, $\nu=0.346$, 파괴강도 58.3 MPa. 시편 $140\times24\times6$ mm, 슬릿 길이 4/6 mm.</li>
   <li>모든 시편이 하중축에 수직인 단면(최소 응력구배 방향)으로 파괴. 이론 vs 실험 오차: PMMA 대부분 &lt; 1%(최대 ~4%), 복합재는 표준편차 범위 안.</li>
 </ul>
@@ -741,7 +742,7 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
 </div>
 
 <h2>B-10. Kwon 2022 (Polymers) — 다중스케일 접근을 이용한 노치 복합재 파괴예측</h2>
-<div class="refline">Y.W. Kwon, "Failure Prediction of Notched Composites Using Multiscale Approach," Polymers 14, 2481 (2022). · 선3 참고문헌 [36]. · CC BY.</div>
+<div class="refline">Y.W. Kwon, "Failure Prediction of Notched Composites Using Multiscale Approach," Polymers 14, 2481 (2022). DOI 10.3390/polym14122481. · 선3 참고문헌 [36]. · CC BY. · 다중스케일·통합기준 식 pp. 2481-3~8(원문 pp. 3–8/12).</div>
 
 <h4>무엇을 한 논문인가 [원문]</h4>
 <p>
@@ -760,9 +761,9 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
   <text x="515" y="112" text-anchor="middle" font-size="8.7" fill="#5b6572">균질화 복합재 (FE)</text>
   <!-- up arrow -->
   <path d="M185 82 L435 82" stroke="#2f5688" stroke-width="2" marker-end="url(#ms7)"/>
-  <text x="310" y="76" text-anchor="middle" font-size="8.7" fill="#2f5688">상향스케일링 (강성): $\bar E_{ijkl} = f_1(E^f, E^m, v^f)$ &nbsp;식(1)</text>
+  <text x="310" y="76" text-anchor="middle" font-size="8.7" fill="#2f5688">상향스케일링 (강성): E̅_ijkl = f1(E^f, E^m, v^f) &nbsp;식(1)</text>
   <path d="M435 118 L185 118" stroke="#1e8449" stroke-width="2" marker-end="url(#ms7b)"/>
-  <text x="310" y="133" text-anchor="middle" font-size="8.7" fill="#1e8449">하향스케일링 (강도): 미시변형률 $\varepsilon^{f,m} = f_2(\dots,\bar\varepsilon)$, $\sigma^{f}=E^f\varepsilon^f$ &nbsp;식(2)~(4)</text>
+  <text x="310" y="133" text-anchor="middle" font-size="8.7" fill="#1e8449">하향스케일링 (강도): 미시변형률 ε^(f,m) = f2(…,ε̅), σ^f=E^f·ε^f &nbsp;식(2)~(4)</text>
   <defs>
     <marker id="ms7" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#2f5688"/></marker>
     <marker id="ms7b" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#1e8449"/></marker>
@@ -802,7 +803,7 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
   <thead><tr><th>선행연구 1·3의 요소</th><th>근거 문헌</th><th>제공하는 것</th></tr></thead>
   <tbody>
     <tr><td class="l">균열선단 특이장 $\sigma\propto r^{-1/2}$, $K$, $\mathcal{G}=K^2/E'$</td><td>Irwin 1957 [B-1]</td><td class="l">사례 2(균열)의 근접장, $Y=K^2/E$ 의 원형, 평면응력/변형 규약</td></tr>
-    <tr><td class="l">원형 홀 응력집중 3, 구배 $7\sigma_o/R$</td><td>Kirsch 1898 [B-2]</td><td class="l">사례 3(홀), 선3 알루미늄·PLA·시멘트 홀 예제의 응력장</td></tr>
+    <tr><td class="l">원형 홀 응력집중 3, 구배 $7\sigma_o/R$</td><td>Kirsch 1898 [B-2]</td><td class="l">사례 3(홀), 선3 알루미늄·PLA·GFC 홀 예제의 응력장 (§4 시멘트 페이스트는 균열이라 제외)</td></tr>
     <tr><td class="l">사례 4(유한판 홀) 실험데이터</td><td>Sapora 2018 [B-3]</td><td class="l">PMMA·GPPS 시편 형상·치수·파괴하중 (선1이 직접 인용)</td></tr>
     <tr><td class="l">"결합 접근(FFM/TCD)"과의 구분</td><td>Sapora 2018, Braun 2020, Camanho 2012 [B-3,5,6]</td><td class="l">선1·3이 $\Delta$ 를 소거해 우회하는 그 방법론</td></tr>
     <tr><td class="l">FE로 $K$ 추출 (선3 §4 곡선맞춤)</td><td>Han 2015 [B-4]</td><td class="l">응력외삽·$J$적분 등 방법론, 메시밀도 요구</td></tr>
@@ -818,7 +819,7 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
   <div class="dbox start"><span class="lbl">1898 · 1957</span>Kirsch(홀 집중 3) &nbsp;+&nbsp; Irwin(균열 $K$, $\mathcal{G}=K^2/E'$)</div>
   <div class="darrow">▼<small>응력집중·특이장이라는 두 극단</small></div>
   <div class="dbox"><span class="lbl">1958~2012 · TCD / FFM</span>Neuber·Peterson·Taylor·Leguillon·Cornetti / Sapora 2018 · Braun 2020 · Camanho 2012<br><small>"응력이 유한거리 $\Delta$ 에서 강도 도달" + "그 $\Delta$ 의 에너지가 인성 도달" — $\Delta$ 를 미지수로 연립</small></div>
-  <div class="darrow">▼<small>Kwon: $\Delta$ 를 소거하자</small></div>
+  <div class="darrow">▼<small>Kwon: 구조가 다른 대안 — 근접장을 구배조건에 대입해 $r$ 을 소거</small></div>
   <div class="dbox hl"><span class="lbl">2021 · 선행연구 1</span>두 조건: ① $\sigma_e \ge \sigma_f$ &nbsp; ② 구배조건에 근접장 대입 → $r$ 소거 → $w_f = Y = K_{IC}^2/(2\pi E)$ = 재료상수</div>
   <div class="darrow">▼<small>노치 형상·재료 확장</small></div>
   <div class="dbox"><span class="lbl">2022 · 선행연구 2 (PVT 144) &amp; Polymers 14</span>노치 형상 다양화(PMMA·복합재) · 다중스케일 + 미시 3모드(섬유·기지·계면)</div>
@@ -840,8 +841,8 @@ Heigh–Westergaard 원통좌표($\xi$=정수압축, $\rho$=편차응력, $\varp
 <h2>C-3. 한 문장 정리</h2>
 <p>
 <b>Kirsch(홀)와 Irwin(균열)</b>이 응력집중·특이장이라는 두 극단을 세웠고, <b>임계거리이론·유한파괴역학</b>(Sapora·Braun·Camanho)이
-"응력식 + 에너지식을 미지수 $\Delta$ 로 연립"해 그 사이를 이었으며, <b>Kwon 의 선행연구 1·2</b>는 그 $\Delta$ 를 근접장 대입으로 소거해
-"응력조건 + 응력구배조건, 둘 다"라는 두 줄짜리 기준으로 압축했다. <b>선행연구 3</b>은 이 기준을 시멘트 페이스트(§4)·PLA(§5)·다중스케일 복합재(§6, ≈Kwon 2022 Polymers)로 펼친 것이며,
+"응력식 + 에너지식을 미지수 $\Delta$ 로 연립"해 그 사이를 이었으며, <b>Kwon 의 선행연구 1·2</b>는 [교차검증적 구조 비교로 보면] 근접장을 구배조건에 직접 대입해 위치변수 $r$ 을 소거함으로써
+"응력조건 + 응력구배조건, 둘 다"라는 두 줄짜리 기준으로 압축했다(Kwon 논문이 FFM 식에서 대수적으로 유도했다는 뜻은 아니며, 구조상의 대비다). <b>선행연구 3</b>은 이 기준을 시멘트 페이스트(§4)·PLA(§5)·다중스케일 복합재(§6, ≈Kwon 2022 Polymers)로 펼친 것이며,
 <b>Podgórski·Daniel</b>이 대표하는 기존 다-이론 지형과의 차별점은 "하나의 기준으로 파괴 위치와 경로까지"이다.
 </p>
 
