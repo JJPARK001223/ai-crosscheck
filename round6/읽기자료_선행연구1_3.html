@@ -48,7 +48,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
   .lead{background:#eef4fb;border:1px solid #cfe0f2;border-left:5px solid var(--navy2);
     border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.92rem}
-  .lead b{display:block;margin-bottom:3px}
+  .lead .t{display:block;margin-bottom:3px;color:var(--navy)}
 
   .chain{display:flex;flex-direction:column;align-items:center;gap:0;margin:16px 0}
   .dbox{border:2px solid var(--ink);border-radius:11px;padding:8px 20px;background:#fff;max-width:100%;text-align:center;overflow-x:auto}
@@ -98,9 +98,14 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     선행연구 1 : Y. W. Kwon, <i>Revisiting Failure of Brittle Materials</i>, J. Pressure Vessel Technol. <b>2021</b>, 143(6), 064503<br>
     선행연구 3 : Y. W. Kwon, E. K. Markoff, S. DeFisher, <i>Unified Failure Criterion Based on Stress and Stress Gradient Conditions</i>, <i>Materials</i> <b>2024</b>, 17(3), 569<br>
     바탕 자료 : 두 논문의 문단 단위 완역 HTML(2026-09-01·02 작성) — 본 자료는 그 번역을 <b>한국어 본문만</b> 뽑아 재편집하고 시각화를 더한 것. 원문·원문 스캔은 넣지 않음.<br>
-    검증 : Claude ↔ Codex 교차검증 round 6 (본문 충실도·수식·시각화). 2π 관련 정정은 round 1·3·5 반영.<br>
-    작성일 : 2026-09-04
+    검증 : Claude ↔ Codex 교차검증 round 6 완료 (본문 충실도·수식·시각화 — 정정 19건 반영). 2π 관련 정정은 round 1·3·5 반영.<br>
+    작성일 : 2026-09-04 (round 6 반영본)
   </div>
+</div>
+
+<div class="box">
+  <h4>읽기 전 — 이 자료의 표기 규칙</h4>
+  본문은 세 층위를 구분한다. <b>[원문]</b> = 두 논문이 직접 서술·제시한 것(식·수치·형상). <b>[판독]</b> = 원문 그림(Fig.)에서 눈으로 읽은 값. <b>[교차검증]</b> = Claude↔Codex round 1~6에서 바로잡거나 덧붙인 해석. 실험과 이론이 "잘 맞았다"는 것은 <b>논문 저자의 보고</b>이며, 본 자료는 그 번역의 충실도를 확인한 것이지 원 실험 데이터를 독립 재분석한 것이 아니다.
 </div>
 
 <div class="toc">
@@ -121,7 +126,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
         <li>B4. 연성 알루미늄 (홀·슬릿)</li>
         <li>B5. 경화 시멘트 페이스트 3점굽힘 균열 — <em>우리 재현 대상</em></li>
         <li>B6. 3D 프린팅 PLA (직교이방성, 홀)</li>
-        <li>B7. 적층 유리섬유 복합재 (다중스케일)</li>
+        <li>B7. 적층 유리섬유 복합재 (다중스케일, 식 5~9)</li>
         <li>B8. 요약·결론</li>
       </ul>
     </li>
@@ -138,7 +143,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
 <h2>A1. 한눈에 보기</h2>
 <div class="lead">
-  <b>이 논문이 하려는 것</b>
+  <b class="t">이 논문이 하려는 것</b>
   균열이 있든, 원형 노치(홀)가 있든, 아무것도 없든 — 취성재료 부재의 파괴하중을 <b>하나의 기준</b>으로 예측할 수 있는지 따져 본다.
   그 기준은 어떤 <b>국소점</b>(균열 선단이든 홀 가장자리든 임의의 위치)이 파괴되는지를 판정하며, <b>두 조건이 모두 만족</b>될 때만 파괴로 본다.
 </div>
@@ -190,23 +195,24 @@ $w_f$의 단위는 $\mathrm{Pa\cdot m = N/m = J/m^2}$ — <b>단위길이당 힘
   <line x1="60" y1="250" x2="370" y2="250" stroke="#1a2230" stroke-width="1.4"/>
   <line x1="60" y1="250" x2="60" y2="45" stroke="#1a2230" stroke-width="1.4"/>
   <path d="M 60,90 C 160,110 280,150 370,175" fill="none" stroke="#1e8449" stroke-width="2.6"/>
-  <path d="M 60,90 L 60,250 L 200,250 L 200,133 Z" fill="#1e8449" opacity="0.13"/>
+  <circle cx="60" cy="90" r="4" fill="#1e8449"/>
   <line x1="60" y1="200" x2="370" y2="200" stroke="#b9770e" stroke-width="1.2" stroke-dasharray="5 4"/>
   <text x="366" y="194" font-size="10" text-anchor="end" fill="#b9770e">파괴강도 sigma_f</text>
-  <text x="130" y="240" font-size="10" fill="#1e8449">축적 에너지(면적) 큼</text>
+  <text x="95" y="240" font-size="10" fill="#1e8449">국소점서 |d sigma/ds| 작음</text>
+  <text x="95" y="255" font-size="10" fill="#1e8449">→ 식(2) 좌변 큼 → 파괴</text>
   <!-- right: steep gradient -->
   <text x="645" y="26" font-size="13" text-anchor="middle" font-weight="800" fill="#c0392b">가파른 구배 → 파괴 X</text>
   <line x1="490" y1="250" x2="800" y2="250" stroke="#1a2230" stroke-width="1.4"/>
   <line x1="490" y1="250" x2="490" y2="45" stroke="#1a2230" stroke-width="1.4"/>
   <path d="M 490,55 C 505,150 530,210 600,232 C 680,246 760,249 800,250" fill="none" stroke="#c0392b" stroke-width="2.6"/>
-  <path d="M 490,55 L 490,250 L 527,250 L 527,120 Z" fill="#c0392b" opacity="0.13"/>
+  <circle cx="490" cy="55" r="4" fill="#c0392b"/>
   <line x1="490" y1="200" x2="800" y2="200" stroke="#b9770e" stroke-width="1.2" stroke-dasharray="5 4"/>
   <text x="796" y="194" font-size="10" text-anchor="end" fill="#b9770e">파괴강도 sigma_f</text>
-  <text x="545" y="110" font-size="10" fill="#c0392b">응력은 더 높지만</text>
-  <text x="545" y="240" font-size="10" fill="#c0392b">에너지(면적) 작음</text>
-  <text x="430" y="285" font-size="11" text-anchor="middle" fill="#5b6572">가로축 = 파괴 경로 s 를 따른 거리 · 세로축 = 국소 응력</text>
+  <text x="545" y="95" font-size="10" fill="#c0392b">응력은 더 높지만</text>
+  <text x="545" y="240" font-size="10" fill="#c0392b">|d sigma/ds| 큼 → 식(2) 좌변 작음</text>
+  <text x="430" y="285" font-size="11" text-anchor="middle" fill="#5b6572">가로축 = 파괴 경로 s 를 따른 거리 · 세로축 = 국소 응력 · 점 = 판정하는 국소점</text>
 </svg>
-<figcaption><b>그림 A-1. 응력구배조건의 직관.</b> 같은 최고 응력이라도, 응력이 거리에 따라 <b>천천히 떨어지면</b>(왼쪽) 파괴 경로를 따라 쌓인 에너지(곡선 아래 면적)가 커서 파괴가 진행된다. <b>가파르게 떨어지면</b>(오른쪽) 국소 응력이 더 높아도 에너지가 부족해 파괴가 개시되지 않는다. 균열·홀 선단이 바로 이 "가파른 구배" 상황이다.</figcaption>
+<figcaption><b>그림 A-1. 응력구배조건의 직관.</b> <span style="color:#5b6572">[교차검증 재작도]</span> 판정하는 것은 한 <b>국소점</b>에서의 값 $\dfrac{\sigma_l^{3}}{2E}\left|\dfrac{ds}{d\sigma_l}\right|$(식 3의 좌변)이다. 같은 국소 응력이라도 응력이 거리에 따라 <b>천천히 떨어지면</b>(왼쪽, $|d\sigma_l/ds|$ 작음) 이 값이 커져 $w_f$를 넘고 파괴가 진행된다. <b>가파르게 떨어지면</b>(오른쪽) 국소 응력이 더 높아도 이 값이 작아 파괴가 개시되지 않는다. 균열·홀 선단이 바로 "가파른 구배" 상황이다. (곡선 아래 면적이 아니라 <b>한 점에서의 비(比)</b>임에 유의.)</figcaption>
 </figure>
 
 <h2>A4. 네 가지 예제</h2>
@@ -227,9 +233,9 @@ $w_f$의 단위는 $\mathrm{Pa\cdot m = N/m = J/m^2}$ — <b>단위길이당 힘
 $\sigma_x$ = 균열 방향에 수직·하중 방향에 평행한 수평 응력, $K$ = 응력확대계수. 균열은 수직($y$)축으로 진전하므로 구배를 $y$축으로 계산:
 </p>
 <div class="eq">$$ \left|\frac{d\sigma_x}{dy}\right| = \frac{K}{2\sqrt{2\pi}\;y^{3/2}} \qquad$$ <span class="n">식(5)</span></div>
-<p>식(4)·(5)를 응력구배조건에 넣으면 파괴구배가 나온다:</p>
+<p>식(4)·(5)를 응력구배조건에 넣으면 재료 파괴값 $w_f$가 나온다 (원문 표현 "failure gradient"):</p>
 <div class="eq">$$ w_f = \frac{K^{2}}{2\pi E} \qquad$$ <span class="n">식(6)</span></div>
-<p>파괴구배가 임계값에 도달하면($K \to K_{IC}$), 모드 I 파괴인성과의 관계:</p>
+<p>이 값이 임계값에 도달하면($K \to K_{IC}$), 모드 I 파괴인성과의 관계:</p>
 <div class="eq">$$ K_{IC} = \sqrt{2\pi E\,w_f} \qquad$$ <span class="n">식(7)</span></div>
 
 <figure>
@@ -245,15 +251,16 @@ $\sigma_x$ = 균열 방향에 수직·하중 방향에 평행한 수평 응력, 
   <text x="200" y="80" font-size="12" fill="#1f3a5f" font-weight="700">sigma_x = K / sqrt(2*pi*r)</text>
   <line x1="118" y1="40" x2="118" y2="270" stroke="#1e8449" stroke-width="1" stroke-dasharray="3 3"/>
   <line x1="270" y1="40" x2="270" y2="270" stroke="#1e8449" stroke-width="1" stroke-dasharray="3 3"/>
-  <text x="194" y="35" font-size="10" text-anchor="middle" fill="#1e8449" font-weight="700">K-지배영역</text>
+  <text x="194" y="35" font-size="10" text-anchor="middle" fill="#1e8449" font-weight="700">K-지배영역 (개념도, 정량 아님)</text>
   <!-- derivation chain to the right -->
   <g font-size="11">
     <rect x="520" y="45" width="300" height="42" rx="8" fill="#eef4fb" stroke="#2f5688" stroke-width="1.6"/>
     <text x="670" y="63" text-anchor="middle" fill="#1a2230" font-weight="700">식(4)  sigma_x = K (2*pi*r)^(-1/2)</text>
     <text x="670" y="79" text-anchor="middle" fill="#5b6572">식(5)  |d sigma_x /dy| = K / (2 sqrt(2*pi) y^(3/2))</text>
-    <text x="670" y="104" text-anchor="middle" fill="#c0392b" font-weight="900">▼  응력구배조건에 대입</text>
+    <text x="670" y="104" text-anchor="middle" fill="#c0392b" font-weight="900">▼  식(3)에 대입, 진전선서 r=y</text>
     <rect x="520" y="115" width="300" height="40" rx="8" fill="#fff" stroke="#1a2230" stroke-width="1.6"/>
-    <text x="670" y="140" text-anchor="middle" fill="#1a2230">r 이 완전히 소거된다</text>
+    <text x="670" y="132" text-anchor="middle" fill="#1a2230">y^(-3/2) 와 y^(3/2) 소거 → r 사라짐</text>
+    <text x="670" y="148" text-anchor="middle" fill="#5b6572" font-size="10">파괴개시 = 등호</text>
     <text x="670" y="172" text-anchor="middle" fill="#c0392b" font-weight="900">▼</text>
     <rect x="520" y="183" width="300" height="44" rx="8" fill="#f1fbf4" stroke="#1e8449" stroke-width="1.8"/>
     <text x="670" y="203" text-anchor="middle" fill="#1a2230" font-weight="800">식(6)  w_f = K^2 / (2*pi*E)</text>
@@ -275,7 +282,7 @@ $$ \sigma_\theta = \frac{\sigma_o}{2}\!\left[\left(1+\frac{R^2}{r^2}\right)-\lef
 $$ \tau_{r\theta} = -\frac{\sigma_o}{2}\!\left(1-\frac{3R^4}{r^4}+\frac{2R^2}{r^2}\right)\sin 2\theta \quad$$ <span class="n">식(10)</span>
 </div>
 <p>
-$\sigma_o$ = 원거리 인가응력. $\sigma_\theta$의 최댓값은 $\theta = \pi/2$(하중에 수직인 홀 옆면)에서 $\sigma_\theta(R,\pi/2) = 3\sigma_o$ — 잘 알려진 <b>응력집중계수 3</b>. 그 지점의 반경 방향 구배:
+$\sigma_o$ = 원거리 인가응력($x$축에서 각 $\theta$를 잰다). $\sigma_\theta$의 최댓값은 $\theta = \pi/2$, 즉 <b>하중 방향에 수직인 홀 상단</b>에서 $\sigma_\theta(R,\pi/2) = 3\sigma_o$ — 잘 알려진 <b>응력집중계수 3</b>. 하중과 나란한 지점($\theta = 0$)에서는 $-\sigma_o$(압축). 상단의 반경 방향(= 수직) 구배:
 </p>
 <div class="eq">$$ \left|\frac{\partial \sigma_\theta}{\partial r}(R,\pi/2)\right| = \frac{7\sigma_o}{R} \qquad$$ <span class="n">식(11)</span></div>
 <p>파괴는 다음 둘이 모두 만족될 때:</p>
@@ -284,37 +291,47 @@ $$ \sigma_\theta(R,\pi/2) \geq \sigma_f \quad$$ <span class="n">식(12)</span>
 $$ \frac{\big(\sigma_\theta(R,\pi/2)\big)^3}{2E\,\big|\partial \sigma_\theta(R,\pi/2)/\partial r\big|} \geq w_f \quad$$ <span class="n">식(13)</span>
 </div>
 <p>
-$\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma_f/3$이면 식(12)는 만족된다. 즉 <b>공칭응력이 파괴강도의 1/3을 넘으면 식(13)(응력구배조건)이 파괴를 지배</b>하고, 이때 $w_f$를 식(13)으로부터 결정할 수 있다.
+$\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma_f/3$이면 식(12)는 만족된다. 즉 <b>식(12)가 이미 만족되는 하중영역에서는</b> 식(13)(응력구배조건)이 파괴를 좌우하며, 이때 $w_f$를 식(13)으로부터 결정할 수 있다 — 이것이 원저자의 서술이다.
+</p>
+<p style="font-size:.85rem;color:var(--sub)">
+<span style="color:#5b6572">[교차검증]</span> 두 조건을 함께 풀면 실제 임계 공칭응력은 $\sigma_{o,c} = \max\!\big(\sigma_f/3,\ \sqrt{14 E w_f/(27R)}\big)$ 로, 둘 중 큰 쪽이 결정한다(round 1). 따라서 "식(13)이 지배"는 무조건이 아니라 위 조건부다.
 </p>
 
 <figure>
-<svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
-  <rect width="720" height="340" fill="#fff"/>
-  <!-- plate with hole -->
-  <rect x="70" y="70" width="240" height="200" fill="#eef4fb" stroke="#1f3a5f" stroke-width="1.6"/>
-  <circle cx="190" cy="170" r="34" fill="#fff" stroke="#1f3a5f" stroke-width="1.6"/>
+<svg viewBox="0 0 720 350" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+  <rect width="720" height="350" fill="#fff"/>
+  <!-- plate with hole; load HORIZONTAL -->
+  <rect x="80" y="90" width="240" height="180" fill="#eef4fb" stroke="#1f3a5f" stroke-width="1.6"/>
+  <circle cx="200" cy="180" r="34" fill="#fff" stroke="#1f3a5f" stroke-width="1.6"/>
   <g stroke="#c0392b" stroke-width="2">
-    <line x1="95" y1="45" x2="95" y2="68"/><line x1="140" y1="45" x2="140" y2="68"/>
-    <line x1="190" y1="45" x2="190" y2="68"/><line x1="240" y1="45" x2="240" y2="68"/><line x1="285" y1="45" x2="285" y2="68"/>
+    <line x1="40" y1="120" x2="78" y2="120"/><line x1="40" y1="160" x2="78" y2="160"/>
+    <line x1="40" y1="200" x2="78" y2="200"/><line x1="40" y1="240" x2="78" y2="240"/>
+    <line x1="322" y1="120" x2="360" y2="120"/><line x1="322" y1="160" x2="360" y2="160"/>
+    <line x1="322" y1="200" x2="360" y2="200"/><line x1="322" y1="240" x2="360" y2="240"/>
   </g>
-  <text x="190" y="35" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="700">원거리 인장 sigma_o</text>
-  <circle cx="224" cy="170" r="3" fill="#c0392b"/>
-  <text x="232" y="164" font-size="11" fill="#c0392b" font-weight="700">theta = 90도, sigma_theta = 3 sigma_o</text>
-  <line x1="224" y1="170" x2="300" y2="170" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 3"/>
-  <text x="150" y="300" font-size="11" text-anchor="middle" fill="#5b6572">R, L 무한대 (무한판)</text>
-  <!-- sigma_theta along r at theta=90 -->
-  <line x1="400" y1="280" x2="680" y2="280" stroke="#1a2230" stroke-width="1.4"/>
-  <line x1="400" y1="280" x2="400" y2="55" stroke="#1a2230" stroke-width="1.4"/>
-  <text x="540" y="308" font-size="11" text-anchor="middle" fill="#1a2230">홀 가장자리로부터의 거리 r</text>
-  <text x="372" y="165" font-size="11" text-anchor="middle" fill="#1a2230" transform="rotate(-90 372 165)">sigma_theta</text>
-  <path d="M 400,80 C 440,150 500,215 570,240 C 630,258 665,262 678,263" fill="none" stroke="#1f3a5f" stroke-width="2.4"/>
-  <line x1="400" y1="80" x2="418" y2="80" stroke="#c0392b" stroke-width="2"/>
-  <text x="424" y="84" font-size="10" fill="#c0392b">3 sigma_o (r=R)</text>
-  <line x1="400" y1="235" x2="680" y2="235" stroke="#1e8449" stroke-width="1" stroke-dasharray="4 3"/>
-  <text x="676" y="229" font-size="10" text-anchor="end" fill="#1e8449">sigma_o</text>
-  <text x="470" y="130" font-size="10" fill="#5b6572">구배 |d sigma_theta/dr| = 7 sigma_o / R  (식 11)</text>
+  <text x="200" y="315" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="700">원거리 인장 sigma_o (수평)</text>
+  <!-- theta measured from x-axis; theta=pi/2 = TOP of hole -->
+  <circle cx="200" cy="146" r="3.5" fill="#c0392b"/>
+  <text x="210" y="132" font-size="11" fill="#c0392b" font-weight="700">theta = pi/2 (홀 상단)</text>
+  <text x="210" y="146" font-size="11" fill="#c0392b" font-weight="700">sigma_theta = 3 sigma_o</text>
+  <path d="M 200,146 L 200,95" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="205" y="90" font-size="10" fill="#c0392b">구배·파괴 진행 방향 (수직)</text>
+  <text x="120" y="285" font-size="10.5" text-anchor="middle" fill="#5b6572">평판·홀 무한대</text>
+  <!-- sigma_theta vs radial coord r along theta=pi/2 -->
+  <line x1="400" y1="290" x2="685" y2="290" stroke="#1a2230" stroke-width="1.4"/>
+  <line x1="430" y1="290" x2="430" y2="60" stroke="#1a2230" stroke-width="1.4"/>
+  <text x="545" y="318" font-size="11" text-anchor="middle" fill="#1a2230">반경좌표 r  (홀 중심 기준, 가장자리 r = R)</text>
+  <text x="400" y="175" font-size="11" text-anchor="middle" fill="#1a2230" transform="rotate(-90 400 175)">sigma_theta</text>
+  <path d="M 430,75 C 470,150 530,220 600,248 C 645,262 672,268 683,270" fill="none" stroke="#1f3a5f" stroke-width="2.4"/>
+  <line x1="410" y1="290" x2="430" y2="290" stroke="#c0392b" stroke-width="1.6"/>
+  <text x="404" y="294" font-size="10" text-anchor="end" fill="#c0392b">r=R</text>
+  <line x1="430" y1="75" x2="450" y2="75" stroke="#c0392b" stroke-width="2"/>
+  <text x="456" y="79" font-size="10" fill="#c0392b">3 sigma_o (r=R)</text>
+  <line x1="430" y1="245" x2="685" y2="245" stroke="#1e8449" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="681" y="239" font-size="10" text-anchor="end" fill="#1e8449">sigma_o</text>
+  <text x="470" y="135" font-size="10" fill="#5b6572">구배 |d sigma_theta / dr|(R, pi/2) = 7 sigma_o / R  (식 11)</text>
 </svg>
-<figcaption><b>그림 A-3. 홀 무한판의 응력분포(Kirsch).</b> 하중에 수직인 홀 옆면($\theta=90°$)에서 접선응력이 $3\sigma_o$로 최대. 여기서 멀어지면 빠르게 $\sigma_o$로 수렴 → 유한한 구배 $7\sigma_o/R$. 균열(사례 2)과 달리 응력이 유한하므로 <b>두 조건을 모두</b> 확인해야 한다.</figcaption>
+<figcaption><b>그림 A-3. 홀 무한판의 응력분포(Kirsch).</b> 수평 인장 $\sigma_o$일 때, 하중에 수직인 <b>홀 상단</b>($\theta = \pi/2$, $x$축에서 잰 각)에서 접선응력이 $3\sigma_o$로 최대 — 응력집중계수 3. 거기서 반경좌표 $r$이 커지면 빠르게 $\sigma_o$로 수렴 → 유한한 구배 $7\sigma_o/R$(식 11). 파괴는 그 상단에서 수직으로 진행한다. 균열(사례 2)과 달리 응력이 유한하므로 <b>두 조건을 모두</b> 확인해야 한다.</figcaption>
 </figure>
 
 <h3>A4.4 사례 4 — 중앙 홀을 갖는 유한판 (유한요소해석)</h3>
@@ -332,7 +349,7 @@ $\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma
 <div class="box">
   <h4>사례 4의 의미 — 선행연구 3으로 이어지는 다리</h4>
   무한판(사례 2·3)은 폐형식 해가 있지만, <b>실제 유한 시편은 FE로 구배를 뽑아야</b> 한다.
-  "FE 해석 → 가장자리 응력·구배 계산 → 외삽 → 두 조건으로 파괴하중 예측"이라는 절차가 선행연구 3의 모든 재료 시험에서 반복된다.
+  "FE로 응력·구배를 수치로 얻어 두 조건을 적용한다"는 <b>큰 틀</b>이 선행연구 3의 여러 재료 시험으로 이어진다. 단 재료마다 유효응력 정의·탄소성·직교이방성·다중스케일 처리가 달라, 사례 4의 세부 절차(요소 평균 → 인접 요소 차분 → 가장자리 외삽)가 그대로 반복되는 것은 아니다.
 </div>
 
 <h2>A5. 결론 (선행연구 1)</h2>
@@ -341,6 +358,9 @@ $\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma
   <li>네 사례로 확인: 균일응력(도그본)은 ①만, 균열은 ②가 지배, 홀은 둘 다, 유한판은 FE로 ② 계산.</li>
   <li>이 이론은 파괴 <b>위치</b>와 <b>경로</b>를 함께 주며, 균열·노치·무결함 어느 경우에도 적용될 가능성을 보인다. 단 저자도 "더 정밀한 심층 연구 필요"라고 명시한다.</li>
 </ul>
+<div class="box">
+  <span style="color:#5b6572">[적용범위 — 읽을 때 유의]</span> 선행연구 1은 <b>등방성 취성재료·단축 하중</b>에 한정된다. 복합하중이면 국소 응력을 최대 주응력 등 등가응력으로 대체할 수 있다고 <b>언급만</b> 하고 검증하지는 않았다. $w_f$가 재료상수라는 것도 <b>가정</b>이다.
+</div>
 
 
 <!-- ==================================================================== -->
@@ -349,14 +369,14 @@ $\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma
 
 <h2>B1. 한눈에 보기</h2>
 <div class="lead">
-  <b>이 논문이 하려는 것</b>
+  <b class="t">이 논문이 하려는 것</b>
   선행연구 1의 두 조건 기준을 <b>훨씬 다양한 재료·형상</b>에 적용해 검증한다.
   재료 = 취성(경화 시멘트) · 연성(알루미늄) · 직교이방성(3D 프린팅 PLA) · 적층 복합재(유리섬유).
   형상 = 균열 · 긴 슬릿 · 여러 크기의 원형 홀. 예측 파괴하중을 실험과 비교 — 모든 경우 잘 맞았다.
 </div>
 <div class="keypoint">
-  두 조건은 <b>항상 동시에</b> 만족되어야 파괴다. 그러나 재료·형상에 따라 <b>실질적으로 파괴하중을 결정하는 쪽은 둘 중 하나</b>다.
-  연성 알루미늄·작은 홀 → 응력조건이 지배. 균열·큰 홀 → 응력구배조건이 지배.
+  두 조건은 <b>항상 동시에</b> 만족되어야 파괴다. 그러나 재료·형상에 따라 <b>실질적으로 파괴하중을 결정하는 쪽은 둘 중 하나</b>인 경우가 많다.
+  연성 알루미늄 → 응력조건. 균열 있는 취성 시멘트 → 응력구배조건. 3D 프린팅 PLA의 홀은 크기에 따라 <b>파괴 위치</b>가 옮겨간다(B6). 자세한 구분은 파트 C의 표 참조.
 </div>
 
 <h2>B2. 노치별로 갈라져 있던 기존 이론들</h2>
@@ -407,7 +427,10 @@ $\sigma_\theta(R,\pi/2) = 3\sigma_o$이므로, 공칭응력 $\sigma_o \ge \sigma
 $\sigma_e$ = 유효응력(재료 거동에 따라 다름). <b>등방성 취성·준취성</b> → 최대 수직응력. <b>등방성 연성</b> → 최대 전단 또는 팔면체 전단응력. 이방성 → 방향별 여러 유효응력.
 </p>
 <p>이어 응력구배조건:</p>
-<div class="eq">$$ \sigma_e \geq \left(\,2EY\left(\frac{d\sigma_e}{ds}\right)\right)^{1/3} \qquad$$ <span class="n">식(2)</span></div>
+<div class="eq">$$ \sigma_e \geq \left(\,2EY\left|\frac{d\sigma_e}{ds}\right|\right)^{1/3} \qquad$$ <span class="n">식(2)</span></div>
+<p style="font-size:.85rem;color:var(--sub)">
+<span style="color:#5b6572">[교차검증]</span> 선행연구 3 원문의 식(2)에는 <b>절댓값 표기가 없다</b>. 그러나 균열 전방에서 $d\sigma_e/ds < 0$ 이므로, 원문 그대로면 우변이 음수가 되어 이후 식(4) 유도가 성립하지 않는다. 선행연구 1의 식(2)처럼 $|d\sigma_e/ds|$ 로 읽어야 한다(round 1·DISCUSSION 지적 — 원문 인쇄/표기 결함).
+</p>
 <p>
 $E$ = 탄성계수, $Y$ = 재료 파괴값(아래), $s$ = 파괴 경로(취성재는 최대 주응력축에 수직). 두 조건이 어느 점에서든 함께 만족되면 파괴로 간주. <b>유효응력이 파괴강도를 넘어도 응력구배조건이 함께 만족되지 않으면 파괴하지 않는다.</b>
 </p>
@@ -421,13 +444,12 @@ $E$ = 탄성계수, $Y$ = 재료 파괴값(아래), $s$ = 파괴 경로(취성�
   <h4>⚠ 교차검증 정정 — "$Y \equiv G_c$"는 수치적으로 부정확 (round 1·3·5)</h4>
   <p style="margin-top:4px">
   선행연구 3의 식(3) $\sigma_e = K/\sqrt{s}$ 에는 <b>$2\pi$가 없다</b>(표준 근접장은 $\sigma = K_I/\sqrt{2\pi r}$).
-  이 정의를 일관되게 쓰면, 여기서의 $K$는 표준 $K_I$와 $K = K_I/\sqrt{2\pi}$ 관계이고, 파괴 개시 임계상태에서
+  식(3)을 표준 LEFM 장과 <b>동일한 장으로 해석하면</b> 여기서의 $K$는 표준 $K_I$와 $K = K_I/\sqrt{2\pi}$ 관계이고 — 단 <b>원문은 이 대응을 명시하지 않았다</b>(round 3, 기록상 열린 항목) — 파괴 개시 임계상태에서
   </p>
   <div class="eq">$$ Y = \frac{G_c}{2\pi}\ \text{(평면응력)}, \qquad Y = \frac{G_c}{2\pi(1-\nu^{2})}\ \text{(평면변형)} $$</div>
   <ul style="margin-bottom:4px">
-    <li>차원·비례는 $G_c$와 같지만 <b>수치는 약 $2\pi \approx 6.28$배</b> 차이. "동등"이라는 서술을 문자 그대로 받아들여 <b>문헌의 $G_c$ 값을 $Y$ 자리에 대입하면 안 된다.</b></li>
-    <li><b>실무 예측에는 영향이 없다</b> — $Y$를 시험 결과 1개에서 역산해 나머지를 예측하므로, 정규화 상수가 예측식에서 상쇄된다.</li>
-    <li>선행연구 3 원문은 $K$의 정규화($\sqrt{2\pi}$ 유무)를 <b>명시하지 않았다</b> — 기록상 열린 항목(round 3).</li>
+    <li>차원·비례는 $G_c$와 같지만 <b>수치는 평면응력 기준 약 $2\pi \approx 6.28$배</b>(평면변형은 약 $2\pi(1-\nu^{2})$배) 차이. "동등"이라는 서술을 문자 그대로 받아들여 <b>문헌의 $G_c$ 값을 $Y$ 자리에 대입하면 안 된다.</b></li>
+    <li><b>이 논문처럼 동일 정의로 시험 1개에서 $Y$를 역산해 같은 계열 예측식에 재사용할 때에 한해</b> 정규화 상수가 상쇄되어 <b>예측 결과에는 영향이 없다</b>. 문헌 $G_c$ 직접 입력·다른 정의의 $K$ 비교·절대 $Y$ 값 보고에는 영향이 크다.</li>
     <li>참고로 <b>선행연구 1의 식(6) $w_f = K^2/(2\pi E)$는 표준 $K_I$를 써서 문제없다.</b> 부정확한 것은 선행연구 3의 "동등" 서술 쪽이다.</li>
   </ul>
 </div>
@@ -532,14 +554,14 @@ $L \times H \times W$ 3차원 블록. <b>$W = 100$ mm 고정</b>, <b>$L/H = 4$ �
   <g stroke="#c0392b" stroke-width="2">
     <line x1="470" y1="50" x2="470" y2="78"/><line x1="500" y1="50" x2="500" y2="78"/><line x1="525" y1="50" x2="525" y2="78"/>
   </g>
-  <text x="500" y="40" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="700">중앙 상단 하중 (반모델: P/2)</text>
+  <text x="500" y="40" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="700">중앙 상단 하중 (절반 모델: P/2 — 대칭 환산 가정)</text>
   <line x1="110" y1="235" x2="530" y2="235" stroke="#5b6572" stroke-width="1"/>
   <text x="320" y="252" font-size="11" text-anchor="middle" fill="#5b6572">L/2 (전체 길이 L = 4H 의 절반)</text>
   <line x1="92" y1="80" x2="92" y2="210" stroke="#5b6572" stroke-width="1"/>
   <text x="80" y="148" font-size="12" text-anchor="middle" fill="#5b6572">H</text>
   <text x="320" y="285" font-size="10" text-anchor="middle" fill="#5b6572">폭 W = 100 mm (고정), 균열은 폭 전체 관통</text>
 </svg>
-<figcaption><b>그림 B-4. 시멘트 페이스트 3점굽힘 반(半)모델 (원문 Fig. 8 재현).</b> 대칭성으로 절반만: 왼쪽 하단 롤러 지지, 중앙(대칭면) 상단 하중, 대칭면 하단에 깊이 $a$ 균열. 폭 방향 응력이 균일함을 3D로 확인한 뒤 2D로 전환.</figcaption>
+<figcaption><b>그림 B-4. 시멘트 페이스트 3점굽힘 절반 모델 (원문 Fig. 8 재현).</b> <b>대칭</b>(반대칭 아님)으로 절반만: 왼쪽 하단 롤러 지지, 중앙(대칭면) 상단 하중, 대칭면 하단에 깊이 $a$ 균열. 폭 방향 응력이 균일함을 3D로 확인한 뒤 2D로 전환. <span style="color:#5b6572">[교차검증]</span> 하중 $P/2$·스팬 $S=L$은 대칭 환산·형상 판독에 따른 가정이며 원문 직접 명시값이 아니다.</figcaption>
 </figure>
 
 <h3>B5.2 결과 — $K$ 곡선맞춤과 $Y$ 1회 역산</h3>
@@ -579,7 +601,7 @@ $K$는 2D FE에서 얻는데, 통상 FE는 균열 선단 극근방 응력이 부
   </g>
   <text x="320" y="272" font-size="10.5" text-anchor="middle" fill="#5b6572">Y 는 H=100·a/H=0.1 시편 1개에서 역산 → 나머지 5개 예측</text>
 </svg>
-<figcaption><b>그림 B-5. 시멘트 페이스트 6 케이스와 Fig. 11의 요지.</b> 높이 $H \in \{50, 100\}$ mm, 균열비 $a/H \in \{0.1, 0.3, 0.5\}$의 조합 6개. 파괴하중은 $a/H$가 커질수록 급감(응력구배 급증), 같은 $a/H$에서 $H$가 크면 증가.</figcaption>
+<figcaption><b>그림 B-5. 시멘트 페이스트 6 케이스와 Fig. 11의 요지.</b> 높이 $H \in \{50, 100\}$ mm, 균열비 $a/H \in \{0.1, 0.3, 0.5\}$의 조합 6개 <span style="color:#5b6572">(값은 원문 Fig. 11 범례·데이터점에서 <b>판독</b>, 본문 명시가 아님)</span>. 원문 Fig. 11에서 파괴하중은 $a/H$가 커질수록 감소, 같은 $a/H$에서 $H$가 크면 증가한다 — "응력구배 급증 때문"은 해석이다.</figcaption>
 </figure>
 
 <div class="box">
@@ -632,7 +654,7 @@ FE는 이중 대칭으로 <b>1/4 모델</b> 2D. 파지부에 균일 변위를 �
   </g>
   <text x="390" y="230" font-size="10.5" text-anchor="middle" fill="#5b6572">홀이 커질수록 파괴 위치가 "가장자리에서 떨어진 곳" → "가장자리"로 이동. 실험(고속영상)이 이 예측과 일치.</text>
 </svg>
-<figcaption><b>그림 B-6. PLA 홀 크기별 파괴 위치 전이.</b> 3 mm(작은 홀)는 가장자리에서 떨어진 곳에서 파괴 개시 — 그 앞은 응력구배조건 불만족, 그 뒤는 응력조건 불만족. 4 mm는 두 위치가 거의 동시. 6 mm는 가장자리. 이론·실험 파괴응력 비교(원문 Fig. 20)도 잘 일치.</figcaption>
+<figcaption><b>그림 B-6. PLA 홀 크기별 파괴 위치 전이.</b> 3 mm(작은 홀)는 가장자리에서 떨어진 곳에서 파괴 개시 — 그 앞은 응력구배조건 불만족, 그 뒤는 응력조건 불만족(→ 작은 홀은 파괴하중을 거의 낮추지 않음). 4 mm는 이론상 두 위치가 거의 동시에 조건을 만족 — 실험에서는 시편별로 최초 위치가 갈렸고, 한 영상은 가장자리 파괴 직후 이격 위치가 이어졌다. 6 mm는 가장자리. 이론·실험 파괴응력 비교(원문 Fig. 20)는 저자가 "잘 일치"로 보고.</figcaption>
 </figure>
 
 <h2>B7. 적층 유리섬유 복합재 (다중스케일)</h2>
@@ -643,13 +665,21 @@ FE는 이중 대칭으로 <b>1/4 모델</b> 2D. 파지부에 균일 변위를 �
 복합재 파괴는 <b>다중스케일</b>로 모델링 — 미시스케일(섬유·기지)과 거시스케일(균질화된 복합재)을 잇는 두 과정:
 </p>
 <ul>
-  <li><b>상향스케일링(강성 과정)</b> — 식(5): 섬유·기지 물성과 체적분율 → 균질화 복합재 물성 $E^c_{ijkl}$</li>
-  <li><b>하향스케일링(강도 과정)</b> — 식(6)(7): 복합재 수준 응력·변형률 → 섬유·기지 각각의 응력·변형률 → 그 수준에서 파괴기준 적용</li>
+  <li><b>상향스케일링(강성 과정)</b> — 식(5): 섬유·기지 물성과 체적분율 → 균질화 복합재 물성</li>
+  <li><b>하향스케일링(강도 과정)</b> — 식(6)(7): 복합재 수준 변형률 → 섬유·기지 변형률 → 섬유·기지 응력 → 그 수준에서 파괴기준 적용</li>
 </ul>
+<div class="eq">
+$$ E^{c}_{ijkl} = f\!\left(E^{f}_{ijkl},\, E^{m}_{ijkl},\, \nu^{f},\, \nu^{m}\right) \qquad$$ <span class="n">식(5), 상향</span>
+$$ \varepsilon^{f}_{ij} = g_1\!\left(\varepsilon^{c}_{ij}\right), \quad \varepsilon^{m}_{ij} = g_2\!\left(\varepsilon^{c}_{ij}\right) \qquad$$ <span class="n">식(6), 하향</span>
+$$ \sigma^{f\,\text{or}\,m}_{ij} = E^{f\,\text{or}\,m}_{ijkl}\,\varepsilon^{f\,\text{or}\,m}_{ij} \qquad$$ <span class="n">식(7)</span>
+</div>
+<p style="font-size:.85rem;color:var(--sub)">위첨자 c·f·m = 균질화 복합재·섬유·기지. $\nu$ = 체적분율. 식(5)의 $f(\cdot)$, 식(6)의 $g_1,g_2$는 단위셀 모델에서 응력 평형·변형 적합조건으로 유도한 해석식이며 원문은 상세 유도를 생략한다.</p>
 <p>
-미시 파괴모드 3가지: <b>섬유 파괴</b>(유효응력 식(8), 섬유가 주 하중지지라 가장 파국적), <b>기지 파괴</b>(등방성 취성 → 최대 수직응력), <b>섬유/기지 계면 파괴</b>(식(9), 매콜리 함수로 인장 성분만 반영). 각 유효응력을 식(1)·(2)의 두 조건에 넣는다.
+미시 파괴모드 3가지: <b>섬유 파괴</b>(유효응력 식(8), 섬유가 주 하중지지라 가장 파국적), <b>기지 파괴</b>(등방성 취성 → 최대 수직응력), <b>섬유/기지 계면 파괴</b>(식(9)). 각 유효응력을 식(1)·(2)의 두 조건에 넣는다.
 </p>
-<div class="eq">$$ \sigma^{f}_{e} = \sqrt{\left(\sigma^{f}_{11}\right)^2 + \left(\frac{E^{f}_{11}}{G^{f}_{12}}\right)^2\!\left[\left(\sigma^{f}_{12}\right)^2 + \left(\sigma^{f}_{13}\right)^2\right]} \qquad$$ <span class="n">식(8), 섬유 유효응력</span></div>
+<div class="eq">$$ \sigma^{f}_{e} = \sqrt{\left(\sigma^{f}_{11}\right)^2 + \left(\frac{E^{f}_{11}}{G^{f}_{12}}\right)^2\!\left[\left(\sigma^{f}_{12}\right)^2 + \left(\sigma^{f}_{13}\right)^2\right]} \qquad$$ <span class="n">식(8), 섬유 유효응력 (1 = 섬유 방향)</span></div>
+<div class="eq">$$ \sigma^{\text{int}}_{e} = \sqrt{\left(\frac{\sigma^{m}_{12} + \sqrt{\nu^{f}}\,\big(\sigma^{m}_{22}-\sigma^{m}_{11}\big)}{\tau^{\text{int}}_{\text{fail}}}\right)^{2} + \left\langle\frac{\sigma^{m}_{22}}{\sigma^{\text{int}}_{\text{fail}}}\right\rangle^{2}} \qquad$$ <span class="n">식(9), 계면 유효응력</span></div>
+<p style="font-size:.85rem;color:var(--sub)">$\tau^{\text{int}}_{\text{fail}}$·$\sigma^{\text{int}}_{\text{fail}}$ = 계면의 접선·수직 파괴강도. $\langle\cdot\rangle$ = 매콜리 함수 — 계면에서 <b>인장</b> 수직응력만 파괴에 기여하고 압축은 기여하지 않음을 나타낸다.</p>
 
 <figure>
 <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
@@ -677,15 +707,18 @@ FE는 이중 대칭으로 <b>1/4 모델</b> 2D. 파지부에 균일 변위를 �
 </figure>
 
 <p>
-결과(원문 Fig. 24): 섬유 파괴값 $Y$를 <b>6 mm 홀 시편에서 추출</b>했으므로 그 점은 실험 평균과 정확히 일치. 같은 $Y$로 3·9 mm 홀을 예측한 값이 실험과 잘 맞았다. SEM 관찰: 0° 층은 홀 가장자리 최소 단면에서 섬유 파단(하중 수직 방향 개시 후 약 45° 진전), ±45° 층은 섬유 뽑힘 — ±45° 파괴는 0° 파괴 이후.
+결과(원문 Fig. 24): 섬유 파괴값 $Y$를 <b>6 mm 홀 시편에서 추출</b>했으므로 그 점은 실험 평균과 정확히 일치. 같은 $Y$로 3·9 mm 홀을 예측한 값이 실험과 잘 맞았다고 <b>저자는 보고</b>한다. SEM 관찰: 0° 층은 홀 가장자리 최소 단면에서 섬유 파단(하중 수직 방향 개시 후 약 45° 진전), ±45° 층은 섬유 뽑힘 — ±45° 파괴는 0° 파괴 이후.
 </p>
 
 <h2>B8. 요약·결론 (선행연구 3)</h2>
 <ul>
   <li>응력과 응력구배를 함께 쓰는 통합 파괴기준을 제안·검증. 파괴하려면 <b>두 조건이 동시에</b> 만족되어야 한다.</li>
-  <li>취성(시멘트)·준취성(복합재)·직교이방성(PLA)·연성(알루미늄), 그리고 균열·슬릿·여러 크기 홀 — 모든 경우에서 예측 파괴하중이 실험과 만족스럽게 일치.</li>
+  <li>취성(시멘트)·준취성(복합재)·직교이방성(PLA)·연성(알루미늄), 그리고 균열·슬릿·여러 크기 홀 — 모든 경우에서 예측 파괴하중이 실험과 만족스럽게 일치했다고 <b>저자는 보고</b>한다.</li>
   <li>두 조건이 항상 함께 만족되어도, <b>실질적 파괴하중을 결정하는 쪽은 재료·형상에 따라 응력조건 또는 응력구배조건 중 하나</b>다.</li>
 </ul>
+<div class="box">
+  <span style="color:#5b6572">[검증 수준]</span> 위 "실험과 일치"는 <b>논문 저자의 보고</b>다. 본 읽기자료의 교차검증(round 1~6)은 <b>두 논문의 한국어 번역이 원문에 충실한지</b>와 <b>수식 유도가 맞는지</b>를 확인한 것이며, 원 실험 데이터(특히 시멘트 페이스트의 Karihaloo 2003 원표)를 독립 재분석한 것은 아니다.
+</div>
 
 
 <!-- ==================================================================== -->
@@ -699,10 +732,11 @@ FE는 이중 대칭으로 <b>1/4 모델</b> 2D. 파지부에 균일 변위를 �
   <tbody>
     <tr><td class="l">선1 사례 1</td><td class="l">도그본(노치 없음)</td><td>취성</td><td>응력조건 ①</td><td class="l">구배 = 0</td></tr>
     <tr><td class="l">선1 사례 2</td><td class="l">균열 무한판</td><td>취성</td><td><b>응력구배조건 ②</b></td><td class="l">선단 응력 무한대 → ① 자동 만족</td></tr>
-    <tr><td class="l">선1 사례 3·4</td><td class="l">홀 (무한·유한)</td><td>취성</td><td>둘 다 확인, $\sigma_o \ge \sigma_f/3$면 ②</td><td class="l">가장자리 응력 유한</td></tr>
+    <tr><td class="l">선1 사례 3</td><td class="l">홀 무한판 (Kirsch)</td><td>취성</td><td>둘 다 확인, $\sigma_o \ge \sigma_f/3$면 ②</td><td class="l">가장자리 응력 $3\sigma_o$ 유한</td></tr>
+    <tr><td class="l">선1 사례 4</td><td class="l">홀 유한판 (FE)</td><td>취성</td><td>둘 다 확인 (FE로 구배)</td><td class="l">유한 시편 → Kirsch $3\sigma_o$ 직접 적용 불가</td></tr>
     <tr><td class="l">선3 §3</td><td class="l">알루미늄 홀·슬릿</td><td>연성</td><td>응력조건 ①</td><td class="l">소성으로 구배 급감 → ② 쉽게 만족</td></tr>
     <tr><td class="l">선3 §4</td><td class="l">시멘트 페이스트 균열</td><td>취성</td><td><b>응력구배조건 ②</b></td><td class="l">균열 특이성 → ① 자동 만족</td></tr>
-    <tr><td class="l">선3 §5</td><td class="l">PLA 홀 3→6 mm</td><td>직교이방성</td><td>작은 홀 ② / 큰 홀 ①</td><td class="l">홀 크기에 따라 파괴 위치·지배조건 전이</td></tr>
+    <tr><td class="l">선3 §5</td><td class="l">PLA 홀 3→6 mm</td><td>직교이방성</td><td>두 임계곡선의 공간적 교차</td><td class="l">홀 크기에 따라 최초 만족 위치가 전이 (단일 지배조건으로 못 묶음)</td></tr>
     <tr><td class="l">선3 §6</td><td class="l">유리섬유 복합재 홀</td><td>준취성</td><td>섬유 파괴 기준(② 포함)</td><td class="l">다중스케일 — 미시 수준에서 두 조건</td></tr>
   </tbody>
 </table>
@@ -710,19 +744,19 @@ FE는 이중 대칭으로 <b>1/4 모델</b> 2D. 파지부에 균일 변위를 �
 <h2>C2. $w_f$($Y$)의 정체 — 한 장 요약</h2>
 <div class="chain">
   <div class="dbox start"><span class="lbl">출발</span> 응력구배조건 (선1 식3 / 선3 식2)</div>
-  <div class="darrow">▼<small>균열 근접장 대입 (선1: $\sigma_x = K/\sqrt{2\pi r}$ · 선3: $\sigma_e = K/\sqrt{s}$)</small></div>
-  <div class="dbox"><span class="lbl">계산</span> 거리 $r$(또는 $s$)이 <b>완전히 소거</b></div>
-  <div class="darrow">▼<small>파괴 개시 = 등호</small></div>
-  <div class="dbox hl"><span class="lbl">결과</span> $w_f = Y = \dfrac{K_{IC}^{2}}{2\pi E}$ &nbsp;— 균열 크기·위치와 무관한 <b>재료상수</b></div>
+  <div class="darrow">▼<small>균열 근접장 대입 — 선1: $\sigma_x = K_I/\sqrt{2\pi r}$ (표준) · 선3: $\sigma_e = K/\sqrt{s}$ ($2\pi$ 없음)</small></div>
+  <div class="dbox"><span class="lbl">계산</span> 거리 $r$(또는 $s$)이 <b>완전히 소거</b> &nbsp;→&nbsp; 선1: $w_f = K_I^{2}/(2\pi E)$ · 선3: $Y = K^{2}/E$</div>
+  <div class="darrow">▼<small>선3의 $K$를 표준 $K_I$와 같은 장으로 보면 $K = K_I/\sqrt{2\pi}$ (원문 미명시)</small></div>
+  <div class="dbox hl"><span class="lbl">결과 (임계상태, $K_I \to K_{IC}$)</span> $w_f = Y = \dfrac{K_{IC}^{2}}{2\pi E} = \dfrac{G_c}{2\pi}$(평면응력) &nbsp;— 균열 크기·위치와 무관한 <b>재료상수</b></div>
   <div class="darrow">▼</div>
-  <div class="dbox"><span class="lbl">활용</span> 시험 1개에서 $Y$ 역산 &nbsp;→&nbsp; 나머지 시편 파괴하중 예측 &nbsp; $P_{pred} = \dfrac{\sqrt{2\pi E\,Y}}{K_I/P}$</div>
+  <div class="dbox"><span class="lbl">활용</span> 동일 정의로 시험 1개에서 $Y$ 역산 &nbsp;→&nbsp; 같은 계열 예측식으로 나머지 시편 파괴하중 예측 &nbsp; $P_{pred} = \dfrac{\sqrt{2\pi E\,Y}}{K_I/P}$</div>
 </div>
 
 <div class="box warn">
   <h4>교차검증(round 1~5)에서 바로잡은 것 — 읽을 때 유의</h4>
   <ol style="margin-bottom:0">
-    <li><b>"$Y$ = 임계 에너지방출률 $G_c$"는 수치적으로 부정확.</b> 선3 식(3)에 $2\pi$가 없어, 일관 적용 시 파괴개시 임계상태에서 $Y = G_c/(2\pi)$(평면응력). 차원은 같으나 약 6.28배 차이. <b>문헌 $G_c$를 $Y$에 직접 대입 금지.</b> 단 $Y$를 시험서 역산하므로 <b>예측 결과에는 영향 없음</b>.</li>
-    <li>선3 원문은 $K$의 정규화($\sqrt{2\pi}$ 유무)를 명시하지 않음 — 기록상 열린 항목.</li>
+    <li><b>"$Y$ = 임계 에너지방출률 $G_c$"는 수치적으로 부정확.</b> 선3 식(3)에 $2\pi$가 없어, 표준 장으로 해석 시 파괴개시 임계상태에서 $Y = G_c/(2\pi)$(평면응력, 평면변형은 $G_c/[2\pi(1-\nu^2)]$). 차원은 같으나 약 6.28배 차이. <b>문헌 $G_c$를 $Y$에 직접 대입 금지.</b> 단 <b>이 논문처럼 동일 정의로 1점에서 $Y$를 역산해 같은 계열 예측에 재사용</b>하면 정규화 상수가 상쇄되어 예측 결과에는 영향이 없다.</li>
+    <li>선3 원문은 $K$가 표준 $K_I$와 $\sqrt{2\pi}$ 관계라는 대응을 명시하지 않음 — 기록상 열린 항목(round 3).</li>
     <li>선1 식(6) $w_f = K^2/(2\pi E)$는 표준 $K_I$ 기준이라 문제없음.</li>
     <li>응력구배조건의 등식은 (i) 파괴 임계상태, (ii) $d\sigma/ds \ne 0$ 구간에서만 성립. 균일응력장(도그본)은 응력조건만 적용.</li>
     <li>시멘트 페이스트 재현에서 곡선맞춤 응력은 개구방향 $\sigma_{xx}$(FE 좌표), 무차원 형상계수는 $K_I W\sqrt{H}/P = (S/H)\,F(a/H)$, 본체는 2D 6케이스(3D는 폭방향 균일성 검증용 1케이스).</li>
