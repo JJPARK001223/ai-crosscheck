@@ -101,7 +101,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     body{background:#fff}
     .doc{box-shadow:none;max-width:none;padding:0}
     .parthead,h2,.agenda .ah{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    figure{break-inside:avoid} .chain{break-inside:avoid} .box{break-inside:avoid} .agenda .item{break-inside:avoid}
+    figure{break-inside:avoid} .chain{break-inside:avoid}
+    .agenda .ah{break-after:avoid} .agenda .item .note{break-inside:avoid}
   }
 </style>
 </head>
@@ -158,13 +159,13 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
 <div class="tl">
   <div class="ev"><div class="yr">1898 · Kirsch</div><div class="hd">원형 홀의 응력집중</div>
-    무한판 원형 홀 가장자리 응력이 원거리 응력의 <b>3배</b>. "홀이 있으면 강도가 왜 떨어지나"의 출발점. 기호 <b>$K_t$</b>(응력집중계수)의 뿌리.</div>
+    무한판·원형 홀·원격 <b>단축</b> 인장에서, 하중에 수직인 홀 가장자리 응력이 원거리 응력의 <b>3배</b>(그 위치의 최댓값). "홀이 있으면 강도가 왜 떨어지나"의 출발점. 응력집중계수 $K_t$ 의 뿌리.</div>
   <div class="ev"><div class="yr">1921 · Griffith</div><div class="hd">에너지로 본 균열</div>
     균열이 자라려면 "표면을 새로 만드는 에너지"를 <b>방출되는 변형에너지</b>가 대야 한다. 에너지방출률 <b>$G$</b>의 뿌리.</div>
   <div class="ev"><div class="yr">1957 · Irwin</div><div class="hd">응력확대계수 $K$</div>
-    균열 선단 근접장 $\sigma_{ij} = \dfrac{K}{\sqrt{2\pi r}}\,f_{ij}(\theta)$. 세기를 <b>한 수 $K$</b>로 압축. $G = K^2/E'$ 로 에너지와 연결. 기호 <b>$K,\ K_{IC}$</b>의 출처.</div>
-  <div class="ev"><div class="yr">1958~2007 · TCD / CZM / FFM</div><div class="hd">홀·노치용 별도 이론들</div>
-    균열엔 $K$가 통하지만 <b>홀·둔한 노치</b>엔 특이성이 없어 $K$를 못 쓴다 → 임계거리 이론(TCD, Neuber·Peterson·Taylor), 응집영역모델(CZM, Dugdale·Barenblatt), 유한파괴역학(FFM, Sapora). <b>노치 유형마다 이론이 갈라진다.</b></div>
+    균열 선단 <b>선도 특이항</b> $\sigma_{ij} = \dfrac{K}{\sqrt{2\pi r}}\,f_{ij}(\theta)$. 그 세기를 한 수 $K$로 나타낸다. Irwin 원문은 $(EG/\pi)^{1/2}$ 형태로 썼고 이를 현대 표기로 옮기면 $K_I = \sqrt{EG}$, $G = K_I^2/E'$. 기호 <b>$K$</b>(및 이후의 $K_{IC}$)의 출처.</div>
+  <div class="ev"><div class="yr">1958 · Neuber → 2018 · Sapora</div><div class="hd">홀·노치용 별도 이론들</div>
+    균열엔 $K$가 통하지만 <b>둔한 노치</b>엔 선단 특이성이 없다 → 임계거리 이론(TCD; Neuber 1958·Peterson 1959·Taylor 2007), 응집영역모델(CZM; Dugdale 1960·Barenblatt 1962), 유한파괴역학(FFM; Sapora 2018). 각각 <b>특성 길이</b>(임계거리 $L$)나 <b>유한 진전량 $\Delta$</b>를 별도로 도입한다. <b>접근이 갈라져 있었다.</b></div>
   <div class="ev"><div class="yr">2021 · 선행연구 1 [34]</div><div class="hd">두 조건 통합 기준 제안</div>
     Kwon, <i>Revisiting Failure of Brittle Materials</i>. "<b>응력조건 AND 응력구배조건</b>"이라는 국소점 기준. 균열·홀·무결함을 하나로. 기호 <b>$\sigma_l,\ \sigma_f,\ w_f,\ s$</b> 도입.</div>
   <div class="ev"><div class="yr">2022a · 선행연구 2 [35]</div><div class="hd">노치 형상 확장</div>
@@ -172,8 +173,12 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ev"><div class="yr">2022b · Kwon Polymers [36]</div><div class="hd">다중스케일로 복합재</div>
     Kwon, <i>Failure Prediction of Notched Composites Using Multiscale Approach</i>. 섬유·기지 <b>미시 스케일</b>에서 두 조건을 적용. $\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E)$ 를 <b>식으로 명시</b> — $2\pi$ 가 들어간다는 확인.</div>
   <div class="ev"><div class="yr">2024 · 선행연구 3</div><div class="hd">네 재료 전면 검증</div>
-    Kwon·Markoff·DeFisher, <i>Unified Failure Criterion…</i> (<i>Materials</i> 17, 569). 취성(경화 시멘트)·연성(알루미늄)·직교이방성(3D 프린팅 PLA)·적층 복합재(유리섬유) + 균열·슬릿·여러 홀. 파괴값을 <b>$Y$</b>로 표기. <b>§4 시멘트 페이스트가 우리 재현 대상.</b></div>
+    Kwon·Markoff·DeFisher, <i>Unified Failure Criterion…</i> (<i>Materials</i> 17, 569). 취성(경화 시멘트)·연성(알루미늄)·직교이방성(3D 프린팅 PLA)·적층 복합재(유리섬유) + 균열·슬릿·여러 홀 — <b>네 재료의 서로 다른 결함 사례에서 적용성을 평가</b>(모든 재료×결함 조합을 시험한 설계는 아님). 파괴값을 <b>$Y$</b>로 표기. <b>§4 시멘트 페이스트가 우리 재현 대상.</b></div>
 </div>
+
+<p style="font-size:.85rem;color:var(--sub)">
+<span style="color:#5b6572">[분기]</span> 위 4편 외에 <b>Schmeier·Träger·Kwon·Sachau (2023, <i>Materials</i> 16, 2293)</b> — 적층제조(AM) 시편의 홀 파괴 예측 — 도 같은 통합기준을 쓴다(선3 참고문헌 [37], PLA 파트 §5의 직접 선행). 이번 연표에서는 선(線)만 표시하고 상세는 생략한다.
+</p>
 
 <figure>
 <svg viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
@@ -182,7 +187,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <g font-size="10.5" text-anchor="middle">
     <g><circle cx="90" cy="120" r="6" fill="#5b6572"/><text x="90" y="150" fill="#5b6572">1898</text><text x="90" y="164" fill="#5b6572">Kirsch</text><text x="90" y="100" fill="#5b6572">홀 3배</text></g>
     <g><circle cx="210" cy="120" r="6" fill="#5b6572"/><text x="210" y="150" fill="#5b6572">1921 / 1957</text><text x="210" y="164" fill="#5b6572">Griffith / Irwin</text><text x="210" y="100" fill="#5b6572">G, K</text></g>
-    <g><circle cx="360" cy="120" r="6" fill="#b9770e"/><text x="360" y="150" fill="#b9770e">~2007</text><text x="360" y="164" fill="#b9770e">TCD / CZM / FFM</text><text x="360" y="100" fill="#b9770e">노치 이론 갈라짐</text></g>
+    <g><circle cx="360" cy="120" r="6" fill="#b9770e"/><text x="360" y="150" fill="#b9770e">1958–2018</text><text x="360" y="164" fill="#b9770e">TCD(1958~) / CZM(1960~) / FFM(2018)</text><text x="360" y="100" fill="#b9770e">노치용 접근 갈라짐</text></g>
     <g><circle cx="520" cy="120" r="7" fill="#c0392b"/><text x="520" y="150" fill="#c0392b" font-weight="700">2021</text><text x="520" y="164" fill="#c0392b" font-weight="700">선행연구 1</text><text x="520" y="100" fill="#c0392b" font-weight="700">두 조건 기준</text></g>
     <g><circle cx="650" cy="120" r="6" fill="#1f3a5f"/><text x="650" y="150" fill="#1f3a5f">2022</text><text x="650" y="164" fill="#1f3a5f">선2 (PVT144) · Polymers</text><text x="650" y="100" fill="#1f3a5f">노치·복합재 확장</text></g>
     <g><circle cx="810" cy="120" r="7" fill="#1e8449"/><text x="810" y="150" fill="#1e8449" font-weight="700">2024</text><text x="810" y="164" fill="#1e8449" font-weight="700">선행연구 3</text><text x="810" y="100" fill="#1e8449" font-weight="700">4재료 검증</text></g>
@@ -191,7 +196,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <path d="M 385 40 C 430 55, 470 55, 505 70" fill="none" stroke="#c0392b" stroke-width="1.6"/>
   <text x="300" y="45" font-size="9.5" fill="#c0392b">갈라진 갈래를 하나로</text>
 </svg>
-<figcaption><b>그림 1. 계보 한눈에.</b> 고전 파괴역학은 <b>균열용 이론($K$)</b>과 <b>홀·노치용 이론(TCD·CZM)</b>으로 갈라져 있었다. 선행연구 1이 "국소점에서 두 조건"이라는 하나의 틀을 제안했고, 2022년 두 논문이 노치 형상·복합재로 넓혔으며, 2024년 선행연구 3이 네 재료로 전면 검증했다. 연대와 인용번호는 선행연구 3 참고문헌 [34]~[36] 기준.</figcaption>
+<figcaption><b>그림 1. 계보 한눈에.</b> 균열은 주로 $K$로, 둔한 노치·홀은 주로 임계거리 이론·유한파괴역학으로 다뤄 왔다(각 접근이 별도의 특성 길이를 쓴다). 선행연구 1이 "국소점에서 두 조건"이라는 하나의 틀을 제안했고, 2022년 두 논문이 노치 형상·다중스케일로 넓혔으며, 2024년 선행연구 3이 네 재료의 서로 다른 결함 사례로 적용성을 평가했다. 연대는 온라인 공개일, 인용번호는 선행연구 3 참고문헌 [34]~[36] 기준.</figcaption>
 </figure>
 
 
@@ -204,13 +209,13 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 </p>
 
 <table>
-  <caption>표 1. 결함 유형별로 갈라져 있던 이론과 그 한계.</caption>
-  <thead><tr><th>결함</th><th>쓰던 이론</th><th>핵심량</th><th>한계</th></tr></thead>
+  <caption>표 1. 결함을 다루던 여러 접근 — 각각의 대표 사례와 통합의 동기. (배타적 적용 구분이 아니라, 서로 다른 언어를 쓴다는 점이 핵심.)</caption>
+  <thead><tr><th>대표 대상</th><th>접근</th><th>핵심량</th><th>불편했던 점</th></tr></thead>
   <tbody>
-    <tr><td class="l">날카로운 <b>균열</b></td><td class="l">선형탄성 파괴역학 (LEFM)</td><td>$K$, $G$</td><td class="l">선단 응력이 무한대 → 응력 기준을 못 씀. 균열이 있어야만 정의됨</td></tr>
-    <tr><td class="l"><b>홀·둔한 노치</b></td><td class="l">임계거리 이론 (TCD) · 유한파괴역학 (FFM)</td><td>임계거리 $L$, 유한 진전량 $\Delta$</td><td class="l">특성 길이가 재료·형상마다 보정 필요. 균열엔 그대로 안 맞음</td></tr>
-    <tr><td class="l">일반 <b>파괴 예상부</b></td><td class="l">응집영역모델 (CZM)</td><td>트랙션–분리 법칙</td><td class="l">같은 법칙이 노치 형상·크기에 무관해야 "이론"인데 그 검증이 어려움</td></tr>
-    <tr><td class="l">노치 없는 <b>다축 하중</b></td><td class="l">Tsai–Wu·Podgórski 등 강도 기준</td><td>파괴 포락면</td><td class="l">노치가 생기면 신뢰할 수 없음 (응력이 불균일)</td></tr>
+    <tr><td class="l">날카로운 <b>균열</b></td><td class="l">선형탄성 파괴역학 (LEFM)</td><td>$K$, $G$</td><td class="l">선단 응력이 이론상 발산 → 응력값 자체로는 판정 불가. 균열이 있어야 $K$가 정의됨</td></tr>
+    <tr><td class="l"><b>둔한 노치</b>·홀 (균열에도 적용됨)</td><td class="l">임계거리 이론 (TCD) · 유한파괴역학 (FFM)</td><td class="l">재료 특성길이 $L$ (TCD) · 유한 진전량 $\Delta$ (FFM, 응력·에너지 연립조건의 출력)</td><td class="l">$K$ 위에 특성 길이/유한량을 <b>추가로</b> 도입해야 한다</td></tr>
+    <tr><td class="l">일반 <b>파괴 예상부</b></td><td class="l">응집영역모델 (CZM)</td><td>트랙션–분리 법칙</td><td class="l">같은 법칙이 노치 형상·크기에 무관하게 성립하는지 확인이 어렵다는 것이 <b>저자의 논평</b></td></tr>
+    <tr><td class="l">노치 없는 <b>다축 하중</b></td><td class="l">Tsai–Wu·Podgórski 등 강도 기준</td><td>파괴 포락면</td><td class="l">국소 강도 포락면만으로는 결함의 크기효과·균열 진전을 판정하지 못한다</td></tr>
   </tbody>
 </table>
 
@@ -244,7 +249,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   </g>
   <text x="410" y="235" font-size="10.5" text-anchor="middle" fill="#5b6572">"어디가 먼저 깨지나(응력)" + "그 방향으로 진행할 수 있나(구배)" 를 같은 점에서 함께 본다</text>
 </svg>
-<figcaption><b>그림 2. 세 갈래를 하나로.</b> 균열(LEFM)·홀(TCD/FFM)·일반부(CZM)로 나뉘어 있던 파괴 판정을, "국소점에서 두 조건을 함께 본다"는 하나의 틀로 묶으려는 것이 선행연구 1의 출발점이다.</figcaption>
+<figcaption><b>그림 2. 여러 접근을 하나의 판정으로.</b> LEFM·TCD/FFM·CZM 은 대상과 언어가 서로 달랐다. "국소점에서 두 조건을 함께 본다"는 하나의 틀로 결함 유형에 상관없이 판정하려는 것이 선행연구 1의 출발점이다. (선행연구 1이 기존 이론들을 대수적으로 포함·유도한다는 뜻은 아니다.)</figcaption>
 </figure>
 
 
@@ -275,8 +280,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 </ul>
 
 <div class="keypoint">
-  <b>응력구배조건의 물리적 의미</b> — 국소 응력이 파괴강도를 훨씬 넘어도, 응력이 <b>가파르게 식으면</b>(균열·홀 선단이 바로 그렇다) 식(3)의 좌변이 작아져 $w_f$에 못 미치고 <b>파괴가 개시되지 않는다</b>.
-  한 점에 에너지가 아무리 많아도, 그 에너지가 좁은 영역에 갇혀 있으면 균열을 밀고 나갈 "여유"가 없다는 뜻.
+  <b>응력구배조건의 물리적 의미</b> — 식(3)의 좌변은 $\dfrac{\sigma_l^2}{2E}\cdot\ell_g$ ($\ell_g \equiv \sigma_l/|d\sigma_l/ds|$ = "응력이 절반으로 식는 데 걸리는 거리" 규모)로 볼 수 있다. <b>같은 국소 응력·같은 $E$</b>에서 비교하면, 응력이 <b>가파르게 식을수록</b>($\ell_g$ 작음) 이 값이 작아져 $w_f$에 못 미치고 <b>파괴가 개시되지 않는다</b>. 저자의 현상론적 표현으로는 "에너지가 좁은 영역에 갇혀 균열을 밀고 나갈 여유가 없다".
+  다만 $\sigma_l$과 구배는 <b>함께</b> 봐야 한다: 좌변은 $\propto \sigma_l^3/|d\sigma_l/ds|$ 이고, 균열 선단에서는 둘 다 발산하지만 그 비는 유한해 $w_f$($=K_I^2/2\pi E$)로 수렴한다.
 </div>
 
 <figure>
@@ -302,7 +307,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <text x="545" y="255" font-size="10" fill="#c0392b">|d sigma/ds| 큼 → 식(3) 좌변 작음 → 파괴 안 함</text>
   <text x="430" y="282" font-size="11" text-anchor="middle" fill="#5b6572">가로축 = 파괴 경로 s 를 따른 거리 · 세로축 = 국소 응력 · 점 = 판정하는 국소점</text>
 </svg>
-<figcaption><b>그림 3. 응력구배조건의 직관.</b> 판정하는 것은 한 <b>국소점</b>에서의 값 $\dfrac{\sigma_l^{3}}{2E}\left|\dfrac{ds}{d\sigma_l}\right|$ 이다. 같은 국소 응력이라도 <b>천천히 식으면</b>(왼쪽) 이 값이 커 $w_f$를 넘고, <b>가파르게 식으면</b>(오른쪽) 국소 응력이 더 높아도 이 값이 작아 파괴가 개시되지 않는다. 곡선 아래 넓이가 아니라 <b>한 점에서의 비(比)</b>임에 유의.</figcaption>
+<figcaption><b>그림 3. 응력구배조건의 직관 (정성 도식).</b> 판정하는 것은 한 <b>국소점</b>에서의 값 $\dfrac{\sigma_l^{3}}{2E}\left|\dfrac{ds}{d\sigma_l}\right|$ 이다. 왼쪽·오른쪽 모두 응력조건($\sigma_l \ge \sigma_f$)은 만족한다고 가정한 예시로, <b>천천히 식으면</b>(왼쪽) 이 값이 커 $w_f$를 넘고 <b>가파르게 식으면</b>(오른쪽) 작아 파괴가 개시되지 않는다. 두 곡선의 국소점 응력·$E$·임계값을 지정하지 않은 개념도이며, 곡선 아래 넓이가 아니라 <b>한 점에서의 비(比)</b>임에 유의.</figcaption>
 </figure>
 
 <h3>$w_f$의 정체 — 균열에 넣으면 거리가 사라진다</h3>
@@ -315,10 +320,10 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 <div class="box ok">
   <h4>여기서 나오는 기호들</h4>
   <ul style="margin:4px 0 0">
-    <li><b>$K_I$</b> (모드 I 응력확대계수) — Irwin(1957). 균열 선단 특이응력장의 <b>세기</b>. 단위 $\mathrm{Pa\sqrt{m}}$. $K_I = \sigma\sqrt{\pi a}\cdot(\text{형상계수})$.</li>
-    <li><b>$K_{IC}$</b> (파괴인성) — $K_I$가 임계값에 도달해 파괴가 시작되는 값. 재료상수.</li>
-    <li><b>$2\pi$</b> — 근접장 식 $\sigma = K_I/\sqrt{2\pi r}$ 의 정의에서 온다. Irwin이 $K$를 그렇게 정의했기 때문.</li>
-    <li>결론: <b>$w_f$는 균열 크기·위치와 무관한 재료상수</b>다. 국소점 기준인데도 균열 문제에 통하는 이유.</li>
+    <li><b>$K_I$</b> (모드 I 응력확대계수) — Irwin(1957)의 개념. 균열 선단 <b>선도 특이항</b>의 세기. 단위 $\mathrm{Pa\sqrt{m}}$. $K_I = \sigma\sqrt{\pi a}\cdot(\text{형상계수})$.</li>
+    <li><b>$K_{IC}$</b> (파괴인성) — $K_I$가 임계값에 도달해 파괴가 시작되는 값. 표준상 <b>평면변형</b> 파괴인성을 가리키며, 두께·구속에 따라 달라지는 임계값 $K_c$와는 구별한다.</li>
+    <li><b>$2\pi$</b> — 근접장 식 $\sigma = K_I/\sqrt{2\pi r}$ 의 <b>정의</b>에서 온다(현대 표준 표기). Irwin 원문은 $(EG/\pi)^{1/2}\cdot(2r)^{-1/2}$ 로 썼고, 정리하면 같은 식이다.</li>
+    <li>결론: <b>$w_f$는 균열 크기·위치와 무관한 재료상수</b>다(고정 하중에서 관측 거리에 무관). 국소점 기준인데도 균열 문제에 통하는 이유. 단 $K_I$ 자체는 여전히 하중·균열 크기·형상에 의존한다.</li>
   </ul>
 </div>
 
@@ -341,38 +346,40 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 <div class="lead">
   <b class="t">부족했던 것 → 새로 한 것</b>
   선행연구 1은 개념 제안 + 소수 예제였다. 선행연구 2 (Kwon·Diaz-Colon·DeFisher, <i>JPVT</i> 144, 051506)는
-  <b>취성 노치 시편(PMMA 등, 홀·슬릿 여러 형상)</b>에 두 조건 기준을 체계적으로 적용해 검증 범위를 넓혔다.
+  <b>여러 노치 형상(단일·이중 홀, 타원 홀, 각도·길이가 다른 슬릿)</b>에, 그리고 PMMA뿐 아니라
+  <b>탄소섬유 적층재(균질화한 이방성 모델)</b>에까지 두 조건 기준을 적용해 검증 범위를 넓혔다.
 </div>
 <ul>
   <li>식(1)(2)는 선행연구 1·3과 <b>같은 두 조건</b>. 다만 파괴값을 <b>$\kappa_{\text{fail}}$</b> (단위 $\mathrm{Pa\cdot m}$)로 표기.</li>
-  <li>균열 근접장을 넣으면 홀 가장자리 근처 응력이 <b>$\sigma \propto R^{-1/3}$</b> 형태로 감소한다는 관계를 도출 (홀 반경 $R$ 의존성).</li>
+  <li>홀 가장자리 근처의 응력·구배(Kirsch 해)를 두 조건에 넣어 <b>파괴하중이 홀 반경 $R$에 어떻게 의존하는지</b>를 다룬다. <span style="color:#5b6572">[교차검증]</span> 원문 식은 임계응력 $\propto R^{-1/3}$ 로 인쇄돼 있으나, 실제 하중으로 응력과 구배를 <b>함께 스케일링</b>해 재유도하면 홀 경계 임계응력은 $\propto R^{-1/2}$ 로 나온다 — 이는 선행연구 1의 홀 무한판 결과 $\sqrt{14Ew_f/27R}$ 와 일치한다. 원문의 정규화 적용에 불일치가 있다(round 8).</li>
   <li>이 논문이 진행 중 프로젝트에서 <b>"선행연구 2"</b>로 부르는 자료이며, 선행연구 3의 참고문헌 <b>[35]</b>다.</li>
 </ul>
 
 <h2>1·5 2022 Polymers : 다중스케일로 복합재까지</h2>
 <div class="lead">
   <b class="t">부족했던 것 → 새로 한 것</b>
-  앞의 두 논문은 <b>균질(등방성) 재료</b>였다. Kwon, <i>Failure Prediction of Notched Composites Using Multiscale Approach</i> (<i>Polymers</i> 14, 2481)는
-  <b>섬유·기지로 이루어진 복합재</b>로 넘어간다.
+  선행연구 2는 복합재를 <b>균질화한 판(板)</b> 수준에서 평가했다. Kwon, <i>Failure Prediction of Notched Composites Using Multiscale Approach</i> (<i>Polymers</i> 14, 2481)는
+  한 단계 내려가 <b>구성재(섬유·기지)의 미시 응력·미시 변형률에 통합기준을 적용</b>하는 다중스케일 결합을 도입한다.
 </div>
 <ul>
   <li><b>상향스케일링(강성)</b> — 섬유·기지 물성 + 체적분율 → 균질화 복합재 물성.</li>
-  <li><b>하향스케일링(강도)</b> — 복합재 수준 변형률 → 섬유·기지 변형률·응력 → 그 <b>미시 수준</b>에서 두 조건 기준 적용.</li>
-  <li>이 논문이 <b>$\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E)$ 를 식으로 명시</b>한다 (선3 §6, 식(13) 부근). → 파괴값 정의에 <b>$2\pi$가 들어간다</b>는 것을 저자 스스로 적은 근거. 선행연구 3의 참고문헌 <b>[36]</b>.</li>
+  <li><b>하향스케일링(강도)</b> — 복합재 수준 변형률 → 섬유·기지 변형률·응력 → 그 <b>미시 수준</b>에서 두 조건 기준 적용(섬유·기지·계면 3모드).</li>
+  <li>이 논문이 <b>$\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E) = G_c/(2\pi)$ 를 식으로 명시</b>한다 (<b>Polymers 논문 §3, p.5 식(13)</b> — 등방성·Mode I·평면응력 한정). → 파괴값 정의에 <b>$2\pi$가 들어간다</b>는 것을 저자 스스로 적은 근거. 선행연구 3의 참고문헌 <b>[36]</b>.</li>
 </ul>
 
 <h2>1·6 2024 선행연구 3 : 네 재료 전면 검증</h2>
 <div class="lead">
   <b class="t">부족했던 것 → 새로 한 것</b>
   선행연구 3 (Kwon·Markoff·DeFisher, <i>Materials</i> 17, 569)은 흩어져 있던 검증을 모아
-  <b>재료 거동 4종 × 결함 3종</b>을 한 논문에서 다룬다. "이 기준이 정말 범용인가"를 증명하려는 논문.
+  <b>재료 거동 4종(취성·연성·직교이방성·준취성)</b>의 서로 다른 결함 사례를 한 논문에서 다룬다.
+  이 기준의 <b>적용 범위를 넓게 평가</b>하려는 논문(모든 재료×결함 조합을 시험한 설계는 아님).
 </div>
 <table>
   <thead><tr><th>절</th><th>재료</th><th>거동</th><th>결함</th><th>실질 지배조건</th></tr></thead>
   <tbody>
     <tr><td>§3</td><td class="l">5000계열 알루미늄</td><td>연성</td><td class="l">홀·슬릿</td><td>응력조건 ①</td></tr>
     <tr><td>§4</td><td class="l"><b>경화 시멘트 페이스트</b></td><td>취성</td><td class="l"><b>균열</b> (3점굽힘)</td><td><b>응력구배조건 ②</b></td></tr>
-    <tr><td>§5</td><td class="l">3D 프린팅 PLA</td><td>직교이방성</td><td class="l">홀 (여러 크기)</td><td>두 임계곡선의 공간적 교차 (파괴 위치 전이)</td></tr>
+    <tr><td>§5</td><td class="l">3D 프린팅 PLA</td><td>직교이방성</td><td class="l">홀 (여러 크기)</td><td class="l">실제 유효응력이 두 조건을 처음 함께 만족하는 <b>위치</b>가 홀 크기에 따라 이동(가장자리 ↔ 이격점)</td></tr>
     <tr><td>§6</td><td class="l">적층 유리섬유 복합재</td><td>준취성</td><td class="l">홀</td><td>섬유 파괴 기준 (다중스케일, ② 포함)</td></tr>
   </tbody>
 </table>
@@ -390,12 +397,13 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
 
 <h2>1·7 기호 대조표 — $w_f = \kappa_{\text{fail}} = Y$ 는 같은 양</h2>
 <table>
-  <caption>표 2. 세 논문이 같은 물리량을 서로 다른 기호로 부른다.</caption>
-  <thead><tr><th>논문</th><th>기호</th><th>서술한 단위</th><th>균열장 대입 결과</th></tr></thead>
+  <caption>표 2. 네 논문이 같은 물리량을 서로 다른 기호로 부른다. 모두 임계상태의 $K$(= $K_{\rm crit}$) 기준.</caption>
+  <thead><tr><th>논문</th><th>기호</th><th>차원</th><th>임계상태 결과</th><th>원문 근거</th></tr></thead>
   <tbody>
-    <tr><td class="l">선행연구 1 (2021)</td><td>$w_f$</td><td>$\mathrm{J/m^2}$ (= Pa·m)</td><td>$w_f = K_I^2/(2\pi E)$ &nbsp; <b>(표준 $K_I$)</b></td></tr>
-    <tr><td class="l">선행연구 2 (2022, PVT144)</td><td>$\kappa_{\text{fail}}$</td><td>$\mathrm{Pa\cdot m}$</td><td>$\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E)$ (Polymers 식에서 명시)</td></tr>
-    <tr><td class="l">선행연구 3 (2024)</td><td>$Y$</td><td>"임계 에너지방출률과 동등"</td><td>$Y = K^2/E$ &nbsp; <b>($2\pi$ 없는 $K$)</b></td></tr>
+    <tr><td class="l">선행연구 1 (2021)</td><td>$w_f$</td><td>$\mathrm{J/m^2}$ = Pa·m</td><td>$w_f = K_{IC}^2/(2\pi E)$ &nbsp;<b>(표준 $K_I$)</b></td><td class="l">선1 식(6)(7)</td></tr>
+    <tr><td class="l">선행연구 2 (2022, PVT144)</td><td>$\kappa_{\text{fail}}$</td><td>Pa·m</td><td>식(2) 정의상 선1과 같은 형태 (균열장 대응은 독립 유도)</td><td class="l">선2 식(2)</td></tr>
+    <tr><td class="l">Kwon 2022 (Polymers)</td><td>$\kappa_{\text{fail}}$</td><td>Pa·m</td><td>$\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E) = G_c/(2\pi)$ &nbsp;<b>(식으로 명시)</b></td><td class="l">Polymers §3 p.5 식(13) — 등방·Mode I·평면응력</td></tr>
+    <tr><td class="l">선행연구 3 (2024)</td><td>$Y$</td><td>$\mathrm{J/m^2}$ (식에서 차원 확인)</td><td>$Y = K^2/E$ &nbsp;<b>($2\pi$ 없는 $K$)</b>. 원문 "임계 에너지방출률과 동등" 서술은 비고 참조</td><td class="l">선3 식(4)</td></tr>
   </tbody>
 </table>
 
@@ -403,8 +411,8 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
   <h4>⚠ 교차검증 정정 — "$Y \equiv G_c$"는 수치적으로 부정확 (round 1·3·5)</h4>
   <ul style="margin:4px 0 0">
     <li>선3 식(3) $\sigma_e = K/\sqrt{s}$ 에는 <b>$2\pi$가 없다</b> (표준 근접장은 $\sigma = K_I/\sqrt{2\pi r}$). 같은 물리장으로 해석하면 여기서의 $K = K_I/\sqrt{2\pi}$ — <b>단 원문은 이 대응을 명시하지 않았다</b> (round 3, 열린 항목).</li>
-    <li>파괴 개시 임계상태에서 &nbsp; $Y = \dfrac{G_c}{2\pi}$ (평면응력), &nbsp; $Y = \dfrac{G_c}{2\pi(1-\nu^2)}$ (평면변형). 차원·비례는 $G_c$와 같지만 <b>수치는 평면응력 기준 약 $2\pi \approx 6.28$배</b> 차이. <b>문헌 $G_c$ 값을 $Y$ 자리에 대입하면 안 된다.</b></li>
-    <li><b>이 논문처럼 동일 정의로 시험 1개에서 $Y$를 역산해 같은 계열 예측식에 재사용하면</b> 정규화 상수가 상쇄되어 <b>예측 결과에는 영향이 없다</b>.</li>
+    <li>파괴 개시 임계상태에서 &nbsp; $Y = \dfrac{G_c}{2\pi}$ (평면응력), &nbsp; $Y = \dfrac{G_c}{2\pi(1-\nu^2)}$ (평면변형). 이 관계는 <b>Polymers 식(13)이 직접 지지</b>한다. 차원·비례는 $G_c$와 같지만 문헌 $G_c$ 값을 $Y$ 자리에 그대로 넣으면 <b>$Y$ 입력이 평면응력 기준 약 $2\pi \approx 6.28$배</b> 부풀고, 그 결과 선형탄성 예측 <b>하중은 약 $\sqrt{2\pi} \approx 2.51$배</b> 어긋난다. <b>문헌 $G_c$ 직접 대입 금지.</b></li>
+    <li><b>이 논문처럼 동일 정의로 시험 1개에서 $Y$를 역산해 같은 계열 예측식에 재사용하면</b> 공통 정규화 상수가 상쇄되어 <b>예측 결과에는 영향이 없다</b>(FE 모델·재료 불확실성까지 무해하다는 뜻은 아님).</li>
     <li>선행연구 1의 식(6) $w_f = K_I^2/(2\pi E)$ 와 Polymers의 $\kappa_{\text{fail}} = K_{Ic}^2/(2\pi E)$ 는 표준 $K_I$ 기준이라 문제없다. 부정확한 것은 선행연구 3의 "동등" 서술 쪽이다.</li>
   </ul>
 </div>
@@ -426,14 +434,14 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
     <path d="M 517,125 L 560,125" stroke="#c0392b" stroke-width="2" marker-end="url(#a8)"/>
     <rect x="564" y="80" width="272" height="92" rx="10" fill="#f1fbf4" stroke="#1e8449" stroke-width="1.8"/>
     <text x="700" y="103" text-anchor="middle" font-weight="800" fill="#1a2230">임계상태 (K_I → K_IC)</text>
-    <text x="700" y="123" text-anchor="middle" fill="#1a2230" font-size="11">w_f = kappa_fail = K_IC^2 / (2 pi E)</text>
-    <text x="700" y="141" text-anchor="middle" fill="#1a2230" font-size="11">= Y (선3) · 단 Y 는 2 pi 흡수된 표기</text>
+    <text x="700" y="123" text-anchor="middle" fill="#1a2230" font-size="11">w_f = kappa_fail = Y = K_IC^2 / (2 pi E)</text>
+    <text x="700" y="141" text-anchor="middle" fill="#1a2230" font-size="11">정의는 셋 다 동일. 다른 건 선3의 계수 K = K_I / sqrt(2 pi)</text>
     <text x="700" y="159" text-anchor="middle" fill="#5b6572" font-size="10">= G_c / (2 pi)  (평면응력)</text>
   </g>
   <text x="430" y="205" font-size="10.5" text-anchor="middle" fill="#5b6572">셋 다 "균열 크기·위치와 무관한 재료상수" — 시험 1개로 값을 정하면 나머지를 예측</text>
   <text x="430" y="225" font-size="10.5" text-anchor="middle" fill="#5b6572">예측식 P_pred = sqrt(2 pi E Y) / (K_I / P) = sqrt(E Y) / (K / P)  — 두 표기 동일 (sqrt(2 pi) 상쇄)</text>
 </svg>
-<figcaption><b>그림 4. 세 이름, 한 물리량.</b> 응력구배조건에 균열 근접장을 넣으면 거리가 소거되어 재료상수가 남는다. 선1의 $w_f$, 선2·Polymers의 $\kappa_{\text{fail}}$, 선3의 $Y$ 가 같은 양이며, $2\pi$ 를 표기에 흡수했는지 여부만 다르다. 예측에 쓸 때는 정규화 상수가 상쇄되므로 결과가 같다.</figcaption>
+<figcaption><b>그림 4. 세 이름, 한 물리량.</b> 응력구배조건에 균열 근접장을 넣으면 거리가 소거되어 재료상수가 남는다. 선1의 $w_f$, 선2·Polymers의 $\kappa_{\text{fail}}$, 선3의 $Y$ 는 <b>정의가 동일</b>하다. 다른 것은 선3 식(3)의 근접장 계수 $K$ 로, 표준 $K_I$ 에서 $\sqrt{2\pi}$ 를 뺀 값($K = K_I/\sqrt{2\pi}$)이다. 그래서 $Y = K_{선3}^2/E$ 가 수치상 $K_I^2/(2\pi E)$ 와 같다. 예측에 쓸 때는 이 정규화가 상쇄되므로 결과가 같다.</figcaption>
 </figure>
 
 
@@ -442,8 +450,8 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
 <!-- ==================================================================== -->
 
 <div class="box">
-  <b>식 재검토 결과 (round 1·3·5·8):</b> 선1 식(1)~(7)·선3 식(1)~(4)의 유도는 <b>수학적으로 정확</b>(양측 blind 재유도 일치). 발표에서 그대로 인용 가능.
-  단서 붙일 곳 — ① "$Y$ 는 임계 에너지방출률과 <b>같은 종류의 양</b>"($\equiv G_c$ 로 쓰지 말 것), ② 응력구배조건 식의 절댓값은 물리상 필수(원문 인쇄 누락), ③ 홀 무한판 "구배조건 지배"는 조건부.
+  <b>식 재검토 결과 (round 1·3·5·8):</b> 선1 식(1)~(7)·선3 식(1)~(4)의 유도는 <b>수학적으로 정확</b>(양측 blind 재유도 일치, round 8 에서 JS 수치검산 상대오차 4e-16). 발표에서 그대로 인용 가능.
+  단서 붙일 곳 — ① "$Y$ 는 임계 에너지방출률과 <b>같은 종류의 양</b>"($\equiv G_c$ 로 쓰지 말 것; $Y = G_c/2\pi$ 평면응력은 Polymers 식(13)이 지지), ② 응력구배조건 식의 절댓값은 물리상 필수(원문 인쇄 누락), ③ 홀 무한판 "구배조건 지배"는 조건부, ④ 곡선맞춤 시 $\sqrt{\ell_0}$ 역변환·반모델 $P/2$ 규약 복원(round 3 필수식), ⑤ 선2 원문의 홀 반경 지수 $R^{-1/3}$ 은 재유도 결과 $R^{-1/2}$ 와 불일치.
 </div>
 
 <div class="agenda">
@@ -483,10 +491,10 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
       <div class="no">2-2</div> <span class="ti">응력구배조건 — <b>이 발표의 핵심, 설명 슬라이드</b></span>
       <div class="eq" style="margin:8px 0">$$ \frac{\sigma_e^{2}/2E}{\;(1/\sigma_e)\,|d\sigma_e/ds|\;} \geq Y \quad\Longleftrightarrow\quad \sigma_e^{3} \geq 2EY\left|\frac{d\sigma_e}{ds}\right| $$</div>
       <ul>
-        <li><b>분자 $\sigma_e^2/2E$</b> = 그 점이 <b>품은 변형에너지밀도</b> (선형탄성 $\sigma$–$\varepsilon$ 곡선 아래 넓이).</li>
-        <li><b>분모 $(1/\sigma_e)|d\sigma_e/ds|$</b> = 응력이 거리 따라 <b>식는 속도</b>(단위응력 기준). 값이 크면 응력이 좁은 영역에 갇혀 있다는 뜻.</li>
-        <li><b>물리적 의미</b> : "에너지가 많고(높은 응력) + 넓게 퍼져 있어야(완만한 구배)" 파괴가 그 방향으로 진행한다. 국소 응력이 아무리 높아도 <b>가파르게 식으면</b>(= 균열·날카로운 노치 선단) 이 값이 작아 파괴 개시 X. → <b>그림 3</b>.</li>
-        <li><b>$s$ 는 어느 방향?</b> $|d\sigma_e/ds|$ 가 <b>최소</b>인 방향 = 가장 완만하게 식는 쪽 = 파괴가 뚫고 갈 수 있는 경로. 취성재는 최대 주응력축에 수직.</li>
+        <li><b>분자 $\sigma_e^2/2E$</b> = 그 점이 <b>품은 변형에너지밀도</b> (단축 선형탄성 $\sigma$–$\varepsilon$ 곡선 아래 넓이 — 일반 다축의 실제 밀도 $\sigma_{ij}\varepsilon_{ij}/2$ 와는 다르며, 저자가 유효응력을 단축 등가로 본 것).</li>
+        <li><b>분모 $(1/\sigma_e)|d\sigma_e/ds|$</b> = <b>정규화 응력구배</b>(단위 $\mathrm{m^{-1}}$). 응력이 거리에 따라 상대적으로 얼마나 빨리 떨어지는가. "식는 속도"는 열·시간이 아니라 거리에 따른 감소율의 비유.</li>
+        <li><b>물리적 의미</b> : 좌변 $\propto \sigma_e^3/|d\sigma_e/ds|$ 이므로 <b>응력과 구배를 함께</b> 본다. <b>같은 국소 응력·같은 $E$</b>로 비교하면, 구배가 가파를수록(= 균열·날카로운 노치 선단) 이 값이 작아 파괴가 개시되지 않는다. 저자의 비유: "에너지가 좁은 영역에 갇혀 균열을 밀 여유가 없다". → <b>그림 3</b>. (균열 선단은 응력·구배가 함께 발산하지만 그 비는 유한.)</li>
+        <li><b>$s$ 는 어느 방향?</b> 선행연구 1은 $|d\sigma_l/ds|$ 가 <b>최소</b>인 방향(가장 완만하게 식는 쪽)으로 제안했고, 선행연구 3은 취성재에서 <b>최대 주응력축에 수직</b>이라고 가정한다. 평면 내 대칭 Mode I 에서는 둘이 일치.</li>
         <li><b>$Y$ 는 어디서?</b> 이 부등식에 <b>균열 근접장 $\sigma_e = K/\sqrt{s}$ 를 넣으면 $s$ 가 완전히 소거</b>되어 $Y = K^2/E$ = 균열 크기·위치와 무관한 <b>재료상수</b>가 남는다 (3-3에서 유도).</li>
       </ul>
       <div class="note"><b>주의(교차검증)</b> — 원문 선3 식(2)에는 절댓값이 빠져 있으나 물리상 $|d\sigma_e/ds|$ 가 맞다(균열 전방에서 응력은 감소하므로 도함수가 음수). 발표 식엔 절댓값을 넣어 쓸 것.</div>
@@ -494,7 +502,7 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
     <div class="item">
       <div class="no">2-3</div> <span class="ti">두 조건은 AND</span>
       <ul>
-        <li>같은 국소점에서 <b>동시에</b> 참일 때만 파괴 개시. 하나만 참이면 파괴하지 않는다. → <b>그림 (AND 게이트)</b>.</li>
+        <li>같은 국소점에서 <b>동시에</b> 참일 때만 파괴 개시. 하나만 참이면 파괴하지 않는다. (AND 게이트 도식으로 나타낼 것 — 한국어 읽기자료 그림 B-2 재사용 가능.)</li>
         <li>두 조건은 늘 함께 만족되지만, <b>실질적으로 파괴하중을 결정하는 쪽</b>은 재료·형상에 따라 하나다 : 연성 금속 → 응력조건, 취성 + 균열 → 응력구배조건 (표는 5-2).</li>
       </ul>
     </div>
@@ -507,20 +515,21 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
     <div class="item">
       <div class="no">3-1</div> <span class="ti">"노치(notch)"란 무엇인가 — 설명 슬라이드</span>
       <ul>
-        <li><b>노치 = 부재의 형상이 갑자기 바뀌는 부분</b>. 구멍(홀), 홈, 슬릿, 필렛, 키홈, 그리고 극한으로는 <b>균열</b>. 하중이 흐르다가 이 지점에서 몰려 <b>응력집중</b>이 생긴다.</li>
-        <li>노치 끝이 <b>둥글면(홀)</b> 응력이 유한하고(예: Kirsch 홀 = 3배), <b>날카로우면(균열)</b> 이론상 무한대로 발산한다 — 그래서 다루는 수학이 달라진다.</li>
-        <li>날카로움을 <b>노치 반경 $\rho$</b> 또는 <b>개구각</b>으로 표현. $\rho \to 0$ 이면 균열.</li>
+        <li><b>노치 = 부재의 형상이 갑자기 바뀌어 응력집중을 만드는 부분</b>. 구멍(홀), 홈, 슬릿, 필렛, 키홈 등. <b>균열</b>은 그 극한(개구각 0 · 팁 반경 0 · 폭 0)에 해당한다.</li>
+        <li>노치 끝이 <b>둥글면(홀)</b> 선형탄성 모델의 응력이 유한하고(예: 무한판 원형 홀 = 원격 응력의 3배), <b>이상적 균열</b>이면 선형탄성 모델에서 발산한다(실제 물체는 소성·파괴진행영역이 이를 완화). 다루는 수학이 달라지는 이유.</li>
+        <li>날카로움은 <b>팁 반경 $\rho$</b> 와 <b>개구각</b>으로 표현한다. 개구각이 유한한 V 노치는 $\rho = 0$ 이어도 균열과는 특이성 차수가 다르다(Williams 1952). $\rho \to 0$ <b>그리고</b> 개구각 $\to 0$ 이라야 균열.</li>
+        <li>실제 시편의 "슬릿"은 대개 끝이 원형이다 — 선행연구 2의 워터젯 슬릿은 끝 직경 약 1.1 mm. 표에서 "crack"이라 불러도 수학적 영반경 균열은 아니다.</li>
       </ul>
-      <div class="note"><b>왜 이 슬라이드가 필요한가</b> — "노치마다 이론이 갈라졌다"는 말을 하려면 청중이 노치의 스펙트럼(둔한 홀 ↔ 날카로운 균열)을 먼저 알아야 한다.</div>
+      <div class="note"><b>왜 이 슬라이드가 필요한가</b> — "노치마다 접근이 갈라졌다"는 말을 하려면 청중이 노치의 스펙트럼(둔한 홀 ↔ 날카로운 균열)과 이상화·실제의 차이를 먼저 알아야 한다.</div>
     </div>
     <div class="item">
       <div class="no">3-2</div> <span class="ti">갈라져 있던 세 갈래</span>
       <ul>
-        <li><b>균열</b> → 선형탄성 파괴역학 (LEFM) : 선단 특이응력을 $K$ 하나로. Griffith(1921) 에너지 → Irwin(1957) $K$, $G = K^2/E'$.</li>
-        <li><b>홀·둔한 노치</b> → 임계거리 이론(TCD) · 유한파괴역학(FFM) : 선단에서 일정 거리 $L$ 의 응력, 또는 유한 진전량 $\Delta$ 로 판정. 재료·형상마다 $L$, $\Delta$ 보정 필요.</li>
-        <li><b>일반 파괴부</b> → 응집영역모델(CZM) : 트랙션–분리 법칙.</li>
+        <li><b>날카로운 균열</b> → 선형탄성 파괴역학 (LEFM) : 선단 선도 특이항을 $K$ 로. Griffith(1921) 에너지 → Irwin(1957) $K$, $G = K_I^2/E'$.</li>
+        <li><b>둔한 노치·홀</b> (균열에도 적용됨) → 임계거리 이론(TCD) · 유한파괴역학(FFM) : 선단에서 재료 특성거리 $L$ 만큼 떨어진 응력, 또는 응력·에너지 연립조건이 주는 유한 진전량 $\Delta$ 로 판정. $K$ <b>위에 특성 길이/유한량을 더 도입</b>한다.</li>
+        <li><b>일반 파괴부</b> → 응집영역모델(CZM) : 트랙션–분리 법칙(같은 법칙이 형상·크기에 무관한지가 관건이라는 것이 저자의 논평).</li>
       </ul>
-      <div class="note">→ <b>표 1 · 그림 2</b> 사용. 핵심 메시지 : "결함 유형마다 다른 이론 + 형상마다 보정" 이 불편했다.</div>
+      <div class="note">→ <b>표 1 · 그림 2</b> 사용. 핵심 메시지 : 결함마다 <b>쓰는 언어(특성량)가 달라</b> 하나로 다루기 불편했다. (배타적 적용 구분은 아님 — TCD 는 균열에도 쓰인다.)</div>
     </div>
     <div class="item">
       <div class="no">3-3</div> <span class="ti">통합 식 — 균열에 넣으면 거리가 소거된다</span>
@@ -535,7 +544,7 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
         <li>이 한 번의 소거가 "국소점 기준인데 균열 문제에도 통한다"는 통합의 <b>수학적 근거</b>.</li>
         <li>홀은 특이성이 없어 $Y$ 가 이렇게 깔끔히 안 떨어지므로, <b>FE로 $\sigma_e(s)$·구배를 수치로 뽑아</b> 두 조건을 적용 (선1 사례 4 → 선3 §5 PLA).</li>
       </ul>
-      <div class="note"><b>단서(교차검증)</b> — "$Y = G_c$" 등식은 쓰지 말 것. 선3 식(3)에 $2\pi$ 가 없어 표준장 해석 시 $Y = G_c/2\pi$(평면응력). "같은 <b>종류</b>의 양"으로 표현. 문헌 $G_c$ 를 $Y$ 에 직접 넣으면 약 6.28배 오차. (단 시험 1개로 $Y$ 를 역산해 예측에 재사용하면 상쇄되어 예측값엔 영향 없음.)</div>
+      <div class="note"><b>단서(교차검증)</b> — "$Y = G_c$" 등식은 쓰지 말 것. 선3 식(3)에 $2\pi$ 가 없어 표준장 해석 시 $Y = G_c/2\pi$(평면응력, Polymers 식(13)이 지지). "같은 <b>종류</b>의 양"으로 표현. 문헌 $G_c$ 를 $Y$ 에 직접 넣으면 $Y$ 가 약 6.28배 부풀고 예측 하중이 약 2.5배 어긋난다. (단 시험 1개로 $Y$ 를 역산해 같은 예측식에 재사용하면 공통 상수가 상쇄되어 예측값엔 영향 없음.) 거리 소거는 <b>고정 하중에서 관측 거리 무관</b>을 증명할 뿐, $Y$ 의 모든 재료·모드에 대한 보편성까지 증명하는 것은 아니다.</div>
     </div>
   </div>
 </div>
@@ -546,35 +555,38 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
     <div class="item">
       <div class="no">4-1</div> <span class="ti">왜 이 예제를 골랐나 — 설명 슬라이드</span>
       <ul>
-        <li><b>재료가 이론 가정에 정확히 맞는다</b> : 경화 시멘트 페이스트는 파괴 직전까지 <b>선형탄성·취성</b> → 두 조건 기준의 전제(선형탄성 에너지밀도 $\sigma^2/2E$)가 성립.</li>
-        <li><b>결함이 "균열"이라 응력구배조건을 단독으로 시험</b>할 수 있다 : 균열 선단은 응력 특이성 → 응력조건 ① 자동 만족 → 파괴하중은 <b>오직 응력구배조건 ②</b> 가 결정. 기준의 새로운 절반을 깨끗하게 검증하는 케이스.</li>
-        <li><b>믿을 만한 시험 데이터가 이미 있다</b> : Karihaloo·Abdalla·Xiao (2003, <i>Eng. Fract. Mech.</i> 70, 979–993) 의 콘크리트 보 <b>치수효과</b> 실험(깊이·균열비를 바꾼 3점굽힘). 새 실험 없이 예측력만 검증 가능.</li>
-        <li><b>치수효과(size effect)를 설명하는지 본다</b> : 고전 강도 기준은 "작을수록 강하다"를 설명 못 한다. 이 기준이 $H$·$a/H$ 를 바꾼 6 시편의 파괴하중 경향을 맞추면 강력한 증거.</li>
-        <li><b>지도 목표</b> : 선배 지시가 "선행연구 3은 <b>FE까지</b>" — 이 §4 의 6 케이스 2D FE 재현이 우리 과제.</li>
+        <li><b>저자가 취성재로 취급하고 선형탄성으로 해석한 사례</b> : 경화 시멘트 페이스트는 파괴 직전까지 대체로 <b>선형탄성·취성</b> 거동 → 두 조건 기준의 전제(선형탄성 에너지밀도 $\sigma^2/2E$)에 부합. (실제 시편의 비선형·파괴진행영역이 전혀 없음을 입증한 것은 아님.)</li>
+        <li><b>결함이 "균열"이라 응력구배조건이 파괴하중을 지배</b> : 균열 선단은 응력 특이성 → 응력조건 ① 자동 만족 → 파괴하중 예측은 <b>응력구배조건 ②</b> 가 담당. 다만 전체 검증은 FE·$K$ 추출·재료상수 역산·모델 가정을 함께 시험하는 것이지 ② 만의 독립 실험은 아니다.</li>
+        <li><b>믿을 만한 시험 데이터가 이미 있다</b> : Karihaloo·Abdalla·Xiao (2003, <i>Eng. Fract. Mech.</i> 70, 979–993) 의 <b>경화 시멘트 페이스트 3점굽힘 시험계열</b>(깊이·균열비를 바꾼 노치 보). 새 실험 없이 예측력만 검증 가능. (원 데이터 표 전수 검증은 우리 쪽 열린 항목.)</li>
+        <li><b>[발표자 해석]</b> 치수효과 맥락에서 흥미롭다 : 고전 <b>국소 강도기준</b>은 "작을수록 강하다"를 설명하기 어렵다. 이 기준이 $H$·$a/H$ 를 바꾼 6 시편의 파괴하중을 맞추는지 본다. — 단 원문 §4 는 이론 선택 이유를 치수효과 검증으로 서술하지 않으며, 균열 사례에서 $Q \to K^2/E$ 로 환원되므로 동일 $K_c$ 를 쓰는 LEFM 대비 <b>새로운</b> 치수효과 예측이라 단정할 수는 없다.</li>
+        <li><b>지도 목표</b> : "선행연구 3은 <b>FE까지</b>" — 이 §4 의 6 케이스 2D FE 재현이 우리 과제.</li>
       </ul>
     </div>
     <div class="item">
       <div class="no">4-2</div> <span class="ti">시편과 6 케이스</span>
       <ul>
         <li>$L \times H \times W$ 3점굽힘 보. <b>$W = 100$ mm 고정</b>, <b>$L/H = 4$ 고정</b>, $E = 20.8$ GPa (원문 §4.1 명시). 균열은 길이 중앙·하단, 폭 전체 관통.</li>
-        <li>6 케이스 = 높이 $H \in \{50,\,100\}$ mm × 균열비 $a/H \in \{0.1,\,0.3,\,0.5\}$ (Fig. 11 판독 — Karihaloo 원 실험 노치비 0.05/0.10/0.30/0.50 에 포함).</li>
-        <li>3D 절반 모델로 <b>폭 방향 응력이 균일</b>함을 확인 후 <b>2D 해석</b>(4절점, 약 10,000 요소)으로 전환.</li>
+        <li>6 케이스 = 높이 $H \in \{50,\,100\}$ mm × 균열비 $a/H \in \{0.1,\,0.3,\,0.5\}$ (Fig. 11 판독 — Karihaloo 원 실험 노치비 0.05/0.10/0.30/0.50 에 포함). $W$ 를 고정하고 $H$ 만 바꾸므로 완전한 3D 기하학적 상사는 아니다.</li>
+        <li>3D 절반 모델에서 폭 방향 응력변화가 <b>매우 유사</b>하여 2D 해석이 허용된다는 것이 <b>저자의 보고</b> → <b>2D 해석</b>(4절점, 약 10,000 요소)으로 전환.</li>
+        <li><b>주의</b> : Fig. 11 세로축은 <b>파괴하중 $P$ (kN)</b> 이지 공칭 휨강도 $\sigma_N = 3PS/(2WH^2)$ 가 아니다. $a/H$ 변화는 결함 상대크기 효과도 포함한다.</li>
       </ul>
     </div>
     <div class="item">
       <div class="no">4-3</div> <span class="ti">$Y$ 1회 역산 → 나머지 예측</span>
       <div class="chain">
-        <div class="dbox"><span class="lbl">① FE</span> 선형탄성 2D FE → 균열선 응력 $\sigma_{xx}(s)$ → $\sigma_e = \hat K/\sqrt{s}$ 로 <b>곡선맞춤</b> → 단위하중당 $(K/P)_i$ (원문 Fig. 10)</div>
+        <div class="dbox"><span class="lbl">① FE + 곡선맞춤</span> 선형탄성 2D FE → 균열선 개구응력 $\sigma_{xx}(s)$ → $\sigma_e = \hat K/\sqrt{s}$ 로 <b>곡선맞춤</b>(기울기 $-\tfrac12$ 확인) → 단위하중당 $(K/P)_i$ (원문 Fig. 10)</div>
+        <div class="darrow">▼<small>필수 환산 2개 (round 3)</small></div>
+        <div class="dbox"><span class="lbl">환산</span> ⓐ Fig. 10 횡축이 정규화 거리 $\bar s = s/\ell_0$ 이면 절편에 $\sqrt{\ell_0}$ 복원 ($\ell_0 = H$ 가 50·100 mm → 누락 시 형상군 사이 $\sqrt2$ 오차, <b>상쇄 안 됨</b>) &nbsp;·&nbsp; ⓑ 대칭 반모델이면 $P_{half} = P_{total}/2$ — FE 입력·$K/P$·보정·비교를 <b>같은 하중 규약</b>으로</div>
         <div class="darrow">▼</div>
-        <div class="dbox hl"><span class="lbl">② 보정 (Case 4 : $H{=}100$, $a/H{=}0.1$)</span> 시험 파괴하중 $P_{f,4}$ → $K_{f,4} = (K/P)_4\,P_{f,4}$ → $\;Y = K_{f,4}^2/E\;$ <b>(딱 1회)</b></div>
+        <div class="dbox hl"><span class="lbl">② 보정 (보정점 = $H{=}100$, $a/H{=}0.1$ 시편)</span> 시험 파괴하중 $P_{f}$ → $K_{f} = (K/P)\,P_{f}$ → $\;Y = K_{f}^2/E\;$ <b>(딱 1회)</b></div>
         <div class="darrow">▼<small>$Y$ 고정 = 재료상수</small></div>
-        <div class="dbox"><span class="lbl">③ 예측</span> 나머지 5 케이스 : $P_{\text{pred},i} = \dfrac{\sqrt{2\pi E\,Y}}{(K_I/P)_i} = \dfrac{\sqrt{E\,Y}}{(K/P)_i}$ → 시험값과 비교 (Fig. 11)</div>
+        <div class="dbox"><span class="lbl">③ 예측</span> 나머지 5 시편 : $P_{\text{pred},i} = \dfrac{\sqrt{2\pi E\,Y}}{(K_I/P)_i} = \dfrac{\sqrt{E\,Y}}{(K/P)_i}$ → 시험값과 비교 (Fig. 11)</div>
       </div>
       <ul>
-        <li>Case 4 는 보정점이라 이론=실험 자동 일치. <b>진짜 검증은 나머지 5개.</b></li>
-        <li>Case 5 ($H{=}100$, $a/H{=}0.3$) 만 유일하게 크게 어긋난다 — 저자도 그 시편의 추가 정보가 없어 원인 미규명.</li>
+        <li>보정점 시편은 이론=실험 자동 일치. <b>진짜 검증은 나머지 5개.</b></li>
+        <li>$H{=}100$, $a/H{=}0.3$ 시편만 유일하게 크게 어긋난다 — 저자도 그 시편의 추가 정보가 없어 원인 미규명.</li>
       </ul>
-      <div class="note"><b>왜 Case 4 를 보정점으로?</b> $H$ 최대 + $a/H$ 최소 → 리거먼트 최장 → 파괴진행영역(FPZ)의 상대 크기 최소, $K$-지배영역 최대 → 곡선맞춤 $K$ 신뢰도 최고 (원문 §4.3).</div>
+      <div class="note"><b>보정점을 왜 이 시편으로?</b> 원문은 이 시편을 보정에 썼다는 <b>사실만</b> 밝히고 선정 이유는 설명하지 않는다. 리거먼트 $H-a = 90$ mm 가 6조합 중 가장 길다는 것은 기하학적 사실이나, 그것이 곡선맞춤 $K$ 의 최적성을 보장한다는 근거는 원문에 없다. (프로젝트 내부에서 이 시편을 "Case 4", 이상치를 "Case 5" 로 부르지만 원문 Fig. 11 은 그 번호를 인쇄하지 않는다.)</div>
     </div>
     <div class="item">
       <div class="no">4-4</div> <span class="ti">재현 시 확정해야 할 열린 항목</span>
@@ -593,7 +605,7 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
       <ul>
         <li>취성재료 파괴는 국소점에서 <b>두 조건(응력 + 응력구배)이 동시에</b> 만족될 때 개시된다.</li>
         <li>응력구배조건에 균열 근접장을 넣으면 거리가 소거되어 <b>$Y = w_f = \kappa_{\text{fail}}$ = 재료상수</b>가 남는다 → 결함 유형에 관계없이 <b>같은 기준</b>을 쓸 수 있다.</li>
-        <li>경화 시멘트(균열)·알루미늄(홀)·PLA(홀)·유리섬유 복합재(홀)에서 <b>시험 1개로 $Y$ 를 정하면 나머지를 예측</b>할 수 있음을 저자가 보고했다.</li>
+        <li>구배조건이 지배하는 사례(경화 시멘트 균열)에서는 <b>시험 1개로 $Y$ 를 역산해 나머지 시편을 예측</b>했고, 복합재는 6 mm 홀 시편들의 <b>평균</b>에 맞춘 섬유 파괴값을 재사용했다. 반면 <b>알루미늄은 응력조건이 지배</b>해 $Y$ 보정이 필요 없었다. 모든 경우에서 예측이 실험과 잘 맞았다고 <b>저자는 보고</b>한다.</li>
       </ul>
     </div>
     <div class="item">
@@ -604,8 +616,8 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
           <tr><td class="l">도그본</td><td class="l">결함 없음</td><td>취성</td><td>응력조건</td></tr>
           <tr><td class="l">시멘트 페이스트</td><td class="l">균열</td><td>취성</td><td><b>응력구배조건</b></td></tr>
           <tr><td class="l">알루미늄</td><td class="l">홀·슬릿</td><td>연성</td><td>응력조건 (소성으로 구배 급감)</td></tr>
-          <tr><td class="l">PLA</td><td class="l">홀 (3→6 mm)</td><td>직교이방성</td><td>두 임계곡선의 교차 위치가 전이</td></tr>
-          <tr><td class="l">유리섬유 복합재</td><td class="l">홀</td><td>준취성</td><td>섬유 파괴 기준 (다중스케일)</td></tr>
+          <tr><td class="l">PLA</td><td class="l">홀 (3→6 mm)</td><td>직교이방성</td><td class="l">최초 파괴 위치가 홀 크기에 따라 이동</td></tr>
+          <tr><td class="l">유리섬유 복합재 (이방성 적층)</td><td class="l">홀</td><td>준취성</td><td>섬유 파괴 기준 (다중스케일, ② 포함)</td></tr>
         </tbody>
       </table>
     </div>
@@ -627,9 +639,9 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
     <thead><tr><th>장</th><th>제목</th><th>핵심 메시지</th></tr></thead>
     <tbody>
       <tr><td>1-1</td><td class="l">통합 기준의 정의</td><td class="l">국소점 두 조건 · 결함 유형 무관 · 시험 최소</td></tr>
-      <tr><td>2-1</td><td class="l">두 조건부 파괴 기준</td><td class="l">응력조건 + <b>응력구배조건(에너지밀도 ÷ 식는 속도 ≥ Y)</b> · AND</td></tr>
+      <tr><td>2-1</td><td class="l">두 조건부 파괴 기준</td><td class="l">응력조건 + <b>응력구배조건($\sigma_e^3 \ge 2EY\,|d\sigma_e/ds|$)</b> · AND</td></tr>
       <tr><td>3-1</td><td class="l">노치별로 갈라져 있던 이론들의 통합</td><td class="l"><b>노치 = 형상 급변부</b> · LEFM/TCD/CZM → 하나 · 거리 소거로 $Y$ 재료상수</td></tr>
-      <tr><td>4-1</td><td class="l">경화 시멘트 페이스트 3점 굽힘 균열</td><td class="l">취성 + 균열이라 <b>응력구배조건 단독 검증</b> · Karihaloo 데이터 · $Y$ 1회 역산 · FE까지</td></tr>
+      <tr><td>4-1</td><td class="l">경화 시멘트 페이스트 3점 굽힘 균열</td><td class="l">취성 + 균열이라 <b>응력구배조건이 파괴하중 지배</b> · Karihaloo 데이터 · $Y$ 1회 역산 · $\sqrt{\ell_0}$·$P/2$ 환산 · FE까지</td></tr>
       <tr><td>5-1</td><td class="l">결론</td><td class="l">두 조건 AND · 실질 지배조건은 재료별 · 교차검증 단서</td></tr>
     </tbody>
   </table>
@@ -638,7 +650,7 @@ $$ Y = \frac{K^{2}}{E} \qquad$$ <span class="n">선3 식(4) 파괴값</span>
 
 <footer>
 바탕 : 선행연구 1·3 문단 단위 완역(2026-09-01·02) · 참고문헌 통독(round 7) · 식 검증(round 1·3·5). 본 노트는 그 결과를 <b>이론의 흐름</b>과 <b>발표 목차</b>로 재편집한 것이며 새 번역·새 실험 분석은 없다.<br>
-검증 : Claude ↔ Codex 교차검증 (규칙 #20) round 8.<br>
+검증 : Claude ↔ Codex 교차검증 (규칙 #20) round 8 — Codex blind 가 원 PDF(선1·선2·Polymers·선3·Irwin·Sapora)·영한대역·기존 DECISION 에 대조. 정정 필수 6건 + 보완 12건 반영(`DECISION_round8_이론흐름발표목차.md`). 주요: 선2 홀 지수 $R^{-1/3}$→재유도 $R^{-1/2}$ 불일치 명시, "선2·Polymers 등방성" 서술 삭제(선2는 이방성 적층재 이미 다룸), Polymers 식(13) 위치 정정, Case 4 선정 이유(FPZ 논거) 삭제(원문에 없음), $\sqrt{\ell_0}$·$P/2$ 환산 복원, 그림 4 "2π 흡수" 문구 정정.<br>
 원 논문 : Kwon, <i>J. Press. Vessel Technol.</i> <b>2021</b>, 143, 064503 · Kwon·Diaz-Colon·DeFisher, <i>ibid.</i> <b>2022</b>, 144, 051506 · Kwon, <i>Polymers</i> <b>2022</b>, 14, 2481 · Kwon·Markoff·DeFisher, <i>Materials</i> <b>2024</b>, 17, 569. 시멘트 페이스트 시험 원출처 : Karihaloo·Abdalla·Xiao, <i>Eng. Fract. Mech.</i> <b>2003</b>, 70, 979–993.
 </footer>
 
