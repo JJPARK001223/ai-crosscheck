@@ -120,7 +120,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="meta">
     대상 논문 : <b>선행연구 3</b> — Kwon·Markoff·DeFisher, <i>Unified Failure Criterion Based on Stress and Stress Gradient Conditions</i>, <i>Materials</i> <b>2024</b>, 17, 569.<br>
     계보 : Griffith 1921 · Irwin 1957 → 선행연구 1 (Kwon, <i>JPVT</i> 2021, 143, 064503) → 선행연구 2 (Kwon·Diaz-Colon·DeFisher, <i>JPVT</i> 2022, 144, 051506) · Kwon, <i>Polymers</i> 2022, 14, 2481 → 선행연구 3 (2024).<br>
-    구성 : 사용자 확정 4장 골격 + Claude 제안(결론 장 복원·1장 재명명) = <b>5장</b>. 각 절에 "쉽게 말하면" 상자.<br>
+    구성 : 사용자 확정 4장 골격 + Claude 제안(결론 장 복원·1장 재명명) = <b>5장</b>. 주요 절에 "쉽게 말하면" 상자.<br>
     바탕 : round 8 검증본(`선행연구_이론흐름_발표목차.html`)을 5장 목차로 재편집. 새 번역·새 실험분석 없음.<br>
     검증 : Claude ↔ Codex 교차검증 (규칙 #20) round 9.  ·  작성일 2026-09-07
   </div>
@@ -130,7 +130,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <h4>이 문서를 어떻게 쓰나</h4>
   <ul style="margin:6px 0 0">
     <li>각 장(1~5)은 발표 슬라이드의 <b>한 묶음</b>에 해당한다. <span class="ti"></span> 장 안의 <b>N-1, N-2…</b> 는 슬라이드 순서 제안.</li>
-    <li>초록 <b>"쉽게 말하면"</b> 상자 = 그 절을 청중에게 <b>한두 문장으로</b> 풀어 말하는 방식. 발표 대본의 도입부로 그대로 써도 된다.</li>
+    <li>초록 <b>"쉽게 말하면"</b> 상자 = 주요 절을 청중에게 <b>한두 문장으로</b> 풀어 말하는 방식. 발표 대본 도입부의 초안으로 쓰되, 회색 "주의" 상자의 단서를 함께 반영할 것.</li>
     <li>회색 <b>"발표 포인트 / 주의"</b> 상자 = 질문에 대비하거나, 교차검증에서 바로잡은 지점(발표에서 과장하면 안 되는 것).</li>
   </ul>
 </div>
@@ -172,7 +172,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     </div>
 
     <div class="item">
-      <div class="no">1-1</div> <span class="ti">문제 정의</span>
+      <div class="no">ⓐ</div> <span class="ti">문제 정의</span>
       <ul>
         <li>취성재료는 파괴 직전까지 <b>선형탄성</b>(힘과 변형이 비례)이라, 파괴 시점 자체는 비교적 명확하다.</li>
         <li>그런데도 부재의 극한하중은 재료 강도만으로 정해지지 않는다 — <b>형상 급변에 의한 응력집중</b>과 <b>의도치 않은 균열</b>이 크게 좌우한다.</li>
@@ -181,19 +181,17 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     </div>
 
     <div class="item">
-      <div class="no">1-2</div> <span class="ti">그동안은 결함 종류마다 다른 이론을 썼다</span>
+      <div class="no">ⓑ</div> <span class="ti">그동안은 결함 종류마다 다른 이론을 썼다</span>
       <ul>
-        <li>날카로운 <b>균열</b> → 선형탄성 파괴역학 (LEFM) : $K$, $G$</li>
-        <li>둔한 <b>노치·홀</b> → 임계거리 이론(TCD) · 유한파괴역학(FFM) : 재료 특성길이 $L$ 이나 유한 진전량 $\Delta$ 를 <b>추가로</b> 도입</li>
-        <li>일반 <b>파괴 예상부</b> → 응집영역모델 (CZM) : 트랙션–분리 법칙</li>
-        <li>노치 없는 <b>다축 하중</b> → Tsai–Wu·Podgórski 등 강도 기준 : 파괴 포락면</li>
+        <li>날카로운 <b>균열</b> → $K$·$G$ (파괴역학) · 둔한 <b>노치·홀</b> → 재료 특성길이 $L$·유한 진전량 $\Delta$ (TCD·FFM) · 일반 <b>파괴부</b> → 트랙션–분리 법칙 (CZM) · <b>다축 하중</b> → 파괴 포락면 (강도 기준).</li>
+        <li>접근마다 <b>쓰는 양(量)이 달라</b> 한 부품에 구멍과 균열이 함께 있으면 다루기 번거로웠다 — 자세한 비교는 <b>3-2</b>.</li>
       </ul>
-      <div class="note"><b>발표 포인트</b> — 이 표(→ <b>3-2</b>에서 자세히)의 핵심은 "어느 이론이 옳고 그르냐"가 아니라, <b>결함마다 쓰는 언어(특성량)가 달라</b> 한 부품을 일관되게 다루기 불편했다는 점이다.</div>
+      <div class="note"><b>발표 포인트</b> — 핵심은 "어느 이론이 옳고 그르냐"가 아니라 <b>언어가 통일돼 있지 않았다</b>는 점. (배타적 적용 구분은 아님 — 예컨대 TCD 는 균열에도 쓰인다.)</div>
     </div>
 
     <div class="keypoint">
       국소 응력이 $\sigma_f$ 를 넘는 것만으로는 부족하고, 그 국소점 <b>주변 재료가 파괴가 지나갈 "경로"를 내주어야</b> 한다.
-      "얼마나 세게 눌리나"(응력)뿐 아니라 <b>"그 힘이 옆으로 얼마나 급하게 약해지나"</b>(응력구배)를 함께 봐야 한다는 것 — 이것이 이 논문의 출발점이다.
+      "얼마나 세게 눌리나"(응력)뿐 아니라 <b>"그 힘이 예상 파괴 경로를 따라 얼마나 급하게 약해지나"</b>(응력구배)를 함께 봐야 한다는 것 — 이것이 이 논문의 출발점이다.
     </div>
   </div>
 </div>
@@ -250,7 +248,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
     </figure>
 
     <table>
-      <caption>표 1. 발표에 나오는 기호가 어디서 왔는지. (자세한 정의는 해당 장에서.)</caption>
+      <caption>표 1. 발표에 나오는 기호를 현대 표기로 정리한 관련 이론의 계보. (각 원저자가 그 기호를 처음 썼다는 고증이 아니라 개념의 출처. 자세한 정의는 해당 장.) 표 안 $K$ 는 표준 $K_I$ 이며, 3-3의 $K=K_I/\sqrt{2\pi}$ 와 정규화가 다르다.</caption>
       <thead><tr><th>기호</th><th>뜻</th><th>어디서 왔나</th><th>단위</th></tr></thead>
       <tbody>
         <tr><td>$K_t$</td><td class="l">응력집중계수 (형상에 의한 응력 증폭비)</td><td class="l">Kirsch 1898 (원형 홀 = 3)</td><td>무차원</td></tr>
@@ -259,11 +257,11 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
         <tr><td>$K_{IC}$</td><td class="l">파괴인성 (표준상 평면변형)</td><td class="l">Irwin 계열, ASTM 표준</td><td>$\mathrm{Pa\sqrt{m}}$</td></tr>
         <tr><td>$L,\ \Delta$</td><td class="l">임계거리 / 유한 진전량</td><td class="l">TCD (Neuber 1958~) / FFM (Sapora 2018)</td><td>m</td></tr>
         <tr><td>$\sigma_f$</td><td class="l">도그본 파괴강도 (순수 재료 강도)</td><td class="l">표준 인장시험</td><td>Pa</td></tr>
-        <tr><td>$s$</td><td class="l">파괴 경로 좌표 (국소점에서 나가는 방향)</td><td class="l">선행연구 1, 2021</td><td>m</td></tr>
+        <tr><td>$s$</td><td class="l">파괴 경로를 따른 <b>길이 좌표</b> (방향 자체가 아님)</td><td class="l">선행연구 1, 2021</td><td>m</td></tr>
         <tr><td>$w_f = \kappa_{\text{fail}} = Y$</td><td class="l">파괴값 — 응력구배조건의 임계값</td><td class="l">선1 (2021) / 선2·Polymers (2022) / 선3 (2024)</td><td>$\mathrm{Pa\cdot m = J/m^2}$</td></tr>
       </tbody>
     </table>
-    <div class="note"><b>발표 포인트</b> — $w_f,\ \kappa_{\text{fail}},\ Y$ 는 <b>이름만 다른 같은 재료상수</b>다(→ 3-3 표 2). 논문을 옮겨 읽을 때 헷갈리지 않도록 첫머리에 못 박아 둘 것.</div>
+    <div class="note"><b>발표 포인트</b> — $w_f,\ \kappa_{\text{fail}},\ Y$ 는 <b>이름만 다른 같은 재료상수</b>다(→ 3-3 표 3). 논문을 옮겨 읽을 때 헷갈리지 않도록 첫머리에 못 박아 둘 것.</div>
 
     <div class="note" style="background:#fdf4ec;border:1px solid #f0cdb5"><b>발표 목적 한 줄</b> — "결함 종류마다 갈라져 있던 취성 파괴 예측을, <b>한 점에서 보는 두 조건</b>으로 통합한 기준을 소개하고, 경화 시멘트 페이스트 3점굽힘 사례로 그 적용을 따라간다. 그리고 이 6 케이스를 <b>2D FE로 재현</b>하는 것이 내 과제다."</div>
   </div>
@@ -280,8 +278,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
     <div class="plain">
       취성재료가 부러지려면 어떤 한 점에서 <b>두 가지가 동시에</b> 성립해야 한다.
-      ① 그 점의 힘이 재료 강도만큼 세다(<b>응력조건</b>). ② 그 힘이 옆으로 <b>너무 급하게</b> 약해지지 않는다(<b>응력구배조건</b>).
-      하나만 성립하면 부러지지 않는다. 이게 이 발표의 전부라고 해도 된다 — 나머지는 이 두 줄을 여러 재료에 적용해 본 것이다.
+      ① 그 점의 힘이 재료 강도만큼 세다(<b>응력조건</b>). ② 그 힘이 예상 파괴 경로를 따라 <b>너무 급하게</b> 약해지지 않는다(<b>응력구배조건</b>).
+      하나만 성립하면 부러지지 않는다. 이게 이 발표의 큰 줄기다 — 나머지는 이 두 줄을 여러 재료에 적용해 본 것이다.
     </div>
 
     <div class="eq">$$ \text{파괴 개시} \iff \exists\ \text{국소점} : \ \big[\ \sigma_e \geq \sigma_f\ \big]\ \textbf{AND}\ \big[\ \sigma_e^{3} \geq 2EY\,|d\sigma_e/ds|\ \big] $$</div>
@@ -300,9 +298,9 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       <div class="no">2-2</div> <span class="ti">응력구배조건 — <b>이 발표의 핵심, 설명 슬라이드</b></span>
 
       <div class="plain">
-        "그 점의 힘이 옆으로 얼마나 빨리 약해지나"를 본다. 힘이 <b>천천히</b> 약해지면(넓게 퍼져 있으면) 파괴가 앞으로 뚫고 나갈 "재료"가 충분히 있어 균열이 진행한다.
-        힘이 <b>급격히</b> 약해지면(한 점에만 뾰족하게 몰려 있으면) 바로 옆은 이미 약한 힘이라, 그 점만 세게 눌려도 균열이 앞으로 못 나간다.
-        날카로운 노치일수록 힘이 뾰족하게 몰리므로, 응력값 자체는 커도 이 조건이 파괴를 막는다.
+        응력은 "그 점이 단위면적당 얼마나 세게 눌리나", 구배는 "예상 파괴 경로 $s$ 를 따라 그 응력이 얼마나 빠르게 변하나"이다.
+        <b>같은 국소 응력·같은 $E$</b> 로 견주면, 응력이 <b>완만하게</b> 변할수록(넓게 퍼져 있을수록) 값 $Q=\sigma_e^3/(2E\,|d\sigma_e/ds|)$ 가 커져 구배조건을 만족하기 <b>쉽고</b>, <b>가파를수록</b>(한 점에 뾰족하게 몰릴수록) $Q$ 가 작아 만족하기 <b>어렵다</b>.
+        단 구배만 비교해서 균열이 자란다/멈춘다고 판정할 수는 없다 — 하중을 키우면 응력·구배가 함께 커지고 $Q$ 는 그보다 빠르게 커져 결국 임계값에 닿는다.
       </div>
 
       <div class="eq">$$ \underbrace{\frac{\sigma_e^{2}}{2E}}_{\text{품은 에너지밀도}} \Big/ \underbrace{\frac{1}{\sigma_e}\left|\frac{d\sigma_e}{ds}\right|}_{\text{응력이 식는 속도(정규화 구배)}} \;\geq\; Y \qquad$$ <span class="n">선1 식(2)</span></div>
@@ -316,15 +314,14 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       </ul>
 
       <div class="keypoint">
-        <b>물리적 의미를 정확히</b> — 식(3)의 좌변은 $\propto \sigma_e^3/|d\sigma_e/ds|$ 이므로 <b>응력과 구배를 함께</b> 본다.
-        <b>같은 국소 응력·같은 $E$</b> 에서 비교하면, 구배가 가파를수록(= 균열·날카로운 노치 선단) 이 값이 작아 $Y$ 에 못 미치고 <b>파괴가 개시되지 않는다</b>.
-        균열 선단에서는 응력과 구배가 <b>함께 발산</b>하지만 그 비(比)는 유한해 $Y$ 로 수렴한다. "가파르면 무조건 파괴 X"가 아니라 "같은 응력이면"이 전제.
+        <b>물리적 의미를 정확히</b> — 식(3)의 좌변 $Q=\dfrac{\sigma_e^3}{2E}\left|\dfrac{ds}{d\sigma_e}\right|$ 는 <b>응력과 구배를 함께</b> 본다. $Q_2/Q_1 = (\sigma_2/\sigma_1)^3(E_1/E_2)(|\sigma_1'|/|\sigma_2'|)$ 이므로 구배만으로는 대소를 못 정한다 — <b>같은 국소 응력·같은 $E$</b> 라는 전제가 있어야 "구배가 가파를수록 $Q$ 가 작다"가 성립한다.
+        균열 선단에서 $\sigma_e/|d\sigma_e/ds|$ 자체는 $2s \to 0$ 이지만, 조합 $Q$ 는 <b>임의 하중에서</b> $K_I^2/(2\pi E)$ 로 유한하고 <b>임계 하중에서</b> 이 값이 $Y$ 와 같아진다(3-3에서 유도).
       </div>
 
       <figure>
       <svg viewBox="0 0 860 290" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
         <rect width="860" height="290" fill="#fff"/>
-        <text x="215" y="24" font-size="13" text-anchor="middle" font-weight="800" fill="#1e8449">완만한 구배 → 파괴 O</text>
+        <text x="215" y="24" font-size="13" text-anchor="middle" font-weight="800" fill="#1e8449">완만한 구배 → 구배조건 만족 쉬움</text>
         <line x1="60" y1="240" x2="370" y2="240" stroke="#1a2230" stroke-width="1.4"/>
         <line x1="60" y1="240" x2="60" y2="45" stroke="#1a2230" stroke-width="1.4"/>
         <path d="M 60,90 C 160,110 280,150 370,170" fill="none" stroke="#1e8449" stroke-width="2.6"/>
@@ -332,8 +329,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
         <line x1="60" y1="195" x2="370" y2="195" stroke="#b9770e" stroke-width="1.2" stroke-dasharray="5 4"/>
         <text x="366" y="189" font-size="10" text-anchor="end" fill="#b9770e">파괴강도 sigma_f</text>
         <text x="95" y="225" font-size="10" fill="#1e8449">국소점서 |d sigma/ds| 작음</text>
-        <text x="95" y="255" font-size="10" fill="#1e8449">식(3) 좌변 큼 → 파괴 개시</text>
-        <text x="645" y="24" font-size="13" text-anchor="middle" font-weight="800" fill="#c0392b">가파른 구배 → 파괴 X</text>
+        <text x="95" y="255" font-size="10" fill="#1e8449">식(3) 좌변 Q 큼 → 구배조건 만족 쉬움</text>
+        <text x="645" y="24" font-size="13" text-anchor="middle" font-weight="800" fill="#c0392b">가파른 구배 → 구배조건 만족 어려움</text>
         <line x1="490" y1="240" x2="800" y2="240" stroke="#1a2230" stroke-width="1.4"/>
         <line x1="490" y1="240" x2="490" y2="45" stroke="#1a2230" stroke-width="1.4"/>
         <path d="M 490,55 C 505,150 530,205 600,225 C 680,238 760,240 800,240" fill="none" stroke="#c0392b" stroke-width="2.6"/>
@@ -341,10 +338,10 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
         <line x1="490" y1="195" x2="800" y2="195" stroke="#b9770e" stroke-width="1.2" stroke-dasharray="5 4"/>
         <text x="796" y="189" font-size="10" text-anchor="end" fill="#b9770e">파괴강도 sigma_f</text>
         <text x="545" y="95" font-size="10" fill="#c0392b">응력은 더 높지만</text>
-        <text x="545" y="255" font-size="10" fill="#c0392b">|d sigma/ds| 큼 → 식(3) 좌변 작음 → 파괴 안 함</text>
+        <text x="545" y="255" font-size="10" fill="#c0392b">|d sigma/ds| 큼 → Q 작음 → 만족 어려움 (같은 sigma_e, E 전제)</text>
         <text x="430" y="282" font-size="11" text-anchor="middle" fill="#5b6572">가로축 = 파괴 경로 s 를 따른 거리 · 세로축 = 국소 응력 · 점 = 판정하는 국소점</text>
       </svg>
-      <figcaption><b>그림 2. 응력구배조건의 직관 (정성 도식).</b> 판정하는 것은 한 <b>국소점</b>에서의 값 $\dfrac{\sigma_e^{3}}{2E}\left|\dfrac{ds}{d\sigma_e}\right|$ 이다. 왼쪽·오른쪽 모두 응력조건($\sigma_e \ge \sigma_f$)은 만족한다고 가정한 예시로, <b>천천히 식으면</b>(왼쪽) 이 값이 커 $Y$ 를 넘고 <b>가파르게 식으면</b>(오른쪽) 작아 파괴가 개시되지 않는다. 두 곡선의 국소점 응력·$E$·임계값을 지정하지 않은 개념도이며, 곡선 아래 넓이가 아니라 <b>한 점에서의 비(比)</b>임에 유의.</figcaption>
+      <figcaption><b>그림 2. 응력구배조건의 직관 (정성 도식).</b> 판정하는 것은 한 <b>국소점</b>에서의 값 $Q=\dfrac{\sigma_e^{3}}{2E}\left|\dfrac{ds}{d\sigma_e}\right|$ 이다. <b>같은 국소점 응력·같은 $E$·같은 $Y$</b> 를 전제한 예시로, <b>완만하게 변하면</b>(왼쪽) $Q$ 가 커 구배조건을 만족하기 쉽고 <b>가파르게 변하면</b>(오른쪽) $Q$ 가 작아 만족하기 어렵다. 곡선 아래 넓이가 아니라 <b>한 점에서의 비(比)</b>이며, 이 도식만으로 파괴 여부를 단정하지 않는다(응력조건·하중 크기와 함께 봐야 함).</figcaption>
       </figure>
 
       <div class="note"><b>주의(교차검증)</b> — 원문 선3 식(2)에는 <b>절댓값이 빠져 있다</b>. 균열 전방에서 $d\sigma_e/ds < 0$ 이라 우변이 음수가 되어 식(4) 유도가 성립하지 않으므로, 선행연구 1처럼 $|d\sigma_e/ds|$ 로 읽어야 한다(원문 인쇄 결함). 발표 식엔 절댓값을 넣을 것.</div>
@@ -354,11 +351,11 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       <div class="no">2-3</div> <span class="ti">왜 "둘 다(AND)"인가</span>
       <ul>
         <li>같은 국소점에서 <b>동시에</b> 참일 때만 파괴 개시. 하나만 참이면 파괴하지 않는다. (AND 게이트 도식으로 나타낼 것.)</li>
-        <li>두 조건은 실제 파괴 순간엔 늘 함께 만족되지만, <b>실질적으로 파괴하중을 결정하는 쪽</b>은 재료·형상에 따라 하나다 :
+        <li>실제 파괴 순간엔 두 조건이 함께 만족되지만, <b>임계하중을 주로 정하는 쪽</b>은 사례에 따라 다르다(두 임계하중이 같으면 둘 다 활성) :
           <ul>
             <li>도그본(결함 없음) → 구배 = 0 → <b>응력조건만</b></li>
             <li>날카로운 균열 → 선단 응력 무한대 → 응력조건 자동 만족 → <b>응력구배조건이 결정</b></li>
-            <li>연성 금속의 홀 → 소성으로 구배가 급감 → <b>응력조건이 결정</b></li>
+            <li>이 논문의 연성 알루미늄 홀·슬릿 → 낮은 소성 접선계수로 구배가 급감 → <b>응력조건이 결정</b></li>
             <li>유한판 홀 → 둘 다 따져야 (FE로 구배 계산)</li>
           </ul>
         </li>
@@ -402,8 +399,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ab">
 
     <div class="plain">
-      균열엔 "응력확대계수 $K$", 둔한 노치·홀엔 "재료 특성길이 $L$"이나 "유한 진전량 $\Delta$", 일반 파괴부엔 "트랙션–분리 법칙" —
-      각자 다른 <b>양(量)</b>과 다른 <b>언어</b>를 쓴다. 한 부품에 구멍도 있고 균열도 생기면, 이론을 바꿔 가며 계산해야 했다. 이게 불편했다.
+      균열엔 "응력확대계수 $K$·$G$", 둔한 노치·홀엔 "재료 특성길이 $L$"이나 "유한 진전량 $\Delta$", 일반 파괴부엔 "트랙션–분리 법칙" —
+      기존 접근은 각자 다른 <b>양(量)</b>으로 파괴를 표현한다(예컨대 임계거리 이론은 균열·노치에 모두 쓰인다). Kwon 은 이를 <b>국소점의 두 조건</b>으로 다루는 <b>별도의 틀</b>을 제안했다 — 기존 이론들을 대수적으로 포함·대체한다는 뜻은 아니다.
     </div>
 
     <table>
@@ -462,9 +459,9 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ab">
 
     <div class="plain">
-      응력구배조건에 <b>균열 근처의 응력 공식</b>을 대입하면, "선단에서 얼마나 떨어진 점을 보느냐"($s$ 또는 $r$)가 <b>식에서 완전히 사라진다</b>.
-      남는 것은 재료와 $K$ 뿐인 깔끔한 관계 $Y = K^2/E$. 그래서 "한 점에서 보는 기준"인데도 균열 문제에 통하고,
-      <b>시험 하나로 $Y$ 값을 정하면 다른 형상의 파괴하중을 예측</b>할 수 있다. 이것이 "통합"의 수학적 근거다.
+      응력구배조건에 <b>균열 근처의 응력 공식</b>을 대입하면, "선단에서 얼마나 떨어진 점을 보느냐"라는 <b>관측 거리</b>($s$ 또는 $r$)가 식에서 사라지고 $Q = K_I^2/(2\pi E)$ 만 남는다.
+      임계 하중에서 이것이 $Y = K^2/E$ 와 같아진다 — 재료·조건이 같으면 일정한 값. 그래서 "한 점에서 보는 기준"인데도 균열 문제에 통하고, <b>같은 재료·조건에서 시험 하나로 $Y$ 를 정하면 다른 형상의 파괴하중을 예측</b>할 수 있다.
+      이것은 <b>균열 극한과의 정합성</b>을 보이는 것이지, 모든 노치·재료·모드의 통합을 증명하는 것은 아니다. ($K_I$ 자체는 여전히 하중·균열 크기·형상에 의존한다.)
     </div>
 
     <div class="item">
@@ -507,7 +504,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       <h4>⚠ 교차검증 정정 — "$Y \equiv G_c$" 는 수치적으로 부정확 (round 1·3·5·8)</h4>
       <ul style="margin:4px 0 0">
         <li>선3 식(3) $\sigma_e = K/\sqrt{s}$ 에는 <b>$2\pi$ 가 없다</b>(표준 근접장은 $\sigma = K_I/\sqrt{2\pi r}$). 같은 물리장으로 해석하면 여기서의 $K = K_I/\sqrt{2\pi}$ — 단 원문은 이 대응을 명시하지 않았다.</li>
-        <li>파괴 개시 임계상태에서 &nbsp; $Y = \dfrac{G_c}{2\pi}$ (평면응력), &nbsp; $Y = \dfrac{G_c}{2\pi(1-\nu^2)}$ (평면변형). 이 관계는 <b>Polymers 식(13)이 직접 지지</b>한다. 차원·비례는 $G_c$ 와 같지만 문헌 $G_c$ 값을 $Y$ 자리에 그대로 넣으면 <b>$Y$ 입력이 평면응력 기준 약 $2\pi \approx 6.28$ 배</b> 부풀고, 그 결과 선형탄성 예측 <b>하중은 약 $\sqrt{2\pi} \approx 2.51$ 배</b> 어긋난다. <b>문헌 $G_c$ 직접 대입 금지.</b></li>
+        <li>파괴 개시 임계상태에서 &nbsp; $Y = \dfrac{G_c}{2\pi}$ (평면응력) — 이 식은 <b>Polymers §3 p.5 식(13)이 직접 지지</b>(등방·Mode I·평면응력 한정). 평면변형 $Y = \dfrac{G_c}{2\pi(1-\nu^2)}$ 은 $G = K_I^2/E'$ 를 연결한 <b>독립 환산</b>이며 원문에 그대로 인쇄된 것은 아니다. 차원·비례는 $G_c$ 와 같지만 문헌 $G_c$ 값을 $Y$ 자리에 그대로 넣으면 <b>$Y$ 입력이 평면응력 기준 약 $2\pi \approx 6.28$ 배</b> 부풀고, 선형탄성 예측 <b>하중은 약 $\sqrt{2\pi} \approx 2.51$ 배</b> 어긋난다. <b>문헌 $G_c$ 직접 대입 금지.</b></li>
         <li><b>이 논문처럼 동일 정의로 시험 1개에서 $Y$ 를 역산해 같은 계열 예측식에 재사용하면</b> 공통 정규화 상수가 상쇄되어 <b>예측 결과에는 영향이 없다</b>(FE 모델·재료 불확실성까지 무해하다는 뜻은 아님).</li>
         <li>발표에서는 "$Y$ 는 임계 에너지방출률과 <b>같은 종류의 양</b>"이라고 말하고, "$\equiv G_c$" 등식은 쓰지 말 것.</li>
       </ul>
@@ -554,9 +551,9 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ab">
 
     <div class="plain">
-      이 기준을 시험할 재료로 <b>굳은 시멘트 반죽(경화 시멘트 페이스트)</b>의 <b>노치 낸 보를 3점에서 눌러 부러뜨리는</b> 실험을 골랐다.
-      이유는 넷: ① 이 재료는 부러질 때까지 거의 선형탄성이라 기준의 전제에 잘 맞고, ② 결함이 "균열"이라 <b>응력구배조건이 파괴하중을 지배</b>해 그 조건을 집중적으로 볼 수 있고,
-      ③ 남이 이미 해 둔 <b>믿을 만한 시험 데이터</b>(Karihaloo 2003)가 있어 새 실험 없이 예측력만 검증하고, ④ 크기를 바꾼 시편들이라 "작을수록 강하다"는 치수효과를 볼 수 있다.
+      이 기준을 시험할 사례로 <b>굳은 시멘트 반죽(경화 시멘트 페이스트)</b> 노치 보를 <b>두 점에서 받치고 중앙 한 점에서 눌러</b> 부러뜨리는 실험을 골랐다. 이유는:
+      ① 저자가 이 재료를 <b>취성재로 취급하고 선형탄성으로 해석</b>했고, ② 결함이 "균열"이라 <b>응력구배조건이 파괴하중을 지배</b>하며,
+      ③ 이미 공개된 시험 데이터(Karihaloo 2003)가 있어 보정에 쓰지 않은 케이스와 비교할 수 있고, ④ <b>[발표자 해석]</b> 크기를 바꾼 시편이라 치수효과 맥락에서 흥미롭다. (①③④의 단서는 아래 항목 참조.)
     </div>
 
     <div class="item">
@@ -585,7 +582,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       <div class="no">4-2</div> <span class="ti">기하와 물성</span>
       <ul>
         <li>$L \times H \times W$ 3점굽힘 보. <b>$W = 100$ mm 고정</b>, <b>$L/H = 4$ 고정</b>, $E = 20.8$ GPa (원문 §4.1 명시). 노치는 길이 중앙·하단, 폭 전체 관통.</li>
-        <li>6 케이스 = 높이 $H \in \{50,\,100\}$ mm × 균열비 $a/H \in \{0.1,\,0.3,\,0.5\}$ (Fig. 11 판독 — Karihaloo 원 실험 노치비 0.05/0.10/0.30/0.50 에 포함). $W$ 를 고정하고 $H$ 만 바꾸므로 완전한 3D 기하학적 상사는 아니다.</li>
+        <li>6 <b>형상 케이스</b> = 높이 $H \in \{50,\,100\}$ mm × 균열비 $a/H \in \{0.1,\,0.3,\,0.5\}$ (Fig. 11 판독 — Karihaloo 2003 시험계열의 노치비 범위 내로 보이나 원 표 확인 전). Fig. 11 로는 형상당 반복 시험체 수를 확정할 수 없다. $W$ 를 고정하고 $H$ 만 바꾸므로 완전한 3D 기하학적 상사는 아니다.</li>
         <li>3D 절반 모델에서 폭 방향 응력변화가 <b>매우 유사</b>하여 2D 해석이 허용된다는 것이 <b>저자의 보고</b> → <b>2D 해석</b>(4절점, 약 10,000 요소)으로 전환.</li>
       </ul>
       <div class="note"><b>주의</b> — Fig. 11 세로축은 <b>파괴하중 $P$ (kN)</b> 이지 공칭 휨강도 $\sigma_N = 3PS/(2WH^2)$ 가 아니다. $a/H$ 변화는 결함 상대크기 효과도 포함한다.</div>
@@ -599,7 +596,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
 
     <div class="plain">
       먼저 FE로 "단위 하중이 만드는 $K$"를 각 시편에 대해 구한다. 그다음 <b>시편 하나</b>의 실제 파괴하중을 넣어 재료상수 $Y$ 를 <b>딱 한 번</b> 계산한다.
-      $Y$ 가 정해지면 나머지 5개 시편의 파괴하중은 계산만으로 나온다. 그 예측이 실제 시험값과 맞는지가 <b>진짜 검증</b>이다(보정에 쓴 시편은 당연히 맞으니 제외).
+      $Y$ 가 정해지면 나머지 5개 케이스의 파괴하중은 계산만으로 나온다. 그 예측이 실제 시험값과 맞는지가 <b>진짜 검증</b>이다(보정에 쓴 케이스는 당연히 맞으니 제외).
     </div>
 
     <div class="item">
@@ -607,15 +604,15 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
       <div class="chain">
         <div class="dbox"><span class="lbl">① FE + 곡선맞춤</span> 선형탄성 2D FE → 균열선 개구응력 $\sigma_{xx}(s)$ → $\sigma_e = \hat K/\sqrt{s}$ 로 <b>곡선맞춤</b>(기울기 $-\tfrac12$ 확인) → 단위하중당 $(K/P)_i$ (원문 Fig. 10)</div>
         <div class="darrow">▼<small>필수 환산 2개 (round 3)</small></div>
-        <div class="dbox"><span class="lbl">환산</span> ⓐ Fig. 10 횡축이 정규화 거리 $\bar s = s/\ell_0$ 이면 절편에 $\sqrt{\ell_0}$ 복원 ($\ell_0 = H$ 가 50·100 mm → 누락 시 형상군 사이 $\sqrt2$ 오차, <b>상쇄 안 됨</b>) &nbsp;·&nbsp; ⓑ 대칭 반모델이면 $P_{half} = P_{total}/2$ — FE 입력·$K/P$·보정·비교를 <b>같은 하중 규약</b>으로</div>
+        <div class="dbox"><span class="lbl">환산</span> ⓐ 원문 Fig. 10 정규화 길이는 <b>재현 시 확인 항목</b>(원문 §4 에 $\ell_0$ 의 정의가 명시돼 있지 않음). 재현에서 $\ell_0 = H$ 를 쓰면 피팅 <b>진폭(계수)</b>에 $\sqrt{\ell_0}$ 복원 ($\ln\sigma$ 절편 $b$ 라면 $K = e^{b}\sqrt{\ell_0}$). $\ell_0 = H$ 가 50·100 mm 로 달라 누락 시 형상군 사이 $\sqrt2$ 체계오차 — <b>상쇄 안 됨</b>. &nbsp;·&nbsp; ⓑ 대칭 반모델이면 $P_{half} = P_{total}/2$ — FE 입력·$K/P$·보정·비교를 <b>같은 하중 규약</b>으로</div>
         <div class="darrow">▼</div>
         <div class="dbox hl"><span class="lbl">② 보정 (보정점 = $H{=}100$, $a/H{=}0.1$ 시편)</span> 시험 파괴하중 $P_{f}$ → $K_{f} = (K/P)\,P_{f}$ → $\;Y = K_{f}^2/E\;$ <b>(딱 1회)</b></div>
         <div class="darrow">▼<small>$Y$ 고정 = 재료상수</small></div>
         <div class="dbox"><span class="lbl">③ 예측</span> 나머지 5 시편 : $P_{\text{pred},i} = \dfrac{\sqrt{2\pi E\,Y}}{(K_I/P)_i} = \dfrac{\sqrt{E\,Y}}{(K/P)_i}$ → 시험값과 비교 (Fig. 11)</div>
       </div>
       <ul>
-        <li>보정점 시편은 이론=실험 자동 일치. <b>진짜 검증은 나머지 5개.</b></li>
-        <li>$H{=}100$, $a/H{=}0.3$ 시편만 유일하게 크게 어긋난다 — 저자도 그 시편의 추가 정보가 없어 원인 미규명.</li>
+        <li>보정 케이스는 이론=실험 자동 일치. <b>진짜 검증은 보정에 쓰지 않은 5개 케이스.</b></li>
+        <li>$H{=}100$, $a/H{=}0.3$ 케이스만 유일하게 크게 어긋난다 — 저자도 그 시편의 추가 정보가 없어 원인 미규명.</li>
       </ul>
       <div class="note"><b>보정점을 왜 이 시편으로?</b> 원문은 이 시편을 보정에 썼다는 <b>사실만</b> 밝히고 선정 이유는 설명하지 않는다. 리거먼트 $H-a = 90$ mm 가 6조합 중 가장 길다는 것은 기하학적 사실이나, 그것이 곡선맞춤 $K$ 의 최적성을 보장한다는 근거는 원문에 없다. (프로젝트 내부에서 이 시편을 "Case 4", 이상치를 "Case 5" 로 부르지만 원문 Fig. 11 은 그 번호를 인쇄하지 않는다.)</div>
     </div>
@@ -645,8 +642,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ab">
 
     <div class="plain">
-      두 조건은 실제 파괴 순간엔 항상 함께 성립한다. 하지만 "파괴하중을 실제로 정하는" 조건은 상황마다 하나다 —
-      매끈하거나 연성이면 <b>응력조건</b>, 취성인데 균열이 있으면 <b>응력구배조건</b>. 발표를 이 표 하나로 마무리하면 된다.
+      두 조건은 파괴 순간에 함께 만족돼야 한다. 사례에 따라 <b>한 조건이 주로 임계하중을 정하거나, 둘이 동시에 임계</b>가 된다.
+      균일응력 도그본과 이 논문의 알루미늄 사례에서는 <b>응력조건</b>이, 이상적 취성 Mode I 균열(시멘트)에서는 <b>응력구배조건</b>이 임계하중을 정했다. 발표는 이 표로 마무리하면 된다.
     </div>
 
     <div class="item">
@@ -662,7 +659,7 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
         </tbody>
       </table>
       <ul>
-        <li>구배조건이 지배하는 사례(시멘트 균열)에서는 <b>시험 1개로 $Y$ 를 역산해 나머지 시편을 예측</b>했다.</li>
+        <li>구배조건이 지배하는 사례(시멘트 균열)에서는 <b>한 데이터점으로 $Y$ 를 역산해 보정에 쓰지 않은 케이스를 예측</b>했다.</li>
         <li>복합재는 6 mm 홀 시편들의 <b>평균</b>에 맞춘 섬유 파괴값을 재사용했다.</li>
         <li>알루미늄은 <b>응력조건이 지배</b>해 $Y$ 보정이 필요 없었다.</li>
         <li>모든 경우에서 예측이 실험과 잘 맞았다고 <b>저자는 보고</b>한다.</li>
@@ -676,8 +673,8 @@ window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags
   <div class="ab">
 
     <div class="plain">
-      <b>의의</b>: 결함마다 다른 이론·다른 특성길이를 쓰던 것을, "한 점에서 두 조건"으로 통합했다. 필요한 시험은 도그본 하나($\sigma_f$) + 형상 하나($Y$ 역산)뿐.
-      <b>한계</b>: 아래 다섯 가지는 발표에서 과장하면 안 되는 지점이다(Codex 교차검증으로 확인).
+      <b>의의</b>: 결함마다 다른 이론·다른 특성길이를 쓰던 것을, "한 점에서 두 조건"으로 다루는 하나의 틀로 묶었다. 강도 $\sigma_f$ 와 구배조건 임계값 $Y$ 를 정한 뒤 같은 재료·조건의 다른 형상을 예측한다 — 이 논문의 시멘트 균열은 <b>한 데이터점</b>으로 $Y$ 를 보정했고, 복합재는 구성재 물성과 <b>6 mm 홀 시편군 평균</b>을, 알루미늄은 <b>응력조건</b>을 썼다(재료마다 방식이 같지 않다).
+      <b>한계</b>: 아래 항목들은 발표에서 과장하면 안 되는 지점이다(Codex 교차검증으로 확인).
     </div>
 
     <div class="item">
