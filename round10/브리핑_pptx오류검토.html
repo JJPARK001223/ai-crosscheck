@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026_09_07 발표자료 오류 검토 브리핑</title>
+<script>
+window.MathJax = { tex:{ inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'none' }, svg:{fontCache:'global'} };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+<style>
+  :root{
+    --navy:#1f3a5f; --navy2:#2f5688; --accent:#c0392b; --accent2:#1e8449; --amber:#b9770e;
+    --ink:#1a2230; --sub:#5b6572; --line:#d4dae2; --bg:#eef1f5; --panel:#f6f8fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;line-height:1.75;font-size:15.5px}
+  .doc{max-width:980px;margin:0 auto;padding:40px 34px 100px;background:#fff;
+    box-shadow:0 2px 30px rgba(20,40,70,.09)}
+  .cover{border-bottom:3px solid var(--navy);padding-bottom:20px;margin-bottom:24px}
+  .cover .kicker{font-size:.72rem;font-weight:800;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+  .cover h1{font-size:1.5rem;font-weight:900;color:var(--navy);line-height:1.4;margin:8px 0 12px}
+  .cover .meta{font-size:.83rem;color:var(--sub);line-height:1.9}
+  h2{font-size:1.16rem;font-weight:900;color:#fff;background:var(--navy);padding:8px 15px;border-radius:6px;margin:36px 0 14px}
+  h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:22px 0 8px;border-left:4px solid var(--accent);padding-left:10px}
+  p{margin:8px 0} ul,ol{margin:8px 0 8px 4px;padding-left:22px} li{margin:6px 0}
+  b{color:var(--navy)} em{color:var(--accent);font-style:normal;font-weight:700}
+  code{background:#eef1f5;padding:1px 5px;border-radius:3px;font-size:.9em}
+  .eq{background:#1e2235;color:#eef1f7;border-radius:9px;padding:11px 18px;margin:10px 0;text-align:center;overflow-x:auto}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.9rem}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel);color:var(--navy);font-weight:800}
+  .sev{display:inline-block;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:10px;color:#fff;white-space:nowrap}
+  .s-hi{background:var(--accent)} .s-mid{background:var(--amber)} .s-ok{background:var(--accent2)}
+  .card{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:7px;padding:14px 18px;margin:14px 0;background:#fff}
+  .card.mid{border-left-color:var(--amber)} .card.ok{border-left-color:var(--accent2)}
+  .card h3{border:0;padding:0;margin:0 0 6px}
+  .wrong{color:var(--accent);font-weight:800} .right{color:var(--accent2);font-weight:800}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:12px 16px;margin:10px 0}
+  .box.warn{background:#fbf3e6;border-color:#e8cfa0}
+  .tag{font-size:.75rem;color:var(--sub);font-weight:700}
+  .foot{margin-top:50px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+  .self{background:#eaf3ec;border:1px solid #b8dcc2;border-radius:7px;padding:12px 16px;margin:10px 0;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="doc">
+<div class="cover">
+  <div class="kicker">CROSS-CHECK BRIEFING · Claude ↔ Codex</div>
+  <h1>활동보고 발표자료 <code>2026_09_07.pptx</code> — 검토 결과</h1>
+  <div class="meta">
+    대상: 14슬라이드 (박준재, 신뢰성기반 기계설계연구실) · 주제: Kwon 통합 파괴 기준 (선행연구 1·3)<br>
+    대조 원문: 선1 = <i>J. Pressure Vessel Technol.</i> <b>2021</b>, 143, 064503 · 선3 = <i>Materials</i> <b>2024</b>, 17, 569<br>
+    작성: 2026-09-08 · ai-crosscheck round10 · Claude blind + Codex blind 독립 대조·재유도
+  </div>
+</div>
+
+<h2>한눈에</h2>
+<table>
+<tr><th>#</th><th>슬라이드</th><th>문제</th><th>등급</th></tr>
+<tr><td>D-01</td><td>4 · 통합기준 식</td><td>계수가 <span class="wrong">2KY</span> — 원문은 <span class="right">2EY</span> (E=탄성계수). 차원으로도 불일치</td><td><span class="sev s-hi">필수</span></td></tr>
+<tr><td>D-02</td><td>6 · Q 분해</td><td><span class="wrong">σ<sub>e</sub>³/2E</span> 를 "변형 에너지 밀도"로 표기 — 에너지밀도는 σ²/2E (지수 2)</td><td><span class="sev s-hi">필수</span></td></tr>
+<tr><td>D-10</td><td>10 · 홀 처리</td><td>"홀은 특성이 없어 FE로 구배" — 무한판 홀은 <span class="right">해석식</span>(선1 식8–13). FE는 유한판만</td><td><span class="sev s-hi">필수</span></td></tr>
+<tr><td>D-08</td><td>11 · w<sub>f</sub> vs Y 표</td><td>"같은 물리량"은 <b>맞음</b>. 단 <b>K 정규화를 정의 안 해</b> 같은 수치를 넣으면 허위 2π 발생 → 각주 필요</td><td><span class="sev s-hi">필수</span></td></tr>
+<tr><td>D-09</td><td>10 · "Y 유도"</td><td>화면 식은 전부 선1 것 → "선1 유도 + 선3 기호 환산"으로 라벨·보완</td><td><span class="sev s-hi">필수</span></td></tr>
+<tr><td>D-03·04</td><td>8·9·12</td><td>오타: CMZ→CZM, Grifith→Griffith, lrwin→Irwin, Karihallo→Karihaloo</td><td><span class="sev s-mid">보완</span></td></tr>
+<tr><td>D-05</td><td>5</td><td>"방향별 유효응력"(이방성·복합재 갈래) — round9에서 제거하기로 한 범위</td><td><span class="sev s-mid">보완</span></td></tr>
+<tr><td>D-12·13·14</td><td>4·6·13</td><td>표현 한정("이 기준에서는"), 보정점(H=100·a/H=0.1) 명시, 예외 케이스 누락 금지</td><td><span class="sev s-mid">보완</span></td></tr>
+</table>
+
+<div class="self">
+<b>이번 교차검증에서 Claude blind 분석의 자기정정</b> — 처음에 "선1의 w<sub>f</sub> 와 선3의 Y 는 <s>정의값이 2π 다르다</s>"고 봤으나,
+Codex 재유도로 정정: <b>두 근접장 정의(σ=K/√(2πr) vs σ=K/√s)를 맞추면 선3의 K = 선1의 $K_I/\sqrt{2\pi}$ 이고, 그러면 $Y = w_f$ (동일)</b>.
+"2π 비"는 서로 다른 두 K에 <em>같은 숫자를 넣었을 때만</em> 나오는 형식적 비이다.
+</div>
+
+<h2>1. 필수 정정</h2>
+
+<div class="card">
+<h3>D-01 · 슬라이드 4 — 통합 기준 식의 <span class="wrong">2KY</span></h3>
+<p><span class="tag">슬라이드 표기</span></p>
+<div class="eq">$\big[\ \sigma_e \ge \sigma_f\ \big]\ \text{AND}\ \big[\ \sigma_e^{3} \ge 2\,\color{orange}{K}\,Y\,\left|\tfrac{d\sigma_e}{ds}\right|\ \big]$</div>
+<p><span class="tag">원문</span> — 선3 식(2): <b>"E is the modulus; Y is a material failure value"</b>. 선1 식(2)(3)(13)도 모두 E.</p>
+<div class="eq">$\sigma_e \ge \left(2\,\color{lime}{E}\,Y\,\tfrac{d\sigma_e}{ds}\right)^{1/3}\quad\Longleftrightarrow\quad \sigma_e^{3} \ge 2\,\color{lime}{E}\,Y\left|\tfrac{d\sigma_e}{ds}\right|$</div>
+<p><b>K(응력확대계수)가 아니라 E(탄성계수).</b> 차원으로도 이중 확인: $[2EY\,\sigma'] = \mathrm{Pa\cdot(Pa\,m)\cdot(Pa/m)} = \mathrm{Pa^3} = [\sigma^3]$ 이지만
+$[2KY\,\sigma'] = \mathrm{Pa\sqrt m\cdot Pa^3}$ 꼴로 안 맞는다. 발표의 핵심 식이므로 반드시 수정.</p>
+<p>부수: <code>dσ<sub>e</sub>/d<sub>s</sub></code> → <code>dσ<sub>e</sub>/ds</code> (s는 미분 변수), 절댓값 <code>|·|</code> 표기.</p>
+</div>
+
+<div class="card">
+<h3>D-02 · 슬라이드 6 — "σ<sub>e</sub>³/2E = 변형 에너지 밀도" 차원 오류</h3>
+<p>선형탄성 변형 에너지 밀도는 <code>σ²/(2E)</code> (Pa = J/m³). 슬라이드 글머리 항은 <code>σ<sub>e</sub>³/(2E)</code> (Pa²)를
+"변형 에너지 밀도 U"로 적었다 — <span class="wrong">지수가 3이 아니라 2여야 함</span>.</p>
+<p>같은 슬라이드의 수식 이미지(<code>(σ<sub>l</sub>²/2E)/((1/σ<sub>l</sub>)|dσ<sub>l</sub>/ds|)</code>)는 올바르게 분해했다 — 글머리 설명 항만 어긋난 것.</p>
+<div class="box"><span class="tag">올바른 분해</span>
+$Q=\dfrac{\sigma_e^{3}}{2E\,|d\sigma_e/ds|}
+=\underbrace{\dfrac{\sigma_e^{2}}{2E}}_{U\ \text{[Pa]}}\times
+\underbrace{\dfrac{\sigma_e}{|d\sigma_e/ds|}}_{\text{길이 [m]}}\ \ [\mathrm{J/m^2}]$
+</div>
+<p>부수: 두 번째 행 아래첨자 <code>1/σ<sub>E</sub></code> → <code>σ<sub>e</sub></code> 로 통일, <code>P<sub>a</sub>·m</code> → <code>Pa·m</code>.</p>
+</div>
+
+<div class="card">
+<h3>D-10 · 슬라이드 10 — "홀은 특성이 없어 FE로 구배를 뽑는다"</h3>
+<p>이대로면 <span class="wrong">오류</span>. 선1에서 <b>무한판 원형 홀(Case 3)은 해석식</b>(식 8–13)으로 다룬다:
+$\sigma_\theta(R,\pi/2)=3\sigma_0$, $|\partial\sigma_\theta/\partial r|=7\sigma_0/R$ →
+$Q = \dfrac{27\,\sigma_0^{2} R}{14\,E}$ (닫힌 형태). <b>FE는 유한판(Case 4)</b>에서만 썼다.</p>
+<p><b>고칠 방향</b> — "홀에는 균열의 $r^{-1/2}$ 특이장이 없어 거리 소거식을 바로 못 쓴다.
+무한판은 홀 둘레 해석식으로, 유한판(사례 4)은 FE로 구배를 평가한다."</p>
+</div>
+
+<div class="card">
+<h3>D-08 · 슬라이드 11 — w<sub>f</sub> vs Y 표의 "같은 물리량" 프레이밍</h3>
+<p>표 내용은 두 원문을 <span class="right">정확히</span> 인용했다:</p>
+<table>
+<tr><th>논문</th><th>균열 전방 응력장</th><th>파괴 개시 관계</th><th>근거</th></tr>
+<tr><td>선1 (2021)</td><td>$\sigma = K_I/\sqrt{2\pi r}$ (2π 있음)</td><td>$w_f = K_{IC}^2/(2\pi E)$</td><td>선1 식 (4)–(7) ✓</td></tr>
+<tr><td>선3 (2024)</td><td>$\sigma = K/\sqrt{s}$ (2π 없음)</td><td>$Y = K^2/E$</td><td>선3 식 (3)(4) ✓</td></tr>
+</table>
+<div class="box warn">
+<b>"같은 물리량" 은 맞다.</b> 두 논문이 균열 근접장의 K 를 다르게 정규화할 뿐이다.
+같은 물리적 균열장을 같은 위치에서 맞추면
+<div class="eq">$\dfrac{K_{\text{선3}}}{\sqrt{s}}=\dfrac{K_I}{\sqrt{2\pi s}}\ \Rightarrow\ K_{\text{선3}}=\dfrac{K_I}{\sqrt{2\pi}}\ \Rightarrow\ Y=\dfrac{K_{\text{선3},c}^2}{E}=\dfrac{K_{IC}^2}{2\pi E}=w_f$</div>
+슬라이드의 실제 결함은 <b>K 정규화를 정의하지 않은 것</b>. 그래서 독자가 두 식에 같은 K 값을 넣으면 $Y/w_f = 2\pi$ 라는 허위 비가 나온다.
+</div>
+<p><b>고칠 방향</b> — 제목 "같은 물리량" 유지. 표 각주 추가:
+「선3의 K 는 선1의 $K_I/\sqrt{2\pi}$. 이 환산에서 $Y = w_f$. 두 논문의 K 에 같은 수치를 대입하지 말 것. 단위는 모두 J/m² = Pa·m.」</p>
+<p>LEFM 관계 $G_c = K_{IC}^2/E'$ 를 함께 쓰면 (평면응력) $Y = w_f = G_c/2\pi$, (평면변형) $G_c/[2\pi(1-\nu^2)]$.
+→ 선3 본문의 "Y ≡ $G_c$" 설명과 정규화된 응력장을 <em>동시에 무조건 참으로 둘 수 없다</em>(2π 불일치).
+round9에서 유지한 "Y ≡ $G_c$ 금지" 단서와 정합.</p>
+</div>
+
+<div class="card">
+<h3>D-09 · 슬라이드 10 — "Y 의 유도" 에 선1 식 사용</h3>
+<p>슬라이드 제목 "Y 의 유도", 본문 "w<sub>f</sub>(선1) = Y(선3) 는 재료상수". 화면에 나온 식은 전부 선1:</p>
+<div class="eq">$\sigma_x=\dfrac{K_I}{\sqrt{2\pi r}}\ \to\ \left|\dfrac{d\sigma_x}{dy}\right|=\dfrac{K_I}{2\sqrt{2\pi}\,y^{3/2}}\ \to\ w_f=\dfrac{K_I^2}{2\pi E}\ \to\ K_{IC}=\sqrt{2\pi E\,w_f}$</div>
+<p>이는 선1 식(4)~(7)의 정규화다. "선3 식(3) 직접 대입"이라 부르면 부정확 (모순은 아니고 <b>출처·기호·임계조건 미비</b>).</p>
+<p><b>고칠 방향</b> —
+① 제목을 "선1의 균열 극한 유도 + 선3 기호(Y) 환산" 으로.
+② "선3은 근접장에서 2π 를 빼고 K 를 정의(식3) → 같은 절차 → $Y = K^2/E$(식4). 두 결과는 K 정규화만 다르고 물리량은 같다" 한 줄 추가.
+③ $w_f = K_I^2/(2\pi E)$ 는 $K_I$ 가 <b>임계</b>일 때만 재료상수 — 임의 하중은 $Q = K_I^2/(2\pi E)$, 파괴 시 $w_f = K_{IC}^2/(2\pi E)$.</p>
+</div>
+
+<h2>2. 보완 (오타·표현·범위)</h2>
+<ul>
+<li><b>D-03 · 슬라이드 8·9</b> — "CMZ" → <span class="right">CZM</span> (슬라이드 9는 맞게 씀), "Tcd" → "TCD", "Grifith(1921)" → <span class="right">Griffith</span>, "lrwin(1957)" → <span class="right">Irwin</span>.</li>
+<li><b>D-04 · 슬라이드 12</b> — "Karihallo 2003" → <span class="right">Karihaloo</span>. 정식: B. L. Karihaloo, H. M. Abdalla, Q. Z. Xiao, "Size effect in concrete beams", <i>Eng. Fract. Mech.</i> <b>70</b>, 979–993 (2003). 선3 참고문헌 [39]. 연도 2003 정확.</li>
+<li><b>D-05 · 슬라이드 5</b> — "방향별 유효응력"은 선3의 이방성 사례(3D 프린팅 PLA·유리섬유 복합재, §5~6) 갈래.
+선3 p.2엔 있으나 round9에서 폴리머·복합재 제거를 지시했음. 발표 범위에서 삭제 권장. ("준취성" 자체는 이방성·고분자가 아님 — 혼동 금지.)</li>
+<li><b>D-13 · 슬라이드 4·6</b> — "두 조건이 동시에 성립해야 파괴" → "<b>이 기준에서는</b> …"으로 한정. "그 점의 힘" → "그 점의 응력", "얼마나 세게 눌리나" → "단위면적당 작용하는 힘"(인장 포함).</li>
+<li><b>D-11 · 슬라이드 6</b> — "응력 분포가 넓을수록 Q 커진다" 에 "<b>같은 국소응력·E에서</b>" 단서. 균일 응력(구배 0)은 분수식 0/0 → 부등식 형태로 판단(구배조건 자동충족 → 응력조건만 남음, 선1 Case 1).</li>
+<li><b>D-12 · 슬라이드 13</b> — "시편 6개 / 나머지 5개" → "6개 형상 케이스 / 보정에 안 쓴 5개 케이스". <b>보정점 = H=100 mm, a/H=0.1</b> — 이 점의 일치는 강제된 것이라 독립 검증 성과로 세지 말 것. H=100 mm·a/H=0.3 불일치를 저자도 보고 → 발표에서 이 예외 누락 금지.</li>
+<li><b>D-14 · 슬라이드 10</b> — "이 한 번의 소거가 … 수학적 정리" → "이상적 Mode I 균열 근접장과의 정합성을 보인다"로 제한(임의 노치·모드·CZM/FFM 전체 포함 증명 아님).</li>
+<li><b>D-15 · 슬라이드 5</b> — <code>σ<sub>i</sub></code> → 선1 국소응력 <code>σ<sub>l</sub></code> (소문자 ℓ). 최대수직/최대전단 응력의 재료 대응을 명확히, σ<sub>f</sub> 도 같은 척도로.</li>
+<li><b>D-16 · 슬라이드 2~13</b> — <code>[n] Reference</code> 플레이스홀더를 실제 번호·서지로 교체.</li>
+<li><b>D-17 · 슬라이드 9</b> — <code>G = K_I²/E'</code> 에 "Mode I·등방·선형탄성" 조건과 E′ 정의 부기.</li>
+<li>슬라이드 3 — "이 이론에서는" → "이 연구에서는". 슬라이드 4 — "파괴 개시 국소점 :" 뒤 빈 자리(미완성). 슬라이드 2 — 목차 띄어쓰기.</li>
+</ul>
+
+<h2>3. 확인 결과 — 이상 없는 항목</h2>
+<ul>
+<li>슬라이드 11 식번호 인용(선1 식 6·7, 선3 식 4) — <span class="right">정확</span> (임계값 기호만 K<sub>IC</sub>·A<sub>c</sub>로 통일 권장).</li>
+<li>슬라이드 10 "선행연구 1번 사례 4번"(홀 유한판 FE, 40×100 mm, R∈{0.25,0.5,1,2} mm) — <span class="right">정확</span>.</li>
+<li>슬라이드 12 시편 구성(W=100 mm·L/H=4 고정, H 2가지 × a/H 3가지 = 6, E=20.8 GPa, 선형탄성) — 선3 §4 와 <span class="right">일치</span>.</li>
+<li>슬라이드 13 Y 역산 절차(단위하중 K → 실측 파괴하중 1개로 Y → 나머지 5개 예측) — <span class="right">정확</span>.</li>
+<li>슬라이드 6 수식 이미지(<code>σ<sub>l</sub>³/(2E|dσ<sub>l</sub>/ds|) ≥ w<sub>f</sub></code>) 자체 — 대수적으로 <span class="right">정확</span>.</li>
+<li>슬라이드 5 "홀 전방 응력 불균일 → 한 점이 σ<sub>f</sub> 넘어도 파괴 개시 안 될 수 있음" — <span class="right">정확</span> (선1 식 12·13 논리).</li>
+</ul>
+
+<div class="foot">
+Claude ↔ Codex 교차검증 (전역규칙 #20) · <code>ai-crosscheck/round10/</code> (claude.md · codex.md · DECISION_round10) ·
+원문 대조: 선1 p.064503-1~2, 선3 p.2·6~8 · 두 AI 독립 손전개로 $Y=K^2/E$, $w_f=K_{IC}^2/(2\pi E)$, $Y=w_f$ 확인<br>
+미확인: Karihaloo 2003 원 실험표(출판사 403), pptx 렌더링·발표자 노트, Griffith 1921 / Irwin 1957 원문 전문.
+</div>
+</div>
+</body>
+</html>
