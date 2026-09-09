@@ -1,6 +1,7 @@
 ﻿# 재료역학 문제풀이 세션 — 2026-09-09
 
-상태: 문제 입력 대기. 실제 독립 풀이 및 교차검증은 아직 수행하지 않음.
+상태: problem_set_01 (연습문제 1.1~1.6) 완료 — 2026-09-09. 다음 문제 입력 대기.
+완료 산출물: problem_set_01/DECISION.md, J:\Desktop\문제풀이\연습문제1_해답_1.1-1.6.html.
 협업: Claude Code + Codex. 최종 판단 작성자는 Claude.
 세션 경로: sessions/2026_09_09_mechanics/
 
