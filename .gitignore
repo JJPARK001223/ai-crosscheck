@@ -11,3 +11,6 @@ credentials*
 Thumbs.db
 .vscode/
 .idea/
+
+# Local rendering and verification scratch files
+/tmp/
