@@ -1,0 +1,263 @@
+
+===== PAGE 1 =====
+Revisiting Failure of Brittle Materials themidsectionofthetestcouponratherthanatthegripsite.The
+stress at the midsection is uniform unless there is an unexpected
+defectinthesection.Therefore,intheory,failureoccurssimulta-
+Y.W.Kwon neouslyatacrosssection.
+However, this failure strength cannot be used directly for a
+DepartmentofMechanical&AerospaceEngineering,
+specimen with a crackora holeto predict its failure. Oneofthe
+NavalPostgraduateSchool,
+major reasons for this is that the stress is notuniform in front of
+Monterey,CA93943 thecrackorthehole.Inotherwords,foramaterialtofailundera
+e-mail: ywkwon@nps.edu givenloading,thelocalstressexceedingthefailurestrengthofthe
+material is not enough to initiate the failure. The material sur-
+rounding the local point must provide a path for failure. There-
+fore, it is reasonable to think that the failure criteria should
+Failures of isotropic brittle materials were revisited to find out
+provide not only the local point of failure but also the failure
+whetherthereareunifiedfailurecriteria,whichcanbeappliedto
+direction.
+a load-carrying structural component made of a brittle material
+To this end, the concept of stress gradient was considered as
+regardless of whether the component has a crack, a circular
+one of the requirements for failure. If the stress gradient at the
+notch, or neither of these. To this end, a set of failure criteria localpointofpotentialfailureistoosteep,failurewouldnotoccur
+were considered to determine failure of a local point which may
+even though the local stress is much greater than the failure
+belocatedatthecracktip,anotchtip,oranyotherlocation.The
+strength of the material. This is the case for a structural member
+proposedcriteriaconsistoftwoconditions,ofwhichbothmustbe
+withacrackorahole.Therefore,thelocalstressmustsatisfythe
+satisfied for failure to occur. The first condition is that the local
+followingtwoconditionsiffailureweretoinitiatefromthatloca-
+stressmustnotbelowerthanthefailurestrengthofthematerial.
+tion. One of these conditions is that the local stress must not be
+Thesecondconditionisthestress-gradientcondition.Evenifthe
+smaller than the failure strength of the material as expressed
+stressatalocalpointfarexceedsthefailurestrengthofthemate-
+below:
+rial, failure will not initiate until the stress gradient condition is
+satisfied.Fourdifferentexamplescaseswerepresentedtoexplain r (cid:2)r (1)
+l f
+theproposedfailureconcept.[DOI:10.1115/1.4050989]
+wherer isthelocalstressresultingfromtheappliedloadandr
+l f
+Keywords:failure,brittlematerial,stressgradient
+is the failure strength of the material. This expression was given
+in terms of the uniaxial loading perspective. When a combined
+Introduction loading is considered, the local stress must be replaced by an
+When a material is considered for a load-carrying structural equivalentstresssuchasthemaximumprincipalstress,etc.Inthis
+member,thefailureloadofthememberdependsonthechoiceof study,onlyuniaxialloadingisconsidered.
+theselectedmaterialandthedesignofthatmember.Forstructural Thestressgradientconditionisexpressedasfollowing:
+i d d n i e t f fi e fe n g r e r e i d t n y t f , a t i i y t lu p i r e s e s im b o e f p c o m a r u a t s a t e e n r t t i h a to o ls s , p e r is m e o d a t i r t c o e t r p i t i a h c l e s b , f r a i i n i t l t u l g e r e e n m e lo a ra t a e l d , r . i c a A a ls n m h b o a e n v g c e o m w ns a e i n l d l y - - (cid:2) 2 r E 2 l (cid:3) . r 1 (cid:4) (cid:4) (cid:4) (cid:4) d d r s l (cid:4) (cid:4) (cid:4) (cid:4) ! (cid:2)w f (2)
+l
+eredaslinearelasticuntilfailure.
+Eventhoughthematerialbehaviorofbrittlematerialsissimple, Here, jdrlj is the absolute value of the stress gradient, E is the
+predictingtheultimateloadofastructuralmembermadeofabrit- ds
+elastic modulus of the material, w is the critical value, which is
+tle material depends on various parameters such as the failure f
+assumed to be a material constant, and s is the orientation from
+strength of the selected brittle material, stress concentrations thelocalpointtoyieldthesmallestvalueofjdrlj.Thatis,sisthe
+resulting from sudden geometric changes in the design, and ds
+pathofthefailuredirection.
+unwantedcracks.
+The numerator of Eq. (2) is the strain energy density, and the
+If there is a line crack, the linear fracture mechanics approach
+denominator is the stress gradient per unit stress. Equation (2) is
+hasbeenappliedtodeterminethefailureload.Ifthereisanotch
+thensimplifiedas
+such as a hole, different failure criteria have been proposed to
+d d e e t v e e r l m op ine a t u h n e ifi fa e i d lur s e et lo o a f d. fa I i n lu t r h e is c s ri t t u e d r y ia , , a w n h a i t c te h m m pt ay wa b s e m ap ad p e lie t d o (cid:2) 2 r E 3 l (cid:3)(cid:4) (cid:4) (cid:4) (cid:4)d d r s (cid:4) (cid:4) (cid:4) (cid:4) (cid:2)w f (3)
+regardlessofwhetherthereisacrack,anotch,orneitherofthese. l
+The subsequent section describes the proposed failure criteria,
+The units of w are Pa(cid:3)m¼N=m¼J=m2. Therefore, it has the
+which is followed by four diverse example cases of failure. One f
+valueforceperunitlengthorenergyperunitarea.
+case is a dog-bone shaped tensile coupon, the second case is an
+infinite plate containing a line crack, the third case is an infinite
+platehavingacircularhole,andthelastcaseisafinitesizeplate ExampleCasesofFailure. Fourdifferentfailurecasesaredis-
+withaholeatthecenter.Allcasesaresubjectedtotensileloading. cussed here. The first case is a dog-bone-shaped test coupon,the
+Conclusionsareprovidedattheend. secondcaseisaninfiniteplatewithalinecrack,andthethirdcase
+isalsoaninfiniteplatewithacircularhole.Finally,thelastcaseis
+FailureofBrittleMaterials afinitesizeofplatewithacircularholeatthecenter.Allthecases
+aresubjectedtouniaxialtensileloading.Eachcasehasadifferent
+Like most materials, brittle materials are tested under uniaxial
+failurecharacteristic.
+loading to determine their failure strength. The test samples are
+Case1:Thiscaseisthefailureofatensiletestcoupon,whichis
+mostly designed in a dog-bone shape such that failure occurs at
+madeofadog-boneshapeassketchedinFig.1.Forthiscase,the
+induced stress is uniform across the width of the test coupon
+aroundthemidsectionofthecoupon.Asaresult,thestressgradi-
+ContributedbythePressureVesselandPipingDivisionofASMEforpublication
+in the JOURNAL OF PRESSURE VESSEL TECHNOLOGY. Manuscript received March 31, ent is zero. Thus, the failure of the test coupon is governed only
+2021; final manuscript received April 20, 2021; published online May 31, 2021. bythefailurestrengthofthematerial.Inotherwords,thefailure
+Assoc.Editor:YoungHoPark. occurswhentheappliedstressequalstothefailurestrengthofthe
+ThismaterialisdeclaredaworkoftheU.S.Governmentandisnotsubjectto
+material, which is actually obtained from the test results of the
+copyrightprotectionintheUnitedStates.Approvedforpublicrelease;distributionis
+unlimited. dog-boneshapecoupon.
+JournalofPressureVesselTechnology DECEMBER2021,Vol.143 / 064503-1
+Downloaded
+from
+http://asmedigitalcollection.asme.org/pressurevesseltech/article-pdf/143/6/064503/6702756/pvt_143_06_064503.pdf
+by Naval
+Postgraduate
+School
+user
+on
+02
+March
+2023
+
+===== PAGE 2 =====
+Fig. 1 Dog-bone-shaped test coupon subjected to tensile
+loading
+Case 2: This case considered an infinite plate with a center
+crack,whichissubjectedtoatensileloadasshowninFig.2.The Fig. 3 Infinite plate with a center hole subjected to tensile
+crack has a length 2a. The stress at the crack tip is infinite such loading,whereWandLareinfinitelylarge
+that the induced local stress exceeds the failure strength of the
+material.Then,thestressgradientisthedominatingfactorforthe
+(cid:6)(cid:2) (cid:3) (cid:2) (cid:3) (cid:7)
+failure. r ¼ r o 1þ R2 (cid:4) 1þ 3R4 cos2h (9)
+Thestressnearthecracktipisexpressedas h 2 r2 r4
+(cid:2) (cid:3)
+K r 3R4 2R2
+r x ¼p ffi 2 ffiffi p ffiffiffi r ffiffi (4) s rh ¼(cid:4) 2 o 1(cid:4) r4 þ r2 sin2h (10)
+wherer x isthestressalongthehorizontaldirection,whichisnor- where r o is the remotely appliedstress. The maximumstress for
+mal tothe crackorientationand parallel tothe loadingdirection, r h occursath¼p=2,whosevalueisr h ðR;p=2Þ¼3r o .Thestress
+Kisthestressintensityfactor,andristheradialdistancefromthe gradient along the vertical direction, which is along the radial
+cracktip[1].Becausethecrackwillpropagatealongthevertical, directionath¼p=2,is
+ory-axis,thestressgradientiscomputedalongthey-axisasgiven (cid:4) (cid:4)
+below: (cid:4) (cid:4) @r hðR;p=2Þ (cid:4) (cid:4)¼ 7r o (11)
+(cid:4) @r (cid:4) R
+(cid:4) (cid:4)
+(cid:4)
+(cid:4) (cid:4)
+d
+d
+r
+y
+x(cid:4)
+(cid:4) (cid:4) ¼ 2 p ffi 2 ffi
+K
+ffi p ffiffiffi y3=2 (5) Thus, the failure occurs when the following conditions are both
+satisfied:
+FromEqs.(4)and(5),thefailuregradientiscomputedas
+r ðR;p=2Þ(cid:2)r (12)
+h f
+w f ¼ 2 K p 2 E (6) ðr h (cid:4) ðR;p=2ÞÞ3 (cid:4)(cid:2)w f (13)
+2E
+(cid:4)
+(cid:4)
+@rhðR;p=2Þ(cid:4)
+(cid:4)
+whereEistheelasticmodulus.Whenthefailuregradientreaches (cid:4) @r (cid:4)
+the critical value, the fracture toughness K for the first mode
+Ic
+(i.e.,openingmode)isrelatedtothefailuregradientas Ifthenominalstressr isatleastequaltor =3,Eq.(12)issatis-
+o f
+fied. Thus, if the nominal stress is greater than one third of the
+pffiffiffiffiffiffiffiffiffiffiffiffiffi
+K IC ¼ 2pEw f (7) failurestrength,Eq.(13)becomesthedominantfactorcontrolling
+the failure. In this case, the critical value w can be determined
+f
+Case3:Thethirdcasewasaninfiniteplatewithacircularhole fromtheEq.(13).
+atthecenterandsubjectedtoauniformtensileload.Theplateand Case 4: The last case was a finite size of plate with a circular
+holesizesareshowninFig.3,whereWandLareinfinitelylarge holeatthecenterandsubjectedtoatensileload.Thiscaseisvery
+in this case. The stress at the edge of the hole has a finite value similar to the third case except that the plate has a finite dimen-
+and there is a stress gradient. Therefore, both failure criteria sion. In this case, the finite element analysis was conducted to
+shouldbemetforthefailuretooccur.First,thestressattheedge determine the failure load applied to the plate. The specimen
+of the hole must be at least equal to or greater than the failure geometryandthetestdataavailableinRef.[3]wereusedinthis
+strength of the material. Second, the failure gradient condition study.Theplatewas40mmwideand100mmlong.Theradiusof
+shouldbealsomet. the center hole was 0.25mm, 0.5mm, 1.0mm, or 2.0mm,
+Thestressesaroundtheholeareexpressedintermsofthepolar respectively.
+coordinatesystemasshowninFig.3[2] Figure 4 shows a finite element mesh for one quarter of the
+model because of two symmetries. The mesh has 2496 isopara-
+(cid:6)(cid:2) (cid:3) (cid:2) (cid:3) (cid:7)
+r ¼ r o 1(cid:4) R2 þ 1þ 3R4 (cid:4) 4R2 cos2h (8) metric quadrilateral elements, which have four nodes at the cor-
+r 2 r2 r4 r2 ners. The mesh is very refined around the edge of the hole. The
+normal displacements to symmetric boundaries were constrained
+fromanymovement.Thetensileloadingwasappliedasauniform
+displacementattheloadedboundarytoreplicatethetestingcondi-
+tionusingauniaxialtensilemachine.
+Thestresseswerecomputedforeveryelement.Becausetheele-
+mentsizeveryneartheedgeoftheholeisverysmall,theaverage
+stresseswerecomputedateachelementbyaveragingthestresses
+calculatedatdifferentnumericalintegrationpoints.Thestressgra-
+dientwascomputedbetweenanytwoneighboringelementsusing
+theiraveragestressesandthedistancebetweenthecentersofthe
+elements.Thestressgradientwascomputedfromthefirstelement
+nexttotheedgeoftheholealongtheverticaldirectionsincethis
+isthefailureorientation.Figure5showsthestressgradientforthe
+hole of radius 1mm. Then, the stress gradient at the edge of the
+Fig. 2 Infinite plate with a line crack subjected to tensile holeis determinedbyanextrapolation oftheplot tothe location
+loading oftheedgeoftheholeasshownbyadashedlineinFig.5.
+064503-2 / Vol.143,DECEMBER2021 TransactionsoftheASME
+Downloaded
+from
+http://asmedigitalcollection.asme.org/pressurevesseltech/article-pdf/143/6/064503/6702756/pvt_143_06_064503.pdf
+by
+Naval
+Postgraduate
+School
+user
+on
+02
+March
+2023
+
+===== PAGE 3 =====
+Fig.4 Finiteelementmeshofaquarterofthemodel
+Once both the maximum stress at the hole edge and the stress
+gradientwerecomputedfromthefiniteelementanalysis,thefail-
+ure load was predicted using the criteria as discussed above.
+Figure 6 shows the comparison of the predicted fracture load to
+the experimental data in Ref. [3] for both polymethyl-methacry-
+late and general-purpose polystyrene materials for different hole
+sizes.Thefractureloadistheaverageappliedstressattheloading
+boundary. The theoretical prediction generally agreed well with
+theexperimentalresultforbothmaterialsanddifferentholesizes.
+Conclusions
+Failureofisotropicbrittlematerialswasrevisitedtoexamineit
+inadifferentperspective.Inorderforalocalpointtostarttofail,
+twoconditionsmustbeconsidered.Thefirstconditionisthatthe
+inducedlocalstressmustbeatleastequaltoorexceedthefailure
+strength of the material. The second condition is that the stress
+gradient-basedcriterionmustbealsomet.Ifonlyoneofthecondi-
+Fig.5 Plotofstressgradientfortheholeradiusof1mm tionsissatisfied,failuremaynotinitiate.Toexplainthenewcon-
+cept,fourdifferentcaseswerestudied.Thefirstcasewasafailure
+with a uniform stress like a dog-bone-shaped tensile coupon. The
+secondandthirdcaseswereinfiniteplateswithalinecrackoracir-
+cularhole.Thelastcasewasafinitesizeofrectangularplatewitha
+holeatthecenter.Inthatcase,itwasdemonstratedhowtocompute
+thestressgradientusingthefiniteelementanalysis.
+The concept presented here requires more scrutinized in-depth
+study.However,thepresentstudyseemstosuggestthatafailure
+theory can provide not only the failure location but also failure
+path, and they can be applied regardless of whether there is a
+crack,anotch,ornoneofthesepresentinthestructure.
+FundingData
+(cid:5) OfficeofNavalResearch(FunderID:10.13039/100000006).
+References
+[1] Irwin,G.R.,1957,“AnalysisofStressesandStrainsNeartheEndofaCrack
+TraversingaPlate,”ASMEJ.Appl.Mech.,24(1957),pp.361–364.
+[2] Kirsch,G.,1898,“DieTheorieDerElastizitatUndDieBed€urfnisseDerFes-
+tigkeitslehre,”Z.Ver.Dtsch.Ing.,42,pp.797–807.
+[3] Sapora,A.,Torabi,A.R.,Etesam,S.,andCornetti,P.,2018,“FiniteFracture
+Fig.6 Comparisonofthepredictedfailureloadtotheexperi- MechanicsCrackInitiationFromaCircularHole,”FatigueFract.Eng.Mater
+mentaldatafromRef.[3] Struct.,41(7),pp.1627–1636.
+JournalofPressureVesselTechnology DECEMBER2021,Vol.143 / 064503-3
+Downloaded
+from
+http://asmedigitalcollection.asme.org/pressurevesseltech/article-pdf/143/6/064503/6702756/pvt_143_06_064503.pdf
+by
+Naval
+Postgraduate
+School
+user
+on
+02
+March
+2023

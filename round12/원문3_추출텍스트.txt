@@ -1,0 +1,1679 @@
+
+===== PAGE 1 =====
+materials
+Article
+Unified Failure Criterion Based on Stress and Stress
+Gradient Conditions
+YoungW.Kwon*,EmmaK.MarkoffandStanleyDeFisher
+DepartmentofMechanical&AerospaceEngineering,NavalPostgraduateSchool,Monterey,CA93943,USA
+* Correspondence:ywkwon@nps.edu
+Abstract:Specimensmadeofvariousmaterialswithdifferentgeometricfeatureswereinvestigated
+topredictthefailureloadsusingtherecentlyproposedcriterioncomprisedofbothstressandstress
+gradientconditions.Thenotchtypeswerecracksandholes,andthematerialswerebrittle,ductile,
+isotropic,orthotropic,orfibrouscomposites.Thepredictedfailurestressesorloadswerecompared
+toexperimentalresults,andbothexperimentalandtheoreticallypredictedresultsagreedwellforall
+thedifferentcases. Thissuggeststhatthestressandstress-gradient-basedfailurecriterionisboth
+versatileandaccurateinpredictingthefailureofvariousmaterialsandgeometricfeatures.
+Keywords:failurecriterion;notch;crack;brittle;ductile;composite
+1. Introduction
+Structuralmembersaredesignedtoavoidunexpectedfailureduringtheirservicelife.
+Toachievethis,thesemembersaretestedexperimentallyoranalyzedusingpropermodel-
+ingandsimulationtechniques. Extensivephysicaltestingistime-consumingandcostly,
+so computational modeling and simulation are frequently used to replace or minimize
+unnecessarytesting. Inordertohaveconfidenceintheaccuracyoftheresults,however,
+computationalmodelingshouldbereliable.Tothisend,manyfailuretheorieshavebeende-
+velopedtopredictfailureloadsbasedonmaterialtype,includingisotropicandanisotropic
+Citation:Kwon,Y.W.;Markoff,E.K.; ones,subjectedtoavarietyofloadingconditions,includingstaticandcyclicscenarios[1].
+DeFisher,S.UnifiedFailureCriterion Importantdataindesigningload-carryingstructuralmembersincludethemaximum
+BasedonStressandStressGradient loadthattheycancarrywithoutfailure. Hence, failurecriteriaarenecessarytopredict
+Conditions.Materials2024,17,569. themaximumfailureload,buttheloadalsodependsonthegeometryandmaterialofthe
+https://doi.org/10.3390/
+structure. Ifthestructureshavenotchessuchasholesorcracks,theirload-carryingcapacity
+ma17030569
+issignificantlylimited.
+AcademicEditor:RaulD.S.G. Inthepast,differentfailuretheorieswereusedtopredictfailureloadsofstructural
+Campilho membersdependingonthestateofnotchestheycontained. Forexample,manydifferent
+failurecriteriawereproposedforstructuralmemberswithoutanynotchesandsubjectedto
+Received:27December2023
+combinedloading(i.e.,multiaxialloading)[1–8]. Thosecriteriaweretoapplythefailure
+Revised:23January2024
+strengthobtainedfromuniaxialtestingtothepredictionoffailureundercombinedloading.
+Accepted:24January2024
+However,ifastructuralmemberhasanotch,thosefailurecriteriaarenotreliable.
+Published:25January2024
+Astructuralmemberwithacrackhasstresssingularityatthecracktipifthematerial
+behaveslinearlyelastically. Thus,fracturemechanicswasalsodevelopedforstructural
+members with cracks [9–16]. On the other hand, if structural members have holes, an
+Copyright: © 2024 by the authors. entirely different set of failure criteria was used because fracture mechanics is suitable
+Licensee MDPI, Basel, Switzerland. forholes. Thecriticaldistancefailurecriteria,forexample,isoftenappliedforstructural
+Thisarticleisanopenaccessarticle members containing holes [17–25]. Some used the stress at the critical distance, while
+distributed under the terms and othersusedtheaveragevalueuptothecriticaldistancefromthenotchtiptopredictfailure
+conditionsoftheCreativeCommons atthenotchtip.
+Attribution(CCBY)license(https:// Thecohesivezonemodelwasalsodevelopedtopredictfailureloadsbetter[26–33].
+creativecommons.org/licenses/by/ Themodelconsidersalocalizedzonearoundthepotentialfailurelocation,whichiscalled
+4.0/).
+Materials2024,17,569.https://doi.org/10.3390/ma17030569 https://www.mdpi.com/journal/materials
+
+===== PAGE 2 =====
+Materials2024,17,569 2of19
+the cohesive zone. A traction–separation relationship is applied to the cohesive zone
+and is used to predict failure. For the cohesive zone model to be accepted as a failure
+theory,thesametraction–separationrelationshipmustbeapplicabletostructuralmembers
+independentofthenotchshape,likeacrackorahole,aswellasitssize.
+Recently,aunifiedfailurecriterionwasproposedbytheauthors’team[34–37]. The
+unifiedfailurecriterioncanbeappliedtostructuralmembersregardlessoftheexistence
+ofnotches,aswellastheirshapesandsizes. Thisfailurecriterionwasvalidatedagainst
+differentexperimentaldataonbrittlespecimenswithcutouts,includingholesandslits.
+Theobjectiveofthisstudyistovalidatetheunifiedfailurecriterionfurthertodetermine
+whetherthetheorycanapplytovariouscases,whichincludeductileorbrittlematerials;
+isotropicmaterials,3D-printedorthotropicmaterials,orlaminatedfibrouscomposites;and
+holes,longslits,orcracks. Thenextsectiondescribesthenewunifiedfailurecriterion,and
+itisfollowedbyvarioussectionsthatdiscussthefailuresofdifferentcaseswithsubsequent
+conclusions.
+2. FailureCriterionBasedonStressandStressGradient
+Therecentlyproposedfailurecriterionusesbothstressandstressgradienttodeter-
+mine failure. Both stress and stress gradient conditions must be satisfied for failure to
+occur[34–37]. First,thestressconditionmustbechecked. Thisconditionstatesthatthe
+effective stress at any material point should not be less than the failure strength of the
+material,whichisstatedbelow:
+σ ≥ σ (1)
+e f
+whereσ andσ aretheeffectivestressandfailurestrength,respectively.Theeffectivestress
+e f
+isdifferentdependingonthematerialbehavior. Themaximumnormalstressisusually
+usedfortheeffectivestressforanisotropicbrittleorquasi-brittlematerial. Ontheother
+hand,themaximumshearortheoctahedralshearstressisselectedastheeffectivestress
+foranisotropicductilematerial. Ifamaterialisanisotropic,multipleeffectivestressesare
+considereddependingonthedirectionsofthematerialpropertiesandtheloading.
+Oncethestressconditionissatisfied,thestressgradientconditionmustalsobechecked.
+Thisconditionisexpressedas
+(cid:18) (cid:18)
+dσ
+(cid:19)(cid:19)1/3
+σ ≥ 2EY e (2)
+e
+ds
+whereEisthemodulus;Yisamaterialfailurevalue,whichisdiscussedbelow;andsisthe
+failurepath. Forabrittlematerial,thefailurepathisnormaltothemaximumprincipalaxis
+atthefailurelocation. Whenbothstressandstressgradientconditionsaresatisfiedatany
+pointinthesampleinquestion,failureisdeemedtohaveoccurred. Inotherwords,even
+iftheeffectivestressisgreaterthanthefailurestrength,failuredoesnotoccurunlessthe
+stressgradientconditionisalsosatisfied.
+ToinvestigatethematerialfailurevalueY,whichisdifferentfromσ ,weconsidera
+f
+crackunderthefirstmodeoffracture. Thestressfieldverynearacrackisexpressedas
+K
+σ = √ (3)
+e
+s
+inwhichsisalongthecrackorientationmeasuredfromthecracktip,whichisperpendicular
+totheloadingdirection. Equation(3)anditsderivativearesubstitutedintoEquation(2),
+which,attheonsetoffailure,resultsinthefollowing:
+K2
+Y = (4)
+E
+Thus,thematerialfailurevalueYisequivalenttothecriticalenergyreleaseratein
+fracturemechanics.
+
+===== PAGE 3 =====
+Materials 2024, 17, x FOR PEER REVIEW 3 of 19
+𝐾(cid:2870)
+ϒ= (4)
+𝐸
+Thus, the material failure value ϒ is equivalent to the critical energy release rate in
+fracture mechanics.
+Materials2024,17,569 3. Ductile Aluminum Alloy with Notches 3of19
+3.1. Description of Specimens
+All test specimens were 140 mm long, 24 mm wide, and 1 mm thick. The grip-to-grip
+3. DuctileAluminumAlloywithNotches
+distance was 100 mm, meaning that each specimen was captured over 20 mm on each end.
+3.1. DescriptionofSpecimens
+Any notch was introduced at the center of every specimen, as sketched in Figure 1. The
+size of tAhell ctiersctuslpaer chimoleen vsawrieerde f1r4o0mm 1m tol o1n8g m,2m4 minm diwamideet,earn idnc1remmmenthtaicllky.. TAhlel tghreip h-otole-gs rip
+wedreis ltoacnacteedw aats t1h0e0 cmenmte,rm oef athnein sgptehcaimteeancsh. Tspheecriem weenrew saisx csappetcuimredenosv feorr 2e0vemrym soizne eoafc thhee nd.
+holAe.n Aylnl otthceh wspaesciinmtreonds uwceedrea ttethsteecde nutnedreorf etevnersyiles pleocaidmineng, uassisnkge tIcNheSdTRinOFNig u5r9e821 .(TNhoers-ize
+wooofdt,h MeAci,r cUuSlAar).h Ionl eadvdairtiieodn,f rsoixm d1ogto-b1o8nem smhaipneds ioafm speteecriminecnres mweenreta alllsyo. Atelslttehde, whoitlehsouwte re
+anylo ncoattcehd, atto tdheetceermntienreo tfhteh estsrpesesc–imstreanisn. cTuhrevreesw oef rtehesi x50s0p0e cseimrieesn salfuomreinveurmy sailzloeyo.f Stthreaihno le.
+gauAglelst hweesrpee acittmaechnesdw teor ethtees dteodgu-bnodneer stehnaspiele olof asdpiencgimuesninsg toIN mSeTaRsOurNe 5b9o8t2h (lNonogrwituodoidn,aMl A,
+andU tSrAan).svInerasded sittriaoinn,ss. iFxigduorge- b2o snheoswhsa pthees ostfrsepsse–csimtraeinns cwuervree aolfs othtee satleudm,iwniuthmo ualtloayn.y Tnhoet ch,
+gratpohd eshteorwmsin teheth veesrtyre dssu–csttirlaei nnactuurrvee sofo fththee m50a0te0rsiaelr iwesitahlu am lionwu mtaanlgloeyn.tiSatlr aminogdauulugse sfowre re
+straaitnta hchareddetnointhge. dog-boneshapeofspecimenstomeasurebothlongitudinalandtransverse
+strains. Figure2showsthestress–straincurveofthealuminumalloy. Thegraphshowsthe
+veryductilenatureofthematerialwithalowtangentialmodulusforstrainhardening.
+Figure 1. Aluminum specimen with a center hole.
+250
+200
+150
+100
+50
+0
+-50
+0 0.002 0.004 0.006 0.008 0.01 0.012 0.014 0.016
+Strain
+Figure 2. Stress–strain curve of 5000 series aluminum alloy.
+The next set of specimens had the same dimensions as before, but a slit was intro-
+duced at the center instead of a circular hole, as sketched in Figure 3. The slit length was
+)aPM(
+ssertS
+Materials 2024, 17, x FOR PEER REVIEW 3 of 19
+𝐾(cid:2870)
+ϒ= (4)
+𝐸
+Thus, the material failure value ϒ is equivalent to the critical energy release rate in
+fracture mechanics.
+3. Ductile Aluminum Alloy with Notches
+3.1. Description of Specimens
+All test specimens were 140 mm long, 24 mm wide, and 1 mm thick. The grip-to-grip
+distance was 100 mm, meaning that each specimen was captured over 20 mm on each end.
+Any notch was introduced at the center of every specimen, as sketched in Figure 1. The
+size of the circular hole varied from 1 to 18 mm in diameter incrementally. All the holes
+were located at the center of the specimens. There were six specimens for every size of the
+hole. All the specimens were tested under tensile loading using INSTRON 5982 (Nor-
+wood, MA, USA). In addition, six dog-bone shapes of specimens were also tested, without
+any notch, to determine the stress–strain curves of the 5000 series aluminum alloy. Strain
+gauges were attached to the dog-bone shape of specimens to measure both longitudinal
+and transverse strains. Figure 2 shows the stress–strain curve of the aluminum alloy. The
+graph shows the very ductile nature of the material with a low tangential modulus for
+strain hardening.
+Figure 1. Aluminum specimen with a center hole.
+Figure1.Aluminumspecimenwithacenterhole.
+250
+200
+150
+100
+50
+0
+-50
+0 0.002 0.004 0.006 0.008 0.01 0.012 0.014 0.016
+Strain
+Figure 2. Stress–strain curve of 5000 series aluminum alloy.
+The next set of specimens had the same dimensions as before, but a slit was intro-
+duced at the center instead of a circular hole, as sketched in Figure 3. The slit length was
+)aPM(
+ssertS
+Figure2.Stress–straincurveof5000seriesaluminumalloy.
+Thenextsetofspecimenshadthesamedimensionsasbefore,butaslitwasintroduced
+atthecenterinsteadofacircularhole,assketchedinFigure3. Theslitlengthwaseither
+4mmor6mm. The6mmslithadfourdifferentorientationswithrespecttothewidth
+directionofthespecimens. Theorientationangleswere0◦,15◦,30◦ and45◦,respectively.
+EachtypeofspecimenwithaslitwascalledLx/y◦,wherexisthecracklengthinmmand
+yistheorientationangleindegrees. Sixofeveryspecimentypewerepreparedfortesting.
+
+===== PAGE 4 =====
+Materials 2024, 17, x FOR PEER REVIEW 4 of 19
+either 4 mm or 6 mm. The 6 mm slit had four different orientations with respect to the
+width direction of the specimens. The orientation angles were 0°, 15°, 30° and 45°, respec-
+tively. Each type of specimen with a slit was called Lx/y°, where x is the crack length in
+mm and y is the orientation angle in degrees. Six of every specimen type were prepared
+Materials2024,17,569 4of19
+for testing.
+Figure 3. Aluminum specimen with a center slit.
+3.2. Results
+Tensile tests of the dog-bone-shaped specimens, as well as the specimens with varia-
+ble diameters of center holes, were conducted to determine their failure loads. Then, the
+applied failure stresses were computed from the failure loads divided by the cross-sec-
+tions at the grips, which do not consider the hole. The applied failure stresses are plotted
+in Figure 4 for different hole sizes. The plot shows that the applied failure stresses decrease
+almost linearly as a function of the hole diameter, and the standard deviations of the
+notched specimens were very small as compared to that of the dog-bone-shaped speci-
+mens. In addition, the specimens with a hole of a 1 mm diameter had applied failure
+stresses almost the same as that of the dog-bone specimens, even though the dog-bone-
+shaped specimens had a larger standard deviation than the perforated specimens. The
+dog-bone-shaped specimen data were included in the figure if the failure occurred at the
+mid-section of the specimens. Otherwise, the data were excluded. Figure 4 confirms that
+a very small hole, as compared to the specimen width, does not have a noticeable effect
+on the load-carrying capacity, and the load-carrying ability decreases as the hole size fur-
+ther increases.
+250
+200
+150
+100
+50
+0
+0 5 10 15 20
+Hole Diameter (mm)
+Figure 4. Applied failure stress of aluminum specimens with different hole sizes.
+)aPM(
+ssertS
+eruliaF
+deilppA
+Materials 2024, 17, x FOR PEER REVIEW 4 of 19
+either 4 mm or 6 mm. The 6 mm slit had four different orientations with respect to the
+width direction of the specimens. The orientation angles were 0°, 15°, 30° and 45°, respec-
+tively. Each type of specimen with a slit was called Lx/y°, where x is the crack length in
+mm and y is the orientation angle in degrees. Six of every specimen type were prepared
+for testing.
+Figure 3. Aluminum specimen with a center slit.
+3.2. Results
+Figure3.Aluminumspecimenwithacenterslit.
+Tensile tests of the dog-bone-shaped specimens, as well as the specimens with varia-
+b3le.2 d.iRaemsuelttesrs of center holes, were conducted to determine their failure loads. Then, the
+applieTde nfasiilluertee ssttsroesfstehse wdoegre-b coonme-pshuatepde dfrsopmec itmhee nfas,ilausrew leollaadss tdheivsipdeecdi mbyen tshwe ictrhovssa-rsieacb-le
+tidoinasm aet ttehres gorfipcse,n wtehrichho ldeos, nwote rceoncsoinddeur cthteed htooled. eTtheer mapinpeliethde fiarilfuarileu srterelsosaedss a.reT hpelontt,etdh e
+ina pFpigluierde f4a fiolurr deisfftereressnets hwoleer esiczoems. pTuhtee pdlofrto smhotwhes ftahialut rtehelo aapdpslideidv ifdaeildurbey stthreescsreoss ds-escercetaiosen s
+alamttohset lginriepasr,lyw hasic ha dfuonnctoiotnco onfs itdheer hthoele hdoilaem. Tetheer, aapnpdli ethdef asitlaunrdeasrtdre dsseevsiaatrieonpsl ootft etdhein
+nFoitgchuered 4spfoercidmifefnerse wntehreo lveesriyz essm. Talhl eaps lcootmshpoawresdt htoa ttthhaet aopf pthliee ddfoagil-uborenset-rsehsaspeesdd escpreecais-e
+maelmnso. sItnli naedadriltyioans,a tfhuen cstpioencimofetnhse hwoiltehd aia mhoeltee ro,fa nad 1t hmemsta dndiaamrdetdeerv hiaatdio naspopflitehde nfaoitlcuhreed
+stsrpeessceims aelnmsowste rtehev esraymsem aas llthaast coofm thpea rdeodgt-obotnhea tspofectihmeednosg, -ebvoenne t-hshoaupgehd thspe edcoimg-ebnosn.eI-n
+shaadpdeitdio snp,ethciemsepnesc imhaedn saw laitrhgearh sotlaenodfaard1 dmemviadtiiaomn etthearnh atdhea pppelrifeodraftaeildu rsepsetcriemsseenssa. lTmhoes t
+dtohge-bsaomnee-sahsatpheadt osfptehceimdeong -dbaotnae wspereec iimncelnusd,eedv einn tthhoeu figghutrhee ifd tohge- bfaoinluer-seh oacpceudrrsepde caitm theen s
+mhiadd-seacltaiorgne orf stthaen dspaerdcimdeevnisa. tOiotnhethrwaniseth, ethpe edrafotara wteedres pexeccliumdeends.. FTighuered o4 gc-obnofinrem-ssh tahpaetd
+a svpeercyim smenaldl ahtoalwe, earse cinocmlupdaereddi ntot htheefi sgpuerceimifethne wfaidiluthr,e doocecsu rnroetd haatvteh ea mnoidti-cseeacbtiloen eofffetcht e
+osnp tehceim loeands-.cOartrhyeirnwgi scea,ptahceitdya, taanwd etrheee lxocaldu-dceadrr.yFiinggu raebi4lictyon dfiercmresatsheast aas vtherey hsomlea sllizheo fleu,ra-s
+thceorm inpcarreeadsetso. thespecimenwidth,doesnothaveanoticeableeffectontheload-carrying
+capacity,andtheload-carryingabilitydecreasesastheholesizefurtherincreases.
+250
+200
+150
+100
+50
+0
+0 5 10 15 20
+Hole Diameter (mm)
+Figure 4. Applied failure stress of aluminum specimens with different hole sizes.
+)aPM(
+ssertS
+eruliaF
+deilppA
+Figure4.Appliedfailurestressofaluminumspecimenswithdifferentholesizes.
+ThedatainFigure4werere-calculatedsuchthattheappliedfailurestresswasreplaced
+bythenominalfailurestressattheminimumcross-sectionacrosseachhole. Thenominal
+failurestressistheaveragestressacrosstheminimumcross-sectionattheonsetoffailure.
+Table1showstheresults. Itisreasonabletostatethatthenominalfailurestresswasalmost
+constant, independent of the hole size. This suggests that for this geometry, the stress
+failureconditiondominatesthefailureofthealuminumtestspecimen. Therefore,thestress
+gradientconditionwaseasilysatisfiedbecausethefailurevaluefromthestressgradient
+condition is much smaller than that from the stress condition. In order to demonstrate
+
+===== PAGE 5 =====
+Materials2024,17,569 5of19
+this,thestressgradientwascomputedattheedgeoftheholeofdifferentsizesusingfinite
+elementanalysistoinvestigatethestressgradientcondition.
+Table1.Nominalfailurestressofaluminumspecimenswithdifferentsizesofholes.
+HoleSize(mm) 0 1 2 3 6 9 12 15 18
+AverageFailureStress(MPa) 228 237 236 228 236 219 227 228 230
+StandardDeviation(MPa) 5.5 1.6 1.3 3.2 3.7 4.8 0.94 1.8 0.96
+Specimensof100mm×24mmwithacenterholeweremodeledfortheplanestress
+conditionusingfour-nodequadrilateralelementsinAnsys[38]. Theelastic–plasticanalysis
+wasconductedusingthestress–straincurveobtainedfromthedog-bone-shapedspecimen.
+Becausethetangentialmodulusduringtheplasticdeformationisquitesmallcomparedto
+theelasticmodulus,thestressgradientattheedgeoftheholebecomessmaller,alongwith
+moreplasticdeformationaroundtheedgeofthehole. Asaresult,thestressgradientwith
+theductilealuminumalloybecomesmuchsmallerthanthatofanyelasticanalysisofbrittle
+materials. Thatis,thestressgradientoftheformerwasatleastanorderofmagnitudeless
+thanthatofthelatter. Thus,thestressgradientconditionwasalreadysatisfiedattheedge
+oftheholes. Thisindicatesthatthefailureoftheductilealuminumspecimenswithalow
+tangentialmodulusofplasticdeformationwasalsogovernedbythestressconditionrather
+thanthestress-gradientcondition,eventhoughtheycontainacircularhole.
+ThealuminumspecimenscontainingslitswerealsoplottedinFigure5fortheapplied
+failurestress. Thisstresswascalculatedbydividingthefailureloaddividedbythecross-
+sectionalareawithoutconsideringtheslit. Theresultsshowanincreaseinthefailurestress
+along with the slit angle. Then, the nominal failure stresses were computed across the
+minimumcross-sectionofthespecimen. Thisminimumcross-sectionisdefinedinFigure6
+forslitswithnonzeroorientationangles. Thenominalfailurestresseswerealsoalmost
+constantfordifferentslitlengthsandorientations,asseeninFigure7. Thisalsoindicates
+thatthefailureofthespecimenswithslitswaspredictedexclusivelybythestressfailure
+conditioninsteadofthestressgradientfailurecondition,asexplainedforthealuminum
+specimenswithcircularholes. Inotherwords,thestressgradientsweresosmallthatthe
+failurestressresultingfromthestressgradientconditionwassmallerthanthefailurestress
+Materials 2024, 17, x FOR PEER REVIEW 6 of 19
+fromthestresscondition. Thus,thefailurestressfromthestressconditionisthefailure
+strengthofthespecimen.
+200
+150
+100
+50
+0
+0 10 20 30 40 50
+Angle of Slits (degrees)
+Figure 5. Plot of applied failure stress vs. the slit angle of slit size of 6 mm.
+Figure 6. Minimum cross-section for a slit with an orientational angle.
+Figure 7. Nominal failure stress of aluminum specimens with different slit lengths and angles.
+)aPM(
+ssertS
+eruliaF
+xaM
+250
+200
+150
+100
+50
+0
+L4/0o L6/0o L6/15o L6/30o L6/45o
+Aluminum Specimens with Different Slits
+)aPM(
+ssertS
+eruliaF
+lanimoN
+Figure5.Plotofappliedfailurestressvs.theslitangleofslitsizeof6mm.
+
+===== PAGE 6 =====
+Materials 2024, 17, x FOR PEER REVIEW 6 of 19
+200
+150
+100
+50
+0
+0 10 20 30 40 50
+Materials2024,17,569 Angle of Slits (degrees) 6of19
+Figure 5. Plot of applied failure stress vs. the slit angle of slit size of 6 mm.
+Figure 6. Minimum cross-section for a slit with an orientational angle.
+Figure 7. Nominal failure stress of aluminum specimens with different slit lengths and angles.
+)aPM(
+ssertS
+eruliaF
+xaM
+250
+200
+150
+100
+50
+0
+o o o o o
+L4/0 L6/0 L6/15 L6/30 L6/45
+Aluminum Specimens with Different Slits
+)aPM(
+ssertS
+eruliaF
+lanimoN
+Materials 2024, 17, x FOR PEER REVIEW 6 of 19
+200
+150
+100
+50
+0
+0 10 20 30 40 50
+Angle of Slits (degrees)
+Figure 5. Plot of applied failure stress vs. the slit angle of slit size of 6 mm.
+Figure 6. Minimum cross-section for a slit with an orientational angle.
+Figure6.Minimumcross-sectionforaslitwithanorientationalangle.
+Figure 7. Nominal failure stress of aluminum specimens with different slit lengths and angles.
+)aPM(
+ssertS
+eruliaF
+xaM
+250
+200
+150
+100
+50
+0
+o o o o o
+L4/0 L6/0 L6/15 L6/30 L6/45
+Aluminum Specimens with Different Slits
+)aPM(
+ssertS
+eruliaF
+lanimoN
+Materials 2024, 17, x FOR PEER REVIEW 7 of 19
+4. Hardened Cement Pastes with Cracks
+4.1. Description of Specimens
+The next set of specimens was hardened cement paste with cracks, which were stud-
+Figure7.Nominalfailurestressofaluminumspecimenswithdifferentslitlengthsandangles.
+ied experimentally in Ref. [39]. All the specimens are 3-dimensional blocks of L mm × H
+4m. Hma ×r dWen medmC, wemheernet LP aiss ttehsew leinthgtChr, aHck iss the height, and W is the width of the specimen.
+4E.1a.chD esspcercipimtioenno hfaSsp eac icmraecnks of the depth ‘a’ in the middle of the length and at the bottom
+side. The crack is through the width of every specimen, which was tested under the three-
+Thenextsetofspecimenswashardenedcementpastewithcracks,whichwerestudied
+e
+p
+x
+o
+p
+i
+e
+n
+r
+t
+i
+b
+m
+e
+e
+n
+n
+d
+t
+i
+a
+n
+l
+g
+ly
+s
+i
+e
+n
+tu
+R
+p
+e
+.
+f
+F
+.
+i
+[
+g
+3
+u
+9
+r
+]
+e
+.
+8
+A
+s
+l
+h
+l
+o
+th
+w
+e
+s
+s
+h
+p
+a
+e
+l
+c
+f
+i
+o
+m
+f
+e
+th
+n
+e
+s
+h
+a
+a
+re
+rd
+3
+e
+-
+n
+d
+e
+im
+d
+e
+ce
+n
+m
+sio
+en
+n
+t
+a
+p
+l
+a
+b
+s
+lo
+te
+c k
+m
+s
+o
+o
+d
+f
+e
+L
+l b
+m
+ec
+m
+au×se
+H
+of
+m sy m m×meWtry m . m ,whereListhelength,Histheheight,andWisthewidthofthespecimen.
+EachAsplle cthime esnpehcaimsaencsr amckadoef tohfe thdee phtahrd‘ae’ninedt hceemmeindtd pleaostfet hheadle tnhget hwaidntdh aWtt h=e 1b0o0 tmtomm,
+saindde. tThhee lecrnagctkh itsot hthroeu dgehptthhe rwatiidot hreomfaeivneerdy asps eLc/iHm e=n 4, wwhhiiclhe wthaes dteespttehd wunads evratrhieedt hwreiteh-
+pdoiffinetrebnetn draitnigoss oetfu tph.e Fcrigauckre to8 sspheocwimsehna ldfeopftthh ae/Hha. rTdheen ehdarcdeemneendt cpeamsetentm poadsteel bbeehcaauvseed
+oinf say bmrmitteletr my.anner with an elastic modulus of 20.8 GPa.
+Figure8.Halfofthehardenedcementpastemodel.
+Figure 8. Half of the hardened cement paste model.
+AllthespecimensmadeofthehardenedcementpastehadthewidthW =100mm,
+4.2. Modeling
+andthelengthtothedepthratioremainedasL/H=4whilethedepthwasvariedwith
+First, half of the specimen, as sketched in Figure 8, was modeled using 3D solid ele-
+ments. The mesh was uniform, with the element length around 0.3 mm. The supporting
+and symmetric boundary conditions were applied to the model, as well as the applied
+load across the width of the specimen. Figure 9 shows the 3D finite element mesh of the
+model with boundary and loading conditions. The right face had a symmetric boundary
+condition except for the crack face at the bottom side.
+Figure 9. Three-dimensional three-point bending model of hardened cement paste.
+
+===== PAGE 7 =====
+Materials 2024, 17, x FOR PEER REVIEW 7 of 19
+4. Hardened Cement Pastes with Cracks
+4.1. Description of Specimens
+The next set of specimens was hardened cement paste with cracks, which were stud-
+ied experimentally in Ref. [39]. All the specimens are 3-dimensional blocks of L mm × H
+mm × W mm, where L is the length, H is the height, and W is the width of the specimen.
+Each specimen has a crack of the depth ‘a’ in the middle of the length and at the bottom
+side. The crack is through the width of every specimen, which was tested under the three-
+point bending setup. Figure 8 shows half of the hardened cement paste model because of
+symmetry.
+All the specimens made of the hardened cement paste had the width W = 100 mm,
+and the length to the depth ratio remained as L/H = 4 while the depth was varied with
+different ratios of the crack to specimen depth a/H. The hardened cement paste behaved
+in a brittle manner with an elastic modulus of 20.8 GPa.
+Materials2024,17,569 7of19
+differentratiosofthecracktospecimendeptha/H.Thehardenedcementpastebehavedin
+aFbigruitrtele 8m. Haanlfn oefr twhei thhaardneenleads tciecmmenotd pualsutes mofo2d0e.l8. GPa.
+44.2.2..M Mooddeelilningg
+FFirirsstt,, hhaallff ooff tthhee ssppeecciimmeenn,, aass skskeetcthcheedd ini nFiFgiugruer e8, 8w,aws amsomdoedleedl eudsiunsgi n3gD 3sDolisdo elilde-
+emlemenetns.t sT.hTeh memesehs hwwasa suunnifioformrm, ,wwitihth ththee eelleemmeenntt lleennggtthh aarroouunndd 00..33 mmmm.. TThhee ssuuppppoorrttiningg
+aanndds ysymmmmetertircicb obuonudnadrayrcyo cnodnitdioitniosnws ewreearep palpiepdliteodt htoe tmhoe dmelo,daselw, aesll wasetlhl easa pthpeli eadpplolaiedd
+alcoraodss atchreosws itdhteh wofidththe sopf etchiem sepne.cFimigeunr.e F9igshuorew 9s sthheow3Ds tfihnei t3eDe lfiemnieten telmemesehnot fmtheeshm oofd tehle
+wmitohdbeol uwnidtha rbyoaunnddlaorayd ainngdc loonaddiitniogn cso.nTdhietiroingsh.t Tfahcee rhigadhta fasycem hmaedt raic sbyomumndeatrriyc cboonudnidtioarny
+ecxocnepdtitfioorn tehxeccerpatc fkorfa tcheea ctrtahcek bfaoctteo amt tshide eb.ottom side.
+Figure 9. Three-dimensional three-point bending model of hardened cement paste.
+Figure9.Three-dimensionalthree-pointbendingmodelofhardenedcementpaste.
+After linear elastic analysis, the stress profiles were examined along the crack line
+acrossthewidthofthespecimen. Theresultsshowedthatthestressvariationfromthe
+edgeofthecracktotheverticaldirectionwasverycloseacrossthespecimenwidth. This
+suggeststhat2Danalysiswouldbeacceptabletosavecomputationaltime. Therefore,2D
+analysesofthree-pointbendingwereconductedusingfour-nodequadrilateralelementsto
+predictthefailureloadsofthespecimensmadeofthehardenedcementpaste. Aftersome
+meshsensitivitystudy,thefinalmeshwasaround10,000elements.
+4.3. Results
+Thefailureloadswerepredictedforthehardenedcementpastespecimenswithinitial
+cracksfromthe2DFEA,asdiscussedintheprevioussection. Becauseofthecrackwith
+stresssingularity,thestressgradientconditionisusedforthepredictionofthefailureloads.
+Inotherwords,thestressconditionisalreadysatisfiedatthecracktip.
+Since the failure value Y, which is related to the critical energy release rate, is not
+knownforthegivenmaterial,oneofthetestresultsinRef.[39]wasusedtoextractthe
+value. Then, the same failure value Y was used for the remainder of the specimens to
+predictthefailureloads. ThestressintensityfactorKwasobtainedfrom2Dfiniteelement
+analyses. BecauseconventionalFEA,ingeneral,doesnotprovideaccuratestressesvery
+nearthecracktip, acurvefitwasconductedusingEquation(3)todeterminethestress
+intensityfactorKforagivenappliedload. Figure10showsanexampleofthecurvefitto
+theFEAsolution. Then,thefailureloadsaredeterminedusingEquation(4).
+
+===== PAGE 8 =====
+Materials 2024, 17, x FOR PEER REVIEW 8 of 19
+After linear elastic analysis, the stress profiles were examined along the crack line
+across the width of the specimen. The results showed that the stress variation from the
+edge of the crack to the vertical direction was very close across the specimen width. This
+suggests that 2D analysis would be acceptable to save computational time. Therefore, 2D
+analyses of three-point bending were conducted using four-node quadrilateral elements
+to predict the failure loads of the specimens made of the hardened cement paste. After
+some mesh sensitivity study, the final mesh was around 10,000 elements.
+4.3. Results
+The failure loads were predicted for the hardened cement paste specimens with ini-
+tial cracks from the 2D FEA, as discussed in the previous section. Because of the crack
+with stress singularity, the stress gradient condition is used for the prediction of the failure
+loads. In other words, the stress condition is already satisfied at the crack tip.
+Since the failure value ϒ, which is related to the critical energy release rate, is not
+known for the given material, one of the test results in Ref. [39] was used to extract the
+value. Then, the same failure value ϒ was used for the remainder of the specimens to
+predict the failure loads. The stress intensity factor K was obtained from 2D finite element
+analyses. Because conventional FEA, in general, does not provide accurate stresses very
+near the crack tip, a curve fit was conducted using Equation (3) to determine the stress
+intensity factor K for a given applied load. Figure 10 shows an example of the curve fit to
+Materials2024,17,569 8of19
+the FEA solution. Then, the failure loads are determined using Equation (4).
+1100
+1000
+900
+800
+700
+600
+500
+400
+300
+200
+0 0.2 0.4 0.6 0.8 1 1.2
+Normalized Distance from Crack Tip
+Figure 10. Curve fit of the FEA solution to determine the stress intensity factor.
+Figure 11 shows the comparison between the predicted failure loads and the experi-
+mentally measured values. Because the specimen with a crack-to-depth ratio of 0.1 and
+the specimen height of 100 mm was used to determine the failure value ϒ, both theoretical
+and experimental values agreed exactly for the specimen in this case. All other specimens
+show close agreement between the two results except for one specimen with a crack ratio
+of 0.3 with a specimen height of 100 mm. Because the authors do not have additional in-
+formation on that test specimen, no further study could be conducted to understand the
+difference between the two results. Overall, the results confirmed the applicability of the
+present failure criterion to predict the failure of cracked specimens.
+)aP(
+daoL
+tinU
+rep
+ssertS
+FEA Results
+Curve Fit
+Figure10.CurvefitoftheFEAsolutiontodeterminethestressintensityfactor.
+Figure11showsthecomparisonbetweenthepredictedfailureloadsandtheexperi-
+mentallymeasuredvalues. Becausethespecimenwithacrack-to-depthratioof0.1andthe
+specimenheightof100mmwasusedtodeterminethefailurevalueY,boththeoreticaland
+experimentalvaluesagreedexactlyforthespecimeninthiscase. Allotherspecimensshow
+closeagreementbetweenthetworesultsexceptforonespecimenwithacrackratioof0.3
+withaspecimenheightof100mm. Becausetheauthorsdonothaveadditionalinformation
+Materials 2024, 17, x FOR PEER REVIEW 9 of 19
+onthattestspecimen,nofurtherstudycouldbeconductedtounderstandthedifference
+between the two results. Overall, the results confirmed the applicability of the present
+failurecriteriontopredictthefailureofcrackedspecimens.
+5
+4
+3
+2
+1
+0
+0 0.1 0.2 0.3 0.4 0.5
+Crack Ratio (a/H)
+Figure 11. Comparison of failure loads of hardened cement paste specimens with cracks.
+5. Three-Dimensional Printed PLA with Holes
+5.1. Description of Specimens and Experiments
+PLA specimens were printed by a 3D printer using the fused filament fabrication
+technique. The printing conditions influence the material properties of the 3D-printed
+PLA specimens. For example, the printing temperatures affected the strength of the
+printed specimens. In other words, the strength in the printing direction was much greater
+than that in its transverse direction, such that the 3D printed specimens behaved like an
+orthotropic material, such as a unidirectional fibrous composite.
+The printing conditions for the present PLA specimens are provided in Table 2. First,
+rectangular shapes of specimens were printed in 0°, 90°, and ±45° with a length of 140 mm,
+a width of 24 mm, and a thickness of 2 mm. The printing angle is with respect to the length
+direction of the specimens, which is also the loading direction. This means that the 0°
+specimens were printed along the loading direction, and those specimens were stronger
+than other specimens. For uniaxial testing, tabs of 20 mm × 24 mm were attached to both
+sides of every specimen on both ends. That is, each specimen had four tabs so as not to
+fail at the grip section during the tests. This made the gauge length of every specimen 100
+mm.
+Table 2. Printing conditions for PLA specimens.
+Print temperature 185 °C
+Bed temperature 55 °C
+Print speed 45 mm/s
+Line thickness 0.2 mm
+Line width 0.35 mm
+The stiffness and strength were determined from the tensile tests of the rectangular
+shapes of specimens with tabs. Figure 12 shows the typical stress–strain curves of the PLA
+specimens printed in different orientations relative to the loading direction. The test re-
+sults indicate a larger difference in strength than in stiffness. Those graphs provided the
+material properties of the PLA specimen. To determine Poisson’s ratio, strain gauges were
+also attached to the specimens in both longitudinal and transverse directions. The details
+are given in Ref. [37].
+)Nk(
+daoL
+eruliaF
+Exp. for H=0.05 m
+Theory for H=0.05 m
+Exp. for H=0.1 m
+Theory for H=0.1 m
+Figure11.Comparisonoffailureloadsofhardenedcementpastespecimenswithcracks.
+5. Three-DimensionalPrintedPLAwithHoles
+5.1. DescriptionofSpecimensandExperiments
+PLA specimens were printed by a 3D printer using the fused filament fabrication
+technique. Theprintingconditionsinfluencethematerialpropertiesofthe3D-printedPLA
+specimens. Forexample, theprintingtemperaturesaffectedthestrengthoftheprinted
+specimens.Inotherwords,thestrengthintheprintingdirectionwasmuchgreaterthanthat
+
+===== PAGE 9 =====
+Materials2024,17,569 9of19
+initstransversedirection,suchthatthe3Dprintedspecimensbehavedlikeanorthotropic
+material,suchasaunidirectionalfibrouscomposite.
+TheprintingconditionsforthepresentPLAspecimensareprovidedinTable2. First,
+rectangularshapesofspecimenswereprintedin0◦,90◦,and±45◦ withalengthof140
+mm,awidthof24mm,andathicknessof2mm. Theprintingangleiswithrespecttothe
+lengthdirectionofthespecimens,whichisalsotheloadingdirection. Thismeansthatthe
+0◦ specimenswereprintedalongtheloadingdirection,andthosespecimenswerestronger
+thanotherspecimens. Foruniaxialtesting,tabsof20mm×24mmwereattachedtoboth
+sidesofeveryspecimenonbothends. Thatis,eachspecimenhadfourtabssoasnottofail
+atthegripsectionduringthetests. Thismadethegaugelengthofeveryspecimen100mm.
+Table2.PrintingconditionsforPLAspecimens.
+Printtemperature 185◦C
+Bedtemperature 55◦C
+Printspeed 45mm/s
+Materials 2024, 17, x FOR PEER REVIEW 10 of 19
+Linethickness 0.2mm
+Linewidth 0.35mm
+In the previous study [37], rectangular specimens with the same geometry were
+testedT hweisthti fdfniffesesreanntd ssiztreesn ogft hhowleesr eadnedt edrimffeinreendt fprorminttihneg taenngsillees treesltastiovfet htoe rthecet alonagduilnagr
+sdhiraepcetsioonf. sTpheecinm, ethnes wexipthertiambse.nFtaigl urreesu1l2tss hwoewres tchoemtyppairceadl stotr etshse– sptrreadinicctuedrv feasiloufrteh eloPaLdAs.
+specimensprintedindifferentorientationsrelativetotheloadingdirection. Thetestresults
+The agreement was very good. In this paper, much larger sizes of dog-bone-shaped spec-
+indicatealargerdifferenceinstrengththaninstiffness. Thosegraphsprovidedthematerial
+imens were printed using PLA. Those specimens were tested to investigate the effect of
+properties of the PLA specimen. To determine Poisson’s ratio, strain gauges were also
+the hole size relative to the specimen width on the failure load. Figure 13 shows the dog-
+attachedtothespecimensinbothlongitudinalandtransversedirections. Thedetailsare
+bone shape of a PLA specimen.
+giveninRef.[37].
+FFiigguurree 1122.. SSttrreessssssttrraaiinn ccuurrvveess ooff rreeccttaanngguullaarr PPLLAA ssppeecciimmeennss..
+Inthepreviousstudy[37],rectangularspecimenswiththesamegeometryweretested
+withdifferentsizesofholesanddifferentprintinganglesrelativetotheloadingdirection.
+Then,theexperimentalresultswerecomparedtothepredictedfailureloads.Theagreement
+wasverygood.Inthispaper,muchlargersizesofdog-bone-shapedspecimenswereprinted
+usingPLA.Thosespecimensweretestedtoinvestigatetheeffectoftheholesizerelative
+to the specimen width on the failure load. Figure 13 shows the dog-bone shape of a
+PLAspecimen.
+Figure 13. Dog-bone shape PLA specimens.
+All the dog-bone shapes of PLA specimens were printed along the loading direction,
+i.e., at a 0° angle. All specimens had a test section of 80 mm wide and 1 mm thick. The top
+and bottom portions of the specimen were 3 mm thick, while the thickness gradually de-
+creased to 1 mm in the test section of the specimen. This is to prevent failure around the grip
+sections of the specimens because the testing equipment could hold only a small portion of
+the end sections, as sketched in Figure 13. In other words, there was no grip available for the
+testing, which was wide enough to hold the whole width of the specimen. The hole was
+drilled at the center of every specimen, and the hole size was 3 mm, 4 mm, 5 mm, or 6 mm,
+respectively. At the minimum, three specimens were tested for the same size of the hole.
+
+===== PAGE 10 =====
+Materials 2024, 17, x FOR PEER REVIEW 10 of 19
+In the previous study [37], rectangular specimens with the same geometry were
+tested with different sizes of holes and different printing angles relative to the loading
+direction. Then, the experimental results were compared to the predicted failure loads.
+The agreement was very good. In this paper, much larger sizes of dog-bone-shaped spec-
+imens were printed using PLA. Those specimens were tested to investigate the effect of
+the hole size relative to the specimen width on the failure load. Figure 13 shows the dog-
+bone shape of a PLA specimen.
+Materials2024,17,569 10of19
+Figure 12. Stressstrain curves of rectangular PLA specimens.
+Figure 13. Dog-bone shape PLA specimens.
+Figure13.Dog-boneshapePLAspecimens.
+All the dog-bone shapes of PLA specimens were printed along the loading direction,
+Allthedog-boneshapesofPLAspecimenswereprintedalongtheloadingdirection,
+i.ie.e.,., aatt aa 00◦° aannggllee.. AAllll ssppeeccimimeennss hhaadd aa tetsets tsescetciotino nofo 8f08 0mmmm wiwdied aenadn 1d m1mm mthitchki.c Tkh.eT htoep
+toanpda nbdotbtoomtto pmorptioorntsio onfs tohfe tshpeescpimeceinm wenerwe e3r em3mm tmhicthk,i cwk,hwileh itlheet htheicthkinceksns egsrsagdruaadlulya ldlye-
+dcerceraesaesde tdo t1o m1mm imn tihne ttheestt seescttsioenct oiof nthoef stpheecismpeenci.m Thenis. isT thoi spirsevtoenpt rfeavileunrte faarioluurneda trhoeu gnrdip
+thseecgtiroinpss oefc ttihoen sspoefcitmheensps ebceicmaeunses tbheec ateussteintgh eeqteusitpinmgeneqt ucoipumlde hnotlcdo ounldlyh ao sldmoanlll pyoartsimona lolf
+ptohret ieonnd osfectthioenesn, dass sekcetitochnesd,a ins sFkigeutcrhee 1d3.i Inn Foitghuerre w1o3r.dIsn, tohtehreer wwaso rndos g,rtihpe arevawilaasblneo fogrr tihpe
+atveasitlianbgl,e wfohricthh ewteasst iwngid,ew ehnicohugwha stow hidolede nthoeu gwhhtooleh woliddtthhe owf hthoel espweicditmheonf. tThhees pheocliem wena.s
+Tdhreillheodl eatw thaes dcerniltleerd oaft etvheeryc esnpteecrimofeenv, earnyds tpheec himoleen s,izaen dwaths e3 hmomle,s 4iz memw,a 5s m3mmm, o,r4 6m mmm,,
+5remspme,cotirv6elmy. mAt, trhesep mecintiivmeulym. A, tthtrheee mspienciimmuemns, wtherreee tsepsteecdim foern tshew searmetee ssitzeed offo trhteh heoslaem. e
+sizeofthehole.
+All the dog-bone shapes of PLA specimens were subjected to tensile loading until
+failure. Themaximumforceswereobtainedasthefailureloadsfromwhichtheapplied
+stressesatfailurewerecomputed. Furthermore,ahigh-speedvideowasusedtocapture
+thelocationsoftheinitialfailuresofthespecimens. Thevideowassetto50,000framesper
+second.Theobservedfailurelocationswerelatercomparedtothepredictedfailurelocation.
+5.2. Results
+Thedog-bonespecimensweremodeledusing2Dquadrilateralelementsonlyfora
+quarter of their geometry because of double symmetries. To emulate the physical test
+condition,uniformdisplacementswereappliedtotheFEAmodelatthegripsectionof
+eachspecimen,asshowninFigure13. Theapplieddisplacementwasincreasedgradually
+untilbothstressandstress-gradientfailureconditionsweresatisfiedatanymaterialpoint
+thatwouldbethelocationoftheinitialfailure. Theanalyseswereconductedforspecimens
+withdifferentholesizes.
+Figures14–16showboththeanalyticalpredictionsoffailurelocationsforthe3,4,and
+6mmholes,respectively.Eachfigurehasthreegraphs.Thefirstgraphisthefailurestrength
+fromthestressfailurecondition,thesecondgraphisthefailurestrengthfromthestress-
+gradientcondition, andthethirdgraphistheinducedeffectivestressfromtheapplied
+loading. Allthegraphswerenormalizedwithrespecttothefailurestrengthfromthestress
+condition. Thefailurestrengthfromthestressconditionisconstant,independentofthe
+locationinthespecimen. However,failurestrengthfromthestress-gradientcondition,as
+wellastheinducedequivalentstress,variesacrossthespecimenfromthehole.
+
+===== PAGE 11 =====
+Materials 2024, 17, x FOR PEER REVIEW 11 of 19
+All the dog-bone shapes of PLA specimens were subjected to tensile loading until fail-
+ure. The maximum forces were obtained as the failure loads from which the applied stresses
+at failure were computed. Furthermore, a high-speed video was used to capture the loca-
+tions of the initial failures of the specimens. The video was set to 50,000 frames per second.
+The observed failure locations were later compared to the predicted failure location.
+5.2. Results
+The dog-bone specimens were modeled using 2D quadrilateral elements only for a
+quarter of their geometry because of double symmetries. To emulate the physical test con-
+dition, uniform displacements were applied to the FEA model at the grip section of each
+specimen, as shown in Figure 13. The applied displacement was increased gradually until
+both stress and stress-gradient failure conditions were satisfied at any material point that
+would be the location of the initial failure. The analyses were conducted for specimens
+with different hole sizes.
+Figures 14–16 show both the analytical predictions of failure locations for the 3, 4, and
+6 mm holes, respectively. Each figure has three graphs. The first graph is the failure strength
+from the stress failure condition, the second graph is the failure strength from the stress-
+gradient condition, and the third graph is the induced effective stress from the applied load-
+ing. All the graphs were normalized with respect to the failure strength from the stress con-
+dition. The failure strength from the stress condition is constant, independent of the location
+in the specimen. However, failure strength from the stress-gradient condition, as well as the
+Materials2024,17,569 induced equivalent stress, varies across the specimen from the hole. 11of19
+Materials 2024, 17, x FOR PEER REVIEW 12 of 19
+FiFgiugruer e141.4 A.Ananlayltyictiacla flafialuilruer eprperdeidcitciotino nofo af aPPLLAA ddogo gbobnone ewwitihth a a3 3mmmm ddiaimameteetre rcecnentetre rhhoolel.e .
+1.8
+1.6
+1.4
+1.2
+1
+0.8
+0.6
+0.4
+0.2
+0 5 10 15 20
+Normalize Distance from Hole Edge
+Figure 15. Analytical failure prediction of a PLA dog bone with a 4 mm diameter center hole.
+Figure 16. Analytical failure prediction of a PLA dog bone with a 6mm diameter center hole.
+The FEA analysis gave the failure strength computed from the stress-gradient condi-
+tion at every node or element starting from the edge of the hole. The stress-gradient-based
+failure strength varies at different locations because the stress gradients change from point
+to point. Those varying failure stresses from the stress-gradient condition are plotted in
+the figures along the minimum cross-section of the specimen from the edge of each hole.
+The equivalent stress is the maximum normal stress along the same minimal sections
+of the specimens. The equivalent stress increases as the applied displacement to the spec-
+imen models increases. For the failure to initiate, the equivalent stress at one location must
+be equal to or greater than both failure stresses from the stress and stress-gradient failure
+conditions. Figures 14–16 show the plots of the equivalent stresses that just meet both fail-
+ure conditions at the initial failure locations for different sizes of the center holes from 3
+mm to 6 mm.
+Figure 14 is for the 3 mm hole, which shows that the equivalent stress meets both
+failure strengths from the stress and stress-gradient conditions, respectively, at a distance
+away from the edge of the hole. Before that failure location, the stress-gradient condition
+is not satisfied, and after the location, the stress condition is not satisfied. Thus, the initial
+failure does not occur at the edge of the 3 mm hole but rather some distance away from it.
+Hence, the stress concentration at the hole edge did not influence the failure, and the fail-
+ure load was not affected by such a small hole in the specimen.
+ssertS
+dezilamroN
+Failure Stress from Stress Gradient Condition Failure Stress from Stress Condition
+Equivalent Stress
+Locations of Initial Failures
+2
+1.8
+1.6
+1.4
+1.2
+1
+0.8
+0.6
+0.4
+0 2 4 6 8 10 12
+Normalize Distance from Hole Edge
+ssertS
+dezilamroN
+Materials 2024, 17, x FOR PEER REVIEW 12 of 19
+1.8
+1.6
+1.4
+1.2
+1
+0.8
+0.6
+0.4
+0.2
+0 5 10 15 20
+Normalize Distance from Hole Edge
+Figure 15. Analytical failure prediction of a PLA dog bone with a 4 mm diameter center hole.
+Figure15.AnalyticalfailurepredictionofaPLAdogbonewitha4mmdiametercenterhole.
+Failure Stress from Stress Gradient Condition
+Failure Stress from Stress Condition
+Equivalent Stress
+Location of Initial Failure
+Figure 16. Analytical failure prediction of a PLA dog bone with a 6mm diameter center hole.
+The FEA analysis gave the failure strength computed from the stress-gradient condi-
+tion at every node or element starting from the edge of the hole. The stress-gradient-based
+failure strength varies at different locations because the stress gradients change from point
+to point. Those varying failure stresses from the stress-gradient condition are plotted in
+the figures along the minimum cross-section of the specimen from the edge of each hole.
+The equivalent stress is the maximum normal stress along the same minimal sections
+of the specimens. The equivalent stress increases as the applied displacement to the spec-
+imen models increases. For the failure to initiate, the equivalent stress at one location must
+be equal to or greater than both failure stresses from the stress and stress-gradient failure
+conditions. Figures 14–16 show the plots of the equivalent stresses that just meet both fail-
+ure conditions at the initial failure locations for different sizes of the center holes from 3
+mm to 6 mm.
+Figure 14 is for the 3 mm hole, which shows that the equivalent stress meets both
+failure strengths from the stress and stress-gradient conditions, respectively, at a distance
+away from the edge of the hole. Before that failure location, the stress-gradient condition
+is not satisfied, and after the location, the stress condition is not satisfied. Thus, the initial
+failure does not occur at the edge of the 3 mm hole but rather some distance away from it.
+Hence, the stress concentration at the hole edge did not influence the failure, and the fail-
+ure load was not affected by such a small hole in the specimen.
+ssertS
+dezilamroN
+Failure Stress from Stress Gradient Condition
+Failure Stress from Stress Condition
+Equivalent Stress
+Locations of Initial Failures
+2
+1.8
+1.6
+1.4
+1.2
+1
+0.8
+0.6
+0.4
+0 2 4 6 8 10 12
+Normalize Distance from Hole Edge
+ssertS
+dezilamroN
+Failure Stress from Stress Gradient Condition
+Failure Stress from Stress Condition
+Equivalent Stress
+Location of Initial Failure
+Figure16.AnalyticalfailurepredictionofaPLAdogbonewitha6mmdiametercenterhole.
+
+===== PAGE 12 =====
+Materials2024,17,569 12of19
+TheFEAanalysisgavethefailurestrengthcomputedfromthestress-gradientcondi-
+tionateverynodeorelementstartingfromtheedgeofthehole. Thestress-gradient-based
+failurestrengthvariesatdifferentlocationsbecausethestressgradientschangefrompoint
+topoint. Thosevaryingfailurestressesfromthestress-gradientconditionareplottedinthe
+figuresalongtheminimumcross-sectionofthespecimenfromtheedgeofeachhole.
+Theequivalentstressisthemaximumnormalstressalongthesameminimalsectionsof
+thespecimens. Theequivalentstressincreasesastheapplieddisplacementtothespecimen
+modelsincreases. Forthefailuretoinitiate,theequivalentstressatonelocationmustbe
+equal to or greater than both failure stresses from the stress and stress-gradient failure
+conditions. Figures 14–16 show the plots of the equivalent stresses that just meet both
+failureconditionsattheinitialfailurelocationsfordifferentsizesofthecenterholesfrom
+3mmto6mm.
+Figure 14 is for the 3 mm hole, which shows that the equivalent stress meets both
+failurestrengthsfromthestressandstress-gradientconditions,respectively,atadistance
+awayfromtheedgeofthehole. Beforethatfailurelocation,thestress-gradientconditionis
+notsatisfied,andafterthelocation,thestressconditionisnotsatisfied. Thus,theinitial
+Materials 2024, 17, x FOR PEER REVIEW 13 of 19
+failuredoesnotoccurattheedgeofthe3mmholebutrathersomedistanceawayfrom
+it. Hence,thestressconcentrationattheholeedgedidnotinfluencethefailure,andthe
+failureloadwasnotaffectedbysuchasmallholeinthespecimen.
+WWhheennt htheeh hooleles sizizeew waassi ninccrreeaasseeddt oto4 4m mmm,,F Figiguurere1 155s hshoowwsst htheererea areret wtwoop pootetenntitaiall
+fafailiulurerel olocacatitoionns:s:o onneea attt htheee eddggeeo offt htheeh hoolelea annddt htheeo oththeerra atta ad disitsatanncceea awwaayyf rforommi ti.t.T Thhaatt
+isis,,b boothths tsrteressssa anndds tsrteresss-sg-graraddieiennttc coonndditiitoionnssc coouuldldb bees asatitsisfifieedda attb booththl olocacatitoionnssa almlmoosstt
+ssimimuultlatanneoeouuslsyl.yT. hTihsissu sguggegstesstths atthtahte tfhaeil ufarieluwroe uwldooucldcu orcactuorn aets oitne,ei msitme,e dimiamteelydifaotlelolyw feodl-
+blyowtheedo bthy etrhesi otet.hOern sitthee. Ootnh tehreh oatnhde,r fhaailnudre, foacilcuurres oactctuhres eadt gtheeo efdthgee ohfo tlheew hhoelne wthheehno tlhee
+shizoeleg rsoizwes gtroow6ms tmo ,6a mssmh,o aws nshinowFing uinre F1ig6u.re 16.
+EExxppeerrimimeenntstsw weerreec coonndduuccteteddu ussininggP PLLAAs pspeeccimimeennssw witihthd dififffeererenntth hooleles iszizese.s.A Asst hthee
+tetennssilielel oloaadd wwaass aapppplliieedd ttoo eeaacchh ssppeecciimmeenn uunnttiill ffaaiilulurree, ,aa hhigighh-s-pspeeeded vvidideoe owwasa susuesde dto
+tocacpatputruer tehteh meommoemnetsn tosf oinfiitniaitli afalifluairleusr.e Fsi.gFuirgeu 1r7e s1h7oswhso wthse tvhiedevoid celoipc olifp thoef ftahielufraeil uprreo-
+pgroregsrseisosnio onf otfhteh sepsepceimcimene nwwithit ha a33 mmmm hhoollee jjuusstt aafftteerr tthhee iinniittiiaall ffaaiilluurree.. TThheee exxppeerrimimeenntt
+aaggrereeessw witihtht htheet htheeooryrys shhoowwininggt htheef afailiulurerei ninitiitaiatitoionna awwaayyf rfroommt htheee eddggeeo offt thhee3 3m mmmh hoollee..
+Figure 17. Progression of initial failure of the specimen with a 3 mm hole.
+Figure17.Progressionofinitialfailureofthespecimenwitha3mmhole.
+FFoorrt hthee4 4m mmmh hooleles sizizee,,s soommees sppeeccimimeennsss shhoowweeddi ninitiitaiallf afailiulureres statartritninggf rforommt htheee eddggee
+oofft htheeh hoolele,,a annddo oththeersrss hshoowweeddi tita atta ad disitsatanncecea awwaayyf rforommt htheee dedggee..F Figiguurere1 188s hshoowwsst hthee
+fifirrssttf afailiulurerea attt htheee eddggeeo offt htheeh hoolel,e,w whhicihchw waassf ofolllolowweeddi mimmmeeddiaiatetelylya atta ad disitsatanncceea awwaayy
+frforommt hthee4 4m mmmd diaiammeeteterrh hoolele..O Onnt htheeo oththeerrh haanndd,,t hthees sppeeccimimeennc coonntatainininingga a6 6m mmmc ceenntrtarall
+hhooleles shhoowweeddf afailiulurreei ninitiitaiatitoionnf rfroommt htheee eddggeeo offt htheeh hoolele,,a asss eseeenni ninF Figiguurere1 199..B Beeccaauusseeo off
+uunnccoonntrtroolllalabblelea assyymmmmeettrryy,,t htheei ninitiitaiallf afailiulurreeo occccuurrrreeddo onno onnees sidideeo offt htheeh hoolele,,a annddt htheenn
+fafailiulurerea laslosofo flololwloewdeodn otnh ethoeth oetrhseidr esiodfet hoef htholee .hTohleu. sT,thhuese, xtpheer iemxpenertaimlreenstuallt srceosunlfitrsm ceodn-
+thfiermtheedo rtehtei ctahleporreedtiiccatli opnrsedbiacsteiodnosn bbasoethd sotnre bsostahn sdtrsetsrse sasn-gdr satdreiesns-tgfraailduireenct rfiatielruirae. criteria.
+Figure 18. Progression of initial failure of the specimen with a 4 mm hole.
+Figure 19. Initial failure of the specimen with a 6 mm hole.
+
+===== PAGE 13 =====
+Materials 2024, 17, x FOR PEER REVIEW 13 of 19
+M aterials 2024, 17, x FOR PEER REVIEW 13 of 19
+When the hole size was increased to 4 mm, Figure 15 shows there are two potential
+When the hole size was increased to 4 mm, Figure 15 shows there are two potential
+failure locations: one at the edge of the hole and the other at a distance away from it. That
+failure locations: one at the edge of the hole and the other at a distance away from it. That
+is, both stress and stress-gradient conditions could be satisfied at both locations almost
+is, both stress and stress-gradient conditions could be satisfied at both locations almost
+simultaneously. This suggests that the failure would occur at one site, immediately fol-
+simultaneously. This suggests that the failure would occur at one site, immediately fol-
+lowed by the other site. On the other hand, failure occurs at the edge of the hole when the
+lowed by the other site. On the other hand, failure occurs at the edge of the hole when the
+hole size grows to 6 mm, as shown in Figure 16.
+hole size grows to 6 mm, as shown in Figure 16.
+Experiments were conducted using PLA specimens with different hole sizes. As the
+Experiments were conducted using PLA specimens with different hole sizes. As the
+tensile load was applied to each specimen until failure, a high-speed video was used to
+tensile load was applied to each specimen until failure, a high-speed video was used to
+capture the moments of initial failures. Figure 17 shows the video clip of the failure pro-
+capture the moments of initial failures. Figure 17 shows the video clip of the failure pro-
+gression of the specimen with a 3 mm hole just after the initial failure. The experiment
+gression of the specimen with a 3 mm hole just after the initial failure. The experiment
+agrees with the theory showing the failure initiation away from the edge of the 3 mm hole.
+agrees with the theory showing the failure initiation away from the edge of the 3 mm hole.
+Figure 17. Progression of initial failure of the specimen with a 3 mm hole.
+Figure 17. Progression of initial failure of the specimen with a 3 mm hole.
+For the 4 mm hole size, some specimens showed initial failure starting from the edge
+For the 4 mm hole size, some specimens showed initial failure starting from the edge
+of the hole, and others showed it at a distance away from the edge. Figure 18 shows the
+of the hole, and others showed it at a distance away from the edge. Figure 18 shows the
+first failure at the edge of the hole, which was followed immediately at a distance away
+first failure at the edge of the hole, which was followed immediately at a distance away
+from the 4 mm diameter hole. On the other hand, the specimen containing a 6 mm central
+from the 4 mm diameter hole. On the other hand, the specimen containing a 6 mm central
+hole showed failure initiation from the edge of the hole, as seen in Figure 19. Because of
+hole showed failure initiation from the edge of the hole, as seen in Figure 19. Because of
+uncontrollable asymmetry, the initial failure occurred on one side of the hole, and then
+Materials2024,17,569 uncontrollable asymmetry, the initial failure occurred on one side of the hole, an 1 d 3 o t f h 1 e 9 n
+failure also followed on the other side of the hole. Thus, the experimental results con-
+failure also followed on the other side of the hole. Thus, the experimental results con-
+firmed the theoretical predictions based on both stress and stress-gradient failure criteria.
+firmed the theoretical predictions based on both stress and stress-gradient failure criteria.
+Figure 18. Progression of initial failure of the specimen with a 4 mm hole.
+FiFgiugurere1 81.8P. Prorgorgersessisoinono foifn iintiitailafla fialuilruereo fotfh tehes psepceicmimenenw withitha a4 4m mmmh ohloel.e.
+Materials 2024, 17, x FOR PEER REVIEW 14 of 19
+Figure 19. Initial failure of the specimen with a 6 mm hole.
+Figure 19. Initial failure of the specimen with a 6 mm hole.
+Figure19.Initialfailureofthespecimenwitha6mmhole.
+The applied failure stresses of the PLA specimens at the onset of failure were also
+compaTrehde baeptpwlieeednf tahileu trheesotrreys saensdo tfhteh eexPpLeArimspeenctimal ernessualttsth. Feiognusreet 2o0f sfahioluwrse twheisr ecoamlsopacor-m-
+isopna.r eBdotbhe trweseuelntst ahgerteheedo wryealln wditthhe eeaxcphe ortihmeern. talresults. Figure20showsthiscomparison.
+Bothresultsagreedwellwitheachother.
+50
+40
+30
+20
+10
+0
+3.0 4.0 5.0 6.0
+Hole Size (mm)
+Figure 20. Comparison of theoretical and experimental failure stresses of PLA specimens with dif-
+ferent hole sizes.
+6. Laminated Glass Fiber Composites with Holes
+6.1. Description of Specimens
+Test specimens were cut out of a quasi-isotopically laminated glass fiber composite
+(GFC) plate, which has the following layer angles: 0°/45°/−45°/90°/90°/−45°/45°/0°. Here,
+0° denotes that fibers are orientated along the loading direction. The overall dimensions
+of the GFC specimens were identical to the previously tested aluminum alloy specimens.
+The GFC specimens had 3 mm, 6 mm, and 9 mm diameter holes at their centers. Three
+specimens were prepared for the same hole size, and all the GFC specimens were tested
+under tensile loading until failure.
+6.2. Multiscale Failure Modeling
+Failure of laminated composite structures was modeled using a multiscale approach,
+which links the microscale and the macroscale of the composite materials and structures.
+The microscale indicates the fiber and matrix materials, while the macroscale is the smeared
+or homogenized composite material. The multiscale approach is sketched in Figure 21, and
+it consists of two processes bridging the microscale and macroscale. The first process is to
+transfer the information at the microscale to that at the macroscale. This process, called the
+upscaling or stiffness process, computes the effective composite material properties from
+the material properties of the fiber and matrix and their volume fractions. The second pro-
+cess occurs in the opposite direction and transfers information from the macroscale down
+to the microscale. This is called the downscaling process or the strength process. This second
+process determines the stresses and strains in the fiber and matrix materials from those at
+the composite material level. The main reason for this is to apply failure criteria at the fiber
+and matrix material level. The three different failure modes at the microscale are fiber fail-
+ure, matrix failure, and fiber/matrix interface failure; for example, interlaminar delamina-
+tion is described as matrix failure and/or fiber/matrix interface failure.
+)aPM(
+ssertS
+eruliaF
+Exp
+Theory
+Figure 20. Comparison of theoretical and experimental failure stresses of PLA specimens with
+differentholesizes.
+6. LaminatedGlassFiberCompositeswithHoles
+6.1. DescriptionofSpecimens
+Testspecimenswerecutoutofaquasi-isotopicallylaminatedglassfibercomposite
+(GFC)plate,whichhasthefollowinglayerangles: 0◦/45◦/−45◦/90◦/90◦/−45◦/45◦/0◦.
+Here, 0◦ denotes that fibers are orientated along the loading direction. The overall di-
+mensionsoftheGFCspecimenswereidenticaltothepreviouslytestedaluminumalloy
+specimens. TheGFCspecimenshad3mm,6mm,and9mmdiameterholesattheircenters.
+Threespecimenswerepreparedforthesameholesize,andalltheGFCspecimenswere
+testedundertensileloadinguntilfailure.
+
+===== PAGE 14 =====
+Materials2024,17,569 14of19
+6.2. MultiscaleFailureModeling
+Failureoflaminatedcompositestructureswasmodeledusingamultiscaleapproach,
+whichlinksthemicroscaleandthemacroscaleofthecompositematerialsandstructures.
+Themicroscaleindicatesthefiberandmatrixmaterials,whilethemacroscaleisthesmeared
+orhomogenizedcompositematerial. ThemultiscaleapproachissketchedinFigure21,and
+itconsistsoftwoprocessesbridgingthemicroscaleandmacroscale. Thefirstprocessisto
+transfertheinformationatthemicroscaletothatatthemacroscale. Thisprocess,called
+theupscalingorstiffnessprocess,computestheeffectivecompositematerialproperties
+fromthematerialpropertiesofthefiberandmatrixandtheirvolumefractions. Thesecond
+process occurs in the opposite direction and transfers information from the macroscale
+downtothemicroscale. Thisiscalledthedownscalingprocessorthestrengthprocess. This
+secondprocessdeterminesthestressesandstrainsinthefiberandmatrixmaterialsfrom
+thoseatthecompositemateriallevel. Themainreasonforthisistoapplyfailurecriteriaat
+Materials 2024, 17, x FOR PEER REVthIEeWfi berandmatrixmateriallevel. Thethreedifferentfailuremodesatthemicrosca1le5 aorfe 19
+fiberfailure,matrixfailure,andfiber/matrixinterfacefailure;forexample,interlaminar
+delaminationisdescribedasmatrixfailureand/orfiber/matrixinterfacefailure.
+Fi F g i u g r u e r 2 e 1 2 . 1M. Mulutilstcisaclaelaep apprporaocahc.h.
+Theoverallanalysisoccursinthefollowingmanner.
+The overall analysis occurs in the following manner.
+1.
+1.
+F
+F
+ir
+i
+s
+r
+t
+s
+,
+t,
+t h
+th
+e
+e
+c o
+c
+m
+om
+p
+p
+os
+o
+i
+s
+t
+i
+e
+te
+m
+m
+at
+a
+e
+t
+r
+e
+i
+r
+a
+i
+l
+al
+p
+p
+ro
+r
+p
+op
+er
+e
+t
+r
+i
+t
+e
+i
+s
+es
+a r
+a
+e
+re
+c o
+c
+m
+om
+p
+p
+u
+u
+te
+t
+d
+ed
+f r
+f
+o
+r
+m
+om
+v i
+v
+r
+i
+g
+r
+i
+g
+n
+in
+fi b
+fi
+e
+b
+r
+e
+a
+r
+n
+a
+d
+nd
+m
+m
+at
+a
+r
+t
+ix
+rix
+materialsusingtheupscalingprocess.
+materials using the upscaling process.
+2. Thecompositematerialpropertiesareusedfortheanalysisofthegivencomposite
+2. The composite material properties are used for the analysis of the given composite
+structurewithanappliedloading. Becausethestructuralanalysisiscomplex,FEAis
+structure with an applied loading. Because the structural analysis is complex, FEA is
+mostlyusedforthestructuralanalysis,whichprovidesthestressesandstrainsinthe
+mostly used for the structural analysis, which provides the stresses and strains in the
+compositestructure.
+composite structure.
+3. Then,thecompositelevelstressesandstrainsaredecomposedintothestressesand
+3. Then, the composite level stresses and strains are decomposed into the stresses and
+strainsatthefiberandmatrixmaterialsusingthedownscalingprocess.
+strains at the fiber and matrix materials using the downscaling process.
+4. The unified failure criteria are applied to the stresses and strains of the fiber and
+4. The unified failure criteria are applied to the stresses and strains of the fiber and ma-
+matrixmaterials.
+trix materials.
+5. Ifthereisafailure,thenthecorrespondingmaterialpropertiesaredegradedbased
+5. If there is a failure, then the corresponding material properties are degraded based
+on the specific failure, and the degraded material properties are used for the next
+on the specific failure, and the degraded material properties are used for the next
+upscalingprocess.
+upscaling process.
+6. Theanalysiscyclerepeatsasfailureprogresseslocallyortheappliedloadincreases.
+6. The analysis cycle repeats as failure progresses locally or the applied load increases.
+Becausebothupscalinganddownscalingprocessesareusediteratively,thecomputa-
+Because both upscaling and downscaling processes are used iteratively, the compu-
+tionalcostofthemultiscaleanalysismaybequitehigh. Toovercomethis,bothupscaling
+tational cost of the multiscale analysis may be quite high. To overcome this, both upscaling
+and downscaling processes use analytical solutions without any additional numerical
+and downscaling processes use analytical solutions without any additional numerical
+model. Thederivationsoftheanalyticalsolutionsarebasedonaunitcellmodelasde-
+model. The derivations of the analytical solutions are based on a unit cell model as de-
+scribed in Refs. [40,41]. The unit cell consists of subcells. Some of the subcells represent
+the embedded fibers, and the remaining subcells represent the surrounding matrix mate-
+rial. Stresses and strains were assumed constant with every subcell for mathematical sim-
+plicity. Then, stress equilibrium and deformation compatibility are applied to the subcells
+to derive the equations necessary for the upscaling and downscaling processes. The details
+of the analytical derivations for the up and downscaling processes are omitted here. In
+summary, the upscaling process has the following analytical expression:
+𝐸(cid:3030) =𝑓(cid:3435)𝐸(cid:3033) ,𝐸(cid:3040) ,𝜈(cid:3033),𝜈(cid:3040)(cid:3439) (5)
+(cid:3036)(cid:3037)(cid:3038)(cid:3039) (cid:3036)(cid:3037)(cid:3038)(cid:3039) (cid:3036)(cid:3037)(cid:3038)(cid:3039)
+where Eijkl is the material property tensor; ν is the volume fraction; and superscripts ‘c’, ‘f’,
+and ‘m’ denote the homogenized composite, fiber, and matrix materials, respectively. This
+equation computes t homogenized composite material properties directly from the fiber
+and matrix material properties.
+The analytical expression used for the downscaling process is expressed as below:
+𝜀(cid:3033) =𝑔 (cid:3435)𝜀(cid:3030)(cid:3439) and 𝜀(cid:3040) =𝑔 (cid:3435)𝜀(cid:3030)(cid:3439) (6)
+(cid:3036)(cid:3037) (cid:2869) (cid:3036)(cid:3037) (cid:3036)(cid:3037) (cid:2870) (cid:3036)(cid:3037)
+
+===== PAGE 15 =====
+Materials2024,17,569 15of19
+scribedinRefs.[40,41]. Theunitcellconsistsofsubcells. Someofthesubcellsrepresentthe
+embeddedfibers,andtheremainingsubcellsrepresentthesurroundingmatrixmaterial.
+Stressesandstrainswereassumedconstantwitheverysubcellformathematicalsimplicity.
+Then,stressequilibriumanddeformationcompatibilityareappliedtothesubcellstoderive
+theequationsnecessaryfortheupscalinganddownscalingprocesses. Thedetailsofthe
+analyticalderivationsfortheupanddownscalingprocessesareomittedhere. Insummary,
+theupscalingprocesshasthefollowinganalyticalexpression:
+(cid:16) (cid:17)
+Ec = f E f ,Em ,νf,νm (5)
+ijkl ijkl ijkl
+whereE isthematerialpropertytensor;νisthevolumefraction;andsuperscripts‘c’,‘f’,
+ijkl
+and‘m’denotethehomogenizedcomposite,fiber,andmatrixmaterials,respectively. This
+equationcomputesthomogenizedcompositematerialpropertiesdirectlyfromthefiber
+andmatrixmaterialproperties.
+Theanalyticalexpressionusedforthedownscalingprocessisexpressedasbelow:
+(cid:16) (cid:17) (cid:16) (cid:17)
+ε f = g εc andεm = g εc (6)
+ij 1 ij ij 2 ij
+inwhichε isthestraintensor,andthesamesuperscriptsasbeforewereused. Oncethe
+ij
+strainsatthefiberandmatrixmaterialsaredeterminedfromEquation(6),thestressesat
+thefiberandmatrixmaterialsarecomputedasbelow:
+σ f orm = E f orm ε f orm (7)
+ij ijkl ij
+whereσ isthestresstensor.
+ij
+Thefailurecriteriaatthemicroscalelevelaregivenforthefiberbreakage/buckling,
+matrix cracking, and fiber/matrixinterface debonding. Fiber failure is the major catas-
+trophicfailureoffibrouscompositesbecausefibersarethemajorload-carryingelements.
+Theeffectivestressforthefiberfailureisexpressedas
+(cid:118)
+σ e f =
+(cid:117) (cid:117)
+(cid:117) (cid:116)
+(cid:16)
+σ 1 f 1
+(cid:17)2
++
+(cid:32) E
+1
+f
+f 1
+(cid:33)2(cid:20)(cid:16)
+σ 1 f 2
+(cid:17)2
++
+(cid:16)
+σ 1 f 3
+(cid:17)2 (cid:21)
+(8)
+G
+12
+Thiseffectivestressisappliedtothefailurecriterionbasedonthestressandstress
+gradientasgiveninEquations(1)and(2). InEquation(8),‘1’isthefiberorientation,and‘2’
+isthetransversedirectionnormaltothefiberorientation. Inaddition,EandGareelastic
+andshearmoduli. AllthecomponentsinEquation(8)areforthefibermaterial.
+Thematrixmaterialusedinthisstudyisanisotropicbrittlematerial,soasaresult,the
+maximumnormalstressinthematrixmaterialisusedfortheeffectivestress. Finally,the
+effectivestresstocheckthefiber/matrixinterfacefailureisgivenbelow:
+(cid:118) √
+(cid:117) (cid:117) (cid:32) σm + vf (cid:0) σm −σm(cid:1)(cid:33)2 (cid:42) σm (cid:43)2
+σint = (cid:116) 12 22 11 + 22 (9)
+e τint σint
+fail fail
+where τint and σint are the tangential and normal failure strength of the interface. In
+fail fail
+addition,<...>inEquation(9)istheMacaulayfunction. Hence,thisfunctionisusedto
+indicatethatonlythetensilebutnotcompressivenormalstressatthefiber/matrixinterface
+contributestotheinterfacefailure.
+6.3. Results
+TheGFCspecimensbehavedlikequasi-brittlematerial. Inordertoviewthefailure
+surfacesclosely,GFCspecimensweresputter-coatedwithapproximately15nmofPt/Pd.
+Because GFC is non-conductive, it must be coated with a conductive metal to achieve
+
+===== PAGE 16 =====
+Materials2024,17,569 16of19
+high-qualityimagesusingscanningelectronmicroscopy. Additionally,sputtercoatingthe
+GFCsamplespreventstheGFCfromabsorbingtheenergy,whichcouldresultindeforming
+thesamples.
+Figure22showsthattheGFCsamples,regardlessofholesize,hadfiberfracturesinthe
+0◦ layersattheedgeoftheholewithminimalcross-section. Thefiberfractureinitiatedin
+theperpendiculardirectiontotheappliedloading,andthenitpropagatedatapproximately
+45◦. Ontheotherhand,the±45◦ layersshowednofiberfracturebutindicatedthatfiber
+pull-outhadoccurred,asshowninFigure23. Thefailureofthe±45◦ layersoccurredafter
+Materials 2024, 17, x FOR PEER REVtIEhWe failureofthe0◦ layer. Thus,theappliedfailurestressesoftheGFCspecimens17w oefr e19
+Materials 2024, 17, x FOR PEER REVIEW 17 of 19
+obtainedattheonsetoftheinitialfiberfractureofthe0◦ layers.
+Figure 22. Left side edge of fracture of the GFC specimen with a hole.
+FiFgiugruere2 22.2L. Lefetfst isdideee dedgegeo foffr farcatcutruereo fotfh teheG GFCFCs psepceicmimenenw withitha ah ohloel.e.
+Figure 23. Fiber pull-out failure of ± 45o fibers of the GFC specimen with a hole.
+Fi
+F
+g
+i
+u
+g
+r
+u
+e
+re
+2 3
+2
+.
+3
+F
+.
+i
+F
+b
+i
+e
+b
+r
+er
+p
+p
+u
+u
+ll-
+ll
+o
+-
+u
+o
+t
+u
+f
+t
+a
+f
+i
+a
+lu
+il
+r
+u
+e
+re
+o f
+o±f ±
+4 5
+4◦5o
+fi
+fi
+b
+b
+e
+e
+rs
+rs
+o
+o
+f
+f
+t h
+th
+e
+e
+G
+G
+F
+F
+C
+C
+s p
+sp
+e
+e
+ci
+c
+m
+im
+e
+e
+n
+n
+w
+w
+it
+i
+h
+th
+a
+a
+h
+h
+o
+o
+le
+l
+.
+e.
+The multiscale analysis, as described in the previous section, was conducted for the
+TThheem muultlitsicsaclaelea nanalaylysissi,sa, sasd desecsrcirbibededi nint htheep prerveivoiuousss escetcitoinon,w, wasasc ocnondduuctcetdedf ofrort hthee
+GFC specimens with holes. As the applied load increased incrementally, failure criteria at
+GGFCFCs pspeceicmimenenssw witihthh holoelse.sA. Asst htheea apppplileieddl oloaaddi ninccrereaaseseddi ninccreremmeenntatalllyl,yf, afialiulurerec rcirtietreiraiaa tat
+the fiber and matrix material levels were checked, respectively, using the effective stress
+ththeefi fibebrera nanddm matartirxixm mataetreirailall elveveleslsw wereerec hchecekckeded,,r ersepspecetcitviveelyl,yu, usisninggt htehee fefffecetcitvieves tsrtersesss
+and the stress gradient condition. Then, when the 0° layers initiated the fiber fracture at
+ananddt hthees tsrtersesssg rgardadieinetnct ocnodnditiitoinon. .T Thhenen,,w whhenent hthee0 ◦0°l alyayeresrsi ninitiitaiatetdedt htheefi fibbererf rfarcatcuturerea tat
+the edge of each hole, it was the onset of the main failure. The applied failure stress was
+the edge of each hole, it was the onset of the main failure. The applied failure stress was
+then determined at that applied load.
+then determined at that applied load.
+Figure 24 shows the comparison between the experimental and predicted failure
+Figure 24 shows the comparison between the experimental and predicted failure
+stresses, which were computed from the applied load divided by the specimen cross-sec-
+stresses, which were computed from the applied load divided by the specimen cross-sec-
+tion at the grip locations, i.e., the section without holes. Because the fiber failure value ϒ
+tion at the grip locations, i.e., the section without holes. Because the fiber failure value ϒ
+for the stress-gradient condition was obtained from the 6 mm hole specimens, the theo-
+for the stress-gradient condition was obtained from the 6 mm hole specimens, the theo-
+retical prediction is exactly on top of the mean experimental failure stress. Using the same
+retical prediction is exactly on top of the mean experimental failure stress. Using the same
+failure value, failure stresses were predicted for the specimens with a 3 mm or 9 mm hole.
+failure value, failure stresses were predicted for the specimens with a 3 mm or 9 mm hole.
+As shown in Figure 24, the theoretically predicted failure stresses agreed well with the
+As shown in Figure 24, the theoretically predicted failure stresses agreed well with the
+experimental stresses, which also suggests that the unified failure criterion in association
+experimental stresses, which also suggests that the unified failure criterion in association
+with the multiscale approach is useful for predicting the failure of the quasi-brittle lami-
+with the multiscale approach is useful for predicting the failure of the quasi-brittle lami-
+nated composites.
+nated composites.
+
+===== PAGE 17 =====
+Materials2024,17,569 17of19
+theedgeofeachhole,itwastheonsetofthemainfailure. Theappliedfailurestresswas
+thendeterminedatthatappliedload.
+Figure 24 shows the comparison between the experimental and predicted failure
+stresses, which were computed from the applied load divided by the specimen cross-
+section at the grip locations, i.e., the section without holes. Because the fiber failure
+value Y for the stress-gradient condition was obtained from the 6 mm hole specimens,
+thetheoreticalpredictionisexactlyontopofthemeanexperimentalfailurestress. Using
+thesamefailurevalue,failurestresseswerepredictedforthespecimenswitha3mmor
+9mmhole. AsshowninFigure24,thetheoreticallypredictedfailurestressesagreedwell
+Materials 2024, 17, x FOR PEER REVIEWw ith the experimental stresses, which also suggests that the unified failure crit1e8r ioofn 19in
+associationwiththemultiscaleapproachisusefulforpredictingthefailureofthequasi-
+brittlelaminatedcomposites.
+200
+150
+100
+50
+0
+0.1 0.15 0.2 0.25 0.3 0.35 0.4
+Normal. Hole Size (= Hole Dia. / Speci. Width)
+Figure 24. Comparison of experimental and theoretical failure stresses of GRP specimens with cen-
+ter holes.
+7. Summary and Conclusions
+A new unified failure criterion was proposed to predict the failure loads of structural
+members. The criterion uses both stress and stress gradient to determine failure. For fail-
+ure to occur, both stress and stress gradient conditions must be satisfied simultaneously.
+Various scenarios were examined to validate the new failure criterion. The cases included
+brittle or quasi-brittle materials and a ductile aluminum alloy. The former materials were
+isotropic hardened cement pastes, orthotropic PLA, and laminated glass fiber composites.
+Different geometric features were also tested, including a crack, a long slit, and a circular
+hole of different sizes. The new failure criterion predicted the failure loads satisfactorily
+for all the cases examined in this study as compared to their corresponding experimental
+results. The failure criterion showed that the failure load was ultimately determined by
+either the stress condition or stress-gradient condition depending on the material or geo-
+metric conditions of the tested specimens, even though both conditions were satisfied sim-
+ultaneously for all the specimens.
+Author Contributions: Y.W.K. was responsible for conceiving this study, providing guidance, and
+writing the manuscript. E.K.M. and S.D. prepared the specimens, conducted tests, performed FEA
+modeling, and analyzed the results. All authors have read and agreed to the published version of
+the manuscript.
+Funding: This research was funded by the Office of Naval Research for Young Kwon. The funding
+document numbers are N0001423WX01033.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: All the data were provided in this paper in the form of figures and tables.
+Acknowledgments: The authors acknowledge the technical support by Chanman Park.
+Conflicts of Interest: Authors do not have any conflicts of interest associated with this research.
+References
+1. Christensen, R.M. The Theory of Materials Failure; Oxford University Press: Oxford, UK, 2016.
+2. Podgórski, J. General Failure Criterion for Isotropic Media. J. Eng. Mech. 1985, 111, 188–201.
+3. Soden, P.; Hinton, M.; Kaddour, A. A comparison of the predictive capabilities of current failure theories for composite lami-
+nates. Compos. Sci. Technol. 1998, 58, 1225–1254.
+4. Kaddour, A.; Hinton, M.; Smith, P.; Li, S. The background to the third world-wide failure exercise. J. Compos. Mater. 2013, 47,
+2417–2426.
+5. Tsai, S.W.; Wu, E.M. A General Theory of Strength for Anisotropic Materials. J. Compos. Mater. 1971, 5, 58–80.
+)aPM(
+ssertS
+eruliaF
+Experiment
+Theory
+Figure 24. Comparison of experimental and theoretical failure stresses of GRP specimens with
+centerholes.
+7. SummaryandConclusions
+Anewunifiedfailurecriterionwasproposedtopredictthefailureloadsofstructural
+members. The criterion uses both stress and stress gradient to determine failure. For
+failuretooccur,bothstressandstressgradientconditionsmustbesatisfiedsimultaneously.
+Variousscenarioswereexaminedtovalidatethenewfailurecriterion. Thecasesincluded
+brittleorquasi-brittlematerialsandaductilealuminumalloy. Theformermaterialswere
+isotropichardenedcementpastes,orthotropicPLA,andlaminatedglassfibercomposites.
+Differentgeometricfeatureswerealsotested,includingacrack,alongslit,andacircular
+holeofdifferentsizes. Thenewfailurecriterionpredictedthefailureloadssatisfactorily
+forallthecasesexaminedinthisstudyascomparedtotheircorrespondingexperimental
+results. The failure criterion showed that the failure load was ultimately determined
+byeitherthestressconditionorstress-gradientconditiondependingonthematerialor
+geometricconditionsofthetestedspecimens,eventhoughbothconditionsweresatisfied
+simultaneouslyforallthespecimens.
+AuthorContributions:Y.W.K.wasresponsibleforconceivingthisstudy,providingguidance,and
+writingthemanuscript.E.K.M.andS.D.preparedthespecimens,conductedtests,performedFEA
+modeling,andanalyzedtheresults.Allauthorshavereadandagreedtothepublishedversionof
+themanuscript.
+Funding:ThisresearchwasfundedbytheOfficeofNavalResearchforYoungKwon.Thefunding
+documentnumbersareN0001423WX01033.
+InstitutionalReviewBoardStatement:Notapplicable.
+InformedConsentStatement:Notapplicable.
+
+===== PAGE 18 =====
+Materials2024,17,569 18of19
+Data Availability Statement: All the data were provided in this paper in the form of figures
+andtables.
+Acknowledgments:TheauthorsacknowledgethetechnicalsupportbyChanmanPark.
+ConflictsofInterest:Authorsdonothaveanyconflictsofinterestassociatedwiththisresearch.
+References
+1. Christensen,R.M.TheTheoryofMaterialsFailure;OxfordUniversityPress:Oxford,UK,2016.
+2. Podgórski,J.GeneralFailureCriterionforIsotropicMedia.J.Eng.Mech.1985,111,188–201.[CrossRef]
+3. Soden,P.;Hinton,M.;Kaddour,A.Acomparisonofthepredictivecapabilitiesofcurrentfailuretheoriesforcompositelaminates.
+Compos.Sci.Technol.1998,58,1225–1254.[CrossRef]
+4. Kaddour,A.;Hinton,M.;Smith,P.;Li,S.Thebackgroundtothethirdworld-widefailureexercise. J.Compos. Mater. 2013,47,
+2417–2426.[CrossRef]
+5. Tsai,S.W.;Wu,E.M.AGeneralTheoryofStrengthforAnisotropicMaterials.J.Compos.Mater.1971,5,58–80.[CrossRef]
+6. Hashin,Z.;Rotem,A.AFatigueFailureCriterionforFiberReinforcedMaterials.J.Compos.Mater.1973,7,448–464.[CrossRef]
+7. Sun,C.;Quinn,B.;Tao,J.;Oplinger,D.ComparativeEvaluationofFailureAnalysisMethodsforCompositeLaminates;DOT/FAA/AR-
+95/109;SchoolofAeronauticsandAstronautics,PurdueUniversity:WestLafayette,IN,USA,1996.
+8. Daniel,I.M.Failureofcompositematerials.Strain2007,43,4–12.[CrossRef]
+9. Irwin,G.R.AnalysisofstressesandstrainsneartheendofacracktraversingaPlate.J.Appl.Mech.1957,79,361–364.[CrossRef]
+10. Irwin,G.R.;Kies,J.A.;Smith,H.L.Fracturestrengthsrelativetoonsetandarrestofcrackpropagation. Proc. ASTM1958,58,
+640–660.
+11. Griffith,A.A.,VI.Thephenomenaofruptureandflowinsolids.Philos.Trans.R.Soc.LondonSer.AContain.Pap.AMath.OrPhys.
+Character.1921,221,163–198.
+12. Griffith, A.A. The theory of rupture. In Proceedings of the 1st International Congress of Applied Mechanics, Delft, The
+Netherlands,22–26April1924;pp.55–63.
+13. Anderson,T.L.FractureMechanics:FundamentalsandApplications,4thed.;CRCPress:BocaRaton,FL,USA,2017.
+14. Han,Q.;Wang,Y.;Yin,Y.;Wang,D.DeterminationofstressintensityfactorformodeIfatiguecrackbasedonfiniteelement
+analysis.Eng.Fract.Mech.2015,138,118–126.[CrossRef]
+15. Sih,G.C.Somebasicproblemsinfracturemechanicsandnewconcepts.Eng.Fract.Mech.1973,5,365–377.[CrossRef]
+16. Atkinson,C.;Craster,R.V.Theoreticalaspectsoffracturemechanics.Prog.Aerosp.Sci.1995,31,1–83.[CrossRef]
+17. Neuber,H.TheoryofNotchStresses;Springer:Berlin,Germany,1958.
+18. Peterson,R.E.NotchSensitivity. InMetalFatigue;Sines,G.,Waisman,J.L.,Eds.;McGrawHill: NewYork,NY,USA,1959;pp.
+293–306.
+19. Whitney,J.M.;Nuismer,R.J.Stressfracturecriteriaforlaminatedcompositescontainingstressconcentrations.J.Compos.Mater.
+1974,8,253–265.[CrossRef]
+20. Taylor,D.Geometricaleffectsinfatigue:Aunifyingtheoreticalmodel.Int.J.Fatigue1999,21,413–420.[CrossRef]
+21. Sapora,A.;Torabi,A.R.;Etesam,S.;Cornetti,P.Finitefracturemechanicscrackinitiationfromacircularhole.FatigueFract.Eng.
+Mater.Struct.2018,41,1627–1636.[CrossRef]
+22. Braun,M.;Müller,A.M.;Milakovic´,A.-S.;Fricke,W.;Ehlers,S.Requirementsforstressgradient-basedfatigueassessmentof
+notchedstructuresaccordingtotheoryofcriticaldistance.FatigueFract.Eng.Mater.Struct.2020,43,1541–1554.[CrossRef]
+23. Taylor,D.TheTheoryofCriticalDistances:ANewPerspectiveinFractureMechanics;Elsevier:London,UK,2007.
+24. Camanho,P.P.; Ercin,G.H.; Catalanotti,G.; Mahdi,S.; Linde,P.Afinitefracturemechanicsmodelforthepredictionofthe
+open-holestrengthofcompositelaminates.Compos.PartA2012,43,1219–1225.[CrossRef]
+25. Taylor, D.; Cornetti, P.; Pugno, N.Thefracturemechanicsoffinitecrackextension. Eng. Fract. Mech. 2004, 72, 1021–1038.
+[CrossRef]
+26. Dugdale,D.S.Yieldingofsteelsheetscontainingslits.J.Mech.Phys.Solids1960,8,100–104.[CrossRef]
+27. Barenblatt,G.I.Themathematicaltheoryofequilibriumcracksinbrittlefracture.Adv.Appl.Mech.1962,7,55–129.
+28. Shang,F.;Yan,Y.;Yang,J.Recentadvancesincohesivezonemodellingoffracture.Int.J.Aeronaut.Aerosp.Eng.2019,1,19–26.
+[CrossRef]
+29. Elices,M.;Guinea,G.;Gomez,J.;Planas,J.Thecohesivezonemodel:Advantages,limitationsandchallenges.Eng.Fract.Mech.
+2002,69,137–163.[CrossRef]
+30. Park,K.;Paulino,G.H.Cohesivezonemodels: Acriticalreviewoftraction-separationrelationshipsacrossfracturesurfaces.
+Appl.Mech.Rev.2011,64,060802.[CrossRef]
+31. Park,K.;Paulino,G.H.;Roesler,J.R.Aunifiedpotential-basedcohesivemodelofmixed-modefracture.J.Mech.Phys.Solids2009,
+57,891–908.[CrossRef]
+32. Schwalbe,K.-H.;Scheider,I.;Cornec,A.GuidelinesforApplyingCohesiveModelstotheDamageBehaviourofEngineeringMaterialsand
+Structures;SpringerScienceandBusinessMediaLLC:Dordrecht,TheNetherlands,2012.
+33. Needleman,A.SomeIssuesinCohesiveSurfaceModeling.ProcediaIUTAM2014,10,221–246.[CrossRef]
+34. Kwon,Y.W.RevisitingFailureofBrittleMaterials.J.Press.Vessel.Technol.2021,143,064503.[CrossRef]
+
+===== PAGE 19 =====
+Materials2024,17,569 19of19
+35. Kwon,Y.W.;Diaz-Colon,C.;Defisher,S.FailureCriteriaforBrittleNotchedSpecimens.J.Press.Vessel.Technol.2022,144,051506.
+[CrossRef]
+36. Kwon,Y.W.FailurePredictionofNotchedCompositesUsingMultiscaleApproach.Polymers2022,14,2481.[CrossRef]
+37. Schmeier,G.E.C.; Tröger,C.; Kwon,Y.W.; Sachau,D.PredictingFailureofAdditivelyManufacturedSpecimenswithHoles.
+Materials2023,16,2293.[CrossRef]
+38. Ansys.R1,UserManual;AnsysInc.:Canonsburg,PA,USA,2021.
+39. Karihaloo,B.L.;Abdalla,H.M.;Xiao,Q.Z.Sizeeffectinconcretebeams.Eng.Fract.Mech.2003,70,979–993.[CrossRef]
+40. Kwon,Y.W.;Park,M.S.Versatilemicromechanicsmodelformultiscaleanalysisofcompositestructures.Appl.Compos.Mater.
+2013,20,673–692.[CrossRef]
+41. Kwon,Y.W.;Darcy,J.Failurecriteriaforfibrouscompositesbasedonmultiscalemodeling.MultiscaleMultidiscip.Model.Exp.Des.
+2018,1,3–17.[CrossRef]
+Disclaimer/Publisher’sNote: Thestatements, opinionsanddatacontainedinallpublicationsaresolelythoseoftheindividual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.
