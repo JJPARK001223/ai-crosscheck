@@ -1,53 +1,51 @@
-# 문제 (Round 11)
+# 문제 (Round 12)
 
 ## 배경
-사용자(재료공학/파괴역학 석사생)가 "미래인재장학생" 연구계획서(제출처 양식,
-선배 예시: `J:\Desktop\미래인재장학생\[26-1] 미래인재 연구계획서.pdf`)를 작성 중.
-양식 섹션: 1.연구과제명(국문/영문) 2.학업목표및계획 3.연구목표및필요성
-4.연구내용및방법 5.향후진로계획 6.참고문헌.
+사용자(재료공학/파괴역학 석사생)가 두 편의 선행연구 논문을 한국어로 완역해 달라고 요청함.
 
-계획서에 담을 연구 스코프(사용자 지정):
-1. 기초 재료역학 복습
-2. 선행연구 재현
-3. 기존 Unified Failure Criterion의 연성 재료 적용성 확인
+- 선행연구 1: Kwon, Y.W., "Revisiting Failure of Brittle Materials," J. Pressure Vessel
+  Technol. 143(6), 064503 (2021). **미국 정부 저작물로 저작권 보호 대상 아님**(원문 하단에
+  명시: "This material is declared a work of the U.S. Government and is not subject to
+  copyright protection in the United States.")
+- 선행연구 3: Kwon, Y.W.; Markoff, E.K.; DeFisher, S., "Unified Failure Criterion Based on
+  Stress and Stress Gradient Conditions," Materials 17(3), 569 (2024).
+  **CC BY 4.0 오픈액세스**(원문에 라이선스 명시 확인됨). 출처 표시 조건 하에 번역·재배포 허용.
 
-이 스코프는 이 repo의 기존 졸업논문 주제(Kwon의 응력+응력구배 통합파괴기준을
-연성재료로 확장하는 연구)의 **1단계 착수 계획**에 해당하며, 이미 이 repo에서
-검증된 사실들(round1~10, DECISION*.md)을 근거로 삼는다:
+Claude가 두 논문 전체를 한국어로 완역하여 아래 HTML 파일로 작성 완료함:
+- `J:\Desktop\공학\claude_code\2026_09_30_선행연구_번역\선행연구1_Kwon2021_번역.html`
+- `J:\Desktop\공학\claude_code\2026_09_30_선행연구_번역\선행연구3_Kwon2024_번역.html`
 
-- 선행연구 1: Y. W. Kwon, "Revisiting Failure of Brittle Materials," J. Pressure
-  Vessel Technol. 143(6), 064503 (2021), DOI 10.1115/1.4050989.
-- 선행연구 3: Y. W. Kwon, E. K. Markoff, S. DeFisher, "Unified Failure Criterion
-  Based on Stress and Stress Gradient Conditions," Materials 17(3), 569 (2024),
-  DOI 10.3390/ma17030569.
-- 재현 대상 실험: Karihaloo, Abdalla, Xiao, Eng. Fract. Mech. 70(7-8), 979-993
-  (2003) — 경화 시멘트 페이스트(HCP) 3점굽힘 균열 시편(H=50~400mm 고정폭
-  W=100mm, a/H=0.05/0.10/0.30/0.50). Kwon 2024 §4 (Ref [39])가 이 데이터로
-  통합파괴기준을 검증.
-- Kwon 2024 §3은 이미 5000계열 연성 알루미늄 원공/슬릿 시편(원공 1~18mm, 슬릿
-  4~6mm)에 실측 인장곡선 기반 탄소성 FE해석으로 이 기준을 적용했고, 소성변형이
-  커질수록 응력구배 조건의 기여가 작아져 사실상 응력조건이 지배한다고 보고
-  ("stress condition rather than the stress-gradient condition" governs).
-  단, 균열이 아닌 원공/슬릿이며 균열 성장(J-R)은 다루지 않음 — round3 결론.
+원문 PDF:
+- `J:\Desktop\선행연구 관련\[선행연구 1] Revisintg Failure of Brittle Materials (2021-12).pdf`
+- `J:\Desktop\선행연구 관련\[선행연구 3] Unified Failure Criterion Based on Stress ans Stress Gradient Conditions (2024-01).pdf`
 
-## 조사 요청 (Codex, blind 아님 — 이미 검증된 사실 기반 **초안 검토**)
-아래 `round11/claude_draft.md`의 연구계획서 초안 본문을 **아래 관점에서** 검토할 것:
+번역 방침(사용자와 합의됨): 그림은 원본 이미지를 넣지 않고 "Fig. N" 형태로 위치만 표시함
+(사용자가 원본 PDF에서 직접 확인). 수식은 원문과 동일하게 LaTeX/MathJax로 재현함.
 
-1. **사실관계 정확성**: 본문에 언급된 논문 제목/저자/연도/저널/DOI, 실험 조건
-   수치(H, a/H, 재료), Kwon 2024 §3 결론 요약이 위 확인된 사실과 어긋나지
-   않는지. 근거 없이 과장되거나 원문에 없는 구체 수치(예: 특정 가공경화지수,
-   특정 노치반경 값)를 "이미 확인된 사실"처럼 단정하는 문장이 있는지.
-2. **논리 비약**: "선행연구 재현"→"연성 적용성 확인"으로 이어지는 연구 흐름이
-   round3 DECISION(연성 확장은 지도교수 확인 필요 사항)과 모순되지 않는지 —
-   장학금 계획서 수준(1단계 착수 계획)에서는 적절한 범위 설정인지, 혹은
-   "이미 있는 결과의 단순 재현"처럼 보여 신규성이 없어 보이는 과장/축소가
-   있는지.
-3. **문장 표현**: 장학금 연구계획서로서 과도하게 단정적이거나("~을 증명한다"
-   등 확정적 어조) 검증되지 않은 주장이 있는지.
+## 조사 요청 (Codex, blind 아님 — 이미 작성된 번역본 검토)
+위 두 HTML 파일을 원문 PDF와 대조하여 다음을 검토할 것:
+
+1. **완결성**: 원문의 모든 절(섹션)과 문단이 빠짐없이 번역되었는지. 원문에는 있는데 번역본에서
+   누락된 문단이나 절이 있는지.
+2. **기술적 정확성**: 파괴역학·재료공학 전문용어 번역이 정확한지(예: stress gradient=응력구배,
+   failure strength=파괴강도, effective stress=등가응력, critical energy release rate=임계
+   에너지 해방률 등). 오역으로 인해 원문의 의미가 달라진 부분이 있는지.
+3. **수식 정확성**: 번역본에 재현된 수식 (1)~(13)(선행연구 1), (1)~(9)(선행연구 3)이 원문
+   수식과 일치하는지. 특히 선행연구 3의 식 (8), (9)는 원문 PDF의 폰트 인코딩이 깨져 있어
+   Claude가 미시역학적으로 타당한 구조로 재구성했다고 번역본에 명시해 두었는데, 원문 PDF를
+   직접 보고 실제 형태와 일치하는지, 혹은 명백히 다른 형태라면 무엇이 맞는지 확인할 것.
+4. **참고문헌 정확성**: 두 논문의 References 목록(저자/연도/저널/권/페이지)이 원문과 일치하는지.
+5. **저작권 판단 검증**: 위에 기재한 "미국 정부 저작물"(선행연구 1) 및 "CC BY 4.0"(선행연구 3)
+   근거가 각 PDF 원문에 실제로 명시되어 있는지 원문에서 직접 재확인할 것 (이 판단에 따라 전체
+   번역 작업의 저작권 적법성이 결정되므로 반드시 원문 문구를 직접 확인).
 
 ## 원하는 결과물
-- 위 세 관점에서 **틀렸거나 과장된 부분만** 구체적으로 지적 (문장 인용 +
-  이유 + 근거).
-- 문제 없으면 "이 부분은 문제 없음"으로 짧게 확인.
-- 새로운 조사나 창작 금지 — 이미 repo에 있는 근거(위 배경 항목, round1~10
-  DECISION 파일들)와 대조만 할 것.
+- 위 다섯 관점에서 **문제가 있는 부분만** 구체적으로 지적 (해당 문단/수식 인용 + 원문과의 차이 +
+  수정 제안).
+- 문제 없는 항목은 "문제 없음"으로 짧게 확인.
+- 특히 4번(저작권 판단)은 반드시 원문에서 직접 문구를 찾아 인용하여 확인할 것 — 확인되지 않으면
+  "확인 불가"라고 명시.
+- 새로운 번역이나 재작성 금지. 이미 작성된 두 HTML 파일과 원문 PDF의 대조 검토만 수행.
+
+결과를 `round12/codex.md`에 한국어로 작성. 완료 후 `git add round12/codex.md` →
+`git commit -m "round12: Codex 번역 검증"` → `git push origin main`. `AGENTS.md` 규칙을 따른다.
