@@ -1,0 +1,2718 @@
+OpenAI Codex v0.159.2
+--------
+workdir: J:\Desktop\공학\ai-crosscheck
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a116ad-c09b-7df1-8c90-f5a3b8ee5efc
+--------
+user
+독립적으로(Claude의 답을 보지 말고, `round22/claude.md`를 열어보지 말고) 아래를
+검증해 `round22/codex.md`에 한국어로 기록해줘.
+
+## 배경
+`J:\Desktop\공학\claude_code\2026_10_06_선행연구1_3_이론적배경\이론적배경_선행연구1_3.html`
+의 B.2 섹션(line 549~619 부근, "B.2 — 균열 케이스 재적용 (식 16, 17)과 계수 정규화")에
+QA 블록 두 개가 있다. 이 파일을 직접 열어 해당 부분을 읽고 검증해줘.
+
+### QA1
+Q: "식(16) σ_e=K/√s는 식(14)(15)로부터 대수적으로 유도되는가?"
+A(요지): 아니다. 1부 A.4의 Irwin 근사식 도입과 같은 역할이다 — 식14·15는 일반형
+판정식일 뿐 형상별 응력분포까지는 말해주지 않으므로, 균열선단 LEFM 표준해를 그대로
+"도입"한 것이 식16이다. 바로 위 본문은 "균열선단 근방에서는 재료 종류(등방성·연성·
+이방성)와 무관하게 응력이 1/√거리로 발산하는 동일한 특이성 구조가 성립한다"고 적는다.
+
+### QA2
+Q: "선행연구1은 w_f=K²/(2πE)인데 선행연구3은 Y=K²/E로 2π가 안 보인다 — 모순인가?"
+A(요지): 모순 아니다. 두 "K"는 다른 기호다. K_선3=K_I/√(2π) 관계이며, "(즉 식(16)의
+s는 선행연구1의 2πr과 같은 역할을 하는 재정규화된 변수)"라고 설명한 뒤
+Y=K_선3²/E=(K_I/√(2π))²/E=K_I²/(2πE)=w_f 로 결론.
+
+## 검증해줄 것
+
+1. **QA1의 핵심 주장**("식16은 식14·15로부터의 대수적 유도가 아니라 외부(LEFM)에서
+   들여온 도입이다")이 논리적으로 맞는가? 1부 A.4(Irwin 근사식 도입, 같은 파일의
+   "A.4 — Case 2" 섹션)와 구조적으로 정말 동일한 역할인지 그 섹션도 읽고 비교해줘.
+
+2. **QA1 본문의 물리적 근거**("재료의 종류(등방성·연성·이방성)와 무관하게 동일한
+   1/√거리 특이성 구조가 성립")가 정확한 서술인가, 과잉 일반화인가? 특히 연성
+   (ductile, 변형경화 소성) 재료의 균열선단 근방 특이장(HRR 특이장 등)이 등방/이방
+   선형탄성의 $r^{-1/2}$ 특이성과 항상 같은 지수를 갖는지 학술 문헌(Williams 1957;
+   Irwin 1957; Hutchinson 1968; Rice & Rosengren 1968; Sih, Paris & Irwin 1965 등)
+   기준으로 직접 판단해줘. "같다/다르다/조건부로 같다" 중 하나로 명확히 결론 내고
+   근거를 적어줘.
+
+3. **QA2 괄호 문장의 대수적 정합성**: "식(16)의 s는 선행연구1의 2πr과 같은 역할을
+   하는 재정규화된 변수"라는 문장이, 같은 QA 안에서 쓰인 "K_선3=K_I/√(2π)"라는
+   결론과 동시에 성립할 수 있는지 직접 대수로 검산해줘.
+   - σ_e=K_선3/√s (식16)이 표준 탄성해 σ=K_I/√(2π r)과 "같은 물리적 위치"에서
+     같은 값을 낸다고 가정하고,
+   - (a) s=r(단순 거리)을 대입했을 때 K_선3가 얼마가 되는지,
+   - (b) s=2π·r(즉 "s가 2πr과 같은 역할")을 대입했을 때 K_선3가 얼마가 되는지,
+   각각 계산해서 두 경우의 K_선3 값이 같은지 다른지, 그리고 어느 경우가 QA2에서
+   주장하는 K_선3=K_I/√(2π) 및 Y=K_선3²/E=w_f라는 결론과 실제로 양립하는지 판정해줘.
+   같은 파일의 B.2절 아래쪽 caution box(식17 바로 뒤, "원문 자체의 부정확한 서술"
+   제목)가 s에 대해 어떤 가정을 쓰는지도 확인해서 QA2 괄호 문장과 비교해줘.
+
+4. 위 세 항목을 검증하는 과정에서 B.2 섹션(line 549~619 부근)에 그 외의 추가
+   오류나 비정확한 서술을 발견하면 함께 적어줘.
+
+각 항목에 "맞음/틀림/부분적으로 맞음/확인불가"를 명시하고, 판단 근거(수식 재계산
+과정 또는 문헌의 구체적 페이지·식 번호)를 함께 적어줘. 추측·창작 금지 — 확인 안 되는
+것은 확인불가로 적어줘.
+
+codex
+요청하신 blind 단계로 진행하겠습니다. `round22/claude.md`는 어떤 방식으로도 열거나 검색하지 않고, 먼저 저장소를 pull한 뒤 대상 HTML의 A.4와 B.2, 원문·공식 학술문헌을 직접 대조해 `round22/codex.md`만 작성·검증하고 커밋·푸시하겠습니다.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'git pull --ff-only' in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 150ms:
+error: cannot open '.git/FETCH_HEAD': Permission denied
+
+codex
+`git pull --ff-only`은 샌드박스가 `.git/FETCH_HEAD` 쓰기를 금지해 실행되지 않았습니다(권한 상승도 허용되지 않는 환경). 조사와 문서 작성은 계속 진행하되, 마지막 커밋·푸시도 같은 제약을 받는지 실제로 확인해 결과를 분명히 남기겠습니다.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$target='"'J:\\Desktop\\공학\\claude_code\\2026_10_06_선행연구1_3_이론적배경\\이론적배경_선행연구1_3.html'; rg -n -C 45 'A\\.4 — Case 2|B\\.2 — 균열 케이스|원문 자체의 부정확한 서술|식\\(16\\)|식\\(17\\)' -- "'$target; Write-Output '"'---REPO FILES---'; rg --files -g '"'!round22/claude.md'"' | Select-Object -First 200; Write-Output '---STATUS---'; git status --short --branch" in J:\Desktop\공학\ai-crosscheck
+ succeeded in 4066ms:
+rg : 'rg' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:2 문자:82
++ ... \claude_code\2026_10_06_선행연구1_3_이론적배경\이론적배경_선행연구1_3.html'; rg -n -C 4 ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+---REPO FILES---
+rg : 'rg' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:2 문자:200
++ ... 16\)|식\(17\)' -- $target; Write-Output '---REPO FILES---'; rg --files ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+---STATUS---
+## main...origin/main
+?? round19/codex.md
+?? round21/codex_run.log
+?? round22/codex_run.log
+?? "\354\277\240\354\231\200\354\235\264\352\271\214_\353\217\231\355\225\264_\353\266\204\355\217\254\354\241\260\354\202\254.md"
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$target='"'J:\\Desktop\\공학\\claude_code\\2026_10_06_선행연구1_3_이론적배경\\이론적배경_선행연구1_3.html'; "'$lines=Get-Content -LiteralPath $target -Encoding UTF8; foreach($range in @(@(280,430),@(530,640))){ $start=$range[0]; $end=[Math]::Min($range[1],$lines.Count); for($i=$start;$i -le $end;$i++){ '"'{0,5}: {1}' -f "'$i,$lines[$i-1] } }' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 269ms:
+  280:         <line x1="185" y1="100" x2="175" y2="100" marker-end="url(#arrowA3S)"/>
+  281:         <line x1="185" y1="100" x2="195" y2="100" marker-end="url(#arrowA3S)"/>
+  282:         <line x1="235" y1="100" x2="225" y2="100" marker-end="url(#arrowA3S)"/>
+  283:         <line x1="235" y1="100" x2="245" y2="100" marker-end="url(#arrowA3S)"/>
+  284:         <line x1="285" y1="100" x2="275" y2="100" marker-end="url(#arrowA3S)"/>
+  285:         <line x1="285" y1="100" x2="295" y2="100" marker-end="url(#arrowA3S)"/>
+  286:         <line x1="335" y1="100" x2="325" y2="100" marker-end="url(#arrowA3S)"/>
+  287:         <line x1="335" y1="100" x2="345" y2="100" marker-end="url(#arrowA3S)"/>
+  288:       </g>
+  289:       <text x="260" y="165" text-anchor="middle" fill="var(--text)" font-size="13.5" font-weight="700">σₗ = 일정 (응력구배 = 0)</text>
+  290:       <text x="260" y="186" text-anchor="middle" fill="var(--muted)" font-size="12.5">조건②가 항상 자동 충족 → 조건①만으로 파괴 결정</text>
+  291: 
+  292:       <defs>
+  293:         <marker id="arrowA3L" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 Z" fill="var(--accent)"/></marker>
+  294:         <marker id="arrowA3R" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--accent)"/></marker>
+  295:         <marker id="arrowA3S" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent3)"/></marker>
+  296:       </defs>
+  297:     </svg>
+  298:     <figcaption>그림 A.3-1 — Case 1(도그본 인장시편): 단면 전체에 균일응력 σₗ, 응력구배 = 0. 실제 시편 치수는 본문에 없어 교과서적 비율로만 표시.</figcaption>
+  299:   </figure>
+  300: 
+  301:   <h3>A.4 — Case 2: 중앙균열 무한평판 — Irwin 근사식 도입 (식 4)</h3>
+  302:   <div class="eq"><span class="eqnum">식 4</span>$$\sigma_x = \frac{K}{\sqrt{2\pi r}}$$</div>
+  303:   <p>
+  304:     균열선단에서는 $r\to0$일 때 $\sigma_x\to\infty$이므로 조건①은 균열이 있으면 항상
+  305:     자동으로 만족된다. 따라서 균열 케이스에서는 파괴 여부를 결정하는 것이 오직
+  306:     조건②(응력구배 조건) 하나로 압축된다.
+  307:   </p>
+  308:   <div class="qa">
+  309:     <div class="q">왜 이 지점에서 저자 고유의 식이 아니라 Irwin(1957)의 근사식을 가져오는가?</div>
+  310:     <div class="a">조건②(식3)는 국소응력과 그 구배를 입력으로 요구하는 일반형 판정식이다. 균열이라는 구체적 형상에 적용하려면 그 형상의 응력분포 식이 필요한데, Irwin의 근사식이 이미 독립적으로 검증된 LEFM 표준 해이므로 그대로 대입한 것 — 새 물리를 추가한 것이 아니라 일반형에 구체적 형상 해를 대입하는 단계다.</div>
+  311:   </div>
+  312: 
+  313:   <figure class="svgfig">
+  314:     <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="중앙균열 무한평판과 균열끝 국소좌표">
+  315:       <rect x="20" y="24" width="440" height="252" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="6 5"/>
+  316:       <text x="240" y="16" text-anchor="middle" fill="var(--muted)" font-size="11">(무한평판 — 경계는 균열에서 충분히 먼 것으로 가정)</text>
+  317: 
+  318:       <g stroke="var(--accent)" stroke-width="1.6">
+  319:         <line x1="90" y1="4" x2="90" y2="24" marker-end="url(#arrowA4D)"/>
+  320:         <line x1="160" y1="4" x2="160" y2="24" marker-end="url(#arrowA4D)"/>
+  321:         <line x1="240" y1="4" x2="240" y2="24" marker-end="url(#arrowA4D)"/>
+  322:         <line x1="320" y1="4" x2="320" y2="24" marker-end="url(#arrowA4D)"/>
+  323:         <line x1="390" y1="4" x2="390" y2="24" marker-end="url(#arrowA4D)"/>
+  324:         <line x1="90" y1="296" x2="90" y2="276" marker-end="url(#arrowA4U)"/>
+  325:         <line x1="160" y1="296" x2="160" y2="276" marker-end="url(#arrowA4U)"/>
+  326:         <line x1="240" y1="296" x2="240" y2="276" marker-end="url(#arrowA4U)"/>
+  327:         <line x1="320" y1="296" x2="320" y2="276" marker-end="url(#arrowA4U)"/>
+  328:         <line x1="390" y1="296" x2="390" y2="276" marker-end="url(#arrowA4U)"/>
+  329:       </g>
+  330:       <text x="415" y="18" fill="var(--accent)" font-size="13">σ∞</text>
+  331: 
+  332:       <line x1="180" y1="150" x2="300" y2="150" stroke="var(--warn)" stroke-width="3" stroke-linecap="round"/>
+  333:       <line x1="180" y1="146" x2="180" y2="154" stroke="var(--warn)" stroke-width="2"/>
+  334:       <line x1="300" y1="146" x2="300" y2="154" stroke="var(--warn)" stroke-width="2"/>
+  335:       <text x="240" y="172" text-anchor="middle" fill="var(--warn)" font-size="12.5">2a</text>
+  336: 
+  337:       <circle cx="300" cy="150" r="2.5" fill="var(--accent3)"/>
+  338:       <line x1="300" y1="150" x2="350" y2="150" stroke="var(--accent3)" stroke-width="1.3" stroke-dasharray="3 3"/>
+  339:       <line x1="300" y1="150" x2="340" y2="120" stroke="var(--accent3)" stroke-width="1.3" marker-end="url(#arrowA4r)"/>
+  340:       <path d="M320,150 A20,20 0 0 0 313,133" fill="none" stroke="var(--accent3)" stroke-width="1"/>
+  341:       <text x="334" y="145" fill="var(--accent3)" font-size="11.5">θ</text>
+  342:       <text x="325" y="112" fill="var(--accent3)" font-size="12.5">r</text>
+  343: 
+  344:       <defs>
+  345:         <marker id="arrowA4D" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><path d="M0,0 L7,0 L3.5,7 Z" fill="var(--accent)"/></marker>
+  346:         <marker id="arrowA4U" markerWidth="7" markerHeight="7" refX="3.5" refY="0" orient="auto"><path d="M0,7 L7,7 L3.5,0 Z" fill="var(--accent)"/></marker>
+  347:         <marker id="arrowA4r" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent3)"/></marker>
+  348:       </defs>
+  349:     </svg>
+  350:     <figcaption>그림 A.4-1 — Case 2(중앙균열 무한평판): 균열길이 2a, 원거리 균일응력 σ∞. 국소좌표 (r,θ)에서 θ=0은 균열 연장선으로 정의하며, Irwin 근사 σₓ=K/√(2πr)(식4)는 이 연장선을 따라 평가·미분된다 — 원문이 θ 자체를 명시하지는 않으므로 이는 표준 LEFM 관례를 적용한 해석(round21 Codex 검증).</figcaption>
+  351:   </figure>
+  352: 
+  353:   <h3>A.5 — 식(4)의 미분 (식 5)</h3>
+  354:   <div class="step"><span class="lbl">지수 표기</span>$$\sigma_x = \frac{K}{\sqrt{2\pi}}\,r^{-1/2}$$</div>
+  355:   <div class="arrow">▼</div>
+  356:   <div class="step"><span class="lbl lbl-aux">적용 수학 규칙 (거듭제곱 미분)</span>
+  357:     $$\frac{d}{dr}r^{n}=nr^{n-1}, \quad n=-\tfrac12$$
+  358:   </div>
+  359:   <div class="arrow">▼</div>
+  360:   <div class="step"><span class="lbl">미분</span>$$\frac{d\sigma_x}{dr} = -\frac{K}{2\sqrt{2\pi}\,r^{3/2}} \;\;\Rightarrow\;\; \left|\frac{d\sigma_x}{dr}\right| = \frac{K}{2\sqrt{2\pi}\,r^{3/2}} \quad \text{(식 5)}$$</div>
+  361: 
+  362:   <h3>A.6 — 식(3)+(4)+(5) 결합: $r$의 소거와 재료상수 $w_f$ (식 6)</h3>
+  363:   <div class="step"><span class="lbl">대입</span>
+  364:     $$w_f = \frac{\sigma_x^3}{2E}\left|\frac{dr}{d\sigma_x}\right| = \frac{1}{2E}\left(\frac{K}{\sqrt{2\pi r}}\right)^{3}\times\left(2\sqrt{2\pi}\,r^{3/2}\Big/K\right)$$
+  365:   </div>
+  366:   <div class="arrow">▼</div>
+  367:   <div class="step"><span class="lbl lbl-aux">적용 수학 규칙 (지수 정리)</span>
+  368:     $$r^{3/2}\ \text{항 상쇄}, \quad \frac{K^3}{K}=K^2$$
+  369:   </div>
+  370:   <div class="arrow">▼</div>
+  371:   <div class="step"><span class="lbl">식 (6)</span>$$w_f = \frac{K^2}{E}\times\frac{\sqrt{2\pi}}{(2\pi)^{3/2}} = \frac{K^2}{2\pi E}$$</div>
+  372:   <div class="qa">
+  373:     <div class="q">왜 이 소거가 중요한가?</div>
+  374:     <div class="a">$w_f$는 위치 $r$에 의존하지 않아야 비로소 "재료상수"라고 부를 수 있다. 식(3)에 구체적 응력장 식(4)(5)를 대입했을 때 $r$ 의존 항이 완전히 사라진다는 것이 — 조건②가 임의의 위치에서가 아니라 재료 고유값으로 귀결된다는 것의 대수적 증거다.</div>
+  375:   </div>
+  376: 
+  377:   <h3>A.7 — 식(6)의 역산: $K_{IC}$ (식 7)</h3>
+  378:   <div class="eq"><span class="eqnum">식 7</span>$$K^2 = 2\pi E w_f \;\;\Rightarrow\;\; K_{IC} = \sqrt{2\pi E w_f}$$</div>
+  379:   <div class="qa">
+  380:     <div class="q">이 값에 왜 $K_{IC}$라는 이름(기존 LEFM 파괴인성)을 붙일 수 있는가?</div>
+  381:     <div class="a">식(6)→(7)의 역산 결과가 기존 LEFM에서 이미 정의된 임계 응력확대계수 $K_{IC}$와 형태·역할이 동일하다. 저자가 독립적으로 제안한 두-조건 이론이 균열 케이스에서 기존 LEFM과 동일한 지점에 도달한다는 것이 이론의 정합성을 뒷받침하는 핵심 근거다.</div>
+  382:   </div>
+  383: 
+  384:   <h3>A.8 — Case 3: 무한평판 원공 — Kirsch 고전해 도입 (식 8~10)</h3>
+  385:   <div class="eq"><span class="eqnum">식 8</span>$$\sigma_\theta=\frac{\sigma_o}{2}\left[\left(1+\frac{R^2}{r^2}\right)-\left(1+\frac{3R^4}{r^4}\right)\cos2\theta\right]$$</div>
+  386:   <div class="step"><span class="eqnum">식 9~10</span><span class="lbl">하중 수직 방향 $\theta=\pi/2$, 가장자리 $r=R$ 대입</span>
+  387:     $$\sigma_\theta(R,\pi/2)=\frac{\sigma_o}{2}\left[(1+1)+(1+3)\right]=\frac{\sigma_o}{2}\times6=3\sigma_o$$
+  388:   </div>
+  389:   <p>응력집중계수 $K_t=3$은 $R$(구멍 크기)과 무관하다 — 구멍이 아무리 작거나 커도 가장자리 응력은 항상 공칭응력의 3배다.</p>
+  390: 
+  391:   <figure class="svgfig">
+  392:     <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="무한평판 원공과 Kirsch 응력분포">
+  393:       <rect x="20" y="20" width="440" height="260" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="6 5"/>
+  394:       <g stroke="var(--accent)" stroke-width="1.6">
+  395:         <line x1="90" y1="4" x2="90" y2="20" marker-end="url(#arrowA8D)"/>
+  396:         <line x1="160" y1="4" x2="160" y2="20" marker-end="url(#arrowA8D)"/>
+  397:         <line x1="240" y1="4" x2="240" y2="20" marker-end="url(#arrowA8D)"/>
+  398:         <line x1="320" y1="4" x2="320" y2="20" marker-end="url(#arrowA8D)"/>
+  399:         <line x1="390" y1="4" x2="390" y2="20" marker-end="url(#arrowA8D)"/>
+  400:         <line x1="90" y1="296" x2="90" y2="280" marker-end="url(#arrowA8U)"/>
+  401:         <line x1="160" y1="296" x2="160" y2="280" marker-end="url(#arrowA8U)"/>
+  402:         <line x1="240" y1="296" x2="240" y2="280" marker-end="url(#arrowA8U)"/>
+  403:         <line x1="320" y1="296" x2="320" y2="280" marker-end="url(#arrowA8U)"/>
+  404:         <line x1="390" y1="296" x2="390" y2="280" marker-end="url(#arrowA8U)"/>
+  405:       </g>
+  406:       <text x="240" y="16" text-anchor="middle" fill="var(--accent)" font-size="13">σ_o (공칭응력, 하중축)</text>
+  407: 
+  408:       <circle cx="240" cy="150" r="42" fill="var(--bg)" stroke="var(--text)" stroke-width="1.5"/>
+  409:       <ellipse cx="282" cy="150" rx="18" ry="40" fill="none" stroke="var(--warn)" stroke-width="1.3" stroke-dasharray="4 3"/>
+  410:       <ellipse cx="198" cy="150" rx="18" ry="40" fill="none" stroke="var(--warn)" stroke-width="1.3" stroke-dasharray="4 3"/>
+  411:       <circle cx="282" cy="150" r="3" fill="var(--warn)"/>
+  412:       <circle cx="198" cy="150" r="3" fill="var(--warn)"/>
+  413:       <text x="282" y="200" text-anchor="middle" fill="var(--warn)" font-size="11.5">θ=π/2</text>
+  414:       <text x="198" y="200" text-anchor="middle" fill="var(--warn)" font-size="11.5">θ=3π/2</text>
+  415:       <text x="240" y="222" text-anchor="middle" fill="var(--warn)" font-size="12.5" font-weight="700">하중축에 수직인 두 점: σ_θ = 3σ_o (최대)</text>
+  416:       <text x="240" y="115" text-anchor="middle" fill="var(--muted)" font-size="11">θ=0(하중방향 극): σ_θ=−σ_o (압축, 식9 직접대입)</text>
+  417:       <text x="240" y="155" text-anchor="middle" fill="var(--muted)" font-size="11">R</text>
+  418:       <line x1="240" y1="150" x2="282" y2="150" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 2"/>
+  419: 
+  420:       <defs>
+  421:         <marker id="arrowA8D" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><path d="M0,0 L7,0 L3.5,7 Z" fill="var(--accent)"/></marker>
+  422:         <marker id="arrowA8U" markerWidth="7" markerHeight="7" refX="3.5" refY="0" orient="auto"><path d="M0,7 L7,7 L3.5,0 Z" fill="var(--accent)"/></marker>
+  423:       </defs>
+  424:     </svg>
+  425:     <figcaption>그림 A.8-1 — Case 3(무한평판 원공): 하중축에 수직인 원공 경계의 두 점(θ=π/2, 3π/2)에서 Kirsch 해의 최대 응력집중 σ_θ=3σ_o가 발생한다(식 8~10). 이 그림은 하중을 수직으로 그렸으므로 해당 두 점이 그림상 좌우에 위치한다 — 원 논문 Fig.3(하중 수평)에서는 같은 위치가 위·아래로 나타난다(round21 Codex 검증). θ=0 극점의 압축응력은 식(9)의 직접 대입 결과(참고).</figcaption>
+  426:   </figure>
+  427: 
+  428:   <h3>A.9 — 식(9)의 편미분: 가장자리 응력구배 (식 11)</h3>
+  429:   <div class="step"><span class="eqnum">식 11</span><span class="lbl">$\theta=\pi/2$에서의 함수형태를 $r$로 미분 후 $r=R$ 대입</span>
+  430:     $$\frac{\partial\sigma_\theta}{\partial r}(R,\pi/2)=\frac{\sigma_o}{2}\left(-\frac{2}{R}-\frac{12}{R}\right)=-\frac{7\sigma_o}{R} \;\;\Rightarrow\;\; \left|\frac{\partial\sigma_\theta}{\partial r}(R,\pi/2)\right|=\frac{7\sigma_o}{R}$$
+  530:   </div>
+  531:   <p>
+  532:     $\sigma_e$는 재료·하중조건별로 정의가 달라지는 등가응력이다 — 등방성 취성재료는
+  533:     최대수직응력, 등방성 연성재료는 최대전단응력/팔면체전단응력으로 정의된다. §4의
+  534:     경화 시멘트 페이스트는 취성재료이므로 최대수직응력(균열선단 $\sigma_{xx}$)이
+  535:     $\sigma_e$로 쓰인다.
+  536:   </p>
+  537:   <div class="qa">
+  538:     <div class="q">선행연구1 식(1)(3)과 수학적 형태가 같은데 왜 새 식으로 구분하는가?</div>
+  539:     <div class="a">기여의 성격이 다르기 때문이다. 선행연구1은 단축응력 $\sigma_l$ 전용으로 두 조건을 "제안"했고, 선행연구3은 $\sigma_l$을 등가응력 $\sigma_e$로 바꿔 다축·이방성까지 적용 범위를 "검증"한다. 즉 새 조건식이 아니라 적용 범위의 실험적 확장이 이 논문의 기여다.</div>
+  540:   </div>
+  541:   <div class="note">
+  542:     <strong>표기상 사소한 결함(round20 Codex 검증 발견).</strong> 원문 식(15)는
+  543:     $\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}$로 절댓값 기호 없이 인쇄되어 있다. 그대로
+  544:     대입하면 $d\sigma_e/ds<0$(응력이 거리에 따라 감소)인 경우 우변이 음수가 되어 성립하지
+  545:     않는다 — 선행연구1 식(2)처럼 $|d\sigma_e/ds|$로 읽어야 비로소 아래 식(17)이
+  546:     일관되게 나온다. 결과(식17)에는 영향이 없는 표기 누락이다.
+  547:   </div>
+  548: 
+  549:   <h3>B.2 — 균열 케이스 재적용 (식 16, 17)과 계수 정규화</h3>
+  550:   <div class="eq"><span class="eqnum">식 16</span>
+  551:     $$\sigma_e=\frac{K}{\sqrt s}$$
+  552:   </div>
+  553:   <div class="eq"><span class="eqnum">식 17</span>
+  554:     $$Y=\frac{K^2}{E}$$
+  555:   </div>
+  556:   <p>
+  557:     1부 A.4에서 Irwin(1957) 근사식 $\sigma_x=K/\sqrt{2\pi r}$를 조건①·②(식1, 3)에 대입해
+  558:     균열 사례를 검증했던 것과 같은 절차를, 선행연구3은 등가응력 $\sigma_e$로 다시 수행한다.
+  559:     균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 응력이 거리의 제곱근에
+  560:     반비례해 발산하는 동일한 특이성 구조($1/\sqrt{\text{거리}}$)가 성립하므로, $\sigma_l$
+  561:     자리에 $\sigma_e$를, $2\pi r$ 자리에 일반화된 거리변수 $s$를 넣은 결과가 식(16)이다.
+  562:   </p>
+  563:   <div class="qa">
+  564:     <div class="q">식(16) $\sigma_e=K/\sqrt s$는 식(14)(15)로부터 대수적으로 유도되는가?</div>
+  565:     <div class="a">
+  566:       아니다. 1부 A.4의 Irwin 근사식 도입과 정확히 같은 역할이다 — 조건①·②(식14, 15)는
+  567:       국소응력과 그 구배를 입력으로 요구하는 일반형 판정식일 뿐, 특정 형상의 응력분포까지
+  568:       말해주지는 않는다. 균열이라는 구체적 형상에 적용하려면 그 형상의 응력장 식이
+  569:       별도로 필요하고, 균열선단 근방에서는 이미 LEFM이 $\sigma\propto K/\sqrt{\text{거리}}$
+  570:       형태를 표준해로 확립해 두었으므로 그것을 그대로 가져와 $\sigma_e$ 자리에 대입한
+  571:       것이 식(16)이다. 즉 식(16)은 식(14)(15)의 대수적 귀결이 아니라, 일반형에 대입할
+  572:       구체적 응력장을 외부(LEFM)에서 들여오는 "도입" 단계이며, 이 점에서 1부가 새 물리를
+  573:       추가하지 않고 사례별 대입만 반복한 패턴을 선행연구3도 그대로 따른다. 다만 원문은
+  574:       분모를 $\sqrt{2\pi r}$이 아니라 $\sqrt s$로 적어 $2\pi$를 변수 재정의 속에
+  575:       흡수시켰는데, 이 재정의가 실제로 표준 LEFM과 일치하는지는 바로 아래에서 다룬다.
+  576:     </div>
+  577:   </div>
+  578:   <div class="qa">
+  579:     <div class="q">선행연구1은 $w_f=K^2/(2\pi E)$인데, 선행연구3은 왜 $Y=K^2/E$로 $2\pi$가 안 보이는가 — 두 식이 모순인가?</div>
+  580:     <div class="a">
+  581:       모순이 아니다. 두 논문의 "$K$"는 같은 물리량을 가리키는 같은 기호가 아니다.
+  582:       같은 균열선단 응력장을 같은 위치에서 비교하면 선행연구3의 식(16) 국소표기
+  583:       $K_{선3}$은 표준 LEFM $K_I$와 $K_{선3}=K_I/\sqrt{2\pi}$ 관계에 있다(즉 식(16)의
+  584:       $s$는 선행연구1의 $2\pi r$과 같은 역할을 하는 재정규화된 변수). 따라서
+  585:       $$Y=\frac{K_{선3}^2}{E}=\frac{(K_I/\sqrt{2\pi})^2}{E}=\frac{K_I^2}{2\pi E}=w_f$$
+  586:       즉 $Y=w_f$로 두 논문의 물리량은 동일하며, "$2\pi$ 차이"는 같은 수치를 두 식의
+  587:       $K$ 자리에 그대로 넣었을 때만 생기는 형식적 착시다. (본 프로젝트 ai-crosscheck
+  588:       round10 교차검증에서 Claude·Codex 쌍방이 확정한 결론.)
+  589:     </div>
+  590:   </div>
+  591:   <div class="caution">
+  592:     <strong>원문 자체의 부정확한 서술.</strong> 선행연구3 §2 원문은 식(17) 바로 뒤에
+  593:     $Y$가 파괴역학의 임계 에너지방출률(critical energy release rate)과 "동일하다"고
+  594:     직접 서술한다 — 이는 $Y=G_c$(2π 없음)라는 뜻으로 읽힌다.
+  595:     그러나 식(15)+(16)→(17)을 직접 재대수연산해 보면 이 유도는 $s$·$K$의 물리적 의미와
+  596:     무관하게 항상 $Y=K^2/E$를 내므로(아래 재검산 참조), 이 결과가 표준 $G_c=K_I^2/E'$와
+  597:     "같다"고 말할 수 있는지는 전적으로 식(16)의 $K$가 표준 $K_I$와 같은가에 달려 있다.
+  598:     본문은 $s$를 "균열선단으로부터의 거리"라고만 적어 $s=r$(선행연구1과 동일한 단순
+  599:     거리)로 읽히는데, 그렇다면 실제 탄성해(σ=K_I/√(2πr))와 일치하려면
+  600:     $K_{선3}=K_I/\sqrt{2\pi}$여야 하고 $Y=w_f=G_c/(2\pi)$가 된다 — 즉 저자들의
+  601:     "$Y\equiv G_c$" 서술은 자기 논문 §2의 대수와 선행연구1의 식(6)을 함께 보면 엄밀하지
+  602:     않은 표현이다. 이 불일치는 틀렸다고 단정하기보다 "원문이 $2\pi$ 정규화를 명시하지
+  603:     않은 느슨한 서술"로 보는 것이 정확하며, §4에서 $Y$를 실험 1점으로 역산해 그대로
+  604:     재사용하는 절차 자체는 $Y$의 절대 정의와 무관하게 자기정합적이므로 예측 결과에는
+  605:     영향이 없다.
+  606:   </div>
+  607:   <div class="step"><span class="lbl">식(15)+(16)→(17) 재검산 — $s$·$K$의 물리적 의미와 무관하게 성립</span>
+  608:     $$\sigma_e^3=2EY\frac{d\sigma_e}{ds},\quad \sigma_e=\frac{K}{\sqrt s}\;\Rightarrow\;
+  609:     \left|\frac{d\sigma_e}{ds}\right|=\frac{K}{2s^{3/2}}\;\Rightarrow\;
+  610:     Y=\frac{\sigma_e^3}{2E}\left|\frac{ds}{d\sigma_e}\right|
+  611:     =\frac{1}{2E}\cdot\frac{K^3}{s^{3/2}}\cdot\frac{2s^{3/2}}{K}=\frac{K^2}{E}$$
+  612:   </div>
+  613:   <div class="pitfall">
+  614:     <strong>따라서 금지되는 것은 한 가지다</strong> — 문헌의 $G_c$(에너지방출률 임계값)를
+  615:     $Y$ 자리에 <span class="wrong">직접 대입</span>하는 것. 평면응력에서
+  616:     <span class="right">$Y=G_c/(2\pi)$</span>, 평면변형에서
+  617:     <span class="right">$Y=G_c/[2\pi(1-\nu^2)]$</span>이며, $Y=G_c$로 쓰면 약 6.28배
+  618:     오류가 생긴다.
+  619:   </div>
+  620: 
+  621:   <h3>B.3 — §4 경화 시멘트 페이스트: 조건②가 지배하는 사례 (본인 FE 재현 대상)</h3>
+  622:   <ol>
+  623:     <li>$Y$를 모르므로, 시험결과 1개($H=100$mm, $a/H=0.1$)를 식(17)에 대입해 $Y$를 역산한다.</li>
+  624:     <li>나머지 시편들의 FEA 응력분포에 식(16) $\sigma_e=K/\sqrt s$를 곡선맞춤하여 각 시편의 $K$를 추출한다.</li>
+  625:     <li>동일한 $Y$와 추출한 $K$를 식(17)에 넣어 나머지 시편의 파괴하중을 예측한다.</li>
+  626:   </ol>
+  627: 
+  628:   <figure class="svgfig">
+  629:     <svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3점굽힘 노치시편 개략도">
+  630:       <rect x="60" y="100" width="360" height="30" fill="var(--panel2)" stroke="var(--text)" stroke-width="1.3"/>
+  631:       <path d="M90,130 L80,150 L100,150 Z" fill="none" stroke="var(--text)" stroke-width="1.3"/>
+  632:       <path d="M390,130 L380,150 L400,150 Z" fill="none" stroke="var(--text)" stroke-width="1.3"/>
+  633:       <line x1="70" y1="150" x2="110" y2="150" stroke="var(--text)" stroke-width="1.3"/>
+  634:       <line x1="370" y1="150" x2="410" y2="150" stroke="var(--text)" stroke-width="1.3"/>
+  635: 
+  636:       <line x1="240" y1="55" x2="240" y2="98" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowB3)"/>
+  637:       <text x="240" y="46" text-anchor="middle" fill="var(--accent)" font-size="13">P</text>
+  638: 
+  639:       <line x1="240" y1="130" x2="240" y2="112" stroke="var(--warn)" stroke-width="2.5"/>
+  640:       <text x="253" y="122" fill="var(--warn)" font-size="12">a</text>
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -LiteralPath 'PROBLEM.md' -Encoding UTF8; Write-Output '---ROUND22 NON-CLAUDE FILES---'; if(Test-Path -LiteralPath 'round22'){ Get-ChildItem -LiteralPath 'round22' -Force | Where-Object {"'$_.Name -ne '"'claude.md'} | Select-Object Name,Length,LastWriteTime }; Write-Output '---TOP LEVEL---'; Get-ChildItem -Force | Select-Object Name,Mode,Length" in J:\Desktop\공학\ai-crosscheck
+ succeeded in 369ms:
+# Round 22 — B.2 QA(식16 유도 성격 + 2π 불일치 해소)의 의도·정확성 검증
+
+## 대상 파일
+`J:\Desktop\공학\claude_code\2026_10_06_선행연구1_3_이론적배경\이론적배경_선행연구1_3.html`
+B.2 섹션 (line 549~619), 특히 아래 두 QA 블록.
+
+### QA1 (line 563~577)
+Q: "식(16) σ_e=K/√s는 식(14)(15)로부터 대수적으로 유도되는가?"
+A(요지): 아니다. 1부 A.4의 Irwin 근사식 도입과 정확히 같은 역할이다 — 조건①·②(식14,15)는
+국소응력·구배를 입력으로 요구하는 일반형 판정식일 뿐 특정 형상의 응력분포를 말해주지 않는다.
+균열선단 근방에서는 재료 종류(등방성·연성·이방성)와 무관하게 $1/\sqrt{\text{거리}}$ 특이성이
+성립하므로 LEFM 표준해를 그대로 "도입"한 것이 식(16)이다.
+
+### QA2 (line 578~590)
+Q: "선행연구1은 $w_f=K^2/(2\pi E)$인데 선행연구3은 왜 $Y=K^2/E$로 2π가 안 보이는가 — 모순인가?"
+A(요지): 모순 아님. 두 "$K$"는 다른 기호다. $K_{선3}=K_I/\sqrt{2\pi}$ 관계이며
+"(즉 식(16)의 $s$는 선행연구1의 $2\pi r$과 같은 역할을 하는 재정규화된 변수)"라고 설명하고
+$Y=K_{선3}^2/E=(K_I/\sqrt{2\pi})^2/E=K_I^2/(2\pi E)=w_f$ 로 결론.
+
+## 사용자 요청
+1. QA1·QA2 각각의 "질문 의도"와 "답변 의도"를 설명.
+2. 두 QA의 답이 실제로 맞는지 Claude·Codex 교차검증으로 재검증.
+
+## Claude가 1차로 발견한 잠재 이슈 (blind 조사 전 메모 — 반드시 직접 재검증할 것, 전제로 삼지 말 것)
+
+### 이슈 A — QA2 괄호 설명과 line 598~601 caution box의 상호 불일치 가능성
+QA2는 "$s$는 선행연구1의 $2\pi r$과 같은 역할을 하는 재정규화된 변수"라고 말해
+$s \leftrightarrow 2\pi r$ 대응을 암시한다. 그런데 바로 아래 caution box(line 591~606)는
+"본문은 $s$를 '균열선단으로부터의 거리'라고만 적어 $s=r$(선행연구1과 동일한 단순 거리)로
+읽히는데, 그렇다면 $K_{선3}=K_I/\sqrt{2\pi}$여야 하고 $Y=w_f=G_c/(2\pi)$가 된다"고 말해
+$s=r$(단순 거리, $2\pi$ 계수 없음)을 전제로 같은 결론을 얻는다.
+- $s=2\pi r$을 가정하면: $\sigma_e=K_{선3}/\sqrt{2\pi r}$이 표준해 $K_I/\sqrt{2\pi r}$과
+  일치하려면 $K_{선3}=K_I$여야 한다(√2π로 나누는 게 아니라 그냥 같아야 함) →
+  $Y=K_{선3}^2/E=K_I^2/E \ne w_f$. 즉 $s=2\pi r$ 전제와 $K_{선3}=K_I/\sqrt{2\pi}$ 결론은
+  동시에 성립할 수 없어 보인다(직접 대입해 $\sigma_e=K_I/(2\pi\sqrt r)\ne K_I/\sqrt{2\pi r}$).
+- $s=r$을 가정하면: $\sigma_e=K_{선3}/\sqrt r = K_I/\sqrt{2\pi r}$ ⟹ $K_{선3}=K_I/\sqrt{2\pi}$,
+  $Y=K_I^2/(2\pi E)=w_f$. 이게 caution box의 결론과 일치.
+- 즉 QA2의 괄호(s↔2πr)와 caution box의 전제(s=r)가 **서로 다른 가정**으로 보이며,
+  QA2의 괄호 문장이 수학적으로 성립하지 않는 설명일 가능성이 있음. 이게 실제 오류인지,
+  아니면 "역할이 같다"는 표현이 숫자적 등치를 주장하는 게 아니라 느슨한 비유일 뿐인지
+  판단 필요.
+
+### 이슈 B — QA1의 물리적 근거("재료 종류와 무관하게 동일한 1/√거리 특이성") 과잉 일반화 가능성
+QA1 앞 본문(line 558~561)은 "균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와
+무관하게 응력이 거리의 제곱근에 반비례해 발산하는 동일한 특이성 구조가 성립"한다고
+주장한다.
+- 등방성 선형탄성: $r^{-1/2}$ 특이성 — 표준(Williams 1957; Irwin 1957). 맞음.
+- 이방성 선형탄성: Sih & Liebowitz류 해도 반경 지수는 $r^{-1/2}$로 동일(각도 의존성만
+  다름) — 맞는 것으로 보임.
+- **연성(ductile) 재료**: 균열선단 근방 소성영역 바깥에서는 K-필드($r^{-1/2}$)가 여전히
+  지배적이지만, 소성영역 안쪽(HRR 특이장)은 거듭제곱 지수가 $r^{-1/(n+1)}$
+  (Hutchinson 1968; Rice & Rosengren 1968, $n$=변형경화지수)로 **등방탄성과 다름**.
+  "재료 종류와 무관하게 동일한 특이성"이라는 서술이 이 영역을 포함하는지, 포함한다면
+  과잉단순화인지 확인 필요.
+
+## 검증 범위
+- QA1·QA2 각 질문·답변의 의도를 명확히 설명(교수가 왜 이런 질문을 던질지, 답이 무엇을
+  보여주려는지).
+- 이슈 A가 실제 수학적 오류인지 아닌지 직접 대수 재계산으로 판정.
+- 이슈 B의 "재료 종류 무관" 서술이 정확한 서술인지, 과잉 일반화인지 문헌 근거로 판정.
+- 그 외 QA1·QA2 본문에서 스스로 발견한 추가 오류/비정확 서술이 있으면 함께 보고.
+
+## 하지 말 것
+- 선행연구1·3의 다른 챕터(A.1~A.10, B.3~B.4)를 다시 유도하거나 재검증하지 말 것 —
+  이번 라운드는 B.2의 QA1·QA2 두 블록에 집중.
+- Round10·20·21에서 이미 확정된 "$Y=w_f$(두 논문 물리량 동일)" 결론 자체를 다시 원점에서
+  재검증하지 말 것 — 이번 라운드는 그 결론에 도달하는 **설명 문장(특히 $s$↔$2\pi r$ 괄호
+  설명)의 수학적 정확성**만 점검.
+
+## 산출물
+`round22/claude.md`, `round22/codex.md` blind 작성 → `round22/codex_review.md` 교차검증 →
+`DECISION_round22_B2_QA_검증.md` 종합, 오류 확정 시 HTML 본문 수정안 포함.
+---ROUND22 NON-CLAUDE FILES---
+
+Name                          Length LastWriteTime         
+----                          ------ -------------         
+codex_prompt.md                 3935 2026-10-07 오후 11:03:56
+codex_run.log                      0 2026-10-07 오후 11:04:07
+---TOP LEVEL---
+.git                                                       
+round1                                                     
+round10                                                    
+round11                                                    
+round12                                                    
+round13                                                    
+round14                                                    
+round15                                                    
+round16                                                    
+round17                                                    
+round18                                                    
+round19                                                    
+round2                                                     
+round20                                                    
+round21                                                    
+round22                                                    
+round3                                                     
+round4                                                     
+round5                                                     
+round6                                                     
+round7                                                     
+round8                                                     
+round9                                                     
+rounds                                                     
+sessions                                                   
+tmp                                                        
+.gitignore                       217                       
+AGENTS.md                       2162                       
+ask.ps1                          207                       
+CLAUDE.md                       1780                       
+DECISION.md                     8779                       
+DECISION_round10_pptx오류검토.md    8561                       
+DECISION_round1_수식검증.md         8532                       
+DECISION_round2_인용검증.md         5413                       
+DECISION_round4_FE재현계획.md       8565                       
+DECISION_round5_보고서검증.md        4517                       
+DECISION_round6_읽기자료검증.md       6568                       
+DECISION_round7_참고문헌읽기자료검증.md   6070                       
+DECISION_round8_이론흐름발표목차.md    11251                       
+DECISION_round9_발표목차5장.md      13469                       
+DISCUSSION.md                   7203                       
+orchestrate.ps1                 7275                       
+PROBLEM.md                      5408                       
+README.md                       2069                       
+쿠와이까_동해_분포조사.md                 8043                       
+
+
+
+codex
+대상 HTML 확인 결과, A.4는 실제로 일반 판정식에 별도의 균열 응력장을 넣는 구조이고, B.2의 QA2 괄호는 아래 caution box가 채택한 `s=r` 전제와 문면상 충돌합니다. 이제 원 논문들의 식 번호·페이지를 직접 확인해, 특히 HRR 지수와 이방성 탄성의 반경 지수를 근거 수준까지 확정하겠습니다.
+web search: 
+web search: Williams 1957 On the stress distribution at the base of a stationary crack pdf equation r^-1/2 Caltech ...
+web search: 
+web search: 
+web search: 
+web search: site:esag.harvard.edu/rice/ "Plane Strain Deformation Near a Crack" pdf ...
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$out=Join-Path $env:TEMP '"'hutchinson1968.pdf'; Invoke-WebRequest -Uri 'https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf' -OutFile "'$out; Get-Item -LiteralPath $out | Select-Object FullName,Length; Get-Command pdftotext -ErrorAction SilentlyContinue | Select-Object Source' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 557ms:
+Invoke-WebRequest : 원격 서버에 연결할 수 없습니다.
+위치 줄:2 문자:48
++ ... n1968.pdf'; Invoke-WebRequest -Uri 'https://web-static-aws.seas.harva ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExc 
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+ 
+Get-Item : 'C:\Users\HEEJIN~1\AppData\Local\Temp\hutchinson1968.pdf' 경로는 존재하지 않으므로 찾을 수 없습니다.
+위치 줄:2 문자:154
++ ... son/papers/312.pdf' -OutFile $out; Get-Item -LiteralPath $out | Selec ...
++                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\HEEJIN...chinson1968.pdf:String) [Get-Item], ItemNotFoundExcep 
+   tion
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+ 
+
+Source                                        
+------                                        
+C:\Program Files\Git\mingw64\bin\pdftotext.exe
+
+
+
+web search: 
+web search: site:web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf "stress singularity" "n + 1" ...
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$target='"'J:\\Desktop\\공학\\claude_code\\2026_10_06_선행연구1_3_이론적배경\\이론적배경_선행연구1_3.html'; Select-String -LiteralPath "'$target -Pattern '"'선행연구3|Reference|참고문헌|doi|DOI|Authors|저자|논문' -Encoding UTF8 | ForEach-Object { '{0}: {1}' -f "'$_.LineNumber,$_.Line.Trim() }' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 273ms:
+183: Vessel Technology</em> 143(6), 064503 (2021). DOI: 10.1115/1.4050989.
+190: 구멍 크기와 무관하게 3이기 때문). 저자는 이를 설명하기 위해 두 조건을 독립적으로
+208: <div class="a">조건①만으로는 균열·홀 선단처럼 국소응력이 강도를 훨씬 넘는데도 실제로는 즉시 파괴되지 않는 사례를 설명할 수 없다. 응력이 그 점에서만 국소적으로 높고 조금만 벗어나도 급격히 낮아지면(구배가 가파르면), 파괴가 "진행될 경로"가 형성되지 않는다는 것이 저자의 물리적 논리다. 즉 응력의 크기와 공간 변화율이 함께 필요하다.</div>
+309: <div class="q">왜 이 지점에서 저자 고유의 식이 아니라 Irwin(1957)의 근사식을 가져오는가?</div>
+381: <div class="a">식(6)→(7)의 역산 결과가 기존 LEFM에서 이미 정의된 임계 응력확대계수 $K_{IC}$와 형태·역할이 동일하다. 저자가 독립적으로 제안한 두-조건 이론이 균열 케이스에서 기존 LEFM과 동일한 지점에 도달한다는 것이 이론의 정합성을 뒷받침하는 핵심 근거다.</div>
+425: <figcaption>그림 A.8-1 — Case 3(무한평판 원공): 하중축에 수직인 원공 경계의 두 점(θ=π/2, 3π/2)에서 Kirsch 해의 최대 응력집중 σ_θ=3σ_o가 발생한다(식 8~10). 이 그림은 하중을 수직으로 그렸으므로 해당 두 점이 그림상 좌우에 위치한다 — 원 논문 Fig.3(하중 수평)에서는 같은 위치가 위·아래로 나타난다(round21 Codex 검증). θ=0 극점의 압축응력은 식(9)의 직접 대입 결과(참고).</figcaption>
+500: <figcaption>그림 A.10-1 — Case 4: 유한평판(40×100mm)·원공 4종(R=0.25~2.0mm)의 1/4 FE 모델(2496개 4절점 사각형 요소)에서 가장자리 응력·구배를 추출해 식(12)(13)에 대입, 예측 파괴하중을 Sapora et al.(2018) 실험값과 대조한다. 이는 선행연구1 저자 본인의 FE 검증이며 본인(사용자)의 3D interaction integral 모델과는 별개다.</figcaption>
+510: → 저자가 스스로 밝힌 한계는 "단축하중만 고려했다"(§1)는 범위 한정이다. 이를
+521: DOI: 10.3390/ma17030569. PMCID: PMC10856633.
+539: <div class="a">기여의 성격이 다르기 때문이다. 선행연구1은 단축응력 $\sigma_l$ 전용으로 두 조건을 "제안"했고, 선행연구3은 $\sigma_l$을 등가응력 $\sigma_e$로 바꿔 다축·이방성까지 적용 범위를 "검증"한다. 즉 새 조건식이 아니라 적용 범위의 실험적 확장이 이 논문의 기여다.</div>
+558: 균열 사례를 검증했던 것과 같은 절차를, 선행연구3은 등가응력 $\sigma_e$로 다시 수행한다.
+573: 추가하지 않고 사례별 대입만 반복한 패턴을 선행연구3도 그대로 따른다. 다만 원문은
+579: <div class="q">선행연구1은 $w_f=K^2/(2\pi E)$인데, 선행연구3은 왜 $Y=K^2/E$로 $2\pi$가 안 보이는가 — 두 식이 모순인가?</div>
+581: 모순이 아니다. 두 논문의 "$K$"는 같은 물리량을 가리키는 같은 기호가 아니다.
+582: 같은 균열선단 응력장을 같은 위치에서 비교하면 선행연구3의 식(16) 국소표기
+586: 즉 $Y=w_f$로 두 논문의 물리량은 동일하며, "$2\pi$ 차이"는 같은 수치를 두 식의
+592: <strong>원문 자체의 부정확한 서술.</strong> 선행연구3 §2 원문은 식(17) 바로 뒤에
+600: $K_{선3}=K_I/\sqrt{2\pi}$여야 하고 $Y=w_f=G_c/(2\pi)$가 된다 — 즉 저자들의
+601: "$Y\equiv G_c$" 서술은 자기 논문 §2의 대수와 선행연구1의 식(6)을 함께 보면 엄밀하지
+654: <figcaption>그림 B.3-1 — §4 경화시멘트페이스트(HCP) 3점굽힘 시편: 지간 S, 중앙 하중 P, 바닥 중앙 edge notch(깊이 a), 시편 높이 H. 원 실험(Karihaloo et al. 2003)은 이를 notch로 지칭하며, 선행연구3(Kwon et al. 2024)은 같은 결함을 crack으로 재지칭한다(round21 Codex 검증) — 두 표현이 같은 기하를 가리킨다는 점을 명시한다. 수치는 시편마다 다르므로 기호로만 표기.</figcaption>
+658: $a/H=0.3$, $H=100$mm 시편 1개를 제외하고 실험과 이론이 잘 일치하며, 저자는 이
+671: 이론적 근거로 인용된 문헌([34]–[37])은 전부 저자 본인의 선행 논문(자기인용)이며,
+672: 독립적 제3자 문헌의 지지는 이 논문 본문에서 확인되지 않는다 — 이는 이론의 틀림을
+702: <div class="a">사상은 공유하지만(강도 수준+에너지/인성 수준을 함께 본다는 점) 구조가 다르다. TCD/FFM은 유한 거리(또는 균열진전량)를 별도 변수로 두고 그 거리에서의 응력 조건과 그 구간의 에너지 조건을 "연립"한다. Kwon의 조건은 거리 변수를 따로 두지 않고, 국소 근접장의 공간 변화율을 구배조건에 직접 넣어 위치변수( $r$ 또는 $s$)를 수학적으로 소거한다. Kwon 기준이 FFM 방정식에서 직접 유도되었다고 단정할 근거는 두 논문 어디에도 없다.</div>
+705: <div class="q">선행연구3 §4의 역산 절차는 몇 개의 자유 매개변수를 쓰며, 그중 실제로 독립 검증되는 것은 몇 개인가?</div>
+713: <div class="q">선행연구1의 Case4와 선행연구3의 §4에서 "역산"과 "예측"을 구분하는 기준은 무엇인가?</div>
+721: <li>Kwon, Y.W., "Revisiting Failure of Brittle Materials," <em>Journal of Pressure Vessel Technology</em> 143(6), 064503 (2021). DOI: 10.1115/1.4050989. — 선행연구 1 원문.</li>
+722: <li>Kwon, Y.W., Markoff, E.K., DeFisher, S., "Unified Failure Criterion Based on Stress and Stress Gradient Conditions," <em>Materials</em> 17(3), 569 (2024). DOI: 10.3390/ma17030569. PMCID: PMC10856633. — 선행연구 3 원문.</li>
+723: <li>Irwin, G.R., "Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate," <em>J. Appl. Mech.</em> 24, 361–364 (1957). DOI: 10.1115/1.4011547.</li>
+725: <li>Karihaloo, B.L., Abdalla, H.M., Xiao, Q.Z., "Deterministic size effect in the strength of cracked concrete structures," <em>Eng. Fract. Mech.</em> 70, 979–993 (2003) — 선행연구3 §4 원 실험 데이터 출처.</li>
+726: <li>Braun, M. et al., <em>FFEMS</em> 43(7), 1541–1554 (2020). DOI: 10.1111/ffe.13232 — TCD 점법/선법 불일치 수치.</li>
+
+web search: 
+web search: https://pmc.ncbi.nlm.nih.gov/articles/PMC10856633/
+web search: 
+web search: https://www.mdpi.com/1996-1944/17/3/569
+web search: 
+web search: "Unified Failure Criterion Based on Stress and Stress Gradient Conditions" "σe" s distance crack tip ...
+web search: 
+web search: Williams 1957 stationary crack equation 14 lambda 1/2 page 111 stress r^-1/2 ...
+web search: 
+web search: "On cracks in rectilinearly anisotropic bodies" "r^{-1/2}" equation page 196 ...
+web search: 
+web search: "Plane strain deformation near a crack tip" "(8)" "r" Rice Rosengren 1968 ...
+web search: 
+web search: site:web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf "s =" "2n + 1" ...
+codex
+문헌 대조에서 핵심 판정이 확정됐습니다. 선형탄성 등방·직교이방성에는 \(r^{-1/2}\)가 맞지만, 변형경화 소성의 HRR 장은 경화지수에 따라 \(r^{-1/(n+1)}\) (동치 표기 \(r^{-N/(1+N)}\))이므로 “연성과 무관하게 동일”은 과잉 일반화입니다. 또한 식(15)의 부등식만으로 응력장을 정할 수는 없지만, 등호를 전 구간에 강제하면 \(1/\sqrt{s}\) 꼴이 특수해로 나오므로 이 미묘한 예외도 보고서에 구분해 적겠습니다.
+apply patch
+patch: completed
+J:\Desktop\공학\ai-crosscheck\round22\codex.md
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -LiteralPath 'round22\\codex.md' -Encoding UTF8 | Select-Object -First 80; Write-Output '---TAIL---'; Get-Content -LiteralPath 'round22\\codex.md' -Encoding UTF8 | Select-Object -Last 35; Write-Output '---GIT DIFF STAT---'; git diff --stat -- round22/codex.md; Write-Output '---STATUS TARGET---'; git status --short -- round22/codex.md" in J:\Desktop\공학\ai-crosscheck
+ succeeded in 604ms:
+# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
+
+## 0. 검증 범위와 결론 요약
+
+- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
+- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
+- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
+- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
+- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
+- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
+- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
+
+---
+
+## 1. QA1: 식(16)의 도입 성격과 A.4 비교
+
+### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
+
+### 1.1 HTML에서 실제로 확인한 구조
+
+A.4는 먼저 Irwin의 균열선단 식
+
+\[
+\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
+\]
+
+을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
+
+\[
+\sigma_e=\frac{K}{\sqrt{s}}
+\]
+
+를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
+
+선형탄성 균열장의 독립 근거도 확인된다.
+
+- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
+- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
+
+따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
+
+다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
+
+### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
+
+식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
+
+\[
+\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
+\qquad \frac{d\sigma_e}{ds}<0
+\]
+
+이므로
+
+\[
+\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
+\qquad
+\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
+\]
+
+여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
+
+\[
+\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
+\qquad K^2=EY
+\]
+
+가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
+
+---
+
+## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
+
+### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
+
+### 2.1 등방 선형탄성: 맞음
+
+Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
+
+### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
+---TAIL---
+\[
+\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
+\]
+
+을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
+
+---
+
+## 5. 최종 판정표
+
+| 검증 항목 | 판정 | 핵심 근거 |
+|---|---|---|
+| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
+| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
+| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
+| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
+| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
+| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
+| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
+
+---
+
+## 6. 확인한 문헌·원문
+
+1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
+2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
+3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
+4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
+5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
+6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
+
+## 7. 확인 한계
+
+- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
+- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+---GIT DIFF STAT---
+---STATUS TARGET---
+?? round22/codex.md
+
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p='"'round22\\codex.md'; "'$content=Get-Content -LiteralPath $p -Encoding UTF8; $content=$content | ForEach-Object { if($_ -eq '"'[' -or "'$_ -eq '"']'){ '"'$$'"' } else { "'$_ } }; Set-Content -LiteralPath $p -Value $content -Encoding UTF8; Select-String -LiteralPath $p -Pattern '"'"'^'"\\["'$|''^'"\\]"'$'"' -Encoding UTF8; Get-Content -LiteralPath "'$p -Encoding UTF8 | Select-Object -First 45' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 518ms:
+# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
+
+## 0. 검증 범위와 결론 요약
+
+- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
+- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
+- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
+- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
+- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
+- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
+- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
+
+---
+
+## 1. QA1: 식(16)의 도입 성격과 A.4 비교
+
+### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
+
+### 1.1 HTML에서 실제로 확인한 구조
+
+A.4는 먼저 Irwin의 균열선단 식
+
+\[
+\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
+\]
+
+을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
+
+\[
+\sigma_e=\frac{K}{\sqrt{s}}
+\]
+
+를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
+
+선형탄성 균열장의 독립 근거도 확인된다.
+
+- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
+- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
+
+따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
+
+다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
+
+### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
+
+
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+codex
+`round22/codex.md` 작성과 자체 검산을 마쳤습니다. 결론은 QA1 핵심은 맞지만 적용범위 설명은 조건부이고, QA2 괄호는 명백한 대수 오류라는 것입니다. 이제 대상 파일만 스테이징해 커밋·푸시를 시도하겠습니다. 기존의 다른 미추적 파일은 건드리지 않습니다.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'git diff --no-index --check -- NUL round22/codex.md; git add -- round22/codex.md; git commit -m "round22: add blind Codex verification"; git push' in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 378ms:
+fatal: Unable to create 'J:/Desktop/공학/ai-crosscheck/.git/index.lock': Permission denied
+fatal: Unable to create 'J:/Desktop/공학/ai-crosscheck/.git/index.lock': Permission denied
+fatal: unable to access 'https://github.com/JJPARK001223/ai-crosscheck.git/': Failed to connect to github.com port 443 after 64 ms: Could not connect to server
+
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$f=Get-Item -LiteralPath '"'round22\\codex.md'; "'$hash=Get-FileHash -LiteralPath $f.FullName -Algorithm SHA256; $lines=(Get-Content -LiteralPath $f.FullName -Encoding UTF8).Count; [pscustomobject]@{FullName=$f.FullName;Bytes=$f.Length;Lines=$lines;SHA256=$hash.Hash}; git status --short --branch -- round22/codex.md' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 442ms:
+
+## main...origin/main
+?? round22/codex.md
+FullName                                     Bytes Lines SHA256                                                        
+--------                                     ----- ----- ------                                                        
+J:\Desktop\공학\ai-crosscheck\round22\codex.md 17087   265 72019DF44C95AD71D774F73FB5E78418E009DD9C201D974CE0F643871AD...
+
+
+
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+codex
+독립 검증을 완료해 [round22/codex.md](J:/Desktop/공학/ai-crosscheck/round22/codex.md)에 기록했습니다. `round22/claude.md`는 열거나 검색하지 않았습니다.
+
+핵심 결론:
+
+- QA1의 “식(16)은 외부 균열장 도입”이라는 주장은 맞지만, A.4와 물리적 적용범위까지 완전히 같지는 않습니다.
+- “연성재료도 항상 \(r^{-1/2}\)”는 틀렸습니다. HRR 응력장은 일반적으로 \(r^{-1/(n+1)}\)입니다. [Hutchinson 원문](https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf), [Rice–Rosengren 원문](https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf)
+- 직교이방 선형탄성의 \(r^{-1/2}\) 지수는 확인됐습니다. [Sih–Paris–Irwin](https://link.springer.com/article/10.1007/BF00186854)
+- QA2 괄호는 대수적으로 틀렸습니다.
+  - \(s=r\): \(K_{선3}=K_I/\sqrt{2\pi}\), \(Y=w_f\)
+  - \(s=2\pi r\): \(K_{선3}=K_I\), \(Y=2\pi w_f\)
+- 원 논문은 \(s\)를 균열선단부터 잰 거리로 정의하므로 caution box의 \(s=r\) 해석이 더 타당합니다. [Kwon et al. 원문](https://www.mdpi.com/1996-1944/17/3/569)
+
+커밋·푸시는 환경 제약으로 수행되지 않았습니다. `.git/index.lock` 생성 권한이 거부됐고 GitHub 네트워크 연결도 차단됐습니다. 파일은 현재 미추적 상태로 안전하게 보존되어 있습니다.
+diff --git a/round22/codex.md b/round22/codex.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..abfa316c27f5b77725a7c35f93b2df12d3ae6da5
+--- /dev/null
++++ b/round22/codex.md
+@@ -0,0 +1,265 @@
++# Round 22 blind 독립 검증 — B.2 식(16), 식(17), (2\pi) 정규화
++
++## 0. 검증 범위와 결론 요약
++
++- 대상 HTML의 A.4(301~311행)와 B.2(549~619행)를 직접 읽었다.
++- blind 원칙에 따라 `round22/claude.md`는 열거나 검색하지 않았다.
++- **QA1의 핵심(식(16)은 식(14)·(15)의 대수적 귀결이 아니라 별도 균열장 가정/도입)**: **맞음(단, 아래의 미분방정식상 특수해라는 한정 필요)**.
++- **A.4와 “정확히 같은 역할”이라는 표현**: **부분적으로 맞음**. “일반 판정식에 외부 응력장을 공급한다”는 논리 구조는 같지만, A.4는 등방 선형탄성 Mode I의 특정 응력성분이고 B.2는 재료·등가응력 일반화를 주장하므로 물리적 적용범위까지 동일하지는 않다.
++- **“등방성·연성·이방성과 무관하게 동일한 (r^{-1/2}) 특이성”**: **틀림(과잉 일반화)**. 정확한 판정은 **조건부로 같다**이다. 등방/직교이방 **선형탄성**과 연성재료의 소성영역 밖 K-지배장에서는 (r^{-1/2})이나, 변형경화 소성재료의 균열선단 내부 HRR 장에서는 일반적으로 지수가 다르다.
++- **QA2의 (K_{선3}=K_I/\sqrt{2\pi})**: 원 논문처럼 (s)를 균열선단부터 잰 물리적 거리, 즉 (s=r)로 읽을 때 **맞음**.
++- **QA2 괄호의 “(s)는 (2\pi r)과 같은 역할을 하는 재정규화 변수”**: **틀림**. (s=2\pi r)이면 (K_{선3}=K_I)이어야 하므로 같은 문단의 (K_{선3}=K_I/\sqrt{2\pi})와 동시에 성립하지 않는다.
++
++---
++
++## 1. QA1: 식(16)의 도입 성격과 A.4 비교
++
++### 판정: **맞음(핵심 주장)** / **부분적으로 맞음(“정확히 같은 역할”)**
++
++### 1.1 HTML에서 실제로 확인한 구조
++
++A.4는 먼저 Irwin의 균열선단 식
++
++\[
++\sigma_x=\frac{K_I}{\sqrt{2\pi r}}
++\]
++
++을 식(4)로 제시한 뒤, 일반적인 응력·응력구배 판정식에 넣는다(HTML 301~310행). B.2도 일반 판정식인 식(14)·(15)를 먼저 둔 뒤
++
++\[
++\sigma_e=\frac{K}{\sqrt{s}}
++\]
++
++를 별도의 균열장 식(16)으로 둔다(549~575행). 실제 선행연구3 원문도 §2에서 식(1)·(2)로 판정조건을 제시한 다음 “mode I crack”의 선단 응력장을 식(3)으로 별도 제시하고 이를 식(2)에 대입했다고 쓴다. 따라서 **부등식인 판정조건만으로 특정 형상의 응력분포가 결정되지 않으며, 균열장을 별도로 공급한다**는 QA1의 요지는 논리적으로 맞다.
++
++선형탄성 균열장의 독립 근거도 확인된다.
++
++- Williams(1957)는 영(零) 개구각 균열의 고유함수 전개에서 응력의 선도항이 (r^{-1/2})임을 보였다. 원 논문 pp. 109~111의 식 (7), (10)~(12)에서 (n=1) 선도 응력항이 (r^{-1/2})이다.
++- Irwin(1957), p. 362의 식 (10)은 균열선단 좌표에서 Mode I 응력성분을 (1/\sqrt{2r})에 비례하는 형태로 쓰며, 에너지방출률과 결합한 계수를 오늘날의 (K_I/\sqrt{2\pi r}) 꼴로 정리한다.
++
++따라서 A.4와 B.2는 **“일반 판정식 → 형상별 외부 응력장 입력 → 판정식에 대입”**이라는 수학적 역할은 같다.
++
++다만 “정확히 같은 역할”은 적용범위까지 뜻한다면 과하다. A.4의 식은 등방 선형탄성 Mode I에서 θ=0인 특정 응력성분의 K-장이다. B.2의 식은 이를 재료별 정의가 달라지는 스칼라 등가응력 σ_e와 경로 (s)에 곧바로 일반화한다. 이방 선형탄성에서는 반경 지수는 같아도 각도함수와 재료상수 의존성이 달라지고, 탄소성 연성체의 선단 내부장은 지수 자체가 달라진다(제2절). 그러므로 **형식적 도입 단계는 동일하지만 물리적으로 동일한 범용 표준해를 재사용한 것은 아니다.**
++
++### 1.2 “전혀 유도되지 않는다”에 필요한 수학적 한정
++
++식(15)를 절댓값을 넣어 읽고, 단지 파괴 개시점 한 곳이 아니라 어떤 구간 전체에서 등호가 성립한다고 추가 가정하면
++
++\[
++\sigma_e^3=2EY\left|\frac{d\sigma_e}{ds}\right|,
++\qquad \frac{d\sigma_e}{ds}<0
++\]
++
++이므로
++
++\[
++\frac{d\sigma_e}{ds}=-\frac{\sigma_e^3}{2EY},
++\qquad
++\frac{1}{\sigma_e^2}=\frac{s}{EY}+C.
++\]
++
++여기에 (s\to0)에서 특이하다는 경계조건 (C=0)까지 넣으면
++
++\[
++\sigma_e=\sqrt{\frac{EY}{s}}=\frac{K}{\sqrt{s}},
++\qquad K^2=EY
++\]
++
++가 나온다. 그러나 원 식(15)는 **부등식**이며, 파괴 개시에서의 등호는 보통 한 점의 임계조건이지 전 공간의 지배 미분방정식이 아니다. (C=0)이라는 균열선단 경계조건도 식(14)·(15)가 주지 않는다. 따라서 이는 추가 가정을 넣은 특수해일 뿐, 식(14)·(15)만의 대수적 유도가 아니다. QA1의 핵심 판정은 유지되지만, “어떤 의미에서도 유도될 수 없다”는 식으로 읽히지 않게 이 한정을 쓰는 것이 정확하다.
++
++---
++
++## 2. QA1 본문의 물리적 근거: 재료와 무관한 (1/\sqrt r)인가
++
++### 판정: **틀림(과잉 일반화)** — 정확한 답은 **조건부로 같다**
++
++### 2.1 등방 선형탄성: 맞음
++
++Williams(1957), *Journal of Applied Mechanics* 24, 109~114, 특히 pp. 109~111 식 (7), (10)~(12)의 균열 고유함수 전개는 선도 응력항 (r^{-1/2})을 준다. Irwin(1957), 같은 저널 24, 361~364, p. 362 식 (10)도 Mode I 선단 응력을 (r^{-1/2})로 제시한다. 즉 작은 변형, 선형탄성, 예리한 균열, K-지배영역이라는 LEFM 조건에서는 맞다.
++
++### 2.2 직교이방 선형탄성: 반경 지수에 한해 맞음
++
++Sih, Paris & Irwin(1965), *International Journal of Fracture Mechanics* 1, 189~203, DOI 10.1007/BF00186854는 초록과 본문 결론에서 **rectilinear anisotropy인 탄성체에도 (r^{-1/2}) 차수의 탄성 응력특이성이 항상 존재**한다고 명시한다. 따라서 동질 직교이방 선형탄성체의 반경 지수는 등방체와 같다. 다만 응력성분의 각도함수, 진폭의 정의, (G-K) 관계는 이방성 탄성상수에 의존한다. 그러므로 “이방성도 무조건 식(16)의 동일한 스칼라식”이라고까지 확대할 수는 없다.
++
++### 2.3 연성·변형경화 소성: 일반적으로 다름
++
++Rice & Rosengren(1968), *Journal of the Mechanics and Physics of Solids* 16, 1~12, pp. 4~6의 식 (7)~(10)은 power-law hardening 지수 (N) 표기에서
++
++\[
++\sigma_{ij}\sim r^{-N/(1+N)}\Sigma_{ij}(\theta)
++\]
++
++을 얻는다. 이 논문의 (N=1)이 선형탄성 극한이고 그때만 (-1/2)가 된다. 흔히 Ramberg–Osgood를 ε_p∝σ^n으로 쓰는 역수 표기 (n=1/N)에서는 같은 결과가
++
++\[
++\sigma_{ij}\sim r^{-1/(n+1)}\Sigma_{ij}(n,\theta)
++\]
++
++이다.
++
++Hutchinson(1968), *Journal of the Mechanics and Physics of Solids* 16, 13~31도 독립적으로 같은 결론을 냈다. 그의 응력함수 전개에서 응력은 (r^{s-2})이고, p. 21 식 (26)의
++
++\[
++s=\frac{2n+1}{n+1}
++\]
++
++을 대입하면 (s-2=-1/(n+1))이다. 즉 HRR 응력특이성은 경화지수 (n)에 의존하며 일반적으로 (-1/2)가 아니다. 예를 들어 (n=3)이면 (r^{-1/4}), (n=9)이면 (r^{-1/10})이다. (n=1)인 선형 관계에서만 (r^{-1/2})가 회복된다.
++
++따라서 연성재료에서는 영역을 나눠야 한다.
++
++1. 소규모 항복일 때 **소성영역 바깥의 탄성 K-지배장**: (r^{-1/2}).
++2. 균열선단에 더 가까운 **변형경화 소성 HRR-지배장**: (r^{-1/(n+1)}) (또는 (r^{-N/(1+N)})).
++3. 실제 최내측의 둔화·손상·미세구조 과정영역: 이상화된 수학적 특이장 자체가 더 이상 그대로 적용되지 않을 수 있음.
++
++따라서 HTML 559~561행의 “균열선단 근방에서는 재료의 종류(등방성·연성·이방성)와 무관하게 … 동일한 (1/\sqrt{거리})”는 **연성의 탄소성 선단장을 포함하는 문장으로는 틀리다.** 다음처럼 고쳐야 한다.
++
++> 동질 등방 또는 직교이방 선형탄성체의 K-지배영역(연성재료라면 소성영역 바깥의 탄성영역)에서는 선도 응력이 (r^{-1/2})이다. 변형경화 소성재료의 선단 내부 HRR-지배영역에서는 일반적으로 σ∼(r^{-1/(n+1)})이므로 같은 지수가 아니다.
++
++---
++
++## 3. QA2 괄호 문장의 대수적 정합성
++
++### 판정: **틀림**
++
++비교할 두 식을 명시한다.
++
++\[
++\sigma_e=\frac{K_{선3}}{\sqrt{s}},
++\qquad
++\sigma=\frac{K_I}{\sqrt{2\pi r}}.
++\]
++
++같은 물리적 위치에서 같은 응력값을 낸다고 둔다.
++
++### (a) (s=r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt r}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=\frac{K_I}{\sqrt{2\pi}}.
++\]
++
++따라서
++
++\[
++Y=\frac{K_{선3}^2}{E}
++=\frac{K_I^2}{2\pi E}
++=w_f.
++\]
++
++즉 **(s=r)일 때만** QA2가 주장한 (K_{선3}=K_I/\sqrt{2\pi}) 및 (Y=w_f)가 양립한다.
++
++### (b) (s=2\pi r)인 경우
++
++\[
++\frac{K_{선3}}{\sqrt{2\pi r}}=\frac{K_I}{\sqrt{2\pi r}}
++\quad\Longrightarrow\quad
++K_{선3}=K_I.
++\]
++
++따라서
++
++\[
++Y=\frac{K_I^2}{E},
++\]
++
++이며 이는 (w_f=K_I^2/(2\pi E))의 (2\pi)배이다. 반대로 (s=2\pi r)와 (K_{선3}=K_I/\sqrt{2\pi})를 동시에 넣으면
++
++\[
++\sigma_e
++=\frac{K_I/\sqrt{2\pi}}{\sqrt{2\pi r}}
++=\frac{K_I}{2\pi\sqrt r},
++\]
++
++로서 표준장 (K_I/(\sqrt{2\pi}\sqrt r))와 다르다.
++
++결론적으로 두 경우의 (K_{선3})는 서로 다르며,
++
++- (s=r \Rightarrow K_{선3}=K_I/\sqrt{2\pi}\), (Y=w_f);
++- (s=2\pi r \Rightarrow K_{선3}=K_I\), (Y=2\pi w_f).
++
++HTML 583~585행은 첫째 줄에서는 (s=r)의 결과를 쓰면서 괄호에서는 (s=2\pi r)를 말하므로 내부적으로 모순이다.
++
++### caution box 및 원 논문과의 비교
++
++HTML 598~600행의 caution box는 명시적으로 “(s=r)(선행연구1과 동일한 단순 거리)”라고 읽고 (K_{선3}=K_I/\sqrt{2\pi})를 얻는다. 이쪽은 위 (a)의 대수와 일치한다. 따라서 QA2 괄호만 삭제하거나 다음처럼 바꾸어야 한다.
++
++> 즉 식(16)의 (s)를 선행연구1의 (r)과 같은 물리적 거리로 읽으면, 선행연구3의 (K)가 표준 (K_I)의 (1/\sqrt{2\pi})로 재정규화된다.
++
++선행연구3 원문(Kwon, Markoff & DeFisher, 2024), §2 식 (3) 직후에는 (s)를 “along the crack orientation measured from the crack tip”이라고 정의한다. 즉 (s)는 균열선단에서부터 잰 경로좌표/거리이지 (2\pi r)로 정의된 변수가 아니다. 원문 자체도 (2\pi) 재정규화를 명시하지 않는다. 그러므로 caution box의 (s=r) 독해가 원문 문언에 더 가깝고, QA2 괄호의 (s\leftrightarrow2\pi r) 설명은 근거가 없다.
++
++---
++
++## 4. B.2에서 추가로 발견한 오류·부정확성
++
++### 4.1 “LEFM 표준해를 그대로” 가져왔다는 표현 — **부분적으로 맞음**
++
++표준 Mode I LEFM의 θ=0 응력은 (K_I/\sqrt{2\pi r})이다. 식(16)은 원문 정의대로 (s=r)이면 (K/\sqrt r)이므로, **표준 (K_I)를 그대로 쓴 식이 아니라 계수 (K=K_I/\sqrt{2\pi})를 새로 정의한 같은 멱함수 꼴**이다. “형태를 도입했다”는 말은 맞지만 “그대로”는 정규화 차이를 숨긴다.
++
++### 4.2 스칼라 등가응력의 계수를 곧바로 표준 (K_I)와 연결 — **부분적으로 맞음**
++
++등방 Mode I, θ=0, 최대수직응력처럼 어떤 성분을 택했는지가 확정된 경우에는 위 비교가 가능하다. 그러나 최대전단, von Mises/팔면체전단, 이방성 방향별 유효응력 등 다른 σ_e를 택하면 같은 위치에서도 표준 응력성분에 대한 무차원 계수가 추가될 수 있다. 일반적으로
++
++\[
++\sigma_e=\frac{C_e K_I}{\sqrt{2\pi r}}
++\]
++
++이면 (s=r)에서 (K_{선3}=C_eK_I/\sqrt{2\pi})이다. 따라서 모든 재료·등가응력 정의에 대해 계수가 항상 정확히 (1/\sqrt{2\pi})라고 단정할 수 없다.
++
++### 4.3 (Y\equiv G_c)라는 원문의 서술 — **틀림(현재 기호 정의와 양립하지 않음)**
++
++원 논문은 식 (4) (Y=K^2/E) 뒤에서 (Y)가 임계 에너지방출률과 동등하다고 쓴다. 그러나 원문의 거리 정의 (s=r) 및 표준장과의 일치를 적용하면 (K=K_I/\sqrt{2\pi})이므로
++
++\[
++Y=\frac{K_I^2}{2\pi E}.
++\]
++
++반면 등방 LEFM은 (G=K_I^2/E'), (E'=E) (평면응력), (E'=E/(1-\nu^2)) (평면변형)이다. 따라서
++
++\[
++Y=\frac{G}{2\pi}\quad(\text{평면응력}),
++\qquad
++Y=\frac{G}{2\pi(1-\nu^2)}\quad(\text{평면변형}).
++\]
++
++즉 HTML caution box 598~605행과 pitfall 613~618행의 이 지적 및 환산식은 맞다. 다만 이것은 단순히 “원문이 정규화를 명시하지 않은 느슨한 서술”보다 강하다. 원문이 (s)를 실제 거리로 정의한 이상, 식 (3)·(4)와 (Y\equiv G_c)를 동시에 유지할 수 없는 **계수 불일치**이다. (Y=G)를 살리려면 적어도 평면응력에서 (s=2\pi r), (K=K_I)로 다시 정의해야 하는데 원문은 그렇게 하지 않았다. 평면변형에서는 추가로 (E') 문제도 남는다.
++
++### 4.4 식(15)의 부호 — **틀림(HTML의 기존 지적이 맞음)**
++
++원 식처럼 (d\sigma_e/ds<0)인데 절댓값 없이
++
++\[
++\sigma_e\ge(2EY\,d\sigma_e/ds)^{1/3}
++\]
++
++을 쓰면 우변은 음수가 된다. 식(17)을 양의 재료값으로 얻으려면 ​(|d\sigma_e/ds|) 또는 (-d\sigma_e/ds)가 필요하다. HTML 541~546행의 수정 해석은 타당하다.
++
++---
++
++## 5. 최종 판정표
++
++| 검증 항목 | 판정 | 핵심 근거 |
++|---|---|---|
++| 식(16)은 식(14)·(15)의 대수적 유도가 아니라 별도 균열장 도입 | **맞음** | 판정 부등식은 형상별 장을 결정하지 않음. 원문도 균열장을 별도 제시 후 대입. 단, 등호를 전 구간에 강제하고 특이 경계조건을 더하면 (1/\sqrt{s}) 특수해 가능. |
++| A.4와 정확히 같은 역할 | **부분적으로 맞음** | 외부장 입력이라는 형식은 같으나 A.4는 등방 LEFM 특정 성분, B.2는 등가응력·재료 일반화까지 주장. |
++| 재료 종류와 무관한 (r^{-1/2}) | **틀림** | 선형탄성 등방/직교이방 및 소성영역 밖에서는 맞음. HRR 소성 선단장에서는 (r^{-1/(n+1)}) 또는 (r^{-N/(1+N)}). |
++| (s=r)일 때 (K_{선3}=K_I/\sqrt{2\pi}), (Y=w_f) | **맞음** | 두 응력식을 같은 위치에서 직접 등치. |
++| (s=2\pi r)이면서 (K_{선3}=K_I/\sqrt{2\pi}) | **틀림** | (s=2\pi r)이면 반드시 (K_{선3}=K_I). |
++| QA2 괄호와 caution box의 양립성 | **틀림** | 괄호는 (s=2\pi r), caution은 (s=r)를 전제하며 서로 다른 정규화. caution 쪽이 원문 거리 정의와 일치. |
++| 원문의 (Y\equiv G_c) | **틀림** | 원문 정의 (s=r)이면 평면응력 (Y=G_c/(2\pi)); 평면변형은 (Y=G_c/[2\pi(1-\nu^2)]). |
++
++---
++
++## 6. 확인한 문헌·원문
++
++1. M. L. Williams, “On the Stress Distribution at the Base of a Stationary Crack,” *Journal of Applied Mechanics* **24** (1957) 109–114, DOI: 10.1115/1.4011454. 특히 pp. 109–111, 식 (7), (10)–(12). CaltechAUTHORS 원문: https://authors.library.caltech.edu/records/ty906-me279
++2. G. R. Irwin, “Analysis of Stresses and Strains Near the End of a Crack Traversing a Plate,” *Journal of Applied Mechanics* **24** (1957) 361–364, DOI: 10.1115/1.4011547. 특히 p. 362, 식 (10).
++3. G. C. Sih, P. C. Paris, G. R. Irwin, “On Cracks in Rectilinearly Anisotropic Bodies,” *International Journal of Fracture Mechanics* **1** (1965) 189–203, DOI: 10.1007/BF00186854. 출판사 원문/초록: https://link.springer.com/article/10.1007/BF00186854
++4. J. W. Hutchinson, “Singular Behaviour at the End of a Tensile Crack in a Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 13–31, DOI: 10.1016/0022-5096(68)90014-8. 특히 p. 21 식 (26), p. 27 식 (49). 저자 공개 원문: https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf
++5. J. R. Rice, G. F. Rosengren, “Plane Strain Deformation Near a Crack Tip in a Power-Law Hardening Material,” *Journal of the Mechanics and Physics of Solids* **16** (1968) 1–12, DOI: 10.1016/0022-5096(68)90013-6. 특히 pp. 4–6, 식 (7)–(10). 저자 공개 원문: https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf
++6. Y. W. Kwon, E. K. Markoff, S. DeFisher, “Unified Failure Criterion Based on Stress and Stress Gradient Conditions,” *Materials* **17** (2024) 569, DOI: 10.3390/ma17030569. 특히 §2, 식 (1)–(4) 및 식 (3) 직후 (s) 정의: https://www.mdpi.com/1996-1944/17/3/569
++
++## 7. 확인 한계
++
++- Sih et al. (1965)의 출판사 페이지에서 논문 전체 PDF는 구독 제한이 있었으나, 출판사 초록이 직교이방 탄성체의 (r^{-1/2}) 차수를 명시하므로 해당 판정에는 충분하다. 본 보고서는 확인하지 못한 세부 식 번호를 창작하지 않았다.
++- “이방성” 전체(비균질체, bimaterial interface crack, 동적·비선형 이방성까지)를 Sih et al.의 **동질 rectilinear anisotropic linear elasticity** 결과로 일반화하지 않았다.
+
+tokens used
+130,601
+독립 검증을 완료해 [round22/codex.md](J:/Desktop/공학/ai-crosscheck/round22/codex.md)에 기록했습니다. `round22/claude.md`는 열거나 검색하지 않았습니다.
+
+핵심 결론:
+
+- QA1의 “식(16)은 외부 균열장 도입”이라는 주장은 맞지만, A.4와 물리적 적용범위까지 완전히 같지는 않습니다.
+- “연성재료도 항상 \(r^{-1/2}\)”는 틀렸습니다. HRR 응력장은 일반적으로 \(r^{-1/(n+1)}\)입니다. [Hutchinson 원문](https://web-static-aws.seas.harvard.edu/hutchinson/papers/312.pdf), [Rice–Rosengren 원문](https://esag.harvard.edu/rice/016_RiceRosengren_CrackSing_JMPS68.pdf)
+- 직교이방 선형탄성의 \(r^{-1/2}\) 지수는 확인됐습니다. [Sih–Paris–Irwin](https://link.springer.com/article/10.1007/BF00186854)
+- QA2 괄호는 대수적으로 틀렸습니다.
+  - \(s=r\): \(K_{선3}=K_I/\sqrt{2\pi}\), \(Y=w_f\)
+  - \(s=2\pi r\): \(K_{선3}=K_I\), \(Y=2\pi w_f\)
+- 원 논문은 \(s\)를 균열선단부터 잰 거리로 정의하므로 caution box의 \(s=r\) 해석이 더 타당합니다. [Kwon et al. 원문](https://www.mdpi.com/1996-1944/17/3/569)
+
+커밋·푸시는 환경 제약으로 수행되지 않았습니다. `.git/index.lock` 생성 권한이 거부됐고 GitHub 네트워크 연결도 차단됐습니다. 파일은 현재 미추적 상태로 안전하게 보존되어 있습니다.
