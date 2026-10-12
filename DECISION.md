@@ -1,103 +1,73 @@
-# DECISION — Round 3: 취성 파괴기준(Kwon 응력+응력구배)의 연성재료 확장 방법론
+# Round 25 — 최종 결정: Abstract 분석표 "저널 가이드라인 부합여부" 검증
 
-작성: Claude (Claude·Codex 교차검증 종합). round3/claude.md, round3/codex.md 모두
-blind로 독립 작성된 후 이 문서에서 종합함.
+## 결론 요약
 
-## 0. 가장 중요한 발견 (Codex 발견 → Claude가 원문 재조회로 직접 검증 완료)
+사용자 지적이 맞았다. 이전 Abstract 분석표는 11개 서로 다른 저널에
+**"약 150~250단어"라는 단일 추정치**를 일괄 적용했고, 이는 각 저널의
+실제 가이드라인을 전수 확인한 것이 아니었다.
 
-**Kwon, Markoff, DeFisher (2024), *Materials* 17, 569 §3은 이미 연성 5000계열
-알루미늄(원공 1~18mm, 슬릿 4~6mm, 다양한 각도)에 이 논문의 "응력+응력구배" 기준을
-적용했다.** 실측 인장곡선(dog-bone 시편)으로 탄소성 FE 해석을 수행했고, 원문
-직접 인용:
+Claude·Codex 교차검증 결과:
+- **1차 출처(저널/출판사 공식 페이지)로 직접 확인된 저널은 11개 중 2개뿐**이다.
+- 나머지 9개 저널은 Elsevier·MDPI·ACS 등 출판사 사이트가 자동화 접근을
+  차단(HTTP 403)해 공식 수치를 확인하지 못했다. 2차 출처(요약 블로그 등)
+  일부 숫자가 있었지만 신뢰도가 낮아 공식 사실로 채택하지 않았다.
+- **부수적으로, Claude가 수동으로 옮겨 적은 Abstract 원문 중 2편(No.3, No.5)에서
+  실제 문장이 누락/병합된 전사 오류가 발견되어 단어수가 수정되었다.** 이는
+  Codex가 PDF에서 기계적으로 직접 추출·대조한 결과로 교차검증이 실제로
+  오류를 잡아낸 사례다.
 
-> "Because the tangential modulus during the plastic deformation is quite small
-> compared to the elastic modulus, the stress gradient at the edge of the hole
-> becomes smaller... **the stress condition rather than the stress-gradient
-> condition**" governs failure — 논문이 스스로 "the very ductile nature of the
-> material"이라고 명시.
+## 공통 (Claude·Codex 둘 다 동일하게 확인한 것)
+- No.1(Processes, 231), No.4(Energy/baffles, 195), No.6(ACS Omega, 171),
+  No.10(Fuel/Kaya, 204), No.12(Topics in Catalysis, 220) — Abstract
+  단어수가 양쪽 계산에서 완전히 일치.
+- 11개 저널 중 **Elsevier·MDPI·ACS 공식 페이지는 이 환경에서 자동화 접근이
+  막혀 있다**는 사실 — Claude는 WebFetch 403으로, Codex는 네트워크 자체가
+  차단된 것으로 각자 독립 확인.
+- 저널별 숫자를 "확실하다"고 말할 수 있는 근거가 없으면 숫자를 적지 않고
+  "확인 불가"로 남긴다는 원칙에 양쪽 다 동의.
 
-**의미**: "이 취성 기준을 연성금속에 적용"하는 것 자체는 이미 논문 안에 있다
-(신규성 아님). 다만 이 사례는 (a) **균열이 아니라 원공/슬릿**(응력집중부이지
-날카로운 균열끝단이 아님), (b) **단조 하중 하 개시(파단)만** 다루고 **안정
-균열 성장(J-R curve)은 다루지 않음**, (c) 소성이 커지면 구배항이 자동으로
-무력화되어 "사실상 응력기준으로 퇴화"한다는 한계도 논문 스스로 인정.
+## 충돌 / 차이 (중요)
 
-**결론적으로 이 사실이 사용자 졸업논문의 방향을 결정짓는다**: 지도교수·선배가
-"연성으로 확장해라"라고 한 것이, 이미 논문에 있는 원공/슬릿 사례의 재현을
-의미하는 것인지, 아니면 그 다음 단계(실제 균열, 성장저항곡선, 응력구배 항이
-살아있는 조건 발굴)를 의미하는 것인지 **반드시 지도교수에게 먼저 확인해야
-한다.** 후자라면 아래 후보들이 실질적인 기여점이 된다.
+| 항목 | Claude 1차 판정 | Codex 독립 재계산 | 채택 | 사유 |
+|---|---|---|---|---|
+| No.3(Fuel, Sarıkoç) 단어수 | 380 | 404 | **404 (Codex)** | Claude가 손으로 옮겨 적을 때 "The combustion characteristics improved after the addition of hydrogen and methanol, which also considerably affected the engine performance and emission characteristics." 한 문장을 통째로 누락. PDF 원문 재대조로 404가 맞음을 직접 확인(wc -w로 재검증) |
+| No.5(Fuel, Özker&Çelebi) 단어수 | 252 | 290 | **290 (Codex)** | Claude가 "is provided by G90M10 fuel, followed by G90M5N5 and G90T5N5 fuel mixtures, respectively. It is determined that the G90T5N5 fuel mixture provides the highest reduction in HC and CO emissions compared to G100" 구간을 통째로 생략하고 두 문장을 하나로 압축. PDF 원문 재대조로 290이 맞음을 직접 확인 |
+| No.2, 7, 8, 9, 11, 13, 15 단어수 | ±1~10 소폭 차이 | Codex가 대체로 소폭 더 높음 | **Codex 값 채택** | 주로 "56.8 %"처럼 숫자와 %사이 공백이 있는 경우 %를 별도 단어로 셀지 여부의 토큰화 관례 차이. 기계적 추출(Codex)이 수작업 전사(Claude)보다 체계적으로 신뢰도가 높다고 판단 |
+| No.14(Combustion and Flame) 단어수 | 388(Novelty and significance 소제목 단락 포함) | 303(그 단락 제외) | **두 값 모두 기록, "Abstract 본문만"은 303** | 이건 오류가 아니라 "Abstract의 범위를 어디까지로 볼 것인가"의 정의 차이. 저널 지면상 Abstract 바로 아래 볼드체 소제목으로 별도 단락이 붙은 구조이므로, 공식 Abstract 분량 규정과 비교할 때는 303(본문만)을 기준으로 삼는 것이 타당 |
+| ASME(JEGTP) 250단어 | 1차 출처로 확인(asme.org) | "250단어 이하로 기억"하나 "추측(불확실)"로 표시 | **Claude 조사 채택(1차 출처 있음)** | Codex는 웹 접근이 없어 학습기억에 의존했고 스스로도 불확실하다고 명시. Claude는 asme.org 공식 페이지 원문("An abstract (250 words maximum) should open the paper or brief.")을 직접 인용 |
+| Springer Nature 350단어 | 1차 출처로 확인(support.springernature.com) | "150~250단어로 기억"(회상, 미검증) | **Claude 조사 채택(1차 출처 있음)** | 동일한 이유. Codex의 회상치(150~250)는 Claude가 확인한 공식 FAQ 수치(350)와 다르며, Codex 스스로 "현행 공식 페이지 미확인"이라고 단서를 달았다 |
 
-## 1. 공통 결론 (Claude·Codex 둘 다 도달)
+## 최종 판정표 (저널 가이드라인 부합여부 — 재작성)
 
-- **TCD(Theory of Critical Distances)**와 **RKR(Ritchie-Knott-Rice, 1973)**는
-  둘 다 실제 존재하며, 서지사항 확인됨(양쪽 독립 검색 일치).
-- **TCD가 구조적으로 가장 유망한 1순위 후보**다 — "국소 응력의 공간적 분포/길이"를
-  파괴조건화한다는 점에서 Kwon의 응력구배 조건과 개념적 뿌리가 같고, **연성금속
-  노치시편에 실제 적용된 문헌**(Susmel & Taylor, 2008)이 존재.
-- **GTN, Weibull/Beremin, Johnson-Cook, EWF는 결합 가능성이 낮음** — 프레임 자체가
-  Kwon의 "국소 미분조건" 구조와 근본적으로 다름(통계적 체적적분, 손상역학
-  구성방정식, 경험적 누적손상, 전역 일-분리 등).
-- **J-적분/HRR장 기반 재유도는 이론적으로 가장 엄밀하지만 작업량이 크다.**
+| No | 저널 | Abstract 단어수(최종 채택값) | 해당 저널 공식 기준 | 판정 |
+|---|---|---|---|---|
+| 1 | Processes (MDPI) | 231 | 확인 불가 (1차 출처 403 차단) | **판정 보류** |
+| 2 | Case Studies in Thermal Engineering (Elsevier) | 244 | 확인 불가 | **판정 보류** |
+| 3 | Fuel (Elsevier) | **404** (380→정정) | 확인 불가 | **판정 보류** (단, 11개 논문 중 가장 긴 Abstract) |
+| 4 | Energy (Elsevier) | 195 | 확인 불가 | **판정 보류** |
+| 5 | Fuel (Elsevier) | **290** (252→정정) | 확인 불가 | **판정 보류** |
+| 6 | ACS Omega (ACS) | 171 | 확인 불가(2차 출처 상충: "제한없음" vs "150~250단어") | **판정 보류** |
+| 7 | International Journal of Engine Research (SAGE) | 246 | 확인 불가 | **판정 보류** |
+| 8 | Energy (Elsevier) | 184 | 확인 불가 | **판정 보류** |
+| 9 | Journal of the Energy Institute (Elsevier) | 245 | 확인 불가 | **판정 보류** |
+| 10 | Fuel (Elsevier) | 204 | 확인 불가 | **판정 보류** |
+| 11 | Journal of Engineering for Gas Turbines and Power (ASME) | 210 | **250단어 이내 (1차 출처 확인)** | **부합** |
+| 12 | Topics in Catalysis (Springer) | 220 | **350단어 이내 (Springer Nature 공통정책, 1차 출처 확인)** | **부합** |
+| 13 | Energy (Elsevier) | 223 | 확인 불가 | **판정 보류** |
+| 14 | Combustion and Flame (Elsevier) | 303(본문)/388(Novelty 포함) | 확인 불가 | **판정 보류** |
+| 15 | Applied Thermal Engineering (Elsevier) | 191 | 확인 불가 | **판정 보류** |
 
-## 2. 충돌/차이 및 해소
+**결론: 15편 중 2편(No.11, No.12)만 "해당 저널의 실제 공식 기준"으로
+부합여부를 판정할 수 있다. 나머지 13편은 공식 1차 출처를 확인하지
+못했으므로 "판정 보류"로 표기하며, 임의 추정치를 적용하지 않는다.**
 
-| 쟁점 | Claude(round3/claude.md) | Codex(round3/codex.md) | 해소 |
-|---|---|---|---|
-| RKR 결합가능성 | 높음 | 중간 | **Codex 채택.** RKR은 탄소성 응력장을 쓰지만 목적은 **벽개(cleavage=취성) 파괴**이지 딤플/공동합체형 진짜 연성파괴가 아님. "소성역을 고려한다"는 이유만으로 연성파괴 모델로 분류하면 안 된다는 Codex 지적이 더 정확함. 벽개-연성 경쟁 재료(저온/천이역 강)가 아니면 RKR 우선순위를 낮춰야 함. |
-| HRR 단순치환 타당성 | 정성적으로만 "이론적으로 엄밀" | **직접 대수 검증**: LEFM(p=1/2)에서는 F_e가 평가거리 r에 무관하지만, 일반 HRR(n>1)에서는 F_e∝r^((n-1)/(n+1))로 r에 의존 → "응력장만 HRR로 바꾸는 단순 대입은 성립 안 함"을 수식으로 증명 | **Codex 채택.** 이건 검증 가능한 수학적 사실이라 이견 없음 — J/HRR 후보를 쓰려면 에너지밀도·임계값 정의까지 전면 재유도해야 한다는 게 확정됨(Claude도 같은 우려를 정성적으로만 언급했었음). |
-| 후보 목록 | TCD·RKR·J-HRR·Weibull·GTN·EWF 6개 | 위 6개 + **CZM**(Cohesive Zone Model), **EMC**(Equivalent Material Concept, Torabi 2012) 추가 | **Codex의 추가 두 후보 채택.** 특히 EMC(등가재료개념 — 연성재료를 에너지밀도가 같은 가상 취성재료로 치환해 기존 취성기준 형식을 그대로 씀)는 Kwon 기준의 "형식을 보존"하려는 이번 논문 목적과 직접 맞닿아 있어 반드시 검토 대상에 포함. |
-| §3 알루미늄 사례 인지 | **놓침** — 논문에 이미 연성 적용 사례가 있다는 걸 조사 단계에서 발견 못함 | **발견하고 §2·§3 원문으로 직접 확인** | Claude가 이 DECISION 작성 시 PMC10856633 §3을 재조회하여 **원문 인용으로 재확인 완료**(0번 항목). |
-| 최종 후보 3개 | TCD / RKR / J-HRR | TCD / J-HRR / 탄소성 CZM(성장저항) | **종합**: RKR은 "벽개 경쟁 재료일 때만" 후보로 격하, CZM을 3순위로 승격(성장저항곡선까지 다루려면 필요). 최종 3개는 아래 3번 참조. |
-
-## 3. 최종 결정 — 지도교수 면담 전 검토할 후보 3개 (근거 포함)
-
-1. **TCD (Theory of Critical Distances) 비교/확장** — 최우선 후보.
-   - 근거: Susmel & Taylor (2008), *Engineering Fracture Mechanics* 75(15),
-     4410–4421 — 냉간압연 저탄소강 노치시편(인장·3점굽힘)에서 큰 소성역·연성
-     균열전파를 동반한 파괴하중을 TCD로 예측(탄성해석 기준 오차 약 15% 보고).
-     양쪽 세션이 독립적으로 서지 확인함.
-   - 연구질문: Kwon의 순간 응력구배(dσ/ds)를 TCD의 임계거리 L, 또는 Line
-     Method(거리 적분)로 일반화할 수 있는가? 두 조건이 다른 예측을 내는
-     경우(구배가 실제로 지배하는 케이스)를 찾을 수 있는가?
-   - 필요 데이터: 평활 인장곡선, 여러 노치반경/시편에서의 파괴하중 — **사용자가
-     이미 보유 중이라고 한 실험데이터와 바로 맞을 가능성 높음.**
-
-2. **J-적분/HRR장 기반 완전 재유도** — 이론 중심 후보.
-   - 근거: Rice(1968), *J. Appl. Mech.* 35, 379–386; Rice & Rosengren(1968),
-     *JMPS* 16, 1–12 — 양쪽 세션 서지 확인. Codex의 수학적 검증(위 표)으로
-     "왜 단순 대입이 안 되는지"까지 이미 증명됨 — 이걸 논문의 이론적 출발점으로
-     삼을 수 있음(오히려 "단순치환의 실패"를 보이는 것 자체가 기여가 될 수 있음).
-   - 필요 데이터: 진응력-진소성변형률 경화곡선, 예비균열 시편의 J-R 또는 개시 J.
-   - 주의: 작업량이 가장 크고, 정지균열 개시 국한 vs 성장까지 확장은 별도 문제.
-
-3. **탄소성 CZM(Cohesive Zone Model) 기반 균열 성장 검증** — 성장저항까지
-   다루고 싶을 때.
-   - 근거: Tvergaard & Hutchinson (1992), *JMPS* 40, 1377–1397 — 탄소성체의
-     개시 및 후속 성장저항을 최대견인력·분리일로 계산.
-   - 필요 데이터: J-R, CMOD, 균열길이 이력(Δa) — **이게 있어야만 의미 있는
-     후보**. 없다면 1·2번으로 범위를 좁힐 것.
-
-**격하된 후보**: RKR(벽개-연성 경쟁 재료가 아니면 부적합), GTN·Weibull·
-Johnson-Cook·EWF(구조적으로 Kwon형 미분조건과 결합이 어려움), EMC(형식은
-매력적이나 이번 검색에서 Kwon 기준과의 결합 선례를 확인 못함 — 아이디어
-단계로만 기록).
-
-## 4. 다음 행동 (사용자용)
-
-1. **지도교수 면담에서 가장 먼저 확인할 것**: "연성으로 확장"이 이미 논문
-   §3의 원공/슬릿 알루미늄 사례를 넘어서는 것(실제 균열, 성장곡선, 구배항이
-   살아있는 조건 발굴)을 의미하는지.
-2. 보유 실험데이터의 종류(단순 인장 vs 노치 파괴하중 vs J-R/균열성장 이력)를
-   정리해서 위 1·2·3번 중 어느 것이 데이터와 맞는지 판단.
-3. 방향이 정해지면 그에 맞는 세부 유도(TCD 결합식, 또는 HRR 재유도)를 다음
-   라운드에서 진행.
-
-## 5. 운영 메모
-- Codex는 이번 라운드에서 `.git` 쓰기 권한 거부(`index.lock` permission denied)와
-  네트워크 차단(GitHub 443 연결 실패)으로 자체 commit/push에 실패함 — Claude가
-  내용을 검토 후 대리로 commit/push함(원칙: 내용은 그대로 두고 대리 커밋만 수행,
-  Codex 결론을 덮어쓰지 않음).
-- Codex가 작업 중 무관한 `round1/codex.md`(다른 동시 세션의 별개 문제 —
-  "2-2 응력구배조건" 검증)를 건드렸으나, Claude가 커밋 전에 발견해 되돌림 —
-  다른 세션 작업 오염 없음.
+## 왜 9개 저널을 더 못 찾았나 (한계 설명)
+- Elsevier(sciencedirect.com, elsevier.com)·MDPI(mdpi.com)·ACS(pubs.acs.org,
+  publish.acs.org)는 자동화 크롤러를 차단하는 봇 방지 정책을 쓰고 있어,
+  이 세션의 WebFetch로는 HTTP 403 또는 빈 JS 페이지만 반환됨.
+  web.archive.org도 이 세션에서는 자체적으로 차단됨.
+- SAGE(journals.sagepub.com)는 저널 코드 매핑을 찾지 못해 접근 자체를
+  시도하지 못함.
+- 사람이 직접 브라우저로 로그인 후 열람하거나, 해당 저널에 투고 경험이
+  있는 연구실 선배에게 PDF 공식 가이드 문서를 받는 방법이 더 정확할 수
+  있음 — 필요하면 사용자가 직접 열람 요청.
