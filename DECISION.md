@@ -1,73 +1,37 @@
-# Round 25 — 최종 결정: Abstract 분석표 "저널 가이드라인 부합여부" 검증
+# DECISION — Round 28: EPRI "Crack Growth and Coalescence" 수식 정리 블라인드 교차검증
 
-## 결론 요약
+대상: Schmitt, EPRI xLPR-MSGR-CGR Ver.1.0 (2016) 한 편. 최종 산출물: `J:\Desktop\XLPR\2026_10_13_XLPR모델분석\XLPR_균열성장_수식정리.html` (아티팩트 게시본 갱신).
+진행: Claude 블라인드(`claude.md`) / Codex 블라인드(`codex.md`, PDF 직접 읽음) → 커밋 → 상호 검증(`codex_review.md`, Claude는 `codex.md` 검토) → 본 결정. Codex 샌드박스는 `.git` 쓰기 권한이 없어 커밋은 Claude가 대행.
 
-사용자 지적이 맞았다. 이전 Abstract 분석표는 11개 서로 다른 저널에
-**"약 150~250단어"라는 단일 추정치**를 일괄 적용했고, 이는 각 저널의
-실제 가이드라인을 전수 확인한 것이 아니었다.
+## 1. 공통 (두 결과가 일치, 원문과 대조 확인)
+- 식 번호 2-1~2-27, 3-1~3-3, 6-1, 6-2의 형태·상수·지수·분기 조건. 대표 값(α, β, K_th, Q_g, 분포 백분위, 표 2-1, Table 3-4/3-5).
+- 재료 코드 → 식 연결(Table 3-1), PWSCC는 모든 재료 공통 식 3-1에 값만 교체, 수소 끔 = P=1, 개선계수 끔 = IF=1.
+- 페라이트 TCF/EAC 분기 조건(황 0.004/0.013%, V_trans, 누적 0.33 mm, 상승시간 1 s)과 계수 표.
+- 합체 규칙(합체 거리, 종류/깊이/중심/OD/표면+관통 면적보존).
+- **식 2-25 인쇄 지수 이상(독립 일치):** 표 2-1의 TCF 곡선과 상부천이 곡선을 같게 놓으면 교점은 (C_upper/C_1)^(1/2.122)(2.88−R)(2.122=3.07−0.948). 인쇄식은 이와 불일치. 대표 조건(θ=30 s, R=0.7)에서 ΔK_b≈12.28, C_upper≈3.42E-7, 교점≈62.5~62.6, 인쇄식≈2.4E7(Codex 계산, Claude 수기 검산으로 재현). 저자 정정은 미확인이므로 "원문 오기 가능성"으로만 표기.
 
-Claude·Codex 교차검증 결과:
-- **1차 출처(저널/출판사 공식 페이지)로 직접 확인된 저널은 11개 중 2개뿐**이다.
-- 나머지 9개 저널은 Elsevier·MDPI·ACS 등 출판사 사이트가 자동화 접근을
-  차단(HTTP 403)해 공식 수치를 확인하지 못했다. 2차 출처(요약 블로그 등)
-  일부 숫자가 있었지만 신뢰도가 낮아 공식 사실로 채택하지 않았다.
-- **부수적으로, Claude가 수동으로 옮겨 적은 Abstract 원문 중 2편(No.3, No.5)에서
-  실제 문장이 누락/병합된 전사 오류가 발견되어 단어수가 수정되었다.** 이는
-  Codex가 PDF에서 기계적으로 직접 추출·대조한 결과로 교차검증이 실제로
-  오류를 잡아낸 사례다.
+## 2. 충돌 (원문으로 판정)
+| 항목 | Claude | Codex | 판정 |
+|---|---|---|---|
+| 식 2-22, 6-2 분기 잘림 | HTML에는 온전 | `claude.md` 덤프에서 잘림 보고 | `claude.md` 변환 오류(`<` 기호가 태그로 제거됨). HTML은 정상. |
+| 식 6-1 성격 | "개정 예정, 실제 모듈값 아님" | 모듈 구현 후 갱신된 값(§6.2.1), 6-2만 향후 개선안 | **Codex 채택** (p.118–119 "were changed to"). HTML 수정. |
+| 상관 0.714 | P와 c의 상관 | P−1, c를 만드는 기저 정규변수의 상관 | **Codex 채택** (p.35). HTML 수정. |
+| 합체 시 ID 길이 | 같은 종류 둘 | 표면+표면, 관통+관통(천이+이상화 포함) | **Codex 채택** (pp.95, 107). HTML 수정. |
+| 시간 스텝 | 공칭 1 EFPM | 사용자 정의, 1 EFPM은 사례 | **Codex 채택** (p.61). HTML 수정. |
+| PWSCC 명칭 | 물 환경 응력부식 | 일차수 응력부식균열 | **Codex 채택**. HTML 수정. |
+| wrought | 단조 | wrought 유지 | **Codex 채택**(wrought=가공재, 단조 한정 근거 없음). HTML 수정. |
+| ΔK≥ΔK_c | ≥ | 원문은 above, 등호 불명 | **Codex 채택**. HTML 수정. |
+| SS 316L 묶음 | 표기 불일치로 암시 | 서로 다른 효과의 별도 계수라 오기 근거 없음 | **Codex 채택**. 주석 교체. |
+| 오류 코드 | 203 | p.73은 300급, p.87은 203 | 원문 내부 서술 차이. 양쪽 병기. |
 
-## 공통 (Claude·Codex 둘 다 동일하게 확인한 것)
-- No.1(Processes, 231), No.4(Energy/baffles, 195), No.6(ACS Omega, 171),
-  No.10(Fuel/Kaya, 204), No.12(Topics in Catalysis, 220) — Abstract
-  단어수가 양쪽 계산에서 완전히 일치.
-- 11개 저널 중 **Elsevier·MDPI·ACS 공식 페이지는 이 환경에서 자동화 접근이
-  막혀 있다**는 사실 — Claude는 WebFetch 403으로, Codex는 네트워크 자체가
-  차단된 것으로 각자 독립 확인.
-- 저널별 숫자를 "확실하다"고 말할 수 있는 근거가 없으면 숫자를 적지 않고
-  "확인 불가"로 남긴다는 원칙에 양쪽 다 동의.
+## 3. Claude 단독 확인 사항
+- Codex 지적 중 Figure 2-18의 `V_i=αΔa_i/Δt_i, α=1.5`, `V_i≥V_in`을 원문 그림(p.57)에서 직접 확인(Codex 정확).
+- 식 2-3 좌변 첨자, 식 6-2의 log-σ 표기, 식 2-22 표기는 앞선 프롬프트 대조에서 수정 완료.
 
-## 충돌 / 차이 (중요)
+## 4. Codex가 더 완전했던 점 (HTML에 반영)
+개발 데이터 범위와 검증 범위의 구분, 단위 주의(mm vs m, 상승시간 정의), Table 3-4 c의 하한 0, Table 3-4 값의 묶음 사용 지침, 원문 내부 불일치 목록(Q_g/c 허용범위, C_Kth 중앙값 1 vs 1.27, 기호 목록 오류, 황 0.004/0.005%, 식 2-5/2-6 표기), 합체 한계(혼합쌍 실험 없음, 길이 의존 미구현, 동일 평면 가정, 순회 방향 영향), 형상 전환 세부.
 
-| 항목 | Claude 1차 판정 | Codex 독립 재계산 | 채택 | 사유 |
-|---|---|---|---|---|
-| No.3(Fuel, Sarıkoç) 단어수 | 380 | 404 | **404 (Codex)** | Claude가 손으로 옮겨 적을 때 "The combustion characteristics improved after the addition of hydrogen and methanol, which also considerably affected the engine performance and emission characteristics." 한 문장을 통째로 누락. PDF 원문 재대조로 404가 맞음을 직접 확인(wc -w로 재검증) |
-| No.5(Fuel, Özker&Çelebi) 단어수 | 252 | 290 | **290 (Codex)** | Claude가 "is provided by G90M10 fuel, followed by G90M5N5 and G90T5N5 fuel mixtures, respectively. It is determined that the G90T5N5 fuel mixture provides the highest reduction in HC and CO emissions compared to G100" 구간을 통째로 생략하고 두 문장을 하나로 압축. PDF 원문 재대조로 290이 맞음을 직접 확인 |
-| No.2, 7, 8, 9, 11, 13, 15 단어수 | ±1~10 소폭 차이 | Codex가 대체로 소폭 더 높음 | **Codex 값 채택** | 주로 "56.8 %"처럼 숫자와 %사이 공백이 있는 경우 %를 별도 단어로 셀지 여부의 토큰화 관례 차이. 기계적 추출(Codex)이 수작업 전사(Claude)보다 체계적으로 신뢰도가 높다고 판단 |
-| No.14(Combustion and Flame) 단어수 | 388(Novelty and significance 소제목 단락 포함) | 303(그 단락 제외) | **두 값 모두 기록, "Abstract 본문만"은 303** | 이건 오류가 아니라 "Abstract의 범위를 어디까지로 볼 것인가"의 정의 차이. 저널 지면상 Abstract 바로 아래 볼드체 소제목으로 별도 단락이 붙은 구조이므로, 공식 Abstract 분량 규정과 비교할 때는 303(본문만)을 기준으로 삼는 것이 타당 |
-| ASME(JEGTP) 250단어 | 1차 출처로 확인(asme.org) | "250단어 이하로 기억"하나 "추측(불확실)"로 표시 | **Claude 조사 채택(1차 출처 있음)** | Codex는 웹 접근이 없어 학습기억에 의존했고 스스로도 불확실하다고 명시. Claude는 asme.org 공식 페이지 원문("An abstract (250 words maximum) should open the paper or brief.")을 직접 인용 |
-| Springer Nature 350단어 | 1차 출처로 확인(support.springernature.com) | "150~250단어로 기억"(회상, 미검증) | **Claude 조사 채택(1차 출처 있음)** | 동일한 이유. Codex의 회상치(150~250)는 Claude가 확인한 공식 FAQ 수치(350)와 다르며, Codex 스스로 "현행 공식 페이지 미확인"이라고 단서를 달았다 |
-
-## 최종 판정표 (저널 가이드라인 부합여부 — 재작성)
-
-| No | 저널 | Abstract 단어수(최종 채택값) | 해당 저널 공식 기준 | 판정 |
-|---|---|---|---|---|
-| 1 | Processes (MDPI) | 231 | 확인 불가 (1차 출처 403 차단) | **판정 보류** |
-| 2 | Case Studies in Thermal Engineering (Elsevier) | 244 | 확인 불가 | **판정 보류** |
-| 3 | Fuel (Elsevier) | **404** (380→정정) | 확인 불가 | **판정 보류** (단, 11개 논문 중 가장 긴 Abstract) |
-| 4 | Energy (Elsevier) | 195 | 확인 불가 | **판정 보류** |
-| 5 | Fuel (Elsevier) | **290** (252→정정) | 확인 불가 | **판정 보류** |
-| 6 | ACS Omega (ACS) | 171 | 확인 불가(2차 출처 상충: "제한없음" vs "150~250단어") | **판정 보류** |
-| 7 | International Journal of Engine Research (SAGE) | 246 | 확인 불가 | **판정 보류** |
-| 8 | Energy (Elsevier) | 184 | 확인 불가 | **판정 보류** |
-| 9 | Journal of the Energy Institute (Elsevier) | 245 | 확인 불가 | **판정 보류** |
-| 10 | Fuel (Elsevier) | 204 | 확인 불가 | **판정 보류** |
-| 11 | Journal of Engineering for Gas Turbines and Power (ASME) | 210 | **250단어 이내 (1차 출처 확인)** | **부합** |
-| 12 | Topics in Catalysis (Springer) | 220 | **350단어 이내 (Springer Nature 공통정책, 1차 출처 확인)** | **부합** |
-| 13 | Energy (Elsevier) | 223 | 확인 불가 | **판정 보류** |
-| 14 | Combustion and Flame (Elsevier) | 303(본문)/388(Novelty 포함) | 확인 불가 | **판정 보류** |
-| 15 | Applied Thermal Engineering (Elsevier) | 191 | 확인 불가 | **판정 보류** |
-
-**결론: 15편 중 2편(No.11, No.12)만 "해당 저널의 실제 공식 기준"으로
-부합여부를 판정할 수 있다. 나머지 13편은 공식 1차 출처를 확인하지
-못했으므로 "판정 보류"로 표기하며, 임의 추정치를 적용하지 않는다.**
-
-## 왜 9개 저널을 더 못 찾았나 (한계 설명)
-- Elsevier(sciencedirect.com, elsevier.com)·MDPI(mdpi.com)·ACS(pubs.acs.org,
-  publish.acs.org)는 자동화 크롤러를 차단하는 봇 방지 정책을 쓰고 있어,
-  이 세션의 WebFetch로는 HTTP 403 또는 빈 JS 페이지만 반환됨.
-  web.archive.org도 이 세션에서는 자체적으로 차단됨.
-- SAGE(journals.sagepub.com)는 저널 코드 매핑을 찾지 못해 접근 자체를
-  시도하지 못함.
-- 사람이 직접 브라우저로 로그인 후 열람하거나, 해당 저널에 투고 경험이
-  있는 연구실 선배에게 PDF 공식 가이드 문서를 받는 방법이 더 정확할 수
-  있음 — 필요하면 사용자가 직접 열람 요청.
+## 5. 최종 결정과 한계
+- 위 반영 사항을 포함해 HTML을 갱신 게시한다. 수식 자체의 오기 판정은 하지 않고 "원문 그대로 + 불일치 표시" 원칙을 유지한다.
+- 한계: 원문 한 편만 사용하며 외부 원자료(MRP-55 등)와 실제 구현 코드는 확인하지 않았다. 식 2-25는 저자 정정 확인 불가. Codex 검증은 Claude 결과 텍스트 덤프 기준이며 그 변환 오류는 판정에서 제외했다.
+- 사용자의 6번 요청(5초 이해)은 식마다 한 줄 요약 + 맨 위 재료별 라우팅 표로 충족했다. Codex 산출물에도 동일 형식(5초 요약)이 있다.
