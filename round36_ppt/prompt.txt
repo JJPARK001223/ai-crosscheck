@@ -1,0 +1,17 @@
+[CROSSCHECK_WORKER] round36 PPT 원문 대조. 자동화 스크립트를 다시 실행하지 말고 아래 파일 작업만 수행하라. 어떤 PPT/HTML/원문 파일도 수정하지 마라(읽기만).
+
+대상: round36_ppt/ppt_dump.txt (사용자 PPT 2026_10_15.pptx 의 텍스트 추출본, "===== SLIDE N =====" 마커). 본문이 있는 슬라이드는 1–4, 29, 57, 62, 64–80, 82–87 이다. "Text", "[n] Reference", 쪽번호만 있는 슬라이드는 빈 틀이므로 "내용 없음"으로만 표기하라.
+원문: J:\Desktop\XLPR\2026_10_13_XLPR모델분석\cgr_text.txt (EPRI, Schmitt, xLPR Models Subgroup Report—Crack Growth and Coalescence, xLPR-MSGR-CGR Ver.1.0, 2016-06-29). "=====PAGE n=====" 마커 뒤 텍스트가 인쇄 쪽 n-1 이며 블록 끝의 단독 숫자가 인쇄 쪽 번호다. 같은 폴더 pages\ 이미지(파일명 = 인쇄 쪽+1)도 필요시 확인.
+
+규칙: 원문이 말하는 것만 기준으로 대조한다. 해석·추측 금지. PPT 문장이 원문과 다르면 PPT 문장을 그대로 인용하고, 원문 근거를 영어 그대로 인용하며 인쇄 쪽과 절 번호를 적어라. PPT에 적힌 "(p.xx)" 인용이 있으면 그 쪽이 해당 내용을 실제로 담고 있는지 확인하라. 오탈자(예: MOUDLE, Colescence, CGW, lmminent)도 목록으로 남겨라.
+
+슬라이드 하나씩, 문장·표 행 단위로 판정:
+- 일치 (원문 쪽 표기)
+- 의미 변경 / 한정어(may, can, generally, approximately 등) 누락 / 원문에 없는 내용 추가 / 수치·단위·조건 불일치 / 인용 쪽 오류 / 오탈자
+형식:
+### [슬라이드 N] 판정 — 확신도(CONFIRMED=원문 구절로 직접 확인 / PLAUSIBLE)
+- PPT 문구:
+- 원문 근거(영어 인용 + 인쇄 쪽 + 절):
+- 문제(없으면 '일치'):
+- 최소 교체안(문제 있을 때만):
+모든 슬라이드를 빠짐없이 기록하고(문제 없는 것도 '일치 + 원문 쪽'), 맨 끝에 유형별 개수 요약을 적어라. 결과 파일: round36_ppt/codex_ppt.md. 마지막 줄에 "ROUND36 DONE".
