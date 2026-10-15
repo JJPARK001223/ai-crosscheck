@@ -1,0 +1,13 @@
+[CROSSCHECK_WORKER] 자동화 스크립트를 다시 실행하지 말고 아래 파일 작업만 수행하라.
+
+과제: round34 엄격 원문 한정 감사 (5장 CRACK COALESCENCE MODULE ~ 6장 끝).
+- 감사 대상: J:\Desktop\공학\ai-crosscheck\round34\audit_html.txt (발표자료 HTML 40~49페이지의 텍스트; 5장 40~43, 6장 44~49).
+- 근거 원문: J:\Desktop\XLPR\2026_10_13_XLPR모델분석\cgr_text.txt (pdfplumber 덤프, "=====PAGE n=====" 마커 뒤 텍스트가 인쇄 페이지 n-1; 텍스트 블록 끝의 숫자가 인쇄 페이지). 필요하면 같은 폴더의 pages\ 이미지와 원본 PDF도 볼 수 있다. 5장은 인쇄 p.103~116, 6장은 p.117~121.
+- 사용자 규칙: 보고서가 직접 서술한 내용만, 보고서 용어로, 해석·추측·자체 판단·자체 계산·만든 용어 없이 써야 한다.
+
+수행:
+1. 각 HTML 페이지의 모든 문장·표 셀·쪽 표기(p.xxx)·절 번호·수치·식을 원문과 대조한다.
+2. 다음 유형만 기록한다(문제 없는 항목은 쓰지 않는다): WRONG(원문과 다름: 값·쪽·절·방향), INFERENCE/DERIVED/JUDGMENT(원문에 없는 해석·설명·만든 표현·소제목), OMISSION-OF-HEDGE(may/should/is believed 등 단서 누락으로 단정화), COINED-TERM(원문에 없는 한국어 용어; 단 coalescence 등 원문 영어는 정상), PAGE-CITE(쪽/절 인용 오류).
+3. 각 항목마다: HTML 페이지 번호, 대상 문구 그대로, 원문 근거(인쇄 p. 와 원문 영문), 최소 교체안(또는 DELETE).
+4. 결과를 한국어로 J:\Desktop\공학\ai-crosscheck\round34\codex_review.md 에 쓴다. 반드시 Python(UTF-8)으로 쓰고 다시 읽어 한글이 깨지지 않았는지 확인한다. 마지막 줄에 "ROUND34 DONE"을 적는다.
+5. 파일 작성이 끝나면 종료한다. (알림은 호출한 쪽이 보낸다.)
