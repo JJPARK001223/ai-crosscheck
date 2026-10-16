@@ -1,0 +1,9 @@
+[CROSSCHECK_WORKER] round43 교차검증 단계(상호 검증). 아래만 수행하라.
+
+round43/claude.md (Claude의 독립 조사, xLPR 모듈 평가 순서)를 읽고, 원문 텍스트 round43/txt/ 로 직접 대조하여 다음을 round43/codex_review.md 에 한국어로 작성하라.
+1) claude.md 가 원문과 맞는 점
+2) 틀렸거나 과장된 점 (쪽번호·인용·순서·호출 조건 포함)
+3) claude.md 가 놓친 점
+4) 당신의 codex.md 에서 스스로 고쳐야 할 점이 있으면 함께 적어라 (예: 인용 문구가 원문과 다름 — C165 "Axial cracks are neglected ..." 는 원문이 "with respect to coalescence considerations" 임을 txt 로 확인하라)
+각 판단에는 파일명 + PDF 쪽 + 짧은 근거를 붙여라. 확인 못한 것은 "확인 불가". 추측 금지.
+round43/DECISION.md 와 round43/claude_review.md 는 아직 읽지 마라(독립 검증 유지). 결과 파일은 round43/codex_review.md 하나만 작성하라.
