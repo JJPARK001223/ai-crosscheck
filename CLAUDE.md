@@ -20,7 +20,7 @@
 
 1. 문제를 `PROBLEM.md`에 기록 → commit/push.
 2. **Claude(blind)**: 독립 조사 → `roundN/claude.md`. Codex 답은 보지 않는다.
-3. **Codex(blind)**: `codex.cmd exec -C <repo> --sandbox workspace-write --approve-for-me --skip-git-repo-check "..."`
+3. **Codex(blind)**: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Invoke-CodexStage.ps1 -PromptPath 'roundN\prompt.txt' -HandoffFiles 'roundN/codex.md'`
    포그라운드로 실행 → `roundN/codex.md`. (백그라운드 중첩 AI 실행은 classifier가 막음)
 4. Claude와 Codex가 각자 본인 결과만 commit/push하고 원격 반영을 확인한다.
 5. **교차검증**: Claude는 `codex.md` 읽고 맞는 점/틀린 점/놓친 점 검토.
@@ -31,9 +31,17 @@
 
 ## Codex Git 승인 설정 (2026-10-16)
 - 자동 호출은 `codex.cmd exec --approve-for-me`를 사용한다. workspace-write 샌드박스와 자동 승인 검토를 함께 사용한다.
-- 실행 스크립트에 `--sandbox workspace-write`도 명시한다. 자동 검토 대상은 Git에만 한정되지 않으며 해당 실행의 다른 승인 요청도 포함한다. 이는 무조건 허용이 아니고 명령별 심사다. 작업 범위 제한은 지시이며 기술적 접근 차단과 구분한다.
+- `--approve-for-me`가 workspace-write도 설정하므로 `--sandbox`와 병용하지 않는다. 자동 검토 대상은 Git에만 한정되지 않으며 해당 실행의 다른 승인 요청도 포함한다. 이는 무조건 허용이 아니고 명령별 심사다. 작업 범위 제한은 지시이며 기술적 접근 차단과 구분한다.
 - `workspace-write`의 `.git`은 보호 경로다. Git 쓰기/네트워크 실패 시 Codex가 해당 명령에 필요한 권한 승인을 요청하도록 프롬프트에 명시한다.
 - 각 단계의 Codex 결과는 Codex가 직접 지정 파일만 add/commit/push하고, 성공한 커밋 ID와 원격 반영 여부를 보고한다. `git add .`는 쓰지 않는다.
 - 자동 승인 검토가 거부되거나 실행 환경이 승인을 지원하지 않으면 원인과 실패 명령을 보고한다. 이를 우회하려고 샌드박스를 해제하지 않는다.
 - Git 인계가 실패한 상태를 완료로 표시하지 않는다. Blind 결과 확정 및 Git 인계 후 상호 검증을 진행한다.
 - Claude의 DECISION.md는 근거를 종합한 최종 보고서이며, 채택·수정의 최종 결정권은 사용자에게 있다.
+- 새 라운드는 공통 단일 단계 실행기 `Invoke-CodexStage.ps1`를 사용한다. round별 run.ps1에 Codex 명령을 복사하지 않는다. 이는 조사/상호 검증을 자동 결정하는 오케스트레이터가 아니다.
+- 기존 approval never 세션은 수정된 설정을 소급 적용받지 못한다. 새 세션에서 지정 결과의 Git 인계만 복구한다. 기존 연구를 재실행하거나 로그를 덮어쓰지 않는다.
+- 로그의 승인 정책과 실제 커밋/원격 반영을 확인하기 전 Git 인계를 완료로 보고하지 않는다.
+
+- CLI 0.163.0 실측: --approve-for-me 자체가 workspace-write와 자동 승인 검토를 설정한다. --sandbox 옵션과 동시 지정하면 CLI 인자 충돌로 시작 실패하므로 병용하지 않는다.
+- Windows 호출: powershell.exe -NoProfile -ExecutionPolicy Bypass -File J:\Desktop\공학\ai-crosscheck\Invoke-CodexStage.ps1 -PromptPath roundN\prompt.txt -HandoffFiles roundN/codex.md (실행 정책 변경은 해당 프로세스에만 적용).
+
+- 실행기에 -HandoffFiles로 지정 결과 경로를 반드시 전달한다. 교차검증 단계는 roundN/codex_review.md 등 해당 결과를 지정한다. 실행기는 결과 파일 커밋 상태 및 로컬 HEAD=원격 브랜치를 읽기 전용 검증하고 실패 시 종료 오류를 낸다.

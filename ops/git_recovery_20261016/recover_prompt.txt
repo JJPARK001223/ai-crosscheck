@@ -1,0 +1,6 @@
+Git 인계 복구 및 실행기 검증만 수행하라. 하위 AI/자동화 실행 금지. 사용자가 복구를 승인했다.
+먼저 git status, git diff --cached --name-only 확인. 기존 스테이징이 있으면 중단. git fetch origin 후 현재 main이며 HEAD와 origin/main이 동일한지 확인. behind/diverged이면 자동 병합 없이 중단. 로컬 변경은 다른 작업이므로 reset/stash/clean/pull로 건드리지 마라.
+일반 Git 실행에서 쓰기/네트워크 차단 시 같은 명령에 sandbox_permissions=require_escalated 승인 요청으로 재실행한다. 승인 거부를 우회하지 않는다.
+round40/codex.md, round41/codex.md, round42/codex.md, round43/codex.md만 각각 라운드별 별도 커밋하라. 각 파일 내용을 수정하지 말고, git ls-files 및 git status로 아직 미추적/변경인지 확인해 변경 없는 파일은 건너뛴다. git add는 명시한 한 파일만. 매 커밋 전 스테이징 파일이 해당 한 파일뿐인지 확인한다. 메시지는 roundNN: Codex 결과 Git 인계 복구. 모든 커밋에 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com> 푸터를 넣는다.
+그 다음 Invoke-CodexStage.ps1, CLAUDE.md, AGENTS.md를 읽고 새 실행기/지침의 오류 또는 한계를 독립적으로 검증하라. Claude 결과는 읽지 마라. 기술적 사실만 ops/git_recovery_20261016/codex.md에 기록하고 이 파일만 별도 커밋하라. 연구 결론을 다시 검토하지 않는다.
+git push origin main 실행 후 git rev-parse HEAD와 git ls-remote origin refs/heads/main을 비교하여 실제 원격 반영을 확인한다. 원본 네 보고서의 hash가 작업 전후 동일한지 확인한다. 최종 답에 커밋 ID들, 원격 SHA, 승인 재실행 성공 여부, 남은 문제를 보고하라. 다른 파일은 변경/스테이징하지 마라.

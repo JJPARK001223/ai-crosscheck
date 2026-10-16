@@ -39,7 +39,13 @@
 
 ## Git 권한 오류 처리 (2026-10-16)
 - 자동 호출 표준은 `codex.cmd exec --approve-for-me`이다. workspace-write 보호와 자동 승인 검토를 유지한다.
-- 실행 시 `--sandbox workspace-write`를 명시한다. 자동 검토는 Git 외 승인 요청에도 적용되며 명령별로 거부될 수 있다. 지정 파일 제한은 작업 지시이고 기술적 접근 차단은 아니다.
+- `--approve-for-me` 자체가 workspace-write를 설정한다. CLI 인자 충돌을 일으키는 `--sandbox` 동시 지정은 하지 않는다. 자동 검토는 Git 외 승인 요청에도 적용되며 명령별로 거부될 수 있다. 지정 파일 제한은 작업 지시이고 기술적 접근 차단은 아니다.
 - `.git/FETCH_HEAD`, `.git/index.lock` Permission denied 또는 Git 네트워크 차단이 발생하면 해당 Git 명령을 권한 승인 요청으로 다시 실행한다. 일반 실행을 반복하지 않는다.
 - 지정된 본인 결과 파일만 add/commit/push한다. 다른 작업의 수정·삭제·미추적 파일은 포함하지 않는다.
 - 커밋 ID와 원격 반영을 확인해 보고한다. 승인 거부/미지원이면 정확한 이유를 보고하고 Git 인계 미완료로 기록한다. 샌드박스 해제로 우회하지 않는다.
+- 호출자는 공통 단일 단계 실행기 Invoke-CodexStage.ps1를 사용한다. approval never인 기존 세션은 새 설정을 소급 적용받지 못한다. 복구는 새 세션에서 지정 결과의 Git 인계만 수행하며 조사를 다시 실행하지 않는다.
+
+- CLI 0.163.0 실측: --approve-for-me 자체가 workspace-write와 자동 승인 검토를 설정한다. --sandbox 옵션과 동시 지정하면 CLI 인자 충돌로 시작 실패하므로 병용하지 않는다.
+- Windows 호출: powershell.exe -NoProfile -ExecutionPolicy Bypass -File J:\Desktop\공학\ai-crosscheck\Invoke-CodexStage.ps1 -PromptPath roundN\prompt.txt -HandoffFiles roundN/codex.md (실행 정책 변경은 해당 프로세스에만 적용).
+
+- 실행기에 -HandoffFiles로 지정 결과 경로를 반드시 전달한다. 교차검증 단계는 roundN/codex_review.md 등 해당 결과를 지정한다. 실행기는 결과 파일 커밋 상태 및 로컬 HEAD=원격 브랜치를 읽기 전용 검증하고 실패 시 종료 오류를 낸다.
