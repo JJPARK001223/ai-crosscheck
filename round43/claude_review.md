@@ -17,7 +17,8 @@
 5. 12편이 12개 순차 모듈이 아님, "as needed" 조건부 호출.
 
 ## Codex 결과의 문제/주의
-- 인용 정확성: codex.md는 C165 PDF p.136 "Axial cracks are neglected when applying coalescence rules"라 적었으나, 실제 원문(txt L6854)은 "Axial cracks are neglected with respect to coalescence considerations." — 의미는 같으나 따옴표 인용은 부정확. 본문 판단에는 영향 없음.
+- (정정됨) 처음엔 codex.md의 C165 인용("...when applying coalescence rules", p.136)이 부정확하다고 썼으나, 원문 재확인 결과 두 문장이 서로 다른 위치에 모두 있음: p.131(txt L6854) "neglected with respect to coalescence considerations", p.136(txt L7082) "neglected when applying …". Codex 인용은 오류 아님. Claude 쪽 오판이었음.
+- Codex가 새로 지적한 Stability 재호출 조건 직접 확인: B050 TWCF-10*(txt L2258) TWC 성장이 θcrit의 95% 도달 시 재호출 — Claude의 호출 조건 3개는 불완전(맞음). 축방향 RACS-1* c/ccrit > 0.9 (L2765) vs RACS-10* ≥ 0.9 (L2827) 부등호 차이 확인.
 - 읽기 순서 제안이 14개 항목 중 "C165 나머지 장은 마지막" 등 학습 제안일 뿐 공식 순서가 아님을 Codex 스스로 [추론]으로 표시 — 적절.
 - git: Codex 당시 세션은 approval never라 .git 쓰기 불가였음. 이후 Invoke-CodexStage.ps1(--approve-for-me)로 개선됨(커밋 483ad68).
 
