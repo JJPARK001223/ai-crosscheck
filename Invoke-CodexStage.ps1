@@ -34,7 +34,7 @@ if ([string]::IsNullOrWhiteSpace($promptText)) { throw 'Prompt must not be empty
 $guard = @'
 [CROSSCHECK_WORKER]
 Do not start another AI or orchestration script. Perform only the assigned stage.
-Git filesystem or network denial: retry the same authorized Git command with sandbox_permissions=require_escalated and a clear justification. Do not retry ordinary execution repeatedly. Do not disable the sandbox.
+For authorized Git commands that write metadata or access the network (pull, fetch, add, commit, push, ls-remote), use sandbox_permissions=require_escalated with a clear justification on the FIRST attempt. The workspace-write sandbox protects .git; do not intentionally run these commands unprivileged first. Read-only local status/log/diff may run normally. If access is still denied, report the exact error. Do not disable the sandbox.
 If approvals are unsupported or rejected, report the exact action and reason and leave Git handoff incomplete. Never claim completion without verifying the commit and remote branch.
 Do not read the other AI's findings during a blind stage. Stage only explicitly assigned output files.
 Complete the Git handoff of assigned result reports unless the user explicitly forbids Git changes. Commit only those reports, push, and verify the remote branch; report any incomplete handoff.

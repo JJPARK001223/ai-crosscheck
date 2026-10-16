@@ -1,0 +1,4 @@
+git pull 동작만 검증하라. 하위 AI/스크립트 실행 및 파일 내용 변경 금지. 새 커밋 생성 금지.
+git status와 현재 브랜치를 읽기 전용 확인하고 main이 아니면 중단하라. git rev-parse HEAD로 로컬 SHA 확인. git ls-remote origin refs/heads/main을 처음부터 sandbox_permissions=require_escalated로 실행하고 원격 SHA와 비교. SHA가 다르면 pull/merge 없이 중단한다.
+같으면 git pull --ff-only origin main을 처음부터 sandbox_permissions=require_escalated로 승인 요청하여 실행한다. 이는 원격과 로컬이 같다는 확인 후 하는 무변경 pull 검증이다. 일반 샌드박스 첫 시도는 하지 마라.
+git pull 종료 코드, 출력, 로컬/원격 SHA, FETCH_HEAD 권한 오류 여부를 stdout으로 간결히 보고하라. 원본 연구 보고서와 다른 파일은 변경하거나 스테이징하지 마라.

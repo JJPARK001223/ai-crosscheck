@@ -37,3 +37,8 @@ Codex가 공통 실행기로 시작한 새 세션에서 직접 승인 재실행�
 - 저장소 CLAUDE.md/AGENTS.md와 C:/Users/HeejinKim/.claude/CLAUDE.md 규칙 20을 동기화했다. 전역 지침 전체는 개인정보 포함 가능성을 고려해 저장소에 복사하지 않았다.
 - 이미 실행 중인 세션에는 설정 변경이 소급 적용되지 않는다. 이번처럼 Git 인계만 새 세션으로 복구한다.
 - 자동 승인 검토가 개별 명령을 거부하면 우회하지 않고 미완료와 사유를 보고한다.
+
+## git pull 직접 검증 추가
+- Git 쓰기/네트워크 명령을 처음부터 require_escalated 승인 검토로 실행하도록 guard 수정.
+- pull_verification.log: 새 Codex 세션 on-request/workspace-write에서 git pull --ff-only origin main 종료0, Already up to date., FETCH_HEAD 권한 오류 없음.
+- 당시 로컬/원격 SHA 483ad68fd3d315eda304922ec7f5cb2ff1b627f0 동일, 실행기 VERIFIED_GIT_HANDOFF 및 종료0.
