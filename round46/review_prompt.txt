@@ -1,0 +1,7 @@
+[CROSSCHECK_WORKER] round46 교차검증 단계(상호 검증). 아래만 수행하라.
+
+Claude가 round46 감사 결과(claude.md, codex.md의 합집합)를 반영한 HTML: round46/claude_html_snapshot.html (Version 8, 109카드).
+1) 반영한 수정 24건(round46/DECISION.md '공통·Claude만·Codex만' 항목)이 원문(round43/txt, PDF)과 맞는지 건별로 확인하라.
+2) 새로 붙인 "원문 영어 (PDF a–b, 그대로)" 블록(HTML에서 class="orig")이 PDF 추출 텍스트와 쪽 순서·내용이 일치하는지(빠진 쪽·잘림·다른 쪽 혼입) 최소 20개 카드를 표본 대조하라.
+3) 이번에 새로 생긴 오역·압축이 있으면 표로(카드 id, 문장, 원문 영어, 정정안).
+DECISION.md 는 읽어도 된다(요약 목록 확인용). 결과 파일은 round46/codex_review.md 하나만 작성하라. 확인 못한 것은 "확인 불가". 추측 금지.
