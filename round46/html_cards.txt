@@ -1,0 +1,1618 @@
+##### p1 |  | 문서 정보 | | 페이지 1 / 109 | | 원문 p.표지–iii · PDF 1–4 | 
+# 보고서 정보: 무엇이고 누가 썼나
+문서 정보페이지 1 / 109원문 p.표지–iii · PDF 1–4
+보고서 정보: 무엇이고 누가 썼나항목 | 원문 내용 | 
+제목 | xLPR Models Subgroup Report — Welding Residual Stresses (xLPR-MSGR-WRS Version 1.0) | 
+저자 | F. W. Brust(EMC2), Mike Benson(US NRC), John Broussard(DEI) — 서명일 2016.09.15–09.26 | 
+검토자 | Jay Wallace, Bruce Lin (US NRC) — 2016.09.14–09.16 | 
+승인자 | Marjorie Erickson(PEAI, xLPR Models Group Lead), Craig D Harrington(EPRI, xLPR Code Development Co-Lead) | 
+발행 | Version 1.0 최초 발행 2016.10.05 | 
+2021 행정 개정 | 공개를 위해 제목을 "Welding Residual Stress Modeling Development for xLPR Version 2.0"에서 현재 제목으로 변경, 표지·면지 수정, 면책 문구 추가, 문서 보관 위치 안내 삭제, "xLPR 소프트웨어 품질보증 계획에 따라 작성되지 않았음" 문구 추가. 버전 번호·발행일은 그대로 | 
+서명면에 "THE TECHNICAL CONTENTS OF THIS DOCUMENT WERE NOT PREPARED IN ACCORDANCE WITH THE XLPR SOFTWARE QUALITY ASSURANCE PLAN"이라고 적혀 있습니다. 보고서 전체가 xLPR SQA 인증을 받았다고 말하면 안 됩니다(§2.5는 별도 설계검증을 수행했다고 설명).
+
+##### p2 |  | Executive Summary | | 페이지 2 / 109 | | 원문 p.iv · PDF 5 | 
+# 한눈에 보는 보고서 목적
+Executive Summary페이지 2 / 109원문 p.iv · PDF 5
+한눈에 보는 보고서 목적한 줄 요약xLPR Version 2.0에 필요한 용접 잔류응력(WRS)과 그에 따른 균열 구동 하중을 계산하는 수학 모델·해석 결과를 정리한 보고서입니다.
+WRS 소그룹의 업무: 아임계 균열 성장을 일으키는 WRS와 하중을 계산하는 수학 모델·해법을 찾거나 개발
+결과는 UWFM(Universal Weight Function Method) 응력확대계수 K 계산에 입력됨 → WRS/K 조합이 SCC·피로 등 아임계 균열 성장의 구동력
+대상 재료·환경: Alloy 600/82/182/132, 오스테나이트 스테인리스강, 페라이트강 / PWR
+WRS는 균열 안정성에는 영향이 없다고 봄(취성이 있는 일부 주조 시효 스테인리스강은 예외 가능)
+노즐·배관 WRS 측정으로 벤치마크된 FE 방법이 필요, 모델 변수 불확실성의 명확한 기술·정량화가 필요
+소그룹은 모델 문서화, 갱신, 검토위원회 설명, 사용자 협력도 담당
+
+##### p3 |  | 목록 | | 페이지 3 / 109 | | 원문 p.v–xii · PDF 6–13 | 
+# 보고서 전체 지도: 장·표·그림이 어디에 있나
+목록페이지 3 / 109원문 p.v–xii · PDF 6–13
+보고서 전체 지도: 장·표·그림이 어디에 있나구성 | 쪽(인쇄 / PDF) | 내용 | 
+§1 Introduction | 1 / 16 | 목적, 26점·상관·평형 문제 제기 | 
+§2 WRS Model Development | 3 / 18 | FE 가정·경계조건, 용접부 선정, 제작 순서, 물성, QA | 
+§3 Modeling Results | 25 / 40 | SG·RPV·Pump·VC Summer 결과, 완화(FSWOL·MSIP·Inlay) 규칙 | 
+§4 Sensitivity and Uncertainty | 64 / 79 | Table 4 불확실성 원인 목록 | 
+§5 WRS Sampling and Uncertainty | 66 / 81 | 가중 평균·표준편차 | 
+§6 WRS and Importance Sampling | 70 / 85 | Cholesky 상관 샘플링, 평형, 중요도 샘플링 | 
+§7 WRS Field Tables | 86 / 101 | Table 7–34 (입력표) | 
+§8 Improvements for V3 / §9 Summary / §10 References | 115–120 / 130–135 |  | 
+Appendix A / B / C | A-1–A-20 / B-1–B-12 / C-1–C-20 (PDF 136–155 / 156–167 / 168–187) | 민감도 / 물성 / 불확실성 특성화 | 
+표 목록 (원문 목록)
+표 | 내용 | 
+Table 1–3 | SG 노즐 / RPV 노즐 / 펌프 DMW 설계 검증 | 
+Table 4 | 모델 불확실성 특성화 | 
+Table 5 / 6 | 상관계수 0.80의 Cholesky 하삼각 행렬 / 상관계수가 평균 WRS 크기의 함수일 때 | 
+Table 7–12 | SG baseline·15%·50% 수리의 축·후프 | 
+Table 13–18 | RPV baseline·15%·50%의 축·후프 | 
+Table 19–24 | Pump baseline·15%·50%의 축·후프 | 
+Table 25–28 | VC Summer 두 용접 순서의 축·후프 | 
+Table 29–34 | North Anna·Ringhals·Tsuruga 축·후프 | 
+Table 35 / 36 | 부록 C 불확실성 프로토콜 결과 / 상관 0.95의 Cholesky 행렬 | 
+그림은 Figure 1–124. §2: 1–9, §3: 10–55, §5–6: 56–72, 부록 A: 73–90, 부록 B: 91–111, 부록 C: 112–124. 목차의 Table 34 쪽수(113)는 실제 지면(인쇄 114)과 다릅니다.
+
+##### p4 |  | 기호 | | 페이지 4 / 109 | | 원문 p.xiii–xiv · PDF 14–15 | 
+# 약어와 기호
+기호페이지 4 / 109원문 p.xiii–xiv · PDF 14–15
+약어와 기호약어 | 의미 | 
+DMW | dissimilar metal welds, 이종금속 용접 | 
+FEA / FE | 유한요소해석 | 
+FORM / SORM | First / Second Order Reliability Method | 
+ID / OD | 내경 / 외경 | 
+LBB | leak-before-break | 
+NSSS | Nuclear steam supply system | 
+PWHT | 용접 후 열처리 | 
+PWR | 가압경수로 | 
+QA | 품질보증 | 
+RCP / RCS / RPV | 원자로냉각재펌프 / 계통 / 압력용기 | 
+SG | 증기발생기 | 
+SIS / WPS | 현장작업지시서 / 용접절차명세 | 
+STP | software test plan | 
+UWF / UWFM | universal weight function (method) | 
+V&V | 검증 및 확인 | 
+WOL / WOR | weld overlay / weld overlay repair | 
+WRS | 용접 잔류응력 | 
+x | 내표면으로부터의 거리 | 
+t | 벽두께 | 
+A106 / A508 / A533 | 탄소강 배관 / 단조강 / 니켈 합금강 | 
+Alloy 52/152, 82/182 | Ni 기지 용접금속(AWS A5.14 ERNiCrFe-7A, ERNiCr-3) | 
+CF8A | SA351-CF8A 주조 오스테나이트 스테인리스강 | 
+Emc2 / DEI | Engineering Mechanics Corporation of Columbus / Dominion Engineering, Inc. |
+
+##### p5 |  | §1 | | 페이지 5 / 109 | | 원문 p.1–2 · PDF 16–17 | 
+# 서론: 이 보고서가 푸는 문제
+§1페이지 5 / 109원문 p.1–2 · PDF 16–17
+서론: 이 보고서가 푸는 문제한 줄 요약WRS를 두께 방향 26점의 평균과 불확실성으로 만들어 UWFM K 계산에 넣는 방법을 설명하는 보고서입니다.
+목적확률론적 LBB 계산에서는 최선 추정(best-estimate) WRS 두께 방향 프로파일과 불확실성이 필요합니다. 프로파일은 UWFM K 계산에 들어갑니다(p.1).
+대표 DMW 3종원자력 배관 DMW를 대표하는 세 가지 형상을 해석했고, 더 필요하면 같은 방식으로 개발하라고 권고합니다.
+불확실성 처리에서 생긴 문제(원문 p.1)
+원문 도입 문장The use of UWFM for determination of stress intensity factors created several issues for a probabilistic analysis and treatment of uncertainty. — UWFM으로 응력확대계수를 구하는 방식이 확률론적 해석과 불확실성 처리에 여러 문제를 만들었다.
+원문 순서 | 원문(영어, 그대로) | 한국어 풀이 | 
+First | there is no standard analytical formulation for the WRS profile so many of the FORM/SORM methods are not applicable. | WRS 프로파일에는 표준 해석식이 없어 FORM/SORM 방법 다수를 쓸 수 없다. | 
+Second | a large number of random variables for characterization of WRS uncertainty are possible. Based on scoping studies it was decided to provide WRS values at 26 points through the thickness at the weld centerline. However, this still leaves 26 points at which the values and uncertainty must be characterized. | WRS 불확실성을 나타낼 확률변수가 많아질 수 있다. 예비 연구로 용접 중심선 두께 방향 26점에서 값을 주기로 했지만, 그래도 26점 각각의 값과 불확실성을 정해야 한다. | 
+(번호 없이 이어짐) | It was also desired to eliminate the possibility of a "saw-tooth" profile that could result from independently sampling the distribution of values at each of the 26 points, so a point to point correlation was required. | 26점을 각각 독립적으로 샘플링하면 톱니(saw-tooth) 모양 프로파일이 나올 수 있어 이를 없애고자 했고, 그래서 점 간 상관이 필요했다. | 
+(번호 없이 이어짐) | This procedure was complicated for the circumferential crack analyses by the requirement that axial stresses equilibrate through the thickness. | 원주방향 균열 해석에서는 축응력이 두께 방향으로 평형해야 해서 이 절차가 더 복잡해졌다. | 
+(번호 없이 이어짐) | There was also the issue of attempting to generate probabilistic information for WRS values at the 26 through-thickness locations, plus the point-to-point correlations, based on very limited number of analyses. | 매우 적은 수의 해석으로 26개 위치의 WRS 확률 정보와 점 간 상관을 만들어야 하는 문제도 있었다. | 
+결론 문장 | Uncertainty caused by weld heat input and weld pass geometry were found to be of second order importance. Material property variability in the temperature-dependent material property inputs does play a role in WRS uncertainty but could not be included due to lack of material data at high temperatures. | 용접 입열과 패스 형상에 의한 불확실성은 2차적 중요도였다. 온도 의존 재료 물성의 변동은 WRS 불확실성에 영향을 주지만 고온 재료 자료가 없어 포함하지 못했다. | 
+원문은 "First, Second"만 번호로 쓰고 나머지는 이어지는 문장입니다. 번호·표 구성은 읽기 쉽게 정리한 것이며, 문제별 대응 장(§)을 원문이 짝지어 주지는 않습니다.
+FORM/SORM = First/Second Order Reliability Methods(원문 각주). 이 절차가 복잡해 보이는 이유와 정당성을 독자가 따라가게 하려고 WRS 불확실성 절에서 진행 과정을 설명한다고 밝힙니다(p.2).
+
+##### p6 |  | §2.1 | | 페이지 6 / 109 | | 원문 p.3–4 · PDF 18–19 | 
+# 왜 FE 예측이고, 어떤 가정을 썼나
+§2.1페이지 6 / 109원문 p.3–4 · PDF 18–19
+왜 FE 예측이고, 어떤 가정을 썼나측정만으로 안 되는 이유WRS 측정 정확도에 불확실성이 있고(예측도 같음), 측정 DB가 작고 xLPR에 필요한 노즐·배관을 모두 포함하지 않으며, 노즐 추가 측정은 비용이 크기 때문입니다(p.3).
+방법NRC와 산업계의 숙련 용접 모델러 4명이 각 노즐 WRS를 예측하고, 평균을 각 부품의 평균 잔류응력 상태로 정리했습니다. 소그룹이 모델링 절차를 정해 입열·열경계조건·비드 형상·재료에서 일관성을 확보하려 했습니다.
+핵심 가정 (p.3–4)
+항목 | 내용 | 
+FE 코드 | ABAQUS 6.14(3명), ANSYS 17(1명). 각자 자체(종종 독점) 수치 기법 사용 | 
+축대칭 | 비드 전체를 한 번에 적층. 원주 방향으로 진행되는 실제 용접과 다르며 핵심 가정. 시작/종료점에서 먼 곳은 3D와 대체로 일치. 부분호 수리는 시작·종료점이 같으므로 수리 중앙 값으로 가정 | 
+열원 | 각자 FORTRAN 사용자 루틴. 열경계조건은 주로 대류 손실, 복사 무시. 모델이 입열에 약하게만 민감해 정확한 입열 모델·목표 온도 이력을 규정하지 않음 | 
+비드 | 편의상 직사각형 비드 | 
+열–구조 | 완전 비결합. 열해석 온도 이력이 구조해석 입력 | 
+구조 경계 | 용접부에서 먼 탄소강 노즐의 한 절점 이상을 축방향 고정 | 
+물성 | 열·구조 해석 모두 해석자 공통 물성(부록 B) |
+
+##### p7 |  | §2.1 | | 페이지 7 / 109 | | 원문 p.4–5 · PDF 19–20 | 
+# 제작 순서 모사, shakedown 3사이클, 26점 추출
+§2.1페이지 7 / 109원문 p.4–5 · PDF 19–20
+제작 순서 모사, shakedown 3사이클, 26점 추출공정 순서노즐 쪽 면에 butter(완충 용접층)를 쌓고 → 용접 후 열처리(PWHT) → 이종금속 용접(DMW)을 비드 하나씩 쌓아 모사 → 마지막으로 스테인리스 폐쇄 용접(closure weld). 원문: "Some of the nozzles required machining steps that had to be modeled (see nozzle details below)." — 일부 노즐은 제작 중간에 재료를 깎아내는 가공(machining) 단계가 있어 해석에도 그 단계를 넣어야 했다는 뜻입니다. 깎아내면 그 부분 재료와 응력이 사라지고 남은 부분에서 응력이 다시 나뉘기 때문입니다(이 설명은 일반 원리이며 원문 문장은 아닙니다). 어떤 가공인지는 §2.3에 노즐별로 적혀 있습니다: 예) ID 가공, 백킹링 제거, root 가공, safe end를 가공해 스테인리스 용접 개선을 만듦.
+shakedown (각 공정 후)
+1단계: 가정 운전온도 300°C(572°F)·압력 15.5 MPa(2.25 ksi) 적용
+2단계: 상온으로 냉각·압력 0
+3단계: 1–2단계를 두 번 더 반복 → 총 3사이클
+이후 WRS 추출을 위해 300°C로 가열
+경화칙과 메쉬
+각 노즐을 등방(isotropic)·비선형 이동(nonlinear kinematic) 경화 두 가지로 해석, 결과는 두 값의 평균(정확도가 가장 높다고 알려짐, 혼합경화에 가까운 값)
+메쉬: 비드당 약 20–30요소, 용접부에서 멀어지면 성김
+후처리
+데이터 추출 방법을 공통 지정. 3개 경로(butter–DMW 경계, DMW 중심선, DMW–safe end 경계)를 추출하되 본 보고서는 중심선만 제시(마스터 스프레드시트에 전체 자료)
+ID에서 OD까지 26개 등간격 점
+최종 xLPR 입력은 용접 중심선으로 작성
+혼합경화(mixed hardening)는 다층 용접에서 가장 정확하다고 설명되지만, 이 보고서는 혼합경화를 직접 푼 것이 아니라 두 해의 평균으로 근사합니다.
+
+##### p8 |  | §2.2 | | 페이지 8 / 109 | | 원문 p.5–7 · PDF 20–22 | 
+# 선정한 3개 용접부와 RPV 고온관 노즐
+§2.2페이지 8 / 109원문 p.5–7 · PDF 20–22
+선정한 3개 용접부와 RPV 고온관 노즐선정Westinghouse SG 노즐, Westinghouse RPV 노즐, Babcock & Wilcox 원자로냉각재펌프(RCP) 노즐 세 가지. PWR 전반의 DMW를 대표하고 필요한 자료를 입수할 수 있었습니다. 추가로 균열이 발생한 플랜트의 고온관 변형(VC Summer)도 포함합니다.
+RPV 고온관 노즐 (p.6)
+항목 | 내용 | 
+위치 | 4-loop Westinghouse 플랜트 원자로냉각재계통(Figure 1) | 
+치수 | 배관 ID 29.00 in(736.6 mm), 두께 2.450 in(62.23 mm) | 
+재료 | 노즐 A508, 용접금속 Alloy 182, safe end CF8A | 
+운전온도 | 617°F(325°C). WRS 취합은 300°C에서 했고, 300–325°C 사이 변화는 약간 감소하는 정도라 보정 불필요로 판단(각주) | 
+출처 | Westinghouse 제공 자료 [10, 11] | 
+선정 이유가압기 DM 용접이 PWR에서 가장 고온이나 대부분 미국 PWR 가압기 노즐은 이미 완화되었고 LBB 범위는 surge line 정도입니다. 고온관 노즐은 PWSCC 고감수성 온도 범위에서 운전됩니다. 선정한 예의 safe end는 주조재로, 지금까지 대부분의 WRS 해석은 단조 스테인리스를 가정했습니다.
+
+##### p9 |  | §2.2 | | 페이지 9 / 109 | | 원문 p.8–10 · PDF 23–25 | 
+# SG 노즐–엘보, B&W 냉각재펌프 노즐, 업체 제공 정보
+§2.2페이지 9 / 109원문 p.8–10 · PDF 23–25
+SG 노즐–엘보, B&W 냉각재펌프 노즐, 업체 제공 정보Westinghouse 교체 SG 노즐–고온관 엘보 (p.8, Figure 2)
+ID 29.00 in, 두께 2.450 in, A508 노즐 / Alloy 182 / CF8A safe end, 운전 617°F(325°C)
+노즐과 엘보의 DMW. 최근 WRS 해석은 직관 스테인리스 구간 가정이 많고 SG 용접은 거의 모델링되지 않았음
+초기 교체 SG는 Alloy 82/182 + Alloy 52 inlay를 사용하다 A52/152 용접이 완숙되어 전체 용접으로 전환. 응력–변형률 곡선이 거의 같아 WRS에 큰 영향 없다고 봄
+B&W 저온관–원자로냉각재펌프 용접 (p.8–10, Figure 3)
+B&W 주회로의 유일한 DM 원주 용접은 펌프 연결부(주회로 총 8개. 원문은 크기가 다른 branch line 연결부에도 DMW가 있다고 덧붙이므로 8개는 branch를 포함한 총수가 아님, 원문 p.9)
+위치: OD 28 in, 두께 2.75 in(69.89 mm)
+AREVA 정보 입수 전에는 A106 배관 / Alloy 182 / CF8A 주조 펌프 노즐로 믿었음. 저온관 운전온도는 처음엔 알지 못함
+고온관보다 낮은 온도지만 PWSCC 우려가 저온 위치로 옮겨가고 있어 V3에서 고려해야 한다고 언급
+업체 제공 정보 (p.10–13, Figure 4–6)
+대상 | 출처 자료 | 
+RPV 고온관 | Westinghouse 비독점 정보 서한(non-proprietary letter) MCOE-LTR-12-63(필러 규격, butter 열처리, 배관 하중, 개선 기하) | 
+교체 SG | Babcock & Wilcox Canada 정보. 실선=제작 중 형상, 점선=가공 후 형상. 가공은 스테인리스 폐쇄 용접 전에 모델 | 
+펌프 | AREVA 서한 AREVA-13-00544, 재료·용접 기하 | 
+펌프 노즐은 §2.3.3과 Figure 9에서 "inlet", §3.5 제목에서 "outlet"으로 표기됩니다(원문 불일치).
+
+##### p10 |  | §2.3 | | 페이지 10 / 109 | | 원문 p.14–16 · PDF 29–31 | 
+# SG 노즐–safe end 용접의 제작 순서
+§2.3페이지 10 / 109원문 p.14–16 · PDF 29–31
+SG 노즐–safe end 용접의 제작 순서개요플랜트당 SG 노즐 DMW 2개(고온관 inlet, 크로스오버관 outlet)로 공칭 형상은 같습니다. 단일-V 좁은 개선으로 저합금강 SG 노즐과 스테인리스 safe end를 잇고, 현장에서 스테인리스 용접으로 safe end를 배관에 잇습니다.
+입력 문서
+WPS(DMW 용접 절차 명세, 용접 자체 치수·일반 변수)
+SIS(shop instruction sheet, 일반 용접 과정)
+스테인리스 현장 용접 배치 도면
+제작 단계
+노즐 butter + PWHT, butter를 가공해 DMW 개선 한 면 형성
+Alloy 52로 safe end와 용접(safe end는 최종 형상보다 두꺼운 단조 링). 비드 수 등은 문서가 없어 WRS 소그룹이 추정
+ID 가공 → 방사선 검사 가정 → (수리 케이스) 수리 공동 가공·용접
+ASME 수압시험: 300°F(149°C), 3,110 psig(21.44 MPa)
+safe end 나머지 가공해 스테인리스 용접 개선 → 배관에 스테인리스 용접
+설계 수압시험: 300°F, 2,485 psig(17.13 MPa)
+치수대표 치수는 Figure 5, Figure 7. 검정 치수는 [15] 출처, 빨강 치수는 업계 전형을 가정한 값(p.16).
+
+##### p11 |  | §2.3 | | 페이지 11 / 109 | | 원문 p.16–19 · PDF 31–34 | 
+# RPV 노즐–safe end 용접과 VC Summer 변형
+§2.3페이지 11 / 109원문 p.16–19 · PDF 31–34
+RPV 노즐–safe end 용접과 VC Summer 변형RPV 제작루프마다 outlet·inlet 노즐 1개씩이며 용접 두께·구성은 같고 inlet ID가 약간 작습니다. outlet 위치를 기준으로 했고 DMW 후 현장 스테인리스 용접 효과도 포함했습니다.
+입력: Westinghouse 서한(outlet 노즐 기하), 배관 개선 치수 도면
+제작 단계는 SG와 같은 구조: butter·PWHT → Alloy 82/182로 safe end 용접(비드 정보 미문서화로 가정) → ID·OD 가공 → 방사선 검사·수리 → 수압시험(149°C·21.44 MPa) → 스테인리스 용접 개선 → 스테인리스 배관 용접 → 설계 수압시험(149°C·17.13 MPa)
+치수 Figure 8, 검정=[11] 출처, 빨강=가정
+VC Summer 변형 (§2.3.2.4, p.18–19)
+서비스 중 균열이 발생한 플랜트. 용접 절차가 ID 인장 WRS를 크게 만들었음
+butter는 공장에서 용접·PWHT, DMW는 현장에서 시공
+용접 초기 in-process NDE에서 결함이 발견되어 용접 불합격
+결함 제거 후 노즐과 스테인리스 배관 정렬을 위해 bridge를 남기고 수리
+ID를 bridge까지 먼저 용접했는지, OD를 먼저 용접했는지 불명 → 두 순서 모두 해석(§3.6)
+
+##### p12 |  | §2.3 | | 페이지 12 / 109 | | 원문 p.19–21 · PDF 34–36 | 
+# B&W 저온관–RCP 용접의 제작 순서
+§2.3페이지 12 / 109원문 p.19–21 · PDF 34–36
+B&W 저온관–RCP 용접의 제작 순서냉각재 관 구간을 cladding·butter·PWHT, butter 가공으로 개선 한 면 형성
+Alloy 82/182로 safe end와 용접(safe end는 약 32 in(812.8 mm) 스테인리스관, 백킹링 사용)
+백킹링 가공 제거
+DMW ID 면을 Alloy 82/182로 cladding(root를 가공했다고 믿고 모델링 — Figure 9에는 표시 안 됨)
+방사선 검사 가정, 수리 케이스는 수리 공동 가공·용접
+safe end를 가공해 RCP transition assembly와의 스테인리스 용접 개선 형성(safe end 길이 약 3 in로 단축)
+safe end를 transition assembly에 용접(이후 pump casing에 용접)
+수압시험 149°C·21.44 MPa, 설계 수압시험 149°C·17.13 MPa
+치수Figure 9의 모든 치수는 검정이고 [18]에서 온 것입니다. transition piece 용접은 safe end 길이 3 in가 영향을 격리시켜 무시했다고 §3.5가 설명합니다.
+Fig.9 도면 표시값(원문 지면) | 내용 | 
+DMW 구성 / safe end 가공(p.20) | 3.00 in 가공 후 stainless safe end, R 0.38 in, 15°, 0.31 in, 0.13 in 등 | 
+스테인리스 용접 구성(p.21) | ID 31.0 in, 길이 14.0 in, 6.4°, 15°, R 0.38 in, 2.81 in, 0.13 in, 0.31 in; "This weld already completed" 표시 | 
+Fig.9의 길이 약 32 in(초기 safe end)와 최종 3.00 in safe end를 같은 단계 치수로 쓰지 마세요. 그림 9는 p.20–21에 걸쳐 있습니다.
+
+##### p13 |  | §2.4 | | 페이지 13 / 109 | | 원문 p.21–22 · PDF 36–37 | 
+# 열·구조 물성: 4명 모두 같은 데이터
+§2.4페이지 13 / 109원문 p.21–22 · PDF 36–37
+열·구조 물성: 4명 모두 같은 데이터원칙용접 모델링은 상온부터 융점의 절반 이상(일부 재료는 1200°C)까지 물성이 필요합니다. 모델러마다 DB를 쓰면 불확실성이 되므로 NRC/Emc2 DB의 공통 물성을 4명에게 제공했습니다(부록 B).
+구분 | 물성 | 위치(부록 B 그림) | 
+열 | 열전도도, 비열 | Alloy 82/182: Fig.96–97(B-4), A508 cl2: Fig.103–104(B-8), CF8M: Fig.110–111(B-12) | 
+구조 | 탄성계수, 포아송비, 열팽창계수 | Alloy: Fig.91–92(B-1), A508: Fig.98–99(B-5), CF8M: Fig.105–106(B-9) | 
+구조(등방) | 응력–변형률 곡선, 크리프 | Alloy: Fig.93–94(B-2), A508: Fig.100–101(B-6), CF8M: Fig.107–108(B-10) | 
+구조(이동 경화) | 탄소성 곡선 | Alloy: Fig.95(B-3), A508: Fig.102(B-7), CF8M: Fig.109(B-11) | 
+크리프 물성은 butter 적층 후 PWHT 모델링에 필요
+용접금속(Alloy 82/182)의 응력–변형률 곡선은 풀림 재료 기준이어야 함 — 응고 과정의 수축 경화는 WRS 모델이 직접 모델링하기 때문
+각주: 현재는 PWSCC에 덜 민감한 Alloy 52/152를 쓰지만 이 보고서의 용접은 82/182. 52와 82의 응력–변형률 곡선 차이는 작아 예측 WRS에 영향이 없다고 봅니다.
+
+##### p14 |  | §2.5 | | 페이지 14 / 109 | | 원문 p.22–24 · PDF 37–39 | 
+# xLPR QA 프로그램과 설계 검증 5항목
+§2.5페이지 14 / 109원문 p.22–24 · PDF 37–39
+xLPR QA 프로그램과 설계 검증 5항목QA 지위xLPR 2.0은 문서화된 QA 프로그램[23](소프트웨어 모듈 개발·시험 위주)을 따랐습니다. WRS 예시 입력 개발에는 소프트웨어 모듈과 같은 문서화(STP·STR)가 필요하지 않지만, QA의 취지에 맞춰 설계 검증을 수행했습니다.
+설계 검증 5단계 (독립 검증자, p.22–23)
+모델 치수를 도면·입력과 대조
+열·구조 경계조건을 그래픽으로 점검
+비드 순서(경로 의존)와 가공 단계 점검
+잔류응력 결과를 표시된 위치·시간 단계에서 취했는지 점검
+물성 입력을 온도 곡선 그림으로 점검
+검증 결과네 기관(Emc2, DEI, NRC, Battelle)이 각자 독립 검증자를 선정했습니다. 예로 NRC가 Emc2 모델을 검증했습니다.
+표 | 대상 | 결과 | 
+Table 1 | SG 노즐 DMW | 치수 확인에서 스테인리스관 ID가 지정값 31 in가 아니라 29 in로 모델됨 → Emc2가 재메시하고 새 모델의 치수 확인. 나머지 4항목은 확인됨 | 
+Table 2 | RPV 노즐 DMW | 5개 항목 모두 확인됨, 조치 없음 | 
+Table 3 | RCP DMW | 5개 항목 모두 확인됨, 조치 없음 |
+
+##### p15 |  | §3.1–3.2 | | 페이지 15 / 109 | | 원문 p.25–26 · PDF 40–41 | 
+# 결과를 어떻게 처리했나
+§3.1–3.2페이지 15 / 109원문 p.25–26 · PDF 40–41
+결과를 어떻게 처리했나결과는 축대칭 FE 모델에 기반(Figure 10 예시 메쉬). xLPR 2.0 입력 DB의 최선 추정 WRS와 불확실성을 정의
+등방·이동 경화 두 모델의 중심선 프로파일을 평균(Figure 11)해 각 해석자의 최종 추정 WRS를 만듦. 추출은 두께 방향 26점
+한 WRS 소그룹 구성원이 각 해석자 결과를 취합해 최선 추정 프로파일과 불확실성 특성화를 준비
+WRS는 용접 단면 위치마다 다름 → 세 위치(용접–butter 경계 근처, 용접 중심, 스테인리스 safe end 근처, Figure 12)를 취합. xLPR 2.0 입력은 중심선, 나머지는 Subversion·xLPR 웹포털에 보관(현재 접근 가능 여부는 확인 불가)
+SG 노즐은 좁은 개선이라 butter 폭이 용접보다 넓습니다(Figure 12 설명).
+
+##### p16 |  | §3.3 | | 페이지 16 / 109 | | 원문 p.27–28 · PDF 42–43 | 
+# SG baseline의 WRS
+§3.3페이지 16 / 109원문 p.27–28 · PDF 42–43
+SG baseline의 WRSSG 입구 노즐 형상은 Figure 5(교체 SG, 좁은 개선, 점선=가공 후). 용접 중심선 경로 Figure 13
+baseline(수리·완화 없음)의 축·후프 WRS는 Figure 14. 모든 케이스를 300°C에서 취합해 세 재료의 열팽창계수 차이와 온도에 따른 응력–변형률 곡선 약간 감소의 영향을 반영
+네 참여자가 독립적으로 계산(메쉬, 용접 과정 해석, 입열, 비드 형상, 수리 정의 등). 예측이 서로 꽤 가깝고, 평균은 검정색, 마름모는 표로 정리된 26점
+xLPR 2.0은 26점 자료를 서비스 하중과 합쳐 UWFM으로 K를 계산해 확률론적 LBB 시간 루프에서 균열을 키움
+WRS에 서비스 하중을 선형으로 더하면, 응력이 항복을 넘을 때 K 계산용 하중이 과대평가됩니다. 유효 소성 경화계수(항복 이후 응력–변형률 곡선의 국부 기울기)를 써야 하며 이 효과는 이후 버전에서 보정할 수 있다고 원문이 언급합니다(p.27–28).
+
+##### p17 |  | §3.3 | | 페이지 17 / 109 | | 원문 p.29–31 · PDF 44–46 | 
+# SG 수리 케이스(Figure 15–16)
+§3.3페이지 17 / 109원문 p.29–31 · PDF 44–46
+SG 수리 케이스(Figure 15–16)수리 용접은 세 명이 독립적으로 정의·계산(일부 케이스는 4명)
+수리는 스테인리스 폐쇄 용접 이전에 모델. 15%, 50% 관통 수리를 가정. 수리 개선 형상·축방향 위치는 모델러가 독립 정의해 불확실성 존재
+케이스 | 원문 서술 | 
+15% 수리(Fig.15) | 노즐 ID 부근에서 축응력이 인장이다가 수리 깊이(15%) 근처에서 압축으로 반전. 후프도 수리 영역에서 상승. baseline과 비교하면 두께 약 50% 이후는 수리 없는 결과에 가까워짐 | 
+50% 수리(Fig.16) | ID 부근을 제외하면 50% 수리 깊이까지 축응력이 거의 0. 수리 깊이에서 압축 구간이 시작되어 OD 부근에서 인장으로 반전. 후프는 15% 결과와 비슷하되 OD 쪽으로 밀림 | 
+수리 크기를 모델러가 직접 선택했고 현장 수리 기록이 자세하지 않았기 때문에 수리 케이스의 불확실성이 커졌다고 원문이 밝힙니다(p.31).
+
+##### p18 |  | §3.4 | | 페이지 18 / 109 | | 원문 p.31–36 · PDF 46–51 | 
+# RPV: 가까운 스테인리스 폐쇄 용접이 WRS를 지배
+§3.4페이지 18 / 109원문 p.31–36 · PDF 46–51
+RPV: 가까운 스테인리스 폐쇄 용접이 WRS를 지배RPV 노즐 형상 Figure 8. 가공 후 safe end 길이 57.2 mm 미만으로 매우 짧음
+짧은 safe end 때문에 safe end–배관 용접의 유익한 굽힘으로 DMW ID에 항복 수준 압축 잔류응력이 생길 수 있음. 그래도 운전 하중이 겹치면 PWSCC 개시·성장이 가능
+WRS는 DMW 중심선(Figure 17 위쪽 삽도). 네 모델러 사이에 후프응력 편차가 더 큼. Figure 18, 19는 15%·50% 수리
+Figure 17–19 모두에서 WRS는 스테인리스 폐쇄 용접이 DMW에 매우 가까운 것이 지배한다고 해석
+수리 효과 비교(Figure 20, p.35–36)
+Emc2 Monte Carlo 결과로 30% 수리 케이스도 포함해 비교(입력표 7장에는 baseline·15%·50%만 있음)
+수리는 ID 부근 응력에 가장 영향을 주고, 수리 깊이에 비례해 영향이 깊어짐. 수리 깊이 직후 응력이 빠르게 감소한 뒤 다시 증가하는 오목한(concave upward) 모양
+이전 해석에서는 수리가 깊을수록 ID 축응력이 높아졌으나[24], 여기서는 폐쇄 용접이 너무 가까워 축 WRS를 지배하므로 다름. 세 수리 케이스 모두 OD 근처 축응력은 baseline에 접근
+후프응력: 15% 수리에서 ID 근처 baseline보다 가장 크게 증가, 30%에서 조금 감소, 50%에서는 첫 절반 두께에서 baseline과 거의 같음. 폐쇄 용접이 멀 때의 이전 결과와 다름
+
+##### p19 |  | §3.5 | | 페이지 19 / 109 | | 원문 p.36–39 · PDF 51–54 | 
+# 펌프 노즐: 복잡한 제작과 back-clad 재질 불확실성
+§3.5페이지 19 / 109원문 p.36–39 · PDF 51–54
+펌프 노즐: 복잡한 제작과 back-clad 재질 불확실성Figure 9의 펌프 노즐은 SG·RPV와 다름. DMW 후 safe end 추가 전에 ID를 가공해 root를 건전한 금속까지 제거하고 back clad로 교체
+back clad 재질이 문서에 불명확 → NRC와 DEI는 Alloy 182로, Emc2는 316 스테인리스로 모델링
+safe end 길이 3 in이 스테인리스 transition piece 용접 영향을 충분히 격리한다고 보고 그 용접은 무시
+제작이 복잡(가공, transition piece 추가). 결과 Figure 21(baseline), 22(15%), 23(50%)에서 SG·RPV보다 모든 결과의 변동이 조금 더 큼
+B&W 펌프 노즐의 위치명은 "inlet"과 "outlet"이 섞여 쓰입니다(§2.3.3, Figure 9: inlet / §3.5: outlet).
+
+##### p20 |  | §3.6 | | 페이지 20 / 109 | | 원문 p.39–44 · PDF 54–59 | 
+# VC Summer: 실제 균열 사례 재해석
+§3.6페이지 20 / 109원문 p.39–44 · PDF 54–59
+VC Summer: 실제 균열 사례 재해석xLPR 2.0 검증 시험 계획에는 PWSCC 현장 균열 사례가 포함. 2001년 VC Summer 균열[21, 22]
+Emc2가 2004–2005년에 WRS 해석을 했으나[25] 현재 모범 사례 개발 이전의 작업. WRS 불확실성이 네 참여자 해로 결정되므로 일관성을 위해 VC Summer를 다시 해석
+2004년 모델 Figure 24, 모델링 단계 Figure 25, 시각적 제작 절차 Figure 26. butter는 공장 용접·PWHT, DMW는 현장, 초기 NDE 결함 → 용접 불합격(Fig.26c), 결함 제거 후 bridge를 남기고(26d) 용접 완성. ID를 bridge까지 먼저 했는지 OD를 먼저 했는지 불명
+순서 | 결과 | 그림 | 
+OD 후 ID 용접(outside → inside, "OI") | 가장 가혹: ID 습윤 표면의 인장 응력이 가장 큼. 축 인장 WRS가 ID에서 두께의 약 40%까지 지속, 후프는 전 두께 인장 | Fig.27 | 
+ID 후 OD 용접("IO") | ID 부근 인장이 OI보다 덜 가혹 | Fig.28 | 
+경험적으로 ID를 마지막에 용접하는 것이 최악. 그림에는 등방(iso)·비선형 이동(NLKN, Chaboche 모델) 결과가 모두 있으나 xLPR 2.0에는 평균만 사용
+Emc2만 해석했으므로 불확실성은 다른 결과에서 추정 → 형상이 가장 비슷한 RPV 결과로 추정
+관측된 균열 사례 North Anna, Ringhals, Tsuruga의 WRS는 문헌에서 가져와 Framework Acceptance STP[26]에 요약되어 있고 7장에 표로 수록
+그림 내용(Codex 판독, Fig.24–26은 Claude 미대조)
+그림 | 내용 | 
+Fig.24 (p.40) | 2004년 모델: A508 class 2, INC0182, SS304, SS309 cladding, 벽 두께 2.33 in, lump-pass weld 메시 | 
+Fig.25 (p.41) | preheat → butter → PWHT → preheat → 내면에서 0.7 in 용접 → bridge 형성 → 불량부 제거 → (inside에서 bridge까지 → outside) 또는 (outside에서 bridge부터 → inside) 두 분기 | 
+Fig.26 (p.42) | cladding 모델, 길이 20/10 in 전체 영역, 0.7 in 초기 weld, bridge와 제거 cavity 4단계 형상 | 
+Fig.27 / 28 (p.43–44) | 등방(적)·NLKN(청, Chaboche)·평균(녹)의 축·후프. OI는 축응력이 내측 인장 → 약 0.4 이후 압축, 후프는 양수; IO는 ID 인장이 OI보다 낮음 | 
+원문은 사고 시점을 "2001"로 쓰지만 참고문헌에는 2000년 보고도 있어 발생일/보고일 구분은 원문만으로 확정 불가.
+
+##### p21 |  | §3.7 | | 페이지 21 / 109 | | 원문 p.45 · PDF 60 | 
+# 완화 응력장은 규칙으로 만든다
+§3.7페이지 21 / 109원문 p.45 · PDF 60
+완화 응력장은 규칙으로 만든다서비스 중 완화 4가지: FSWOL(full structural weld overlay), OWOL(optimized weld overlay), 두 가지는 WOR 범주. MSIP(mechanical stress improvement process), inlay. 새 방법(peening)은 고려 안 함
+완화 WRS는 문헌 해를 근거로 한 규칙(rules)으로 xLPR 2.0 형상에 구현. 최소 한 형상으로 규칙을 검증하는 것을 이후 버전에 권고
+규칙은 26점 WRS 자료집에 직접 적용. 예: SG baseline 규칙(Figure 29)은 SG baseline 표(Table 7, 8)에 적용. 따라서 xLPR 2.0 입력표는 완화 케이스별로 이미 보정된 별도 표를 가짐
+FSWOL 규칙은 12편의 논문·보고서[27–38] 요약. 근거 스프레드시트가 Subversion에 있음
+FSWOL 높은 수준의 규칙(원문 p.45)
+overlay 전 축 WRS가 압축이면 x/t≈0.2–0.3까지 변화가 작거나 약간 증가
+overlay 전 축 WRS가 인장이면 압축(또는 더 낮은 인장)으로 변화. 수리 용접에도 같은 경향
+수리가 만든 높은 인장 WRS는 overlay로 낮아짐
+후프응력은 ID 부근에서 최소 200 MPa 감소하고 OD(overlay OD)에서는 non-WOR 결과로 수렴
+R/t가 비슷하고 두께가 큰 냉각관(cold leg)·surge line 해를 우선
+
+##### p22 |  | §3.7.1 | | 페이지 22 / 109 | | 원문 p.46–48 · PDF 61–63 | 
+# FSWOL 규칙 적용 (Figure 29–37)
+§3.7.1페이지 22 / 109원문 p.46–48 · PDF 61–63
+FSWOL 규칙 적용 (Figure 29–37)대상 | 그림 | 원문 설명 | 
+SG baseline | Fig.29 | 원래 WRS가 압축이므로 축응력이 ID 부근에서 약간 증가. OWOL도 같은 규칙(overlay 두께 차이가 as-left WRS에 거의 영향 없음) | 
+SG 15% 수리 | Fig.30 | 수리 WRS가 인장이므로 ID 부근 축응력이 감소. 규칙 라벨 "Axial baseline WRS Rules (SG 15% repair)"는 15% 수리가 baseline 결과로부터 평가되었다는 뜻 | 
+SG 50% 수리 | Fig.31 | ID 부근 축응력 감소 | 
+RPV baseline·15%·50% | Fig.32–34 | 같은 규칙으로 baseline·수리 후·overlay 후 축·후프 표시 | 
+펌프 baseline·15%·50% | Fig.35–37 | 같은 규칙 |
+
+##### p23 |  | 식 F29 | | 페이지 23 / 109 | | 원문 p.46 · PDF 61 | 
+# 식 F29 · FSWOL(WOR) 완화 규칙 — SG baseline
+식 F29페이지 23 / 109원문 p.46 · PDF 61
+식 F29 · FSWOL(WOR) 완화 규칙 — SG baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+75-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: SG baseline · FSWOL(WOR)(Figure 29, 원문 PDF 61 / 인쇄 46). 축응력과 후프응력 규칙이 각각 있습니다. SG baseline은 원래 WRS가 압축이므로 축응력이 ID 부근에서 약간 증가합니다. OWOL도 같은 규칙(overlay 두께 차이가 as-left WRS에 거의 영향 없음)이라고 원문이 설명합니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 노트: 입력 DB의 DMW WRS를 이 간단한 규칙으로 수정. WOR 표는 baseline 케이스와 별도로 입력 스프레드시트에서 읽음
+
+##### p24 |  | 식 F30 | | 페이지 24 / 109 | | 원문 p.47 · PDF 62 | 
+# 식 F30 · FSWOL(WOR) 완화 규칙 — SG 15% 수리
+식 F30페이지 24 / 109원문 p.47 · PDF 62
+식 F30 · FSWOL(WOR) 완화 규칙 — SG 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+175-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: SG 15% 수리 · FSWOL(WOR)(Figure 30, 원문 PDF 62 / 인쇄 47). 축응력과 후프응력 규칙이 각각 있습니다. SG 15% 수리는 수리 WRS가 인장이므로 ID 부근 축응력이 감소합니다. 규칙 라벨 "Axial baseline WRS Rules (SG 15% repair)"는 15% 수리가 baseline 결과로부터 평가되었다는 뜻이라고 풀이됩니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 마지막 구간 상한이 원문에서 엄격 부등호(.6<x/t<1.0)임(Codex 역검증 지적, Claude 지면 확인). 라벨 "Axial baseline WRS Rules (SG 15% repair)"
+
+##### p25 |  | 식 F31 | | 페이지 25 / 109 | | 원문 p.48 · PDF 63 | 
+# 식 F31 · FSWOL(WOR) 완화 규칙 — SG 50% 수리
+식 F31페이지 25 / 109원문 p.48 · PDF 63
+식 F31 · FSWOL(WOR) 완화 규칙 — SG 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-50-\frac{25}{0.48}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: SG 50% 수리 · FSWOL(WOR)(Figure 31, 원문 PDF 63 / 인쇄 48). 축응력과 후프응력 규칙이 각각 있습니다. SG 50% 수리: ID 부근 축응력 감소.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p26 |  | 식 F32 | | 페이지 26 / 109 | | 원문 p.49 · PDF 64 | 
+# 식 F32 · FSWOL(WOR) 완화 규칙 — RPV baseline
+식 F32페이지 26 / 109원문 p.49 · PDF 64
+식 F32 · FSWOL(WOR) 완화 규칙 — RPV baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+50-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: RPV baseline · FSWOL(WOR)(Figure 32, 원문 PDF 64 / 인쇄 49). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p27 |  | 식 F33 | | 페이지 27 / 109 | | 원문 p.49 · PDF 64 | 
+# 식 F33 · FSWOL(WOR) 완화 규칙 — RPV 15% 수리
+식 F33페이지 27 / 109원문 p.49 · PDF 64
+식 F33 · FSWOL(WOR) 완화 규칙 — RPV 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-125-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: RPV 15% 수리 · FSWOL(WOR)(Figure 33, 원문 PDF 64 / 인쇄 49). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p28 |  | 식 F34 | | 페이지 28 / 109 | | 원문 p.50 · PDF 65 | 
+# 식 F34 · FSWOL(WOR) 완화 규칙 — RPV 50% 수리
+식 F34페이지 28 / 109원문 p.50 · PDF 65
+식 F34 · FSWOL(WOR) 완화 규칙 — RPV 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+25-\frac{25}{0.48}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: RPV 50% 수리 · FSWOL(WOR)(Figure 34, 원문 PDF 65 / 인쇄 50). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 원문 구간 누락(오류 대장 #17)
+
+##### p29 |  | 식 F35 | | 페이지 29 / 109 | | 원문 p.51 · PDF 66 | 
+# 식 F35 · FSWOL(WOR) 완화 규칙 — 펌프 baseline
+식 F35페이지 29 / 109원문 p.51 · PDF 66
+식 F35 · FSWOL(WOR) 완화 규칙 — 펌프 baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+75-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: 펌프 baseline · FSWOL(WOR)(Figure 35, 원문 PDF 66 / 인쇄 51). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p30 |  | 식 F36 | | 페이지 30 / 109 | | 원문 p.51 · PDF 66 | 
+# 식 F36 · FSWOL(WOR) 완화 규칙 — 펌프 15% 수리
+식 F36페이지 30 / 109원문 p.51 · PDF 66
+식 F36 · FSWOL(WOR) 완화 규칙 — 펌프 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+75-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: 펌프 15% 수리 · FSWOL(WOR)(Figure 36, 원문 PDF 66 / 인쇄 51). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p31 |  | 식 F37 | | 페이지 31 / 109 | | 원문 p.52 · PDF 67 | 
+# 식 F37 · FSWOL(WOR) 완화 규칙 — 펌프 50% 수리
+식 F37페이지 31 / 109원문 p.52 · PDF 67
+식 F37 · FSWOL(WOR) 완화 규칙 — 펌프 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+100-\frac{100}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해, 문헌 해[27–38]의 경향을 요약한 간단한 규칙으로 완화 후 26점 표를 보정합니다(p.45). xLPR 2.0은 완화 WRS를 직접 계산하지 않고 이 규칙으로 구현했습니다(§3.7).
+어떤 조건에 쓰나대상: 펌프 50% 수리 · FSWOL(WOR)(Figure 37, 원문 PDF 67 / 인쇄 52). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p32 |  | §3.7.4 | | 페이지 32 / 109 | | 원문 p.52–54 · PDF 67–69 | 
+# MSIP 규칙과 SG 적용 (Figure 38–40)
+§3.7.4페이지 32 / 109원문 p.52–54 · PDF 67–69
+MSIP 규칙과 SG 적용 (Figure 38–40)규칙 근거세 편의 논문·보고서[39–41]에서 도출한 높은 수준 규칙입니다.
+축 WRS는 항상 ID 부근에서 감소하고 OD 부근에서 증가. MSIP 전 WRS가 인장이면 ID 감소는 R/t≈0.2까지 300–400 MPa, OD 증가는 고온관에서 최대 약 150 MPa(참고 [40] Fig.27). ID 인장이 높을수록 감소가 큼, MSIP 전 음(압축)이면 ID 개선 거의 없음
+축 WRS가 ID 부근에서 압축이면 ID 감소는 R/t≈0.2에서 약 100–150 MPa, R/t≈0.2 너머 OD 증가는 50–100 MPa에 불과(이 결과는 압력용기 안전·surge line 예이나 고온관 크기에 적용 가정). 후프가 음(압축)이면 ID는 거의 변화 없고 OD가 약간 증가
+냉각관·가압기 surge line 해에 더 큰 가중(R/t 비슷, 두께 큼). 공개 문헌의 MSIP 잔류응력 해석 자료가 많지 않음
+대상 | 그림 | 
+SG baseline·15%·50% | Fig.38, 39, 40 | 
+RPV baseline·15%·50% | Fig.41, 42, 43 (p.54–55) | 
+펌프 baseline·15%·50% | Fig.44, 45, 46 (p.56–57) |
+
+##### p33 |  | 식 F38 | | 페이지 33 / 109 | | 원문 p.53 · PDF 68 | 
+# 식 F38 · MSIP 완화 규칙 — SG baseline
+식 F38페이지 33 / 109원문 p.53 · PDF 68
+식 F38 · MSIP 완화 규칙 — SG baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-50 & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: SG baseline · MSIP(Figure 38, 원문 PDF 68 / 인쇄 53). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p34 |  | 식 F39 | | 페이지 34 / 109 | | 원문 p.53 · PDF 68 | 
+# 식 F39 · MSIP 완화 규칙 — SG 15% 수리
+식 F39페이지 34 / 109원문 p.53 · PDF 68
+식 F39 · MSIP 완화 규칙 — SG 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-200-\frac{50}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: SG 15% 수리 · MSIP(Figure 39, 원문 PDF 68 / 인쇄 53). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p35 |  | 식 F40 | | 페이지 35 / 109 | | 원문 p.54 · PDF 69 | 
+# 식 F40 · MSIP 완화 규칙 — SG 50% 수리
+식 F40페이지 35 / 109원문 p.54 · PDF 69
+식 F40 · MSIP 완화 규칙 — SG 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-100-\frac{50}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: SG 50% 수리 · MSIP(Figure 40, 원문 PDF 69 / 인쇄 54). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 마지막 구간이 u>.68인데 √(u−.7)이라 .68–.7에서 실수 정의 불가(오류 대장 #19)
+
+##### p36 |  | 식 F41 | | 페이지 36 / 109 | | 원문 p.54 · PDF 69 | 
+# 식 F41 · MSIP 완화 규칙 — RPV baseline
+식 F41페이지 36 / 109원문 p.54 · PDF 69
+식 F41 · MSIP 완화 규칙 — RPV baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-80-\frac{50}{0.44}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: RPV baseline · MSIP(Figure 41, 원문 PDF 69 / 인쇄 54). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p37 |  | 식 F42 | | 페이지 37 / 109 | | 원문 p.55 · PDF 70 | 
+# 식 F42 · MSIP 완화 규칙 — RPV 15% 수리
+식 F42페이지 37 / 109원문 p.55 · PDF 70
+식 F42 · MSIP 완화 규칙 — RPV 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-200-\frac{50}{0.24}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: RPV 15% 수리 · MSIP(Figure 42, 원문 PDF 70 / 인쇄 55). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 원문 구간 누락(#20)
+
+##### p38 |  | 식 F43 | | 페이지 38 / 109 | | 원문 p.55 · PDF 70 | 
+# 식 F43 · MSIP 완화 규칙 — RPV 50% 수리
+식 F43페이지 38 / 109원문 p.55 · PDF 70
+식 F43 · MSIP 완화 규칙 — RPV 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-100-\frac{50}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: RPV 50% 수리 · MSIP(Figure 43, 원문 PDF 70 / 인쇄 55). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 상자 제목이 "SG-MSIP 50% repair"로 적혀 있음(캡션은 RPV 50%, #21)
+
+##### p39 |  | 식 F44 | | 페이지 39 / 109 | | 원문 p.56 · PDF 71 | 
+# 식 F44 · MSIP 완화 규칙 — 펌프 baseline
+식 F44페이지 39 / 109원문 p.56 · PDF 71
+식 F44 · MSIP 완화 규칙 — 펌프 baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-100-\frac{50}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: 펌프 baseline · MSIP(Figure 44, 원문 PDF 71 / 인쇄 56). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 첫 식의 괄호 표기 "(50/(0.2)(x/t)" 불명확(#47)
+
+##### p40 |  | 식 F45 | | 페이지 40 / 109 | | 원문 p.57 · PDF 72 | 
+# 식 F45 · MSIP 완화 규칙 — 펌프 15% 수리
+식 F45페이지 40 / 109원문 p.57 · PDF 72
+식 F45 · MSIP 완화 규칙 — 펌프 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-85-\frac{25}{0.20}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: 펌프 15% 수리 · MSIP(Figure 45, 원문 PDF 72 / 인쇄 57). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: .6<u≤.68에서 두 규칙(120u, 480(u−.6)^.5)이 겹침(#18)
+
+##### p41 |  | 식 F46 | | 페이지 41 / 109 | | 원문 p.57 · PDF 72 | 
+# 식 F46 · MSIP 완화 규칙 — 펌프 50% 수리
+식 F46페이지 41 / 109원문 p.57 · PDF 72
+식 F46 · MSIP 완화 규칙 — 펌프 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}-50-\frac{25}{0.2}u & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해, 3편[39–41]에서 도출한 높은 수준 규칙(ID 부근 축응력 감소, OD 부근 증가)을 구간식으로 옮겨 26점 표를 보정합니다. 공개된 MSIP 잔류응력 해석 자료가 많지 않다고 원문이 밝힙니다.
+어떤 조건에 쓰나대상: 펌프 50% 수리 · MSIP(Figure 46, 원문 PDF 72 / 인쇄 57). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p42 |  | §3.7.6 | | 페이지 42 / 109 | | 원문 p.56–57 · PDF 71–72 | 
+# MSIP 펌프 노즐 (Figure 44–46)
+§3.7.6페이지 42 / 109원문 p.56–57 · PDF 71–72
+MSIP 펌프 노즐 (Figure 44–46)펌프 노즐 MSIP 규칙은 Figure 44(baseline), 45(15% 수리), 46(50% 수리)에 baseline 결과와 MSIP 후 축·후프 표시
+15%·50% 수리 케이스도 비슷한 규칙으로 baseline 결과로부터 만듦
+
+##### p43 |  | §3.7.7 | | 페이지 43 / 109 | | 원문 p.58–63 · PDF 73–78 | 
+# Inlay 규칙과 SG·RPV·펌프 적용 (Figure 47–55)
+§3.7.7페이지 43 / 109원문 p.58–63 · PDF 73–78
+Inlay 규칙과 SG·RPV·펌프 적용 (Figure 47–55)규칙 근거inlay 후 잔류응력 규칙은 NRC 보고서[42]에서 도출했고, 이 작업을 문서화한 ASME PVP 논문도 여러 편 있습니다.
+번호 | 규칙(원문 p.58) | 
+1 | 축 WRS는 ID에서 R/t 약 0.15–0.25 깊이까지 항상 증가(inlay 전 WRS에 따라 다름). ID 응력이 항복 근처 또는 그 이상으로 높음(ID에 용접금속이 적층되므로). 그 후 R/t 약 0.2–0.8에서 음(압축), OD 부근은 인장이지만 원래 WRS보다 낮음 | 
+2 | 후프 WRS는 ID에서 R/t 약 0.2까지 항복 이상 수준. 그보다 깊으면 inlay 없는 후프 응력 수준과 비슷 | 
+대상 | 그림 | 비고 | 
+SG baseline·15%·50% | Fig.47, 48, 49 | 후프는 벽 두께 약 20% 너머에서 거의 변화 없고, 축응력은 축력 평형을 위해 그 너머에서도 영향을 받음 | 
+RPV baseline·15%·50% | Fig.50, 51, 52 | 동일 | 
+펌프 baseline·15%·50% | Fig.53, 54, 55 | 동일 | 
+inlay는 "완화이면 ID 인장이 항상 감소한다"는 일반화가 틀리는 대표 사례입니다. ID 응력이 오히려 항복 수준까지 높아집니다.
+
+##### p44 |  | 식 F47 | | 페이지 44 / 109 | | 원문 p.58 · PDF 73 | 
+# 식 F47 · Inlay 완화 규칙 — SG baseline
+식 F47페이지 44 / 109원문 p.58 · PDF 73
+식 F47 · Inlay 완화 규칙 — SG baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+500-500\frac{u}{0.18} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: SG baseline · Inlay(Figure 47, 원문 PDF 73 / 인쇄 58). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 첫 구간 끝 .20과 분모 .18이 다름
+
+##### p45 |  | 식 F48 | | 페이지 45 / 109 | | 원문 p.59 · PDF 74 | 
+# 식 F48 · Inlay 완화 규칙 — SG 15% 수리
+식 F48페이지 45 / 109원문 p.59 · PDF 74
+식 F48 · Inlay 완화 규칙 — SG 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+400-300\frac{u}{0.15} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: SG 15% 수리 · Inlay(Figure 48, 원문 PDF 74 / 인쇄 59). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p46 |  | 식 F49 | | 페이지 46 / 109 | | 원문 p.59 · PDF 74 | 
+# 식 F49 · Inlay 완화 규칙 — SG 50% 수리
+식 F49페이지 46 / 109원문 p.59 · PDF 74
+식 F49 · Inlay 완화 규칙 — SG 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+500-500\frac{u}{0.20} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: SG 50% 수리 · Inlay(Figure 49, 원문 PDF 74 / 인쇄 59). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p47 |  | 식 F50 | | 페이지 47 / 109 | | 원문 p.60 · PDF 75 | 
+# 식 F50 · Inlay 완화 규칙 — RPV baseline
+식 F50페이지 47 / 109원문 p.60 · PDF 75
+식 F50 · Inlay 완화 규칙 — RPV baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+400-400\frac{u}{0.24} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: RPV baseline · Inlay(Figure 50, 원문 PDF 75 / 인쇄 60). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 노트에 "xLPR 코드에서 몇 줄로 쉽게 수정 가능"이라 적음(Fig.53 노트에도 같은 문구가 있음. 다른 그림은 별도 입력표에서 읽는다고 적음)
+
+##### p48 |  | 식 F51 | | 페이지 48 / 109 | | 원문 p.61 · PDF 76 | 
+# 식 F51 · Inlay 완화 규칙 — RPV 15% 수리
+식 F51페이지 48 / 109원문 p.61 · PDF 76
+식 F51 · Inlay 완화 규칙 — RPV 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+450-200\frac{u}{0.15} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: RPV 15% 수리 · Inlay(Figure 51, 원문 PDF 76 / 인쇄 61). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 도형은 PDF 75(인쇄 60), 캡션은 PDF 76(인쇄 61)
+
+##### p49 |  | 식 F52 | | 페이지 49 / 109 | | 원문 p.61 · PDF 76 | 
+# 식 F52 · Inlay 완화 규칙 — RPV 50% 수리
+식 F52페이지 49 / 109원문 p.61 · PDF 76
+식 F52 · Inlay 완화 규칙 — RPV 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+600-500\frac{u}{0.15} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: RPV 50% 수리 · Inlay(Figure 52, 원문 PDF 76 / 인쇄 61). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p50 |  | 식 F53 | | 페이지 50 / 109 | | 원문 p.62 · PDF 77 | 
+# 식 F53 · Inlay 완화 규칙 — 펌프 baseline
+식 F53페이지 50 / 109원문 p.62 · PDF 77
+식 F53 · Inlay 완화 규칙 — 펌프 baseline
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+550-500\frac{u}{0.20} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: 펌프 baseline · Inlay(Figure 53, 원문 PDF 77 / 인쇄 62). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 노트에 "few lines of code"로 수정 가능하다는 문구가 있음(Fig.50과 같음, 실제 구현 경로는 확인 불가)
+
+##### p51 |  | 식 F54 | | 페이지 51 / 109 | | 원문 p.62 · PDF 77 | 
+# 식 F54 · Inlay 완화 규칙 — 펌프 15% 수리
+식 F54페이지 51 / 109원문 p.62 · PDF 77
+식 F54 · Inlay 완화 규칙 — 펌프 15% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+600-200\frac{u}{0.12} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: 펌프 15% 수리 · Inlay(Figure 54, 원문 PDF 77 / 인쇄 62). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15). 이 그림 특이사항: 이 케이스만 구간 끝이 .24
+
+##### p52 |  | 식 F55 | | 페이지 52 / 109 | | 원문 p.63 · PDF 78 | 
+# 식 F55 · Inlay 완화 규칙 — 펌프 50% 수리
+식 F55페이지 52 / 109원문 p.63 · PDF 78
+식 F55 · Inlay 완화 규칙 — 펌프 50% 수리
+[식] \sigma_{Mit}^{\text{축}}=\begin{cases}\sigma _{DMW}+650-500\frac{u}{0.20} & 0기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+u | 무차원 깊이 x/t. ID(내표면)=0, OD(외표면)=1 | x = ID로부터 거리, t = 벽두께 (원문 일부 문장은 R/t로 쓰나 그래프 축은 x/t, 오류 대장 #22) | 
+σDMW | 완화 전(해당 케이스: baseline·15%·50% 수리) 그 위치의 WRS, MPa | DMW = 이종금속 용접(dissimilar metal weld) 해석 결과 | 
+σMit | 완화 후 WRS, MPa | Mit = mitigation(완화) | 
+구간 조건 | 아래 식은 u 구간별로 다름. 상수 75, 100/.2 등은 원문 상자 값 | 원문은 √ 대신 ^.5로 표기 | 
+왜 이 식을 쓰나inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서[42]에서 도출한 규칙(ID 응력이 항복 근처까지 증가, 0.2~0.8 구간 압축)을 구간식으로 옮겨 26점 표를 보정합니다.
+어떤 조건에 쓰나대상: 펌프 50% 수리 · Inlay(Figure 55, 원문 PDF 78 / 인쇄 63). 축응력과 후프응력 규칙이 각각 있습니다.
+적용 방법u=x/t로 26점 위치를 구간에 대입해, 해당 케이스의 완화 전 WRS 표(σDMW)를 구간별 식으로 보정해 완화 후 표를 만듭니다. 예: SG baseline 규칙(Fig.29)은 SG baseline 표(Table 7, 8)에 적용(원문 인쇄 p.45 / PDF 60). 원문은 σMit=σDMW+(보정)을 쓰는 구간과 식 자체로 교체하는 구간을 섞어 씁니다. 완화 케이스 표는 이 보고서에 싣지 않고 입력 DB 스프레드시트에 있습니다(p.86).
+주의원문 구간 누락·겹침·불연속은 그대로 옮겼고 임의로 보정하지 않았습니다. ID(u=0) 포함 여부와 실제 스프레드시트 구현은 이 PDF만으로 확인 불가(오류 대장 #15).
+
+##### p53 |  | §4 | | 페이지 53 / 109 | | 원문 p.64 · PDF 79 | 
+# 불확실성 원인 목록과 Table 4
+§4페이지 53 / 109원문 p.64 · PDF 79
+불확실성 원인 목록과 Table 4불확실성 가능 원인열물성 변동, 입열·토치 속도, 비드 순서·크기, 구조 물성(비선형 응력–변형률), 탄성·열팽창계수 변동, 층간 온도.
+원인 | 모델 가정 | 시사점(Table 4, 부록 A 참조) | 
+열/물리 물성 | DB가 없어 평균 물성 사용 | 용융부만 맞으면 열해석은 2차적 [1]–[3] | 
+입열·토치 속도 | 축대칭 해(비드를 한 번에 적층)라 토치 속도 무관 | 시작/종료점에서 먼 곳은 3D와 비교적 일치 | 
+비드 순서·크기 | 직사각형 비드. 노즐 제작 시 순서·패스 수 미문서 | 2차적 중요도 | 
+응력–변형률 곡선 변동 | 모델러 불확실성만 포함 | 영향 있을 수 있으나 고온 통계 물성 부족으로 정밀 모델 불가. 모델러 불확실성이 xLPR 2.0에는 적절하다고 판단 | 
+탄성계수·CTE | 평균 물성 | 탄성계수는 2차적. CTE 통계자료 부족으로 불확실성 포함 불가. 자료가 생기면 연구 | 
+층간 온도 | 모델러 모두 오래 냉각 | 원자력 노즐 용접에서 2차적 |
+
+##### p54 |  | §4 | | 페이지 54 / 109 | | 원문 p.65 · PDF 80 | 
+# 무엇을 포함하고 무엇을 뺐나
+§4페이지 54 / 109원문 p.65 · PDF 80
+무엇을 포함하고 무엇을 뺐나경험과 NRC/EPRI mock-up 라운드로빈 민감도[1]–[3]에 근거해 중요한 세 원인: (i) 용접 패스 순서 (ii) 입열 (iii) 응력–변형률 물성
+이 노즐들은 측정하지 않았으므로 WRS 측정은 불확실성에 명시적으로 포함되지 않음. 다만 네 모델러의 방법이 정확하도록 이전 측정에 대한 벤치마크로 숙련도를 확인
+패스 순서·입열 효과는 2차적이라 무시(부록 A). 재료 물성 민감도는 훨씬 더 중요
+통계적으로 의미 있는 재료 자료는 상온·운전온도에서만 있어, 온도 의존 응력–변형률 곡선은 알려진 항복 응력 DB에 근거한 추정. 항복보다 극한응력(ultimate stress) 기반 변동 추정이 훨씬 안정적이었으나 시간 제약으로 추진하지 않음
+따라서 재료 물성 변동 효과는 xLPR 2.0에서 고려하지 않고 기여를 정량화할 수 없음. 모든 변동은 네 모델러가 결정한 WRS 변동에 근거하며, 모델러 불확실성이 지배
+저자 판단: 재료 물성 변동은 모델러 불확실성보다 order of magnitude 미만으로 작다고 봄(계산 근거는 그 쪽에 없음)
+부록 A 첫머리(A-1, PDF 136)는 "유일하게 WRS에 영향을 주는 중요한 불확실성은 재료 불확실성"이라 쓰고 A-8은 "인식론적 불확실성을 지배할 것으로 예상"이라고 씁니다. 본문 p.65의 "모델러 불확실성이 지배"와 어긋나 보이므로, 개발 단계의 예상과 최종 판단을 구분해서 발표해야 합니다.
+
+##### p55 |  | §5 | | 페이지 55 / 109 | | 원문 p.66–67 · PDF 81–82 | 
+# 정규분포·점별 평균·상수 표준편차
+§5페이지 55 / 109원문 p.66–67 · PDF 81–82
+정규분포·점별 평균·상수 표준편차위치WRS 샘플링·불확실성 정량화는 xLPR 2.0 코드 개발 중에 진화했습니다. 최종 방법은 WRS 그룹과 계산 그룹의 논의로 만들어졌고 대안 접근은 부록 C에 있습니다.
+WRS는 두께 방향 26개 등간격 점에서 표시 → UWFM K 계산에 입력
+불확실성 스프레드시트 적용 결과 3–4개 프로파일 각 점에서 정규분포가 적절
+각 위치 기대값은 해석 3–4개의 산술평균, 표준편차는 위치별로도 계산하되 모든 위치 평균 표준편차 하나를 불확실성으로 사용(변동이 더 확률적인 성격이므로 상수 표준편차가 적합)
+문제: 네 시뮬레이션 중 세 개는 비슷한데 하나가 멀리 떨어진 경우(예: 펌프 무수리 후프, Figure 21) 결과 불확실성이 비현실적으로 커져 95% 밴드가 약 300 MPa를 덮음 → 이상치를 통계적 관행으로 가중해 영향 감소 → 최종 WRS는 4명 평균에서 약간 수정됨
+가중의 철학(p.66–67)
+한 프로파일이 다르다는 이유만으로 완전히 기각하는 것은 부적절하지만 합리적 불확실성 범위는 유지해야 함
+두 프로파일 사이 거리가 멀수록 영향이 작아짐 → 군집된 프로파일 또는 고르게 분포한 프로파일을 선호
+다루는 것은 인식론적(지식 부족) 불확실성: 큰 차이는 다른 모델러가 공유하지 않는 가정 때문일 것. 전문가들이 서로 소통·영향 없이 결과를 냈으므로 군집 결과 쪽에 신뢰를 두는 것이 수용 가능
+이 가중은 실측으로 이상치를 판정한 절차가 아니라, 군집 결과에 더 신뢰를 주는 가정입니다.
+
+##### p56 |  | §5.1.1 | | 페이지 56 / 109 | | 원문 p.67 · PDF 82 | 
+# 식 5-1 · 시뮬레이션 간 거리 C<sub>i,j</sub> (L1 노름)
+§5.1.1페이지 56 / 109원문 p.67 · PDF 82
+식 5-1 · 시뮬레이션 간 거리 Ci,j (L1 노름)
+[식] C_{i,j}=\frac{\sum_{k=1}^{26}\left|x_{i,k}-x_{j,k}\right|}{26}\qquad (i\ne j)
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+xi,k | 시뮬레이션 i가 추정한 위치 k의 WRS 값, MPa | i = 시뮬레이션(모델러) 번호 1…n, k = 두께 방향 위치 1…26 | 
+WRSi | 시뮬레이션 i의 26점 벡터 (xi,1…xi,26) | - | 
+Ci,j | 시뮬레이션 i, j의 26점 평균 절대 차이, MPa | i, j = 비교하는 두 시뮬레이션 | 
+왜 이 식을 쓰나네 모델러의 결과가 서로 얼마나 다른지 수치로 재서, 가까운 결과(군집)에 더 큰 가중을 주기 위한 첫 단계입니다. 한 모델러만 멀리 벗어난 경우(예: 펌프 무수리 후프, Fig.21) 단순 평균·표준편차가 비현실적으로 커지는 문제를 줄이려는 것입니다(p.66–67).
+어떤 조건에 쓰나n개(3–4명)의 독립 시뮬레이션이 각각 26점(두께 4% 간격)의 WRS를 준 경우. 서로 다른 모든 쌍 (WRSi, WRSj)을 비교합니다(Figure 56). 이 가중은 실측으로 이상치를 판정한 절차가 아니라 "서로 소통 없이 낸 결과가 모인 쪽에 더 신뢰를 둔다"는 가정입니다(p.67).
+적용 방법모든 쌍에서 26점 절대 차이를 구해 평균합니다(Figure 57, L1 노름). 원문은 L¹이 L²보다 적절해 보이고, Lk(k>1)는 큰 값을 더 강조하는데 여기서는 필요 없다고 설명합니다(p.68 앞).
+주의두 프로파일이 완전히 같으면 Ci,j=0이라 다음 식 θ=1/C가 정의되지 않으며 원문에 처리 규칙이 없습니다(오류 대장 #25, Codex 지적·Claude 미대조). 임의 ε를 넣어 쓰지 마세요.
+
+##### p57 |  | §5.1.1 | | 페이지 57 / 109 | | 원문 p.68 · PDF 83 | 
+# 식 5-2 · 중요도 θ<sub>i,j</sub> = 1/C<sub>i,j</sub>
+§5.1.1페이지 57 / 109원문 p.68 · PDF 83
+식 5-2 · 중요도 θi,j = 1/Ci,j
+[식] \theta_{i,j}=\frac{1}{C_{i,j}}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+θi,j | 시뮬레이션 i, j의 근접도(중요도). C가 작을수록 큼 | i, j = 비교 쌍 | 
+Ci,j | 식 5-1의 평균 절대 차이 | - | 
+왜 이 식을 쓰나두 시뮬레이션의 차이를 "얼마나 서로 가까운가"로 뒤집어, 가까울수록 높은 값을 주기 위해서입니다. 원문 표현: 차이가 크면 θ가 작고, 가까운 두 프로파일은 θ가 큽니다(p.68).
+어떤 조건에 쓰나식 5-1에서 Ci,j≠0인 모든 쌍.
+적용 방법각 쌍의 C의 역수를 취합니다. 이 θ를 시뮬레이션별로 합치거나 곱해 가중치를 만듭니다(식 5-3).
+주의Ci,j=0이면 정의 불가(오류 대장 #25).
+
+##### p58 |  | §5.1.1 | | 페이지 58 / 109 | | 원문 p.68 · PDF 83 | 
+# 식 5-3 · 가중치 w<sub>i</sub> (F<sub>1</sub> 합 / F<sub>2</sub> 곱, 곱 채택)
+§5.1.1페이지 58 / 109원문 p.68 · PDF 83
+식 5-3 · 가중치 wi (F1 합 / F2 곱, 곱 채택)
+[식] F_1(\theta_{j,l})_i=\sum_{j=i\ \text{or}\ l=i}\theta_{j,l},\qquad F_2(\theta_{j,l})_i=\prod_{j=i\ \text{or}\ l=i}\theta_{j,l}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+F1 | θ의 합 방식. 시뮬레이션 i가 낀 모든 쌍의 θ를 더함 | 아래첨자 i = 대상 시뮬레이션 | 
+F2 | θ의 곱 방식. i가 낀 모든 쌍의 θ를 곱함 | - | 
+j, l | 쌍을 이루는 시뮬레이션 번호(j=i 또는 l=i인 쌍만) | - | 
+wi | 시뮬레이션 i의 가중치 | i = 시뮬레이션 번호 | 
+왜 이 식을 쓰나한 시뮬레이션의 중요도를 다른 모든 시뮬레이션과의 근접도로 요약하기 위해서입니다. 원문은 시험 결과 합산 방식이 곱 방식보다 가중치 산포가 약간 더 크고(먼 곡선과 군집 곡선의 가중 비가 곱 방식에서 더 작게 나옴) 군집 곡선이 덜 중요해지므로 곱 방식을 채택했다고 합니다(p.68).
+어떤 조건에 쓰나n개 시뮬레이션이 있는 모든 WRS 자료(SG, RPV, 펌프, 검증 사례 등).
+적용 방법F2로 wi를 구한 뒤 식 5-4의 가중 평균·표준편차에 사용합니다.
+주의원문 지면의 wi 줄은 "F1(θj,l) wi = Σj=i or l=i and j≠l θj,l"처럼 F1과 wi가 한 줄에 겹쳐 인쇄되어 있어 단일 식으로 확정하기 어렵습니다(오류 대장 #24). "곱 방식에서 wi=F2"라는 읽기는 문장("product procedure was used")에 근거한 해석입니다.
+
+##### p59 |  | §5.1.1 | | 페이지 59 / 109 | | 원문 p.68 · PDF 83 | 
+# 식 5-4 · 가중 평균 μ<sub>k</sub>
+§5.1.1페이지 59 / 109원문 p.68 · PDF 83
+식 5-4 · 가중 평균 μk
+[식] \mu_k=\frac{\sum_{i=1}^{n} w_i\,x_{i,k}}{\sum_{i=1}^{n} w_i}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+μk | 위치 k의 가중 평균 WRS, MPa — 입력표의 평균(Param1) | k = 위치 1…26 | 
+wi | 시뮬레이션 i 가중치 | i = 시뮬레이션 | 
+xi,k | 시뮬레이션 i의 위치 k WRS | - | 
+n | 시뮬레이션 개수 | - | 
+왜 이 식을 쓰나군집 쪽 결과의 영향을 키운 점별 대표 WRS(기대값)를 얻기 위해서입니다. 원문: 가중된 WRS의 평균 μk와 표준편차 σk가 각 위치의 WRS 값과 불확실성을 나타냅니다(p.68).
+어떤 조건에 쓰나각 두께 위치 k=1…26마다 독립적으로 계산합니다.
+적용 방법26개 위치 각각에서 wixi,k의 합을 wi의 합으로 나눕니다. 단순 평균(wi 동일)과 비교한 결과가 Figure 58입니다.
+주의이 평균은 §7 표의 Stress/Param1 값으로 쓰이지만 완화(mitigation) 케이스 표에는 규칙으로 보정한 값을 씁니다(§3.7).
+
+##### p60 |  | §5.1.1 | | 페이지 60 / 109 | | 원문 p.69 · PDF 84 | 
+# 식 5-5 · 가중 표준편차 σ<sub>k</sub>
+§5.1.1페이지 60 / 109원문 p.69 · PDF 84
+식 5-5 · 가중 표준편차 σk
+[식] \sigma_k=\sqrt{\frac{\sum_{i=1}^{n} w_i\left(x_{i,k}-\mu_k\right)^2}{\sum_{i=1}^{n} w_i}}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+σk | 위치 k의 가중 표준편차, MPa | k = 위치 | 
+μk | 식 5-4의 가중 평균 | - | 
+wi | 가중치 | - | 
+왜 이 식을 쓰나점별 불확실성(산포)을 군집 쪽에 더 가깝게 추정하기 위해서입니다(p.69).
+어떤 조건에 쓰나위치 k마다 계산합니다. 정규분포 가정 아래의 점별 산포입니다.
+적용 방법식 5-4의 μk를 먼저 구한 뒤 가중 편차제곱 평균의 제곱근을 취합니다.
+주의원문은 이어서 26개 σk를 다시 평균해 하나의 σ를 모든 위치에 적용합니다(식 5-6). 위치별 σk를 그대로 쓰지 않습니다.
+
+##### p61 |  | §5.1.1 | | 페이지 61 / 109 | | 원문 p.69 · PDF 84 | 
+# 식 5-6 · 모든 점에 적용하는 단일 표준편차 σ
+§5.1.1페이지 61 / 109원문 p.69 · PDF 84
+식 5-6 · 모든 점에 적용하는 단일 표준편차 σ
+[식] \sigma=\frac{\sum_{k=1}^{26}\sigma_k}{26}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+σ | 26개 σk의 산술평균 — 입력표 Param2(모든 점 동일) | - | 
+σk | 위치 k의 가중 표준편차 | k = 1…26 | 
+왜 이 식을 쓰나"위치마다 다른 표준편차" 대신 하나의 값을 쓰기 위해서입니다. 원문은 변동이 더 확률적인 성격이므로 상수 표준편차가 적합하다고 봅니다(§5.1, p.66).
+어떤 조건에 쓰나3–4개 해석 결과가 있는 모든 WRS 프로파일. 한 프로파일 안에서 모든 점의 Param2가 같습니다(§7 표 확인).
+적용 방법식 5-5로 26점 σk를 구하고 산술평균합니다. 결과를 §7의 Param2 열에 넣습니다.
+주의원문은 Figure 58에서 "99% 신뢰구간(평균 ± 2.05×표준편차)"이라 쓰는데 정규분포에서 ±2.05σ는 약 96%이고 99%는 ±2.576σ입니다(오류 대장 #26, 계산으로 확인). 실제 워크북 계산은 확인 불가. 가중·평균 방식의 실제 구현 파일(Excel 워크북)은 접근 가능 여부 확인 불가.
+
+##### p62 |  | §5.1.2 | | 페이지 62 / 109 | | 원문 p.69 · PDF 84 | 
+# Excel 워크북과 Figure 58
+§5.1.2페이지 62 / 109원문 p.69 · PDF 84
+Excel 워크북과 Figure 58모든 xLPR 2.0 WRS 프로파일(SG, RPV, RCP, VC Summer, Ringhals, North Anna, Tsuruga, Wolf Creek)에 위 계산을 적용하는 Excel 워크북을 개발. 내부 및 독립 검토를 거쳐 Subversion(\trunk\WRS-KSolutions\WRS_uncertainty_template_v2.3 All Generic_validation.xlsx)에 보관(현재 접근 가능 여부 확인 불가)
+Figure 58: SG 무수리 케이스 축응력(왼쪽)·후프(오른쪽)에서 단순 평균 방식과 가중 방식의 표준편차를 비교. 해석이 고르게 분포한 축응력에서는 표준편차가 별로 달라지지 않고, 한 해석자가 벗어난 후프에서는 군집 쪽으로 더 영향을 받음
+단일 해석이 크게 벗어나는 영향을 (완전히 무시하지 않고) 줄이므로 더 현실적이라고 봄
+원문은 이 그림의 구간을 "99% 신뢰구간(평균 ± 2.05 × 표준편차)"이라 적었지만 정규분포에서 ±2.05σ는 약 96%이고 99%는 ±2.576σ입니다. 원문 표기가 서로 맞지 않으므로 인용할 때 그대로 쓰고 불일치를 명시하세요(실제 워크북 계산은 확인 불가).
+
+##### p63 |  | §6.1 | | 페이지 63 / 109 | | 원문 p.70 · PDF 85 | 
+# 샘플링이 풀어야 할 제약 6개와 기존 기법의 실패
+§6.1페이지 63 / 109원문 p.70 · PDF 85
+샘플링이 풀어야 할 제약 6개와 기존 기법의 실패# | 제약 | 
+1 | 위상 불확실성(WRS 진폭 위치의 변동)을 줄이려면 응력을 등간격 점에서 지정. 여기서는 두께 방향 26점 | 
+2 | 특정 해석의 일반 형상을 유지하려면 최소한 인접점 상관 필요 | 
+3 | 축대칭 해이므로 원주균열 성장용 축 WRS 프로파일은 적분이 0(두께 방향 응력 평형) | 
+4 | 축균열 성장용 후프 WRS는 평형 요구 없음 | 
+5 | 분포 종류·평균 진폭·분산이 고정점마다 다를 수 있음 | 
+6 | 중요도 샘플링이 가능해야 함 | 
+검토한 다섯 가지 방법
+(1) 각 응력점을 WRS 크기의 고정 비율(25%)의 임의 비율만큼 이동
+(2) 크기는 유지하고 위치를 점마다 임의로 이동
+(3) 각 점을 고정 응력값(100 MPa)의 임의 비율만큼 이동
+(4) 1과 2 동시, (5) 1과 3 동시
+실패 이유후프 WRS에는 이 중 하나 이상이 잘 맞지만 제약 6(중요도 샘플링)을 적용하면 축 WRS에서 모두 실패했습니다. ID 고응력이 균열 개시에 가장 중요해 높은 값 쪽을 중요도 샘플링하는데, 점 간 상관으로 프로파일 형상을 유지하면 중간 범위가 매우 낮아 균열이 정지할 수 있고, 평형 때문에 이후 값은 더 높아져야 하며, 점 간 상관만으로는 OD 부근 점이 ID 값과 무상관이 됩니다. 어느 접근도 xLPR 2.0 베타에서 충분하지 않았습니다.
+채택Cholesky 분해 기반 방법을 개발·구현·검증했습니다. 같은 상관계수가 ID 응력과 연결되어 6개 제약을 모두 만족시키기 때문입니다.
+
+##### p64 |  | §6.1 | | 페이지 64 / 109 | | 원문 p.71 · PDF 86 | 
+# 식 6-1 · 상관된 표준정규 변수 z<sub>3</sub>
+§6.1페이지 64 / 109원문 p.71 · PDF 86
+식 6-1 · 상관된 표준정규 변수 z3
+[식] z_3=\rho\,z_1+\sqrt{1-\rho^{2}}\;z_2,\qquad z_1,z_2\sim N(0,1)
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+z1, z2 | 서로 독립인 표준정규 표본 N(0,1) | - | 
+ρ | 원하는 상관계수 | - | 
+z3 | z1과 상관계수 ρ를 갖는 표준정규 변수 | - | 
+왜 이 식을 쓰나인접 점끼리의 급격한 변화(비현실적)를 막고 ID 값에 프로파일을 묶기 위해 점 간 상관이 필요합니다. 정규분포끼리의 합은 정규분포라는 성질로 상관된 표본을 간단히 만들 수 있어 분포를 정규로 제한합니다(p.71).
+어떤 조건에 쓰나각 점이 N(μk, φk)(k=1…26)인 경우. 원문은 σ가 응력에 쓰이므로 표준편차에 φ를 씁니다.
+적용 방법z1, z2를 뽑아 z3를 계산합니다. 평균은 ρ·0+√(1−ρ²)·0=0, 분산은 ρ²·1+(1−ρ²)·1=1이므로 z3도 표준정규이며 z1과 상관계수 ρ입니다. ρ=1이면 z1=z3.
+주의z1과 z2가 서로 무상관이어야 분산이 1이 됩니다. 이 성질은 다른 분포에서는 얻을 수 없어 WRS 분포를 정규로 제한합니다.
+
+##### p65 |  | §6.1 | | 페이지 65 / 109 | | 원문 p.71 · PDF 86 | 
+# 식 6-2 · 역 Z-변환(표준정규 → 응력)
+§6.1페이지 65 / 109원문 p.71 · PDF 86
+식 6-2 · 역 Z-변환(표준정규 → 응력)
+[식] \sigma_1=\mu_1+\phi_1 z_1,\qquad \sigma_2=\mu_2+\phi_2 z_3
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+σ1, σ2 | 샘플링된 ID(첫 점)와 두께 4% 둘째 점의 응력 | 1, 2 = 위치 번호 | 
+μk | 위치 k의 평균 | - | 
+φk | 위치 k의 표준편차(원문 기호) | - | 
+z1, z3 | 식 6-1의 상관된 표준정규 | - | 
+왜 이 식을 쓰나표준정규 표본을 실제 응력 분포(평균 μ, 표준편차 φ)로 되돌리기 위해서입니다(inverse Z-transform).
+어떤 조건에 쓰나ID(첫 점)와 4% 위치(둘째 점)에 대한 2점 예시. 변수 수에 관계없이 확장 가능하다고 원문이 설명합니다.
+적용 방법z를 샘플링한 뒤 각 위치의 평균과 표준편차로 σ를 계산합니다. ρ=1이면 모든 프로파일이 ID 샘플링으로 결정되어 평행해집니다.
+주의식에서 응력은 σ, 표준편차는 φ로 쓰므로 §5의 σ(표준편차)와 기호가 다릅니다.
+
+##### p66 |  | §6.1 | | 페이지 66 / 109 | | 원문 p.72 · PDF 87 | 
+# 식 6-3 · 2×2 상관행렬의 Cholesky(LU) 분해
+§6.1페이지 66 / 109원문 p.72 · PDF 87
+식 6-3 · 2×2 상관행렬의 Cholesky(LU) 분해
+[식] \begin{bmatrix}1&\rho\\ \rho&1\end{bmatrix}=\begin{bmatrix}1&0\\ \rho&\sqrt{1-\rho^{2}}\end{bmatrix}\begin{bmatrix}1&\rho\\ 0&\sqrt{1-\rho^{2}}\end{bmatrix}=LU
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+L | 하삼각 행렬 | - | 
+U | L의 전치(상삼각) | - | 
+ρ | 상관계수 | - | 
+왜 이 식을 쓰나식 6-1을 행렬로 일반화해 여러 점을 한꺼번에 처리하기 위해서입니다. 원문: Cholesky 분해는 선형방정식을 푸는 효율적인 수치 기법일 뿐입니다(p.71).
+어떤 조건에 쓰나대칭 양정치 상관행렬. 여기서는 2×2 예이며 N×N으로 확장됩니다(WRS는 26×26).
+적용 방법상관행렬을 L과 그 전치로 분해해 L을 얻습니다.
+주의원문은 L과 U를 "하삼각과 그 상삼각 전치"로 설명합니다. 3×3 이상 일반식은 이 쪽에 없고 Table 5, 6, 36에 수치로만 나옵니다.
+
+##### p67 |  | §6.1 | | 페이지 67 / 109 | | 원문 p.72 · PDF 87 | 
+# 식 6-4 · 상관된 벡터 Z* = L·Z
+§6.1페이지 67 / 109원문 p.72 · PDF 87
+식 6-4 · 상관된 벡터 Z* = L·Z
+[식] Z^{*}=L\,Z=\begin{pmatrix}1&0\\ \rho&\sqrt{1-\rho^{2}}\end{pmatrix}\begin{pmatrix}z_1\\ z_2\end{pmatrix}=\begin{pmatrix}z_1\\ \rho z_1+\sqrt{1-\rho^{2}}\,z_2\end{pmatrix}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+Z | 무상관 표준정규 벡터 (z1, z2) | - | 
+Z* | 상관된 벡터 | - | 
+L | 식 6-3의 하삼각 행렬 | - | 
+왜 이 식을 쓰나무상관 표본 벡터를 한 번의 행렬곱으로 상관된 표본으로 바꾸기 위해서입니다.
+어떤 조건에 쓰나상관행렬의 Cholesky 인수 L이 주어진 경우(26점이면 26×26).
+적용 방법첫 요소는 그대로이고 둘째(및 이후) 요소는 ρ와 첫 요소 z1의 영향을 받습니다. 그래서 ID 샘플 하나만 중요도 샘플링해도 나머지 점에 전파됩니다.
+주의Table 5(ρ=0.8 일정)에서는 ID 샘플이 모든 상관 응력에 가장 크게 기여하지만, 최종 방식(Table 6, 평균응력에 비례하는 상관)에서는 이 관계가 뒤집힙니다(p.77).
+
+##### p68 |  | §6.1 | | 페이지 68 / 109 | | 원문 p.73 · PDF 88 | 
+# 식 6-5 · 상관행렬 → Cholesky 계수 L (일반 재귀)
+§6.1페이지 68 / 109원문 p.73 · PDF 88
+식 6-5 · 상관행렬 → Cholesky 계수 L (일반 재귀)
+[식] L_{ii}=\sqrt{R_{ii}-\sum_{kj)
+[식] R_{ij}=\rho\ (i\ne j),\ R_{ii}=1\ \Rightarrow\ L_{11}=1,\ L_{i1}=\rho,\ L_{22}=\sqrt{1-\rho^{2}}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+R | 상관행렬(대칭 양정치) | i, j = 행·열(= 두께 위치) | 
+L | 하삼각 Cholesky 인수 (R = L·Lᵀ) | - | 
+ρ | 모든 쌍에 같은 상관계수(Table 5: 0.8, Table 36: 0.95) | - | 
+왜 이 식을 쓰나보고서는 표 5·6·36에 수치만 싣고 일반식은 싣지 않습니다. 표 값을 어떻게 얻는지 설명하려고 표준 Cholesky 알고리즘을 보충했습니다(보고서에 없는 식, Claude가 보충).
+어떤 조건에 쓰나상관행렬이 양정치일 때(상수 ρ이면 N=26에서 −1/25<ρ<1).
+적용 방법ρ=0.8로 계산한 결과가 Table 5의 확인 가능한 값(둘째 행 0.8, 0.6 / 셋째 행 0.8, 0.267, 0.537 / 넷째 행 0.8, 0.267, 0.165, 0.511 / 마지막 대각 0.456)과 일치합니다(아래 카드에 26×26 전체).
+주의이 일반 재귀식은 위치에 따라 달라지는 상관행렬 R(Table 6)에도 적용할 수 있습니다. 다만 R 전체를 만드는 상세 공식·코드가 원문에 없어 Table 6을 독립적으로 재생성하는 입력은 확인 불가입니다(Codex 역검증 지적 반영).
+
+##### p69 |  | §6.1 | | 페이지 69 / 109 | | 원문 p.72–73 · PDF 87–88 | 
+# 일정 상관 ρ=0.8의 26×26 하삼각 행렬
+§6.1페이지 69 / 109원문 p.72–73 · PDF 87–88
+일정 상관 ρ=0.8의 26×26 하삼각 행렬Table 5는 상관계수 0.8로 일정할 때의 26×26 하삼각 분포. 첫 열(빨강)이 ID 샘플의 가중치, 대각선(초록)이 자기 위치 샘플의 가중치
+이 경우 ID 샘플이 모든 상관된 응력에 가장 크게 기여해 프로파일을 강하게 좌우하고, 다음으로 큰 기여는 해당 위치 자신의 샘플
+원문은 이 특성이 WRS 표현에 매우 바람직하다고 봄: ID 한 개의 스칼라 값에만 중요도 샘플링을 적용해도 나머지 25점에 따로 적용할 필요가 없음
+이 설명은 일정 상관 예(Table 5)에 대한 것입니다. 최종 방식(Table 6, 평균응력에 비례하는 상관)에서는 이 관계가 뒤집힙니다(p.77).
+Table 5 수치
+표 5 지면은 이미지입니다일정 상관계수 ρ에서 Cholesky 하삼각 행렬은 Li1=ρ, L11=1, L22=√(1−ρ²) 등 재귀로 정해집니다. 아래는 ρ=0.80으로 이 재귀를 계산한 값이며, 원문 Table 5의 확인 가능한 값(둘째 행 0.8, 0.6 / 셋째 행 0.8, 0.267, 0.537 / 넷째 행 0.8, 0.267, 0.165, 0.511 / 마지막 대각 0.456)과 일치합니다.
+[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]Table 6의 26×26 수치는 §6.2.2 카드에 전체를 옮겼습니다(상관행렬을 만드는 상세 공식·코드는 원문에 없어 확인 불가).
+
+##### p70 |  | §6.2.1 | | 페이지 70 / 109 | | 원문 p.73–76 · PDF 88–91 | 
+# 식 6-6 · 평형을 위한 상수 이동(shifting)
+§6.2.1페이지 70 / 109원문 p.73–76 · PDF 88–91
+식 6-6 · 평형을 위한 상수 이동(shifting)
+[식] \sigma_k^{*}=\sigma_k-\frac{\sum_{J=1}^{26}\sigma_J}{26}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+σk | 샘플링한 위치 k의 응력 | k = 위치 1…26 | 
+σk* | 평균을 뺀(이동한) 응력 | - | 
+σJ | 26점 응력(합산용 첨자 J) | J = 합산 인덱스 | 
+왜 이 식을 쓰나축 WRS는 축대칭 가정상 두께 방향 적분이 0이어야 합니다(제약 3, 후프는 해당 없음). 첫 방법으로 샘플링한 프로파일의 두께 평균을 빼서 적분을 0으로 맞추려 했습니다(p.73).
+어떤 조건에 쓰나축 WRS(원주균열용). ID 샘플이 평균에 가까우면 이동이 미미합니다(Figure 59–60 프로파일 A).
+적용 방법26점 평균을 구해 모든 점에서 같은 값을 뺍니다.
+주의두 약점: (1) 이동한 선이 일부 점에서 신뢰구간 밖으로 나가 초기 분포 형상을 못 지킴, (2) ID에서 극단값을 뽑으면 이동으로 ID 응력이 평균 근처로 되돌아가 가장 극단적인 조건을 과소 표현 — ID 고응력이 TWC·파단 위험에 가장 크게 영향한다고 보므로 부적절(Figure 62–63). 그래서 §6.2.2의 상관 방식으로 대체했습니다. 26점 단순 평균 제거는 사다리꼴 적분 0을 항상 보장하지도 않습니다(오류 대장 #27, Codex 지적).
+Figure 61–63 사례
+그림 | 내용(원문 p.74–76) | 
+Fig.61 | 두 표본 프로파일 — 하나는 위로, 하나는 아래로 이동. 두 경우 모두 이동이 합리적으로 보이고 순영향은 거의 0이라고 원문이 설명(Fig.59–60의 profile A와는 다른 예) | 
+Fig.62 | ID의 분위(quantile) 범위를 0.70–0.95로 제한(높은 값만 추출)한 9개 축 WRS 프로파일. 프로파일이 상한 근처에 몰림. 표준정규 변수 범위를 70%–95%로 제한했다고 캡션에 적음 | 
+Fig.63 | 그 중 한 프로파일과 이동 결과 — 이동의 두 약점을 보여주는 예 |
+
+##### p71 |  | §6.2.2 | | 페이지 71 / 109 | | 원문 p.76–78 · PDF 91–93 | 
+# 상관계수를 평균 응력에 비례하게
+§6.2.2페이지 71 / 109원문 p.76–78 · PDF 91–93
+상관계수를 평균 응력에 비례하게아이디어프로파일을 만든 뒤 보정하는 대신 불필요한 제약을 완화합니다. 상관계수를 프로파일 전체에서 상수로 두지 않고 각 위치의 평균 응력값에 따라 바꿉니다. 응력이 음이 되면 상관도 음이 됩니다.
+WRS 평균이 높은 곳은 상관이 강함(양의 값에서 시작하면 양의 값들이 대체로 높아짐), 부호가 바뀌면 보상하는 큰 음의 값과 연결되어 적분이 0에 가까워짐
+평균이 0 근처인 점은 상관이 0에 가까워 응력 교차점이 불확실
+Table 6의 하삼각 행렬은 Table 5와 반대 양상: ID 샘플의 기여가 작고 때로는 음수이며 해당 위치 샘플의 역할이 더 큼
+결과가 약간 "wiggly"해지므로 비교용으로 쓴 0.8 대신 0.95 같은 높은 상관을 권고. 이동이 필요 없으므로 수용할 만한 절충
+RPV baseline 축응력 예 (Figure 64–65)
+Figure 64: 상관과 중요도 샘플링이 없을 때 250개 프로파일(굵은 선 3개 임의 선택). ±3σ를 덮고 예상대로 "choppy"
+Figure 65: 점 간 상관 99%(중요도 샘플링 없음). ID 부근에서 특히 매끄러움
+Table 6 수치 (원문 p.77, PDF 92)
+전사 방법원문 지면(이미지)을 450dpi로 확대해 Claude가 판독했습니다. 표시 자릿수는 원문 그대로(소수 셋째 자리, 끝 0 생략)입니다. 검산: Cholesky 하삼각 행렬의 각 행은 제곱합이 1이어야 하는데 26개 행 모두 1±0.0054 안에 있어 행 노름에 큰 모순은 없습니다. 다만 이 검사는 부호·열 위치·개별 수치 오류를 보증하지 못합니다(예: −0.5를 +0.5로 잘못 읽어도 제곱합은 같음). 개별 값은 지면과의 눈대조에 의존합니다(Codex 역검증 지적 반영). 일부 칸은 원문의 초록 표시선과 겹쳐 있어 앞뒤 행의 비(행마다 거의 일정)로 교차 확인했습니다.
+[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]첫 열(ID 샘플의 기여)에 음수(−0.5, −0.52, … −0.56)가 나타나고 대각(자기 위치) 값이 0.76~0.99로 큽니다. Table 5(상수 ρ=0.8)와 반대로 ID 샘플의 기여가 작거나 음수입니다. 이 행렬이 어떤 평균 WRS 프로파일과 어떤 상관 규칙으로 만들어졌는지는 원문이 밝히지 않아 확인 불가입니다(첫 열을 "평균 응력÷최대 양응력"으로 가정해 RPV baseline 축 평균(Table 13)과 비교했으나 맞지 않았고, 어떤 프로파일인지는 원문에 없음).
+
+##### p72 |  | §6.2.2 | | 페이지 72 / 109 | | 원문 p.79 · PDF 94 | 
+# 중요도 샘플링 적용 예
+§6.2.2페이지 72 / 109원문 p.79 · PDF 94
+중요도 샘플링 적용 예Figure 66: ID 응력을 상위 1% 값으로 제한하고 점 간 상관 99%로 샘플링한 RPV baseline 축 WRS
+두께 처음 60%는 모두 비교적 높고 마지막 40%는 낮은 뚜렷한 프로파일. 상관 값이 평형 조건을 지키면서 낮고 높은 샘플 값을 유지하게 한다는 설명
+
+##### p73 |  | §6.3 | | 페이지 73 / 109 | | 원문 p.79–80 · PDF 94–95 | 
+# WRS 샘플링이 가장 복잡한 입력인 이유
+§6.3페이지 73 / 109원문 p.79–80 · PDF 94–95
+WRS 샘플링이 가장 복잡한 입력인 이유제약 | 요약 | 
+(1) 공간 변동 | 두께 방향 26개 값의 평균, 각 값의 불확실성은 정규분포 | 
+(2) 독립 샘플링 부적절 | 점마다 갑작스런 변화(wiggly)가 비현실적 | 
+(3) 축 WRS 적분 0 | 축대칭 가정상 두께 전체 적분을 가능한 0에 가깝게 | 
+(4) 중요도 샘플링 | TWC·파단을 일으킬 극단 케이스를 더 많이 만들기 위해 필요 | 
+Cholesky 분해가 프로파일을 부드럽게 하고(제약 2), ID 응력과 연결해 ID 값에만 중요도 샘플링을 해도 전체에 영향(제약 4), 축 WRS는 상관 강도를 위치별 평균 WRS로 제어해 평형 조건 충족(제약 3)
+상관 정규화에는 프로파일의 최대 양의 응력을 기준으로 권장. ID 평균 응력은 0 근처에서 불안정(비율이 1보다 커짐)하고 양·음 ID를 따로 다뤄야 하기 때문
+사용자는 ID에서 관심 분위수(높은/낮은)를 선택. ID 평균 응력이 음이면 최대 양응력을 기준으로 쓰므로 상관이 뒤집혀 사용자가 지정한 중요도 샘플링을 반대로 해석: 낮은 분위수가 높은 ID 값을, 높은 분위수가 낮은 ID 값을 만듦
+방법은 정규분포를 요구. xLPR는 사용자 입력과 무관하게 각 점 분포를 평균·표준편차가 같은 정규분포로 바꿈 → 입력 워크북에서도 정규분포를 강제하기를 권장. 불확실성 분석 스프레드시트(UAS) 결과 정규분포가 거의 항상 최선이고 다른 경우도 정규로 충분
+
+##### p74 |  | §6.4 | | 페이지 74 / 109 | | 원문 p.80–85 · PDF 95–100 | 
+# 200개 프로파일 × 2집합과 검증(Figure 67–72)
+§6.4페이지 74 / 109원문 p.80–85 · PDF 95–100
+200개 프로파일 × 2집합과 검증(Figure 67–72)예제 대상xLPR Pilot Study의 surge line 축 WRS(Figure 67, 평균과 95% 신뢰구간). 평균의 두께 적분은 약 8 MPa(원문 표기). 일반 샘플링과 ID 상위값 중요도 샘플링, 각 200개씩 두 집합 생성, 상관계수 0.9.
+그림 | 내용 | 
+Fig.68 | 200개 프로파일: 중요도 샘플링 없음(위) / 있음(아래). 상관이 곡선을 매끄럽게 하되 과하게 강제하지 않음. 200개로 95% 구간을 덮음(이론상 10개쯤 밖에 나올 수 있으나 ID 이후엔 평활·적분 제약으로 자유도가 줄어 안 나옴). 중요도 샘플링은 ID에서 높은 값을 만들고 적분 0 유지를 위해 WRS가 음이 되는 구간에서는 낮은 값과 연결 | 
+Fig.69–70 | ID WRS의 CDF(200개). 중요도 샘플링은 샘플의 절반을 분포 상단에 집중. 가중치를 반영하면 초기 분포로 복원됨. 상단 꼬리를 촘촘히 덮어 더 정확 | 
+Fig.71 | 정규 확률 플롯. ID 분포 모수 μ=172.2258, φ=36.85661. 중요도 샘플링은 상위 분위수(2–4)에서도 선형을 유지, 평균·표준편차 추정(절편·기울기)이 상당히 양호 | 
+Fig.72 | 적분 절댓값의 CDF. 평균 프로파일 적분 이하인 비율: 일반 샘플링 약 80%, 중요도 샘플링 약 70%. 중요도 샘플링은 극단 상황이 많아 높고 낮은 값을 맞추기가 어려워 효율이 약간 떨어짐 | 
+결론이 방법은 제약을 고려하면 훌륭한 결과를 준다고 원문이 평가합니다. 상관 함수로 매끄럽고, 적분이 원래 평균 프로파일보다 대부분 0에 가까우며, ID 응력에 중요도 샘플링을 적용해 두께 전체에 전파할 수 있습니다. 문제 자체가 일부 요구사항이 서로 모순되는 ill-posed이므로 테스트로 품질을 평가했다고 설명합니다.
+80%/70%는 평형이 정확히 성립한 비율이 아닙니다. 예제 ID 분포의 표준편차 φ=36.85661은 예제의 값이며 VC Summer 표(Table 27)의 σ=50.00과 섞지 마세요.
+
+##### p75 |  | §7 | | 페이지 75 / 109 | | 원문 p.86 · PDF 101 | 
+# 입력표를 어떻게 읽나
+§7페이지 75 / 109원문 p.86 · PDF 101
+입력표를 어떻게 읽나열 | 의미 | 
+x/t | ID(0)에서 OD(1)까지 0.04 간격 26점 | 
+Stress(MPa) | 그 점의 평균 응력(Param1과 같음) | 
+Distribution Type | NORMAL | 
+Param1 | 평균(점마다 다름) | 
+Param2 | 표준편차(한 프로파일 안에서 모든 점이 같은 상수) | 
+머리말 | Sampling Loop: Epistemic · Correlation Type: Point-to-Point · Correlation Coef. 0.9(모든 표 권고값) | 
+SG·RPV·pump·VC Summer 케이스를 baseline·수리 케이스에 대해 축·후프 WRS와 필요한 불확실성 매개변수와 함께 정리. 불확실성 매개변수는 §5, §6에서 논의
+상관 매개변수는 모든 표에서 0.9를 권고
+Acceptance STP 검증 케이스 일부(VC Summer, North Anna, Ringhals, Tsuruga)도 수록
+완화 케이스 표는 여기 싣지 않고 Subversion 입력 DB의 일반 스프레드시트에 있음(현재 접근 가능 여부 확인 불가). 완화 케이스는 SG·RPV·pump 원 케이스와 같은 불확실성 매개변수를 가정
+
+##### p76 |  | §7.1 | | 페이지 76 / 109 | | 원문 p.87–92 · PDF 102–107 | 
+# SG 입력표 (Table 7–12)
+§7.1페이지 76 / 109원문 p.87–92 · PDF 102–107
+SG 입력표 (Table 7–12)[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]x/t=0 값은 정확히 ID 표면 값입니다. 예: SG 15% 축응력은 ID에서 −18.83 MPa이지만 x/t=0.04에서 106.60, 0.12에서 177.63 MPa입니다. 본문의 "ID 부근 인장"과 표의 표면 값은 구분하세요.
+
+##### p77 |  | §7.2 | | 페이지 77 / 109 | | 원문 p.93–98 · PDF 108–113 | 
+# RPV 입력표 (Table 13–18)
+§7.2페이지 77 / 109원문 p.93–98 · PDF 108–113
+RPV 입력표 (Table 13–18)[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]
+
+##### p78 |  | §7.3 | | 페이지 78 / 109 | | 원문 p.99–104 · PDF 114–119 | 
+# 펌프 입력표 (Table 19–24)
+§7.3페이지 78 / 109원문 p.99–104 · PDF 114–119
+펌프 입력표 (Table 19–24)[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]
+
+##### p79 |  | §7.4 | | 페이지 79 / 109 | | 원문 p.105–108 · PDF 120–123 | 
+# VC Summer 입력표 (Table 25–28)
+§7.4페이지 79 / 109원문 p.105–108 · PDF 120–123
+VC Summer 입력표 (Table 25–28)[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]두 순서 모두 표준편차는 축 50.00, 후프 67.00 MPa. 불확실성은 RPV 결과로 추정한다는 §3.6의 설명과 같은 맥락입니다. OI 케이스는 x/t=0에서 축 +172.20, 후프 +371.15 MPa로 ID 인장이 매우 큽니다.
+
+##### p80 |  | §7.5–7.7 | | 페이지 80 / 109 | | 원문 p.109–114 · PDF 124–129 | 
+# 검증용 발전소 입력표 (Table 29–34)
+§7.5–7.7페이지 80 / 109원문 p.109–114 · PDF 124–129
+검증용 발전소 입력표 (Table 29–34)[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님][큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]North Anna와 Ringhals의 두 표(Table 29–32)는 원문상 같은 수열입니다(이유는 원문만으로 확인 불가). Table 33(Tsuruga 축)은 PDF 128/인쇄 113, Table 34는 PDF 129/인쇄 114이고 목차의 Table 34 쪽수 113이 실제와 다릅니다. Tsuruga 표는 정수 값입니다(예: x/t=0에서 축 325, 후프 225).
+
+##### p81 |  | §8 | | 페이지 81 / 109 | | 원문 p.115 · PDF 130 | 
+# Version 3 개선 제안
+§8페이지 81 / 109원문 p.115 · PDF 130
+Version 3 개선 제안노즐에서 완화 WRS를 문헌 추정이 아니라 직접 계산
+축대칭 대신 3차원 효과 포함
+부록 A에서 제시한 방식으로 재료 물성 불확실성 해 개발
+수리 깊이 결과 추가
+완화 WRS 추정값을 최소 한 형상에 대해 검증(§3.7과 동일)
+safe end 길이 효과 파악·포함
+개선 제안이며 구현되었다는 뜻이 아닙니다. V3에서 구현되었는지는 이 보고서로 확인 불가.
+
+##### p82 |  | §9 | | 페이지 82 / 109 | | 원문 p.116 · PDF 131 | 
+# 요약
+§9페이지 82 / 109원문 p.116 · PDF 131
+요약xLPR 2.0용 WRS 자료를 정리: 세 DMW 부품(좁은 개선 SG, RPV 고온관, 펌프 pipe)
+baseline, 15%·50% 수리에 대해 DM 용접 중심의 26점 WRS
+완화 규칙(FSWOL, MSIP, Inlay)이 이 표를 보정하는 데 사용됨
+프레임워크 검증용 네 플랜트(VC Summer, Ringhals, North Anna, Tsuruga) WRS도 불확실성 정의와 함께 제공
+DMW 노즐 선정 근거, 형상과 용접 절차를 가능한 한 자세히 설명하고 가정을 명시. WRS 불확실성을 설명하는 새로운 절차를 개발
+xLPR 2.0 사용에 직접 관계없는 세부는 부록 A·C, 물성은 부록 B
+
+##### p83 |  | §10 | | 페이지 83 / 109 | | 원문 p.117–120 · PDF 132–135 | 
+# 참고문헌 목록 (원문 [1]–[46])
+§10페이지 83 / 109원문 p.117–120 · PDF 132–135
+참고문헌 목록 (원문 [1]–[46])전체 목록[1] Rathbun, H. J., Kerr, M., Fredette, L. F., Scott, P. M., Csontos, A. A., and Rudland, D. L., “NRC Welding Residual Stress Validation Program International Round Robin Program and Findings”, Proceedings of ASME Pressure Vessel Piping Conference, Paper number PVP2011-57642, Baltimore, Md, July, 2011 | 
+[2] Fredette, L. F., Kerr, M., Rathbun, H. J., and Broussard, J. E., “NRC/EPRI Welding Residual Stress Validation Program – Phase III Details and Findings”, Proceedings of ASME Pressure Vessel Piping Conference, Paper number PVP2011-57645, Baltimore, Md, July, 2011. | 
+[3] Rathbun, H. J., and Kerr, M, and Broussard, J. E., “Phase 4 Results Summary”, Presented at internal meeting of working group, April, 2009, Livermore CA. | 
+[4] Brust, F. W., and Stonesifer, R. B. “Effect of Weld Parameters on Residual stresses in BWR Piping Systems”, EPRI Report Number NP-1743, Electric Power Research Institute, Palo Alto, CA. | 
+[5] U.S. Nuclear Regulatory Commission, NUREG-2162, “Weld Residual Stress Finite Element Analysis Validation: Part 1 – Data Development Effort,” March 2014 (ML14087A118). | 
+[6] Electric Power Research Institute, MRP-316, “Materials Reliability Program: Finite Element Model Validation for Dissimilar Metal Butt Welds,” Report 1022861, December 2011. | 
+[7] Electric Power Research Institute, MRP-317, “Materials Reliability Program: Welding Residual Stress Dissimilar Metal Butt Weld Finite Element Modeling Handbook,” Report 1022862, December 2011. | 
+[8] Brust, F. W., Punch, E. F., and Kurth-Twombly, E., “Part Repair and Start/Stop Effects And Three Dimensional Residual Stress in Dissimilar Metal Welds”, Proceedings of ASME 2015 PVP conference, Paper PVP2015-45785, Boston MA, July 2015. | 
+[9] “Westinghouse Weld Residual Stress DMW Weld Selection – Final v3,” xLPR WRS Group White Paper, November 2012. | 
+[10]  Licensee Event Report 395-2000-008-01, “Reactor Coolant System Pressure Boundary Degradation,” March 15, 2001. | 
+[11] Westinghouse Letter MCOE-LTR-12-63, Rev. 0, “Reactor vessel outlet and inlet nozzle inputs in support of the Extremely Low Probability of Rupture (xLPR) committee weld residual stress evaluation,” December 2012. | 
+[12]  “27-1/2", 29", and 31" I.D. Welding Bevels,” Southwest Welding and Fabricating Co. Drawing 9392, Sheet 3G, Rev. 1. | 
+[13]  “Reactor Coolant Loop Piping Arrangement and Weld Details,” Exelon Byron Drawing M- 196, Sheet 1, Rev. L. | 
+[14]  “Reactor Coolant Loop Piping Arrangement,” Exelon Byron Drawing M-196, Sheet 2, Rev. G. | 
+[15]  “PQR P29974 Rev 0 – GTAW – Machine – Primary Head Nozzle to Safe End Narrow Groove Weld,” Byron/Braidwood Steam Generator Replacement Weld Procedure Specification (WPS) 28940, Rev. B, August 1996. | 
+[16]  “Primary Nozzle Safe End Narrow Groove Welding (Com Ed),” Byron/Braidwood Steam Generator Replacement Shop Instruction Sheet (SIS) 255767, Rev. A, September 1996. | 
+[17] E-mail from Guy DeBoo, Exelon, to John Broussard, Dominion Engineering, Inc., “TMI RCP Nozzles,” July 25, 2013.  This e-mail transmits scans of shop travelers describing the backweld for the RCP inlet nozzle DMW. | 
+[18]  “Babcock and Wilcox Weld Selection – Final v4,” xLPR WRS Group White Paper, November 2012. | 
+[19] Letter from William Farrell, Areva NP to Craig Harrington, EPRI, “Transmittal of Engineering Information Record for the xLPR Project.” February 19, 2013. | 
+[20] W. H. Bamford et al, Development of the Technical Basis for Plant Startup for the V. C. Summer Nuclear Plant. Proceedings of the ASME 2001 Pressure Vessels and Piping Conference, Atlanta, GA (2001). | 
+[21] Cheezem, C. B., and Phillips, M. K., “Reactor Vessel Nozzle to Pipe Welding V. C. Summer Nuclear Station”, Duke Engineering & Services report, Nov. 2000. | 
+[22] V C Summer Alpha Hot Leg Evaluation and Repair, Progress Update, December 20, 2000, Progress report to NRC RII. | 
+[23] Nancy Kyle, “xLPR Software Quality Assurance Plan,” February 2014. | 
+[24] F. W. Brust, P. Dong, J. Zhang, “Influence of Residual Stresses and Weld Repairs on Pipe Fracture,” Approximate Methods in the Design and Analysis of Pressure Vessels and Piping Components, W. J. Brees, Ed., PVP-Vol. 347, pp. 173-191, 1997. | 
+[25] Scott, P. M., Brust, F. W., Wilkowski, G. M., and others, “BINP Final Report: Appendix G: Evaluation of reactor Pressure Vessel (RPV) Nozzle to Hot-Leg Piping Bimetallic Weld Joint Integrity for the V. C. Summer Nuclear Power Plant,” NUREG/CR-6837, Vol. 2, June 2005. | 
+[26] xLPR Software Test Plan for Framework Acceptance, June, 2016. | 
+[27] Zhang, Wilkowski, Rudland, Brust, Chen, Mehta, and Summerville, “Weld-Overlay Analyses – An Investigation of the Effect of Weld Sequencing”, ASME PVP2008-61560, July, 2008, Chicago, Ill. – WRS solutions for spray line and effect of FSWOL sequencing. | 
+[28] Zhang, Brust, Wilkowski, Want, Tsai, Ranganath, Huang, and Liu “Weld Residual Stress Analysis and the Effects of Structural Overlay on Various Nuclear Power Plant Nozzles,” ASME PVP2010-25331, July, 2010, Bellevue, WA. | 
+[29] Zhang, Brust, Wilkowski, “Weld Residual Stress in Large Diameter Nuclear Nozzles”, ASME PVP2011-57959, July, 2011, Baltimore, MD. | 
+[30] Fredette, Scott, Csontos, Brust, “An Analytical Evaluation of the Full Structural Weld Overlay as a Stress Improving Mitigation Strategy to Prevent Primary Water Stress Corrosion Cracking in Pressurized Water Reactor Piping”, ASME PVP2009-77327, July, 2009, Prague, Czech Republic. | 
+[31] Fredette, Scott, Csontos, Brust, “An Analytical Evaluation of the Effect of Weld Sequencing on Residual Stresses Produced by Full Structural Weld Overlays on Pressurized Water Reactor Primary Cooling Piping”, ASME PVP2009-77329, July, 2009, Prague, Czech Republic. | 
+[32] Fredette, Scott, Csontos, Brust, “An Analytical Evaluation of the Effect of Weld Material Thickness on Residual Stresses Produced by Structural Weld Overlays on Pressurized Water Reactor Primary Cooling Piping”, ASME PVP2009-77330 July, 2009, Prague, Czech Republic. | 
+[33] Fredette, Scott, “Evaluation of Full Structural and Optimized Weld Overlays As Mitigation Strategies for Primary Water Stress Corrosion Cracking in Pressurized Water Reactors”, Draft NRC Report ML101260540, April 2010. | 
+[34] Killian, “Design of a Weld Overlay for a Large Bore Pipe Nozzle to Optimize Residual Stress”, ASME PVP2010-26100, July, 2010, Bellevue, WA. | 
+[35] Marlette, Freyer, Smith, Goodfellow, Voigt, Rishel, Pitoiset, Kingston, “Simulation and Measurement of through-wall residual stresses in a Structural Weld Overlaid Pressurizer Nozzle”, ASME PVP2010-25736, July, 2010, Bellevue, WA. | 
+[36] Ku, Lohse, Dijamco, Fourcade, Bax, Cofie, “Post Weld Overlay Residual Stresses in Dissimilar Metal Welds Considering Various Butt Weld and Weld Repair Fabrication Sequences”, ASME PVP2009-78091, July, 2009, Prague, Czech Republic. | 
+[37] Smith, Muransky, Goodfellow, Kingston, Freyer, Marlette, Wilkowski, Brust, Shim, “The Impact of Key Simulation Variables on Predicted Residual Stresses in Pressurizer Nozzle Dissimilar Metal Weld Mock-ups – Part 2 – Comparison of Simulation and Measurements”, ASME PVP2010-26025, July, 2010, Bellevue, WA. | 
+[38] Song, Kim, Chun, Oh, Gae, Lee, Park, “Effect of Adjacent Safe End to Piping Weld and Preemptive Overlay Repair on Residual Stresses on Nozzle to Safe End Weld”, ASME PVP2009-77376, July, 2009, Prague, Czech Republic. | 
+[39] Fredette, L. F., Scott, P. M., and Brust, F. W., “An Analytical Evaluation of the Efficacy of the Mechanical Stress Improvement Process in Pressurized Water Reactor Primary Cooling Piping, PVP2008-61484, Proc. 2008 ASME PVP conference, Chicago, Ill, July 2008. | 
+[40] Fredette, L., F., and Scott, P. M., “Evaluation of the Mechanical Stress Improvement Process (MSIP) as a Mitigation Strategy for Primary Water Stress Corrosion Cracking in Pressurized Water Reactors?, NRC report ML092990646, NRC Adams Repository, September, 2009. | 
+[41] Fredette, L. F., “Surge Nozzle NDE Specimen Mechanical Stress Improvement Analysis, NRC Report JCN N6319, PNNL Report PNNL-20549, July 2011. | 
+[42] Rudland, D. L., Brust, F. W., Zhang, T., Shim, DJ, and Wilkowski, G., “Evaluation of the Inlay Process as a Mitigation Strategy for Primary Water Stress Corrosion Cracking in Pressurized Water Reactors”, NRC report ML101260554, Available on the ADAMS repository. | 
+[43] xLPR-SDD-KPW V1.3, xLPR Software Design Description for the K Calculator for Circumferential and Axial Part-Wall Cracks, Version 1.3, October 2015. | 
+[44] Brust, F. W., and Scott, P. M., “Primary Water Stress Corrosion Cracking (PWSCC) in Bimetal Nuclear Pipe Welds Analysis Considerations”, Proc. 19th International Conference on Structural Mechanics in Reactor Technology (SMiRT 19), August 12-17, Toronto, Canada, 2007. | 
+[45] xLPR Subgroup WRS QA document, “xLPR Welding Residual Stress Group Modeling Practices”, August 12, 2013. | 
+[46] xLPR Uncertainty Subgroup, “A User’s Guide to the xLPR Uncertainty Characterization Spreadsheet”, xLPR-UNCERT (v1.0) July 29, 2013. | 
+[1]–[3] NRC/EPRI 라운드로빈, [5] NUREG-2162, [6]–[7] MRP-316/317, [27]–[38] overlay, [39]–[41] MSIP, [42] inlay, [43] xLPR-SDD-KPW V1.3(K 계산기) 등. 인용한 외부 자료는 이 정리에서 열어 보지 않았습니다.
+
+##### p84 |  | A-1–A-3 | | 페이지 84 / 109 | | 원문 p.A-1–A-3 · PDF 136–138 | 
+# 불확실성 원인과 현장 용접 순서 조사
+A-1–A-3페이지 84 / 109원문 p.A-1–A-3 · PDF 136–138
+불확실성 원인과 현장 용접 순서 조사불확실성 원인 목록은 §4와 같고 "기타 덜 중요한 것"을 포함
+경험과 NRC/EPRI 라운드로빈 민감도 연구에서 중요한 세 원인: (i) 패스 순서 (ii) 입열 (iii) 응력–변형률 물성
+입열·패스 순서 민감도 연구 전에 현장 관행을 확인. Inputs 그룹의 Guy DeBoo(Exelon)가 현장 용접 엔지니어·용접공에게 표준 관행을 물어봄
+결론 요약: WRS에 일부 영향을 주는 유일한 중요한 불확실성은 재료 불확실성이나, 방법의 불확실성과 시간 제약으로 xLPR 2.0에는 포함하지 않았고 제안 접근은 이후 버전에서 고려할 수 있음
+(i) 용접 순서 연구
+세 용접 엔지니어가 모두 순서가 무작위라고 답함(DMW 작업 시 서 있는 노즐 쪽에 따라 다름). 보통 금속을 가장 적층하기 쉽고 노즐·용기에 부딪히지 않는 쪽에서 시작하며 층마다 방향을 바꿀 수도 있음
+Emc2가 "left–right–center" 유형(Figure 75, 가장자리 먼저 후 중간 채움), NRC가 층별 교대 순서(Figure 74)를 수행. Figure 73: 모든 모델러가 baseline에서 쓴 butter→스테인리스 순서 적층
+RPV 출구 노즐만 이 민감도에 사용했고 얻은 불확실성 기여는 SG 입구·B&W 펌프에도 동일하게 적용된다고 가정
+Emc2는 baseline과 50% 수리를 Figure 75 순서로, NRC는 baseline만 Figure 74 순서로 수행
+세 순서 그림은 참고용이며 xLPR 2.0에서 해석한 실제 형상이 아님(각주)
+
+##### p85 |  | A-3–A-6 | | 페이지 85 / 109 | | 원문 p.A-3–A-6 · PDF 138–141 | 
+# 순서가 바뀌어도 축응력은 거의 안 변함
+A-3–A-6페이지 85 / 109원문 p.A-3–A-6 · PDF 138–141
+순서가 바뀌어도 축응력은 거의 안 변함그림 | 내용 | 결과 | 
+Fig.76 | Emc2 baseline: 새 순서(Fig.75) vs 원래(Fig.73) 축(위)·후프(아래) 중심선 | 축응력 거의 변화 없음, 후프는 일부 위치에서 최대 75 MPa 차이 | 
+Fig.77 | Emc2 50% 수리 | 축 변화 작음, 후프 최대 약 50 MPa 차이 | 
+Fig.78 | NRC baseline: 층별 교대 순서(Fig.74) | 원래 순서와 거의 차이 없음 | 
+결론고려한 순서 중 축응력은 순서에 따른 차이가 거의 없고, baseline 순서와 "가장자리 먼저 후 중간" 순서에서는 후프에 일부 차이가 있습니다. 이 불확실성 효과는 현재 WRS 불확실성에 포함하지 않았고, 축응력에서 무시할 수 있고 한 유형의 순서에서만 비교적 작은 영향이 있었기 때문에 정당하다고 봅니다. 다른 순서도 가능하나 이것들이 가장 가능성 높다고 판단.
+
+##### p86 |  | A-6–A-8 | | 페이지 86 / 109 | | 원문 p.A-6–A-8 · PDF 141–143 | 
+# 입열 ±10%의 영향
+A-6–A-8페이지 86 / 109원문 p.A-6–A-8 · PDF 141–143
+입열 ±10%의 영향WRS 그룹은 용융부 크기 ±10% 효과가 합리적 가정이라 판단 → 입열을 약 ±10% 변화. 용융부가 크면 냉각 중 더 많은 용접금속이 수축해 변형이 커지고 작으면 반대. 그러나 WRS에 큰 영향은 없었음. DEI가 수행
+baseline(Figure 79): 축·후프 모두 최대 차이 약 ±20 MPa
+50% 수리(Figure 80): 최대 차이 약 ±50 MPa
+불확실성 고려에서 무시할 만큼 작다고 판단
+
+##### p87 |  | A-8–A-11 | | 페이지 87 / 109 | | 원문 p.A-8–A-11 · PDF 143–146 | 
+# +2σ/−2σ 응력–변형률 곡선 추정 절차
+A-8–A-11페이지 87 / 109원문 p.A-8–A-11 · PDF 143–146
++2σ/−2σ 응력–변형률 곡선 추정 절차왜 필요한가재료 물성 민감도는 이전 용접 해석 결과[44]에서 인식론적 불확실성을 지배할 것으로 예상됩니다(A-8). DMW는 A508 페라이트 노즐 + 스테인리스(304/316) + Alloy 182/82 세 재료입니다. xLPR 재료 DB는 PIFRAC DB 등에서 만들어졌고 항복·극한 응력만 있어 Chaboche 상수 같은 이동 경화 매개변수의 통계 변동은 얻을 수 없고, 대부분 운전온도 약 300°C 시험이므로 용접 해석에 필요한 융점까지 응력–변형률 곡선의 통계가 부족합니다. 그래서 인식론적 불확실성으로 취급(자료가 더 있으면 크게 줄일 수 있음).
+절차 (A-9–A-11)
+(1) 세 재료 모두 300°C 항복·극한 응력의 통계 변동이 DB에 있음(예: 304SS). 304SS 권장 분포는 lognormal, A516과 Alloy 182/82는 uniform. A508은 DB에 자료 없음
+(2) A508, A516, Alloy 182/82, 304SS·316SS 등의 응력–변형률 곡선은 800–1000°C까지 있음. A508은 같은 소성 변형률에서 응력이 A516보다 약간 높음(Figure 81)
+(3) 현재 WRS 해석에 쓰는 물성을 평균에 가깝다고 가정. DB 통계로 300°C 항복 ±2σ(실제로는 97.7·2.3 백분위, 표준분포 가정)를 구하고, 경화 거동은 온도마다 같다고 가정, 항복/극한 비로 ±2σ 곡선 결정. 다른 온도는 알려진 재료의 항복 응력 온도 변화와 같다고 가정(Figure 82, A508 315.6°C)
+용접금속은 DB 통계가 as-welded 재료로 얻은 것이라 풀림 데이터로 보정해야 함. A508 통계는 자료가 없으므로 A516과 같다고 가정
+등방 경화만으로 ±2σ 곡선을 융점까지 해석(이동 경화 자료가 없으므로). RPV 중심선 WRS 불확실성은 Emc2와 NRC 두 모델러 결과로 결정
+핵심 가정 (이 평가에만 적용)
++2σ와 −2σ 자료에서 경화 거동이 같음
+풀림 용접 곡선을 as-welded 자료로 추정 가능
+A516 통계 = A508 통계
+이동 경화 효과 무시
+이 가정들은 재료 물성 불확실성 평가에만 쓰였고, 이 보고서의 WRS 자료(§3, §7) 전체에 적용한 가정이 아닙니다.
+주의: ±2σ를 97.7/2.3 백분위와 같다고 쓰지만(각주 "standard distribution" 가정) 입력 분포에는 uniform(A516, Alloy 182/82)과 lognormal(304SS)도 언급되어, 이 대응은 정규분포에서만 성립합니다.
+번호 없는 304SS 항복 통계표 (원문 A-9, PDF 144)
+무엇인가"Distribution to represent: Yield Strength / Recommendation: Lognormal" 예시입니다. 단위 표시는 없고(항복강도 자료), WRS 산포가 아니라 304SS 300°C 항복 자료의 분포 적합 결과입니다. Claude가 PDF 지면(130dpi)에서 옮겼고 기호 일부(Weibull λ, shift δ)는 인쇄가 작아 읽은 값입니다.
+분포 | 모수 1 | 모수 2 | 모수 3 | 
+Empirical (from Yield) | mean 1.718E+02 | std dev 4.122E+01 | n = 28 | 
+Normal | μ 1.718E+02 | σ 4.122E+01 |  | 
+Uniform | a 1.004E+02 | b 2.432E+02 |  | 
+Lognormal | μ 5.118E+00 | σ 2.366E-01 |  | 
+Weibull | k 4.548E+00 | λ 1.885E+02 |  | 
+LogN (quant) | μ 5.200E+00 | σ 2.415E-01 |  | 
+LogN (q + shift) | μ 3.342E+00 | σ FALSE(표시 그대로) | shift 1.298E+02 | 
+권고 분포는 Lognormal로 표시되어 있습니다. 모수의 정의·단위는 지면에 설명되지 않으므로 재료 입력값으로 확정하지 마세요(Codex 역검증이 누락으로 지적).
+
+##### p88 |  | A-11–A-14 | | 페이지 88 / 109 | | 원문 p.A-11–A-14 · PDF 146–149 | 
+# 풀림 보정: 0.73 계수와 4.3% 변형률
+A-11–A-14페이지 88 / 109원문 p.A-11–A-14 · PDF 146–149
+풀림 보정: 0.73 계수와 4.3% 변형률A508: ±2σ 곡선 Figure 83. 상온 자료에서 ±2σ 사이에 상당한 범위
+Alloy 182/82: 용접 모델링은 풀림 상태 재료 자료가 필요. 용접 중 재료가 용융·응고되며 응고에 의한 경화를 해석이 직접 모델하므로 as-welded 물성을 쓰면 용융·수축 pre-strain이 이중으로 반영되어 곡선을 과대평가
+DB의 Alloy 182/82 항복 응력은 as-welded 시편에서 얻었고, 온도 의존 자료는 풀림 상태로 얻어 평균에 가깝다고 가정
+Figure 84: 315°C(589 K)에서 as-welded 0.2% offset 항복 331.5 MPa, 풀림 0.2% offset 243 MPa. baseline에는 선형성 이탈로 정의한 항복 163 MPa 사용(두 정의는 WRS 예측에 거의 영향 없음). as-welded 시편의 소성 변형률(pre-strain)은 약 4.3%
+보정 (식은 원문 p.A-13–A-14)
+단계 | 내용 | 
+(1) 항복비 | 원문: "331.5/243 = 0.73". 300°C 부근에서 풀림/비풀림 보정계수. [검산] 331.5/243 = 1.364이고 0.73은 역수 243/331.5 = 0.733에 해당함(원문 표기 오류로 보이나 정정은 해석) | 
+(2) 다른 온도 | 풀림 자료의 4.3% 변형률 응력(0.2% 항복 추정)에 0.73을 곱해 풀림 항복 추정. 예: 상온에서 379 MPa × 0.73 = 278 MPa(원문). [검산] 379×0.73 = 276.7이고 역비 0.733을 쓰면 277.8로 278에 가까움 — 실제 사용 계수는 명시되지 않음 | 
+(3) 표준편차 | 풀림 자료의 항복/표준편차가 온도에 무관하게 일정하다고 가정. as-welded Alloy 182 315°C 표준편차 71.6 MPa → 상온 추정 77.2 MPa. 77.2를 재현하는 Y 선택과 "더하거나 빼서 ±2σ 곡선"의 1σ/2σ 구분이 원문에서 불명확해 수치만으로 재현은 확인 불가 |
+
+##### p89 |  | A-14 | | 페이지 89 / 109 | | 원문 p.A-14 · PDF 149 | 
+# 식 A-1 · 온도별 표준편차 추정 σ = σ<sub>300</sub> + σ<sub>300</sub>(Y − Y<sub>300</sub>)/Y<sub>300</sub>
+A-14페이지 89 / 109원문 p.A-14 · PDF 149
+식 A-1 · 온도별 표준편차 추정 σ = σ300 + σ300(Y − Y300)/Y300
+[식] \sigma=\sigma_{300}+\sigma_{300}\,\frac{Y-Y_{300}}{Y_{300}}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+σ | 관심 온도에서의 표준편차 추정, MPa | - | 
+σ300 | 300°C 표준편차(STD Dev 300C) | 300 = 300°C | 
+Y300 | 300°C의 0.2% offset 항복 | - | 
+Y | 관심 온도의 0.2% offset 항복 추정 | - | 
+왜 이 식을 쓰나풀림(annealed) 자료에서 항복/표준편차 비가 온도에 무관하게 일정하다고 가정해, 300°C 부근 통계만 있는 자료로 다른 온도의 ±2σ 응력–변형률 곡선을 만들기 위해서입니다(A-14).
+어떤 조건에 쓰나Alloy 182/82 재료 물성 민감도 평가(예: 315°C의 as-welded 표준편차 71.6 MPa → 상온 77.2 MPa). 이 평가에만 쓰이며 xLPR 2.0 WRS 자료에는 포함되지 않았습니다(§4).
+적용 방법구한 σ(예: 상온 77.2 MPa)를 그 온도의 응력–변형률 곡선에 더하거나 빼 +2σ, −2σ 곡선을 만듭니다.
+주의검산: 원문 수치(σ300=71.6, 풀림 Y=278, Y300=243)를 넣으면 71.6×(1+(278−243)/243)=81.9 MPa로 원문의 77.2와 맞지 않습니다. 77.2가 되려면 Y/Y300=1.078이어야 합니다. Y 정의·보정 순서가 불명확해 원문 수치만으로는 재현 불가입니다(오류 대장 #36). 또 "±2σ"를 97.7/2.3 백분위와 같게 쓰는 것은 정규분포에서만 성립합니다(#32).
+
+##### p90 |  | A-13–A-14 | | 페이지 90 / 109 | | 원문 p.A-13–A-14 · PDF 148–149 | 
+# 식 A-2 · 풀림/비풀림 보정계수 0.73
+A-13–A-14페이지 90 / 109원문 p.A-13–A-14 · PDF 148–149
+식 A-2 · 풀림/비풀림 보정계수 0.73
+[식] \frac{331.5}{243}=0.73\ (\text{원문 표기}),\qquad \frac{331.5}{243}=1.364,\ \ \frac{243}{331.5}=0.733
+[식] Y_{\text{annealed}}\approx 0.73\times Y_{4.3\%\ \text{strain}}:\quad 379\times0.73=278\ \text{MPa (원문)}
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+331.5 | 315°C(589 K) as-welded 0.2% offset 항복, MPa(Figure 84) | - | 
+243 | 같은 온도 풀림 0.2% offset 항복, MPa | - | 
+0.73 | 풀림/비풀림 항복비(보정계수) | - | 
+4.3% | as-welded 시편의 소성 변형률(pre-strain) | - | 
+왜 이 식을 쓰나용접 모델링에서는 응고 수축에 의한 경화를 해석이 직접 모델하므로, as-welded 물성을 그대로 쓰면 pre-strain이 이중으로 반영되어 곡선을 과대평가합니다. 그래서 풀림 상태로 보정합니다(A-12~A-13).
+어떤 조건에 쓰나300°C 이외의 온도에서 풀림 항복을 추정할 때(Alloy 182/82). 상온 예: 4.3% 변형률 응력 379 MPa → 278 MPa.
+적용 방법풀림 자료의 4.3% 변형률 응력(0.2% 항복의 추정)에 0.73을 곱합니다.
+주의산술 오류: 331.5/243은 1.364이고 0.73은 역수 243/331.5=0.733에 해당합니다(오류 대장 #34). 또 379×0.73=276.7이지 278이 아니며 역비 0.733을 쓰면 277.8로 278에 가깝습니다(#35). 실제로 쓴 계수는 원문에 명시되어 있지 않습니다(해석: 역수 오기 가능성). Fig.84는 도입에서 annealed, 캡션에서 non-annealed로 표기하고 항복 163/243/331.5를 섞어 씁니다(#33).
+
+##### p91 |  | A-15–A-20 | | 페이지 91 / 109 | | 원문 p.A-15–A-20 · PDF 150–155 | 
+# 재료 변동이 WRS에 주는 영향
+A-15–A-20페이지 91 / 109원문 p.A-15–A-20 · PDF 150–155
+재료 변동이 WRS에 주는 영향Figure 85: Alloy 182/82 ±2σ 곡선, Figure 86: 304SS(스테인리스는 자료가 충분해 추정이 단순). 온도별 색이 일관되지 않으니 그림을 주의해 읽어야 함
+결과: RPV 출구 노즐 형상으로 재료 변동 인식론적 불확실성을 정의하고, 같은 변동이 xLPR 2.0의 모든 노즐·배관에 적용된다고 가정. baseline(수리 없음)만 사용. Emc2와 NRC 두 해석
+Figure 87–89: Emc2 결과(용접 중심선, 노즐 근처, 스테인리스 쪽), 300°C·하중 없음에서 등방 경화. 2.3 백분위 곡선은 절대 크기가 가장 작고 97.7 백분위는 가장 큼(대부분. 일부 위치는 반대)
+Figure 90: Emc2와 NRC 평균 결과로 인식론적 불확실성을 정의
+원문 결론: 재료 물성 변동 불확실성이 중요할 수 있음. 위치·입열의 효과는 중요하지 않아 xLPR 2.0에서 무시
+원문은 본문 §4에서 이 재료 변동을 xLPR 2.0에 포함하지 않았다고 명시합니다. 부록 A는 방법과 예비 결과를 후속 버전을 위해 남긴 것입니다.
+그림에서 읽은 대략값(도상 근사)
+그림 | 내용 | 대략값(정확값 아님) | 
+Fig.87(A-17, Emc2 중심선, 등방) | 축/후프 평균 물성·97.7·2.3 입력 | 축 압축 최저 약 −300~−330 MPa(x/t≈.3), 외측 최고 약 550(97.7) 대 약 380(2.3) MPa; 후프 외측 최고 약 450 대 약 260 MPa (Claude가 Fig.87 지면 대조: 일치) | 
+Fig.88(A-18, 노즐 근처) | 축/후프 | 축 외측 최고 약 400~570, 후프 약 300~550 MPa | 
+Fig.89(A-19, SS 쪽) | 축/후프 | 축 외측 최고 약 350~550, 후프 약 270~450 MPa | 
+Fig.90(A-20, Emc2+NRC 평균) | 축/후프(97.7/기준/2.3) | 축 최소 약 −250/−210/−170, 외측 최고 약 480/370/310; 후프 최고 약 490/400/310 MPa | 
+위 값은 그림의 눈금에서 읽은 근삿값이며 원문에 수치표가 없습니다. Fig.88–90은 Claude가 지면과 대조하지 않았습니다(Codex 판독).
+Fig.84는 도입 문장에서는 풀림(annealed) 곡선, 캡션에서는 non-annealed로 표기되고 선형 이탈 항복 163, 0.2% offset 243(풀림), 331.5(as-welded)를 섞어 쓰므로 항복 정의와 자료 상태를 구분해야 합니다.
+
+##### p92 |  | B-1–B-4 | | 페이지 92 / 109 | | 원문 p.B-1–B-4 · PDF 156–159 | 
+# Alloy 82/182 물성 그림 (Figure 91–97)
+B-1–B-4페이지 92 / 109원문 p.B-1–B-4 · PDF 156–159
+Alloy 82/182 물성 그림 (Figure 91–97)출처수년에 걸쳐 여러 출처에서 모은 값이며 Emc2와 NRC가 관리하는 NRC 재료 DB에 있습니다(B-1).
+절 | 그림 | 내용 | 
+B.1 역학(등방 경화) | Fig.91 / 92 / 93 / 94 | 열팽창계수 / 탄성 물성 / 소성 물성(응력–변형률) / 크리프 물성 | 
+B.2 역학(이동 경화) | Fig.95 | 소성 물성(이동 경화) | 
+B.3 열 물성 | Fig.96 / 97 | 열전도도 / 비열 | 
+부록 B는 곡선 그림 중심이며 수치 표가 없습니다. 아래는 그림 눈금에서 읽은 대략값(도상 근사)입니다. Fig.91–92는 Claude가 지면과 대조해 일치를 확인했고, 나머지는 Codex 판독입니다.
+그림 | 축 | 대략값 | 
+Fig.91 CTE | T[K], CTE[K⁻¹] | 약 300 K에서 1.2×10⁻⁵ → 약 1400–1650 K에서 1.65×10⁻⁵로 상승 후 평탄 | 
+Fig.92 탄성 | T[K], E[MPa], ν | E: 실온 약 215,000 → 약 1000 K 약 110,000 → 약 1600 K 거의 0. ν: 약 0.29 → 0.40 증가 (E 축 단위는 MPa) | 
+Fig.93 소성 | true stress–plastic strain, 295/589/811/1033/1255 K | 소성변형률 0.20에서 295 K≈680, 589 K≈580, 811 K≈520, 1033 K≈360 MPa, 1255 K는 매우 낮음 | 
+Fig.94 크리프 | A, n vs T | A는 저온에서 거의 0, 약 850–900 K에서 약 1.2×10⁻²⁰ plateau(단위·지수 표시는 원문 확인 필요); n은 약 4에서 6.6 근처로 계단 증가 | 
+Fig.95 이동 경화 | yield[MPa], hardening modulus | yield: 약 300 K 205 → 600 K 160 → 800 K 170 → 1050 K 145 → 1250 K 40 → 1600 K 거의 0(비단조). 경화계수: 실온 약 11,500 → 1250 K 약 4,500 → 1600 K 거의 0 | 
+Fig.96 열전도도 | W/(mm·K) | 약 300 K 0.014 → 약 1650 K 0.038 → 약 2000 K 0.077 | 
+Fig.97 비열 | J/(g·K) | 약 300 K 0.40 → 600 K 0.52 → 1100 K 0.65 | 
+단위 환산: W/(mm·K)→W/(m·K)는 ×1000, J/(g·K)→J/(kg·K)는 ×1000. Chaboche 전체 계수는 그림만으로 확인 불가.
+
+##### p93 |  | B-5–B-8 | | 페이지 93 / 109 | | 원문 p.B-5–B-8 · PDF 160–163 | 
+# A508 cl 2 (저합금강) 물성 그림 (Figure 98–104)
+B-5–B-8페이지 93 / 109원문 p.B-5–B-8 · PDF 160–163
+A508 cl 2 (저합금강) 물성 그림 (Figure 98–104)절 | 그림 | 내용 | 
+B.4 역학(등방) | Fig.98 / 99 / 100 / 101 | 열팽창계수 / 탄성 물성 / 소성 물성 / 크리프 물성 | 
+B.5 역학(이동 경화) | Fig.102 | 소성 물성 | 
+B.6 열 물성 | Fig.103 / 104 | 열전도도 / 비열 | 
+그림에서 읽은 대략값(도상 근사, Codex 판독)
+그림 | 대략값(정확값 아님) | 
+Fig.98 CTE | 약 300–600 K 1.4×10⁻⁵, 약 900 K 1.5×10⁻⁵, 약 1250–1800 K 1.6×10⁻⁵ 평탄 | 
+Fig.99 탄성 | E: 약 300 K 210,000 → 약 1000 K 120,000 → 약 1500 K 거의 0 MPa. ν: 약 0.28 → 0.40, 중간 온도에 굴곡 | 
+Fig.100 소성 | 295 K 약 400→650, 589 K 약 350→600, 811 K 약 220→400, 900 K 약 100→180 MPa, 더 고온은 100 MPa 아래 | 
+Fig.101 크리프 | A: 약 900 K 부근부터 약 2.6×10⁻¹¹ plateau, n: 저온 약 4 → 중간 약 6 → 고온 약 5(Alloy와 A의 자릿수가 크게 다름) | 
+Fig.102 이동 경화 | yield: 실온 약 425 → 600 K 약 340 → 800 K 약 230 → 1000 K 약 65 → 1250 K 약 20 → 1400–1500 K 거의 0. 경화계수: 실온 약 15,500 → 600 K 약 19,000 → 800 K 약 13,500 → 1000 K 약 3,500 → 1250 K 약 1,500 | 
+Fig.103 열전도도 | 약 300 K 0.060 → 900 K 0.036–0.037 W/(mm·K) (감소) | 
+Fig.104 비열 | 약 300 K 0.42 → 약 1000 K 1.2의 뾰족한 peak → 약 1200 K 0.60 → 약 1800 K 0.85 J/(g·K). peak의 물리 원인은 본문이 설명하지 않음 |
+
+##### p94 |  | B-9–B-12 | | 페이지 94 / 109 | | 원문 p.B-9–B-12 · PDF 164–167 | 
+# CF8M 스테인리스강 물성 그림 (Figure 105–111)
+B-9–B-12페이지 94 / 109원문 p.B-9–B-12 · PDF 164–167
+CF8M 스테인리스강 물성 그림 (Figure 105–111)절 | 그림 | 내용 | 
+B.7 역학(등방) | Fig.105 / 106 / 107 / 108 | 열팽창계수 / 탄성 물성 / 소성 물성 / 크리프 물성 | 
+B.8 역학(이동 경화) | Fig.109 | 소성 물성 | 
+B.9 열 물성 | Fig.110 / 111 | 열전도도 / 비열 | 
+형상 소개에서 safe end는 CF8A(주조)로 적혔지만, 공통 스테인리스 물성은 CF8M으로 제공됩니다. 둘을 같은 확정 재료 명세로 묶지 마세요. 부록 A의 통계는 304SS 기준입니다.
+그림에서 읽은 대략값(도상 근사, Codex 판독)
+그림 | 대략값(정확값 아님) | 
+Fig.105 CTE | 약 300 K 1.45×10⁻⁵ → 약 1000 K 1.8×10⁻⁵ → 약 1700 K 2.0×10⁻⁵ K⁻¹ | 
+Fig.106 탄성 | E: 약 300 K 200,000 → 약 1000 K 145,000 → 약 1500 K 30,000 → 약 1700 K 거의 0 MPa. ν: 약 0.28 → 600–700 K 약 0.30 → 이후 약 0.25 plateau(단조 증가 아님) | 
+Fig.107 소성 | 294 K 약 200→(소성변형률 0.4에서) 820 MPa, 693 K 0.8에서 약 730, 923 K 0.8에서 약 480, 1089 K 약 250 plateau, 1366 K 약 40 MPa | 
+Fig.108 크리프 | A: 약 1000 K 직전까지 매우 작다가 약 4.7×10⁻¹⁵로 급증, n: 약 300 K 4 → 약 750 K 10 → 약 1000 K 6 | 
+Fig.109 이동 경화 | yield: 약 300 K 255 → 470 K 170 → 580 K 150 → 680~880 K 약 143(평탄) → 980 K 133 → 1080 K 110 → 1170 K 72 → 약 1270 K 마지막 점 약 35 MPa(1400 K 값은 그림에 없음). 경화계수: 300 K 약 5,000 → 580 K 약 5,750(최대) → 800 K 약 5,100 → 880 K 약 4,500 → 980 K 약 3,100 → 1070 K 수백 → 1170 K 이후 약 0(마지막 점 약 1270 K). Codex 역검증 지적 반영: 이전 판독(1000 K 4,500, 1400 K 0)은 오류였음 | 
+Fig.110 열전도도 | 약 300 K 0.0135 → 700 K 0.021 → 1200 K 0.033 → 2000 K 0.080 W/(mm·K) (4개 점) | 
+Fig.111 비열 | 약 360 K 0.34(첫 점) → 700 K 0.485 → 870 K 0.535 → 920 K 0.545 → 약 1300 K 마지막 점 0.55 J/(g·K). 1500 K 값은 그림에 없음(축 끝일 뿐, Codex 역검증 지적 반영) |
+
+##### p95 |  | C-1–C-2 | | 페이지 95 / 109 | | 원문 p.C-1–C-2 · PDF 168–169 | 
+# mock-up 프로그램: 14개 해석 + 2개 측정
+C-1–C-2페이지 95 / 109원문 p.C-1–C-2 · PDF 168–169
+mock-up 프로그램: 14개 해석 + 2개 측정전체 전략은 NRC/EPRI 용접 mock-up 프로그램 입력을 사용. 16개 자료 중 14개는 해석 결과, 2개는 측정
+WRS 측정은 xLPR 2.0에 명시적으로 쓰이지 않았음. 네 모델러의 WRS 경험이 mock-up 측정으로 검증됨. 대상 노즐 WRS는 측정되지 않아 측정은 포함하지 않았고, 향후 mock-up을 포함할 경우를 대비해 수록
+mock-up은 가압기 surge nozzle을 대표(안전 중요도·결함 평가 관련성). Figure 112. SA-105 노즐을 Alloy 82(AWS A5.14, ERNiCr-3, UNS N06082)로 buttering 후 PWHT하고 단조 F316L 스테인리스 safe end에 용접, 다시 TP316 14 in Sch.160 배관에 TP308 용접
+제작 4단계: 탄소강 노즐에 Alloy 82 137패스 butter → 열처리·가공 후 40패스 DMW → root 가공 후 27패스 360° 보충 용접(이 시점에 DMW 잔류응력 측정) → TP308 safe end–배관 용접 후 두 번째 측정
+컴퓨팅 효율은 좋아졌으나 보편 지침이 없어 해석자마다 가정·추정 기법이 달라 같은 용접에 큰 변동 발생
+NRC와 계약자가 WRS 해석 검증 프로그램을 완료 중(네 단계)
+쪽 참고핵심 요소: 입열, 용접 패스 수, 패스 순서, 재료 물성 통계 변동, 경화칙(등방·이동·혼합). 구형 플랜트는 앞의 세 가지 자료가 없는 경우가 많아 해석자 의존적("art form")이며, 경화칙 선택이 가장 큰 영향일 것으로 봅니다. 이론상 혼합 경화가 측정과 가장 잘 맞지만 혼합 경화에 필요한 물성은 확신하기 어렵다고 설명합니다(C-2).
+
+##### p96 |  | C-2–C-6 | | 페이지 96 / 109 | | 원문 p.C-2–C-6 · PDF 169–173 | 
+# 14 해석 + 2 측정 · 26점 고정 간격 · 분포 선택
+C-2–C-6페이지 96 / 109원문 p.C-2–C-6 · PDF 169–173
+14 해석 + 2 측정 · 26점 고정 간격 · 분포 선택초기에는 평균·표준편차를 단순히 계산했고 6점뿐인 자료의 표준편차 계산에 주저함이 있었음. 이 절은 샘플 자료를 제시하고 xLPR 2.0 불확실성 분석 프로토콜로 최선의 분포를 정하며 샘플링을 권고
+Figure 113: 14 해석 + deep hole drilling 측정 2개(iDHD #1, #2)의 축 WRS(원주 균열용). Figure 114: 후프. 특히 후프에서 불확실성이 큼. 등방 경화 예측은 비현실적으로 높은 경우가 많음(후프 약 800 MPa)이나 일단 모든 해석을 사용
+해석자마다 메쉬가 달라 같은 점에서 WRS를 계산하는 경우가 거의 없음 → 두께 방향 고정 간격(26점, 4% 증분)으로 WRS를 정함. 이 예시용 분석에서는 보간을 쓰지 않고 4% 증분 값 이하의 가장 가까운 점을 사용(그래서 WRS가 약간 이동한 것처럼 보임). 이 방식을 채택하면 보간 루틴이 필요(Figure 115). mock-up 2b에서는 모델러가 26점 결과를 제공
+분포 선택: xLPR 불확실성 분석 작업그룹의 방법(왜도·첨도를 계산해 이론 분포와 비교, 가장 가까운 분포족 선택, 모멘트 매칭으로 매개변수 결정). 결과는 Excel "uncertainty analysis protocol"(Subversion). Table 35(0–96%, 25행, 100% 행 없음): 거의 모든 구간이 uniform 권고. 본문 문장은 "64% 지점만 예외이나 거리가 비슷해 uniform으로 override"라고 쓰지만, 표에서 Normal로 권고된 행(빨간색)은 48%(평균 277.03, 표준편차 102.87 MPa)이고 64%는 Uniform으로 표시됨 — 본문 문장과 표가 어긋남(오류 대장 #38)
+예시 단계 | 내용 | 
+Table 35 | 프로토콜 워크시트 결과(각 구간별 분포·범위). 아래에 전 행 수록 | 
+Lower/Upper bound | μ∓√3σ (uniform 분포 모멘트 매칭, C-6) | 
+[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]Table 35는 Claude가 PDF 지면 이미지에서 옮겼습니다(추천 분포·하한·상한·범위 4개 열은 Codex 판독과 일치 확인, 왜도·첨도·분포 거리 열은 Claude 판독).
+
+##### p97 |  | C-6 | | 페이지 97 / 109 | | 원문 p.C-6 · PDF 173 | 
+# 식 C-0 · uniform 분포의 하한·상한 (모멘트 매칭)
+C-6페이지 97 / 109원문 p.C-6 · PDF 173
+식 C-0 · uniform 분포의 하한·상한 (모멘트 매칭)
+[식] \text{Lower bound}=\mu-\sqrt{3}\,\sigma,\qquad \text{Upper bound}=\mu+\sqrt{3}\,\sigma
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+μ, σ | 위치별 평균과 표준편차(모멘트 매칭) | - | 
+Lower/Upper bound | uniform 분포의 하한·상한(Table 35 열) | - | 
+왜 이 식을 쓰나Table 35 프로토콜 워크시트에서 uniform으로 권고된 구간의 범위(하한~상한)를 정하기 위해서입니다.
+어떤 조건에 쓰나불확실성 분석 프로토콜이 uniform을 권고한 두께 구간(Table 35의 대부분).
+적용 방법평균 ± √3σ로 하한·상한을 잡습니다. 폭 2√3σ는 표준편차 σ인 uniform 분포의 폭과 같습니다(수학적 검산).
+주의Table 35의 하한·상한 열이 이 식과 일치하는지는 일부 행만 대조했습니다(Claude 미전수 검산).
+
+##### p98 |  | C-6–C-11 | | 페이지 98 / 109 | | 원문 p.C-6–C-11 · PDF 173–178 | 
+# 정규 2σ 경계, 단계함수 범위, 일정 범위, 150% 범위, 상관 필요성
+C-6–C-11페이지 98 / 109원문 p.C-6–C-11 · PDF 173–178
+정규 2σ 경계, 단계함수 범위, 일정 범위, 150% 범위, 상관 필요성Figure 116: uniform 분포의 하한·상한·범위. 범위의 단계 함수 근사: 0–4% 두께는 범위 375 MPa, 4–40%는 550 MPa 등. "이제 정규분포를 사용"하는 초기 시도라는 설명
+Figure 117: 각 구간에 정규분포를 가정한 2σ 경계. 자료를 신뢰성 있게 둘러싸지만 25개의 인식론적 변수가 필요. 2σ·3σ 모두에서 결론 영향이 작음
+단계 함수의 4개 구간별 표준편차만 계산해 평균 ± 2배 표준편차로 경계 생성(Figure 118): 4개의 인식론적 변수만 필요(xLPR 1.0은 2개). uniform 경계에 가까울 확률이 정규 경계보다 훨씬 큼
+극단: 모든 점에 일정한 범위(4개 단계 표준편차의 가중 평균)를 사용(Figure 119) → 경계 차이가 크지 않고 인식론적 변수는 1개
+보수적으로 uniform 범위를 150%로 크게 잡은 예(Figure 120): 모든 자료가 경계 안에 들어감
+상관: 단일 범위로 점마다 독립 샘플링하면 UWFM K 계산에서 각 시뮬레이션이 평균에 가까운 값을 보게 됨. 점 간 완전 상관이면 평균 곡선이 ID 응력 하나로만 이동하는 형태가 되어 모든 곡선이 같은 모양일 때만 수용 가능(Figure 121 후프 선 그림) → 점 사이 상관 함수가 필요하다고 판단
+Figure 116 단계 범위 네 구간 (원문 C-7, PDF 174, 그림 눈금에서 읽은 도상 근사)
+두께 구간 | 범위(MPa) | 
+0–4% | 약 375 | 
+4–40% | 약 550 | 
+40–60% | 약 350 | 
+60–100% | 약 450 | 
+원문 본문(C-6)은 앞 두 구간만 수치로 적고, 뒤 두 구간 값은 그림에만 있어 위 값은 근삿값입니다. 경계 포함 여부와 실제 구현은 확인 불가. 이 단계 범위로 네 개의 표준편차(인식론적 변수 4개, xLPR 1.0은 2개)를 만듭니다.
+
+##### p99 |  | C-12–C-13 | | 페이지 99 / 109 | | 원문 p.C-12–C-13 · PDF 179–180 | 
+# 7단계 절차와 예산 제약, 대안 전략
+C-12–C-13페이지 99 / 109원문 p.C-12–C-13 · PDF 179–180
+7단계 절차와 예산 제약, 대안 전략xLPR 2.0 WRS 정의 7단계 (C-12)
+단계 | 내용 | 
+1 | 두께 방향 자료점 수 설정(최소 10, 최대 26) | 
+2 | 각 점의 WRS 크기를 주는 자료/해석 파악. 축 WRS(원주 균열)와 후프(축 균열) 모두 | 
+3 | 자료로 각 점의 평균 WRS 계산(자료가 없으면 전문가 출처 지정) | 
+4 | 평균 주위 자료 분포와 매개변수로 불확실성 정의(불확실성 분석 프로토콜 스프레드시트 권장). 모든 점에서 같은 불확실성도 타당 | 
+5 | 점 간 상관계수 제시(전문가 의견 기반 가능). 상관계수가 1.0이면 ID 응력이 유일한 확률변수 | 
+6 | UWFM K 계산의 선형 보간에 쓸 각 점의 WRS 크기를 샘플링 | 
+7 | 결과를 WRS 입력 워크시트에 입력 | 
+초기 방법은 NRC 용접 mock-up(12–15 해석 + 2 실험)에 기반. 14–17개 결과가 있으면 각 점의 불확실성을 합리적으로 추정 가능
+xLPR 2.0은 원래 여러 형상, 한두 개 수리, inlay·onlay 완화를 여섯 독립 해석자가 해석하려 했으나 예산 때문에 축소. 3개 baseline 형상은 최대 3개 해석, 대부분 수리 케이스는 2개 해석뿐 → 평균과 표준편차 추정이 매우 불확실하고 26점 각각에서 그러함. 전문가 판단에 의한 불확실성 계수 도입은 또 다른 추정 불가한 인식론적 불확실성을 만듦
+대안 전략을 제안·시험·구현: 가용 정보만으로 일관된 점 불확실성 추정. 최대 엔트로피 분포(MED)로 각 점 PDF 추정. 모멘트만 사용하며 하한·상한이 필요. 하한·상한은 각 점 WRS 표준편차에 6차 다항식 응답면을 적합해 결정. 응답면으로 불확실성을 두께 전체에 퍼뜨려 형상을 유지하되 두 해석이 일치해도 단일 점을 강제하지 않음
+MED와 정규가 넓은 범위(예: 4σ)에서 같으면 정규를 사용. 다르면 해석에서 얻은 한계로 절단 정규분포 정의
+마지막 점들: 점 간 상관과 축대칭 해법. 축 응력은 두께 방향 적분 0이어야 하며(후프는 아님) 매우 높은 상관계수와 결합되면 각 점 정보와 무관하게 WRS 불확실성이 줄어듦. 상관계수 1.0이면 불확실성이 0
+본문과의 관계 주의: C.4는 이 전략이 "제안·시험·구현되었다"고 쓰지만, §5(p.66–69)는 최종 구현을 "가중 평균 + 상수 표준편차의 정규분포"로 요약하고 대안은 부록 C에 있다고 밝힙니다. 부록 C의 최대 엔트로피·절단 정규·6차 다항식 방법을 본문의 최종 사양과 같은 수준으로 섞어 쓰지 마세요. 어느 것이 최종 코드에 구현되었는지는 이 PDF만으로 완전히 확정할 수 없습니다.
+
+##### p100 |  | C-13–C-16 | | 페이지 100 / 109 | | 원문 p.C-13–C-16 · PDF 180–183 | 
+# 최대 엔트로피 분포 유도 (식 1–10)
+C-13–C-16페이지 100 / 109원문 p.C-13–C-16 · PDF 180–183
+최대 엔트로피 분포 유도 (식 1–10)적은 수의 자료점(또는 2–3개 모멘트)에 분포를 적합하는 것은 중요한 불확실성 원인. 분포 형태를 가정하면 조건부 확률이 1.0이라고 암묵적으로 가정하는 것이며 인식론적 불확실성을 정량하기 어려움
+Jaynes 원리: 편견이 가장 적은 확률분포는 자료에서 나오는 제약 아래 엔트로피를 최대화하는 분포("그 외 가정은 우리가 가질 수 없는 정보를 임의로 가정하는 것")
+연속 확률변수로 제한(이산도 평행하게 전개 가능). 모멘트는 최대 6개
+식 7이 최대 엔트로피 밀도함수의 해석 형태. 구속조건으로 λk 결정(식 3 대입 후 e−λ0를 곱하고 로그를 취해 식 8, 미분해 식 9–10으로 m개 연립 방정식), λ1..m이 정해지면 식 8로 λ0
+수치 최적화로 직접 풀 수도 있음(Dakota 매뉴얼 등 참고)
+식 번호는 부록 C의 Equation 1–10입니다. 이 식들은 본문 §5–6의 최종 WRS 샘플링에 직접 쓰이지 않고 "대안·개발 과정"으로 소개됩니다.
+
+##### p101 |  | C-14 | | 페이지 101 / 109 | | 원문 p.C-14 · PDF 181 | 
+# 식 C-1 · 엔트로피 S[f(x)]
+C-14페이지 101 / 109원문 p.C-14 · PDF 181
+식 C-1 · 엔트로피 S[f(x)]
+[식] S[f(x)]=-\int_{\mathbb{R}} f(x)\ln f(x)\,dx
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+f(x) | 확률밀도함수 | - | 
+S | 엔트로피 = 전체 x 범위의 불확실성 척도 | - | 
+ℝ | 실수 전체 구간 | - | 
+왜 이 식을 쓰나자료가 몇 개의 모멘트로만 주어질 때 분포 형태를 임의로 가정하지 않고(조건부 확률 1.0 가정을 피하고) 가장 편견이 적은 분포를 정하기 위해서입니다. Jaynes 원리: 제약 아래 엔트로피를 최대화하는 분포(C-13~C-14).
+어떤 조건에 쓰나연속 확률변수(이산은 적분을 합으로 바꿔 평행 전개 가능). 모멘트는 최대 6개까지 구한 경우.
+적용 방법불확실성이 클수록 엔트로피가 큽니다. 이 값을 식 C-2~C-4의 최적화 목적함수로 씁니다.
+주의부록 C의 이 방법은 개발 과정·대안으로 소개되며 본문 §5의 최종 샘플링(정규·가중 평균)에 직접 쓰이지 않습니다(오류 대장 #40).
+이 쪽 각주 문헌(원문 C-14, §10 [1]–[46]과 별개)
+Abramson, N. (1963) Information Theory and Coding, McGraw-Hill, New York.
+Jones, D.S. (1979) Elementary Information Theory, Clarendon Press, Oxford.
+
+##### p102 |  | C-14 | | 페이지 102 / 109 | | 원문 p.C-14 · PDF 181 | 
+# 식 C-2~C-4 · 제약 아래 엔트로피 최대화
+C-14페이지 102 / 109원문 p.C-14 · PDF 181
+식 C-2~C-4 · 제약 아래 엔트로피 최대화
+[식] \max_{f}\ S[f(x)]=-\int_{\mathbb{R}} f(x)\ln f(x)\,dx\quad(\text{식 2})
+[식] \int_{\mathbb{R}} f(x)\,dx=1.0\quad(\text{식 3}),\qquad \int_{\mathbb{R}} x^{k} f(x)\,dx=m_k\quad(\text{식 4})
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+mk | 자료에서 구한 k차 모멘트(최대 6개) | k = 모멘트 차수 | 
+식 3 | 확률밀도의 적분 = 1 | - | 
+식 4 | xkf(x)의 적분 = mk | - | 
+왜 이 식을 쓰나엔트로피를 키우되 자료가 주는 정보(모멘트)만 만족하도록 문제를 수학적으로 세우기 위해서입니다.
+어떤 조건에 쓰나모멘트가 확정된 경우(최대 6개). 하한·상한이 필요합니다.
+적용 방법식 5의 라그랑주 승수법으로 풉니다. 수치 최적화로 직접 풀 수도 있습니다(Dakota 매뉴얼 등).
+주의원문 식 4의 우변 첨자가 대문자 mK로 인쇄되어 있어 mk와 같은 값으로 읽었습니다.
+
+##### p103 |  | C-15 | | 페이지 103 / 109 | | 원문 p.C-15 · PDF 182 | 
+# 식 C-5 · 라그랑주 승수를 넣은 수정 엔트로피
+C-15페이지 103 / 109원문 p.C-15 · PDF 182
+식 C-5 · 라그랑주 승수를 넣은 수정 엔트로피
+[식] \bar S=S+(\lambda_0+1)\Big[\int_{\mathbb{R}} f(x)\,dx-1\Big]+\sum_{i=1}^{N}\lambda_i\Big[\int_{\mathbb{R}} x^{i}f(x)\,dx-m_i\Big]
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+S̄ | 수정(보강) 엔트로피 | - | 
+λ0, λi | 라그랑주 승수 | 0 = 정규화 제약, i = i차 모멘트 제약 | 
+N | 사용하는 모멘트 개수 | - | 
+왜 이 식을 쓰나제약 두 가지(식 3, 4)를 목적함수에 포함시켜 제약 없는 극값 문제로 바꾸기 위해서입니다.
+어떤 조건에 쓰나식 2–4 문제.
+적용 방법식 5를 f(x)로 미분하면 식 6이 됩니다.
+주의원문은 "(λ0+1)"로 인쇄합니다.
+이 쪽 각주 문헌(원문 C-15)
+Siddall, J.N. (1982) Optimal Engineering Design: Principles and Applications, Marcel Dekker, New York.
+Adams, B.M. et al., Dakota, A Multilevel Parallel Object-Oriented Framework for Design Optimization, Parameter Estimation, Uncertainty Quantification, and Sensitivity Analysis, Version 5.3.1+ Theory Manual, SAND2011-9106, May 2013.
+
+##### p104 |  | C-15 | | 페이지 104 / 109 | | 원문 p.C-15 · PDF 182 | 
+# 식 C-6~C-7 · 최대 엔트로피 밀도함수의 해석 형태
+C-15페이지 104 / 109원문 p.C-15 · PDF 182
+식 C-6~C-7 · 최대 엔트로피 밀도함수의 해석 형태
+[식] \int_{\mathbb{R}}\Big\{-\ln[f(x)]+\lambda_0+\sum_{k=1}^{N}\lambda_k x^{k}\Big\}dx=0\quad(\text{식 6})
+[식] f(x)=e^{\lambda_0+\sum_{k=1}^{N}\lambda_k x^{k}}\quad(\text{식 7})
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+f(x) | 최대 엔트로피 분포(MED)의 밀도함수 | - | 
+λk | 모멘트 제약에서 정해지는 계수 | k = 1…N | 
+왜 이 식을 쓰나식 5를 f(x)로 미분해 극값 조건을 얻고, 이를 만족하는 밀도함수의 닫힌 형태를 얻기 위해서입니다. 원문은 식 7을 "analytic form for the maximum entropy density function"이라고 부릅니다.
+어떤 조건에 쓰나식 2–4 제약 아래의 최대 엔트로피 문제.
+적용 방법피적분함수가 0이라는 조건에서 식 7을 얻습니다. 이후 제약으로 λk를 정합니다(식 8–10).
+주의"적분이 0이려면 피적분함수가 0이어야 한다"는 설명은 일반적으로는 성립하지 않고 변분의 임의성 조건을 생략한 것입니다(오류 대장 #41, Codex 지적). 식 7 자체와 설명의 결함을 구분하세요.
+
+##### p105 |  | C-15–C-16 | | 페이지 105 / 109 | | 원문 p.C-15–C-16 · PDF 182–183 | 
+# 식 C-8~C-10 · 승수 λ를 정하는 연립 방정식
+C-15–C-16페이지 105 / 109원문 p.C-15–C-16 · PDF 182–183
+식 C-8~C-10 · 승수 λ를 정하는 연립 방정식
+[식] \lambda_0=-\log_e\!\Big[\int_{\mathbb{R}} e^{\sum_{i=1}^{m}\lambda_i x^{i}}dx\Big]\quad(\text{식 8})
+[식] \frac{\partial\lambda_0}{\partial\lambda_i}=-\Big[\int_{\mathbb{R}} x^{i}e^{\lambda_0+\sum_{i=1}^{m}\lambda_i x^{i}}dx\Big]\quad(\text{식 9}),\qquad \frac{\partial\lambda_0}{\partial\lambda_i}=-m_i\quad(\text{식 10})
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+λ0 | 정규화 상수(식 3으로 정해짐) | 0 = 정규화 항 | 
+λ1..m | 모멘트 제약 승수 | m = 모멘트 수 | 
+mi | i차 모멘트 | - | 
+왜 이 식을 쓰나식 7의 계수 λk를 구속조건에서 정하기 위해서입니다. 식 7을 식 3에 대입하고 e−λ0를 곱해 로그를 취하면 식 8이 나옵니다.
+어떤 조건에 쓰나모멘트 m1..m이 주어졌을 때.
+적용 방법식 8을 λi로 미분해 식 9, 식 4와 식 7으로 식 10을 얻으면 m개 연립방정식으로 λ1…λm을 구하고, 이를 식 8에 넣어 λ0를 구합니다.
+주의C.8에서는 지수항 문제 때문에 x 범위를 [0,1]로 재정규화하며 CDF가 하한·상한에 따라 달라집니다(예: 항복 150±15 MPa, ±8σ에서는 정규와 동일, ±2σ에서는 달라짐, Figure 122–124). 변환 설명(Dirac 함수 필요)은 적용 조건이 부족합니다(#42).
+
+##### p106 |  | C-16–C-18 | | 페이지 106 / 109 | | 원문 p.C-16–C-18 · PDF 183–185 | 
+# 항복 강도 예: 정규 vs MED vs 절단 정규
+C-16–C-18페이지 106 / 109원문 p.C-16–C-18 · PDF 183–185
+항복 강도 예: 정규 vs MED vs 절단 정규지수항 문제 때문에 x 범위를 [0, 1]로 재정규화. 구간 [−∞, ∞]를 [0, 1]로 바꾸는 것은 Dirac 함수 없이는 불가능하며 확률 정보를 주지 못함 [주의: 원문의 주장입니다. 일반 수학 명제로는 성립하지 않습니다 — 예: y=1/2+arctan(x)/π는 실수축을 (0,1)로 일대일 대응시킵니다. 실제 쟁점은 변환 자체가 아니라 유한 경계를 정해 MED를 맞출 때 CDF가 경계에 따라 달라진다는 점입니다]. 재정규화 때문에 CDF가 하한·상한에 따라 달라짐
+Figure 122: 항복 강도 정규분포(평균 150 MPa, 표준편차 15 MPa)에서 하한·상한을 8σ(범위 [30, 270])로 둘 때 정규와 MED가 동일
+Figure 123: 범위를 [120, 180](±2σ)로 두면 MED가 달라짐
+MED가 단순 절단 정규일 것으로 생각할 수 있으나 Figure 124에서 보듯 샘플링 방식이 전혀 같지 않음. 변수 한계가 평균에서 4σ 이내일 때 정규분포를 가정하면 이 가정에 의해 편향된 샘플링 절차가 도입됨
+
+##### p107 |  | C-18–C-20 | | 페이지 107 / 109 | | 원문 p.C-18–C-20 · PDF 185–187 | 
+# 모든 26점에 같은 상관계수를 쓰는 대안
+C-18–C-20페이지 107 / 109원문 p.C-18–C-20 · PDF 185–187
+모든 26점에 같은 상관계수를 쓰는 대안점 간 상관은 계산 효율과 FE 해석 형상 유지를 위해 선택. 대안: 같은 철학으로 26점 모두가 같은 상관계수로 상관되도록 요구. 이 경우 입력 상관계수에 대해 Cholesky 분해를 한 번만 계산하면 됨
+본문 §6.1의 2×2 Cholesky 설명과 같은 식이 반복(z₃=ρz₁+√(1−ρ²)z₂, Z*=LZ). Table 5는 ρ=0.8, Table 36은 ρ=0.95의 26×26 하삼각 행렬(0.95는 반올림으로 첫 열에서 1로 표시)
+N개 상관 변수 일반식: 상관행렬 Γ는 I≠J이면 ρ, I=J이면 1. C CT=Γ가 되도록 C를 찾고 상관 표본 Y = μ + C Z
+원문 PDF 텍스트에서 이 쪽의 일부 수식·문장이 겹쳐 인쇄된 부분(Table 5 참조 문장 등)이 있어 PDF 지면으로 확인해야 합니다. 원문 C-19 문장에는 "Table 5는 상관계수 0.80, 0.95는 Table 36"이라고 적혀 있습니다.
+Table 36 수치(ρ=0.95)
+표기 주의원문 Table 36은 ρ=0.95의 첫 열을 반올림해 1로 표시했다고 캡션에 밝힙니다. 아래는 같은 재귀로 계산한 값으로 첫 열은 실제 0.95입니다. 원문의 표시 "1"을 실제 Cholesky 계수로 사용하면 다른 행렬이 됩니다.
+[큰 표 생략: 입력표/행렬/참고문헌 — 별도 전수 검증 완료 대상 아님]원문의 마지막 식 Y=μ+CZ에는 표준편차 배율이 없어, 일반 응력 표본식으로는 본문(p.71)의 μ+φz 변환을 함께 써야 합니다. 또 "ρ<0인 상관행렬은 적절히 정의할 수 없다"는 C-20 문장은 상수 상관행렬에서 N=26일 때 −1/25<ρ<1이면 양의정부호이므로 과도한 일반화입니다(고유값 1−ρ, 1+(N−1)ρ 검산).
+
+##### p108 |  | C-19 | | 페이지 108 / 109 | | 원문 p.C-19 · PDF 186 | 
+# 식 C-11 · 상수 상관행렬의 분해와 상관 표본 Y = μ + C·Z
+C-19페이지 108 / 109원문 p.C-19 · PDF 186
+식 C-11 · 상수 상관행렬의 분해와 상관 표본 Y = μ + C·Z
+[식] \bar C\,\bar C^{T}=\bar\Gamma,\qquad \vec Y=\vec\mu+\bar C\,\vec Z
+기호와 하첨자
+기호 | 의미 | 하첨자 읽는 법 | 
+Γ̄ | 상관행렬: I=J이면 1, I≠J이면 ρ | I, J = 점 번호 | 
+C̄ | C̄C̄ᵀ=Γ̄를 만족하는 하삼각 행렬(Cholesky) | - | 
+Z | 독립 표준정규 벡터 | - | 
+μ | 평균 벡터 | - | 
+Y | 상관된 표본 | - | 
+왜 이 식을 쓰나26점 모두에 같은 상관계수를 쓰면 입력 ρ에 대해 Cholesky 분해를 한 번만 계산하면 되기 때문입니다(C.9 대안).
+어떤 조건에 쓰나모든 점 쌍에 같은 ρ를 쓰는 경우. Table 5(ρ=0.80), Table 36(ρ=0.95)이 이 경우의 26×26 행렬입니다.
+적용 방법C̄를 구한 뒤 Z를 곱하고 μ를 더해 상관 표본을 만듭니다.
+주의식 Y=μ+CZ에는 표준편차 배율이 없으므로 응력 표본으로 쓰려면 본문(p.71)의 μ+φz 변환을 함께 써야 합니다(오류 대장 #45). "ρ<0인 상관행렬은 정의 불가"라는 C-20 문장은 상수 상관행렬에서 N=26이면 −1/25<ρ<1이 양의정부호이므로 과도합니다(#46, 고유값 1−ρ, 1+(N−1)ρ로 검산).
+
+##### p109 |  | 오류 대장 | | 페이지 109 / 109 | | 원문 p.전체 · PDF 1–187 | 
+# 원문 내부의 불일치·모호·오류 47건 (쪽: PDF/인쇄)
+오류 대장페이지 109 / 109원문 p.전체 · PDF 1–187
+원문 내부의 불일치·모호·오류 47건 (쪽: PDF/인쇄)읽는 법원문을 고친 정답이 아니라 "원문에 이렇게 적혀 있다"는 기록입니다. 쪽은 PDF/인쇄 쪽(부록은 A-n 등)이며, 마지막 열은 Claude가 PDF 지면·텍스트·계산으로 직접 확인했는지 표시합니다.
+# | 쪽 | 내용 | 발표 시 처리 | 확인 | 
+1 | 3/ii; 37–39/22–24 | QA 고지("SQA 계획에 따라 작성되지 않음")와 §2.5 설계 검증의 범위가 다름 | 두 진술 모두 표시, 소프트웨어 QA 인증으로 확대 금지 | Codex 지적(Claude 미대조) | 
+2 | 4/iii | 2021 행정 갱신이 있으나 기술판 버전·발행일은 2016 그대로 | 2016 기술판 / 2021 공개 행정 변경 구분 | Codex 지적(Claude 미대조) | 
+3 | 9/viii; 129/114 | 표 목록은 Table 34를 113쪽으로 표기하나 실제는 114쪽(PDF 129) | 실제 쪽 사용 | Claude+Codex | 
+4 | 21,23/6,8; 20,42/5,27 | 운전 위치 325°C와 공통 추출 300°C가 다름(각주로 인정) | 온도 가정을 명시 | Codex 지적(Claude 미대조) | 
+5 | 23/8; 29/14; 36/21 | SG 재료 소개(Alloy 82/182)와 제작 절(Alloy 52), 공통 물성(82/182) 표기 차이 | 실제 재료명·대용 물성·판단 구분 | Codex 지적(Claude 미대조) | 
+6 | 21,24/6,9; A-9,A-16; B-9 | CF8A / CF8M / 304·316SS 표기가 목적별로 다름 | 일괄 치환 금지 | Codex 지적(Claude 미대조) | 
+7 | 25/10; 114–119/99–104 | pump를 Version 3 고려 대상이라 쓰면서 Version 2 입력표(Table 19–24)를 제공 | 개발 시점 문구로 두고 최종 제공표 존재를 명시 | Codex 지적(Claude 미대조) | 
+8 | 27/12; 132–133/117–118 | AREVA 서한을 [15]로 지칭하나 [15]는 SG WPS, AREVA 서한은 [19] | 원문 번호 오류 표시 | Claude+Codex | 
+9 | 32/17; 132/117 | RPV 입력 [10]을 Westinghouse letter로 기술하나 [10]은 LER, letter는 [11] | 문헌명·번호 병기 | Claude+Codex | 
+10 | 34–35/19–20; 133/118 | pump 입력 [18]/[19]/[17] 번호가 backweld 설명과 맞지 않음 | 목록 제목 기준 기록, 임의 재배치 금지 | Codex 지적(Claude 미대조) | 
+11 | 34/19; 51/36 | §2.3.3·Fig.9는 RCP inlet, §3.5 제목은 outlet | 명칭 차이 표시 | Claude+Codex | 
+12 | 34–36/19–21; 51/36 | 제작 절은 SS transition weld 포함, 결과 절은 3 in safe end 격리로 영향 무시 | 제작 단계와 해석 포함 범위 구분 | Codex 지적(Claude 미대조) | 
+13 | 38/23 | SG SS pipe 29 in → 31 in 정정은 검증 중 발견한 실제 오류 | 정정 완료 사례로만 설명 | Claude+Codex | 
+14 | 54/39; 132–133 | VC Summer 균열을 2001로 적지만 참고문헌에는 2000년 보고도 있음 | 발생일/보고일 확정 불가 | Codex 지적(Claude 미대조) | 
+15 | 61–78/46–63 | 많은 규칙이 0<u로 시작해 ID(u=0)가 부등호에서 제외됨 | ID 처리·구현은 확인 불가 | Claude+Codex | 
+16 | 62/47 | Fig.30 축 첫 식 +175와 ID 인장 감소 서술의 단순 대응이 불명확 | 식·그림·문장 같이 보존 | Codex 지적(Claude 미대조) | 
+17 | 65/50 | Fig.34 RPV 50% WOR 축 .48<u≤.60 규칙 누락 | 구간 미정, 임의 보간 금지 | Claude+Codex | 
+18 | 72/57 | Fig.45 pump 15% MSIP .6<u≤.68과 .6<u≤1.0 규칙이 겹쳐 서로 다른 값 지정(120u vs 480(u−.6)^.5) | 중첩 구간 선택 규칙 확인 불가 | Claude+Codex | 
+19 | 69/54 | Fig.40 SG 50% MSIP 마지막 구간이 u>.68인데 (u−.7)^.5라 .68–.7에서 정의 불가 | 임의 보정 금지 | Claude+Codex | 
+20 | 70/55 | Fig.42 RPV 15% MSIP 축 .24<u≤.28 규칙 누락 | 구간 미정 | Claude+Codex | 
+21 | 70/55 | Fig.43 캡션은 RPV 50%, 상자 제목은 SG-MSIP 50% | RPV 절에 두되 제목 오기 표시 | Claude+Codex | 
+22 | 67,73/52,58 | 깊이 설명에 R/t가 쓰이나 그래프 가로축은 x/t | 조용히 치환하지 않음 | Claude+Codex | 
+23 | 75,77/60,62; 60,101/45,86 | inlay 노트는 "코드에서 수정 가능"(Fig.50, 53), 다른 노트는 "별도 입력표에서 읽음" | 실제 구현 경로 확인 불가 | Claude+Codex | 
+24 | 83/68 | F1/F2와 wi 정의 줄의 중복·첨자 조판, 합과 곱 비교 문구 | 곱 채택 문장과 원식 모호함 병기 | Claude+Codex | 
+25 | 83/68 | 동일한 두 프로파일이면 Cij=0이라 1/Cij 특이, 처리 규칙 없음 | 임의 ε 추가 금지 | Codex 지적(Claude 미대조) | 
+26 | 84/69 | "99% 구간"과 "±2.05σ"가 맞지 않음(±2.05σ≈95.96%, 그림은 98% 표기라고 Codex가 지적) | 원문 99%로 재사용 금지 | Claude+Codex | 
+27 | 88/73 | 26점 산술평균 제거식이 사다리꼴 적분 0을 항상 보장하지 않음 | 최종 방식과 구분 | Codex 지적(Claude 미대조) | 
+28 | 85,94–100/70,79–85 | 초기 "적분=0" 제약이 최종 사례에서는 "0에 가까움" | 정확한 평형 보장으로 쓰지 않음 | Codex 지적(Claude 미대조) | 
+29 | 124–127/109–112 | North Anna와 Ringhals가 축·후프 모두 같은 26점 수열·산포 | 동일성은 확인, 이유는 확인 불가 | Claude+Codex | 
+30 | 101/86; 120–129/105–114 | 검증 사례 산포 50/67 MPa의 상세 산정 근거가 전개되지 않음 | 표 수치와 설명 부족 분리 | Codex 지적(Claude 미대조) | 
+31 | A-8,A-16,A-19; 65 | 부록은 재료 변동 중요성·불확실성 정의를 말하나 최종은 미포함·모델러 지배 | 개발 결과 / 최종 사양 구분 | Codex 지적(Claude 미대조) | 
+32 | A-10 | ±2σ를 97.7/2.3 백분위와 같게 쓰나 입력 분포에는 uniform/lognormal도 있음 | 정규에서만 대응 | Codex 지적(Claude 미대조) | 
+33 | A-12–A-13 | Fig.84는 도입에서 annealed, 캡션에서 non-annealed, 항복 163/243/331.5를 혼용 | 항복 정의와 자료 상태를 개별 표시 | Codex 지적(Claude 미대조) | 
+34 | A-13 | "331.5/243 = 0.73" 산술 오류(실제 1.364, 역수 0.733) | 역수 오기 가능성(해석) | Claude+Codex | 
+35 | A-14 | 379×0.73 = 276.7인데 원문 278(역비 0.733이면 277.8) | 사용 계수 미상 | Claude+Codex | 
+36 | A-14 | 71.6 → 77.2 보정 순서·Y 정의와 "±2σ" 문장 불명확 | 수치만으로 재현 불가 | Codex 지적(Claude 미대조) | 
+37 | B-3,B-7,B-11 | kinematic 그림은 yield·hardening modulus만 제공, NLKN 전체 계수·보간 규칙 없음 | 실행 가능한 물성 덱이라 주장 금지 | Codex 지적(Claude 미대조) | 
+38 | C-5–C-6 | 본문 문장은 normal 예외가 64%, 실제 Table 35의 Normal 행은 48% | 48%와 64% Uniform 값 병기 | Claude+Codex | 
+39 | C-6–C-7 | 26점 설명과 달리 Table 35는 0–96% 25행, 본문도 "25개 변수" | 100% 값 추정 금지 | Claude+Codex | 
+40 | C-12–C-13; 66–69 | 부록 C의 2~3 해석·MED·6차 fit·절단과 본문 최종 3~4명·곱 가중·상수 σ·정규가 다름 | C를 개발 이력으로 라벨 | Codex 지적(Claude 미대조) | 
+41 | C-15 | "적분이 0이면 피적분함수도 0"은 일반적으로 성립하지 않음(변분의 임의성 조건 생략) | 식 7 자체와 설명 결함 구분 | Codex 지적(Claude 미대조) | 
+42 | C-16 | [−∞,∞]→[0,1] 변환 불가·Dirac 필요 서술은 적용 조건 설명 부족 | 수치 정규화 설명으로 한정 | Codex 지적(Claude 미대조) | 
+43 | C-18 | 2×2 행렬·벡터의 괄호·줄바꿈이 렌더에서도 손상 | 본문 p.71–72의 정상 식 병기 | Codex 지적(Claude 미대조) | 
+44 | C-19 | Table 36 첫 열 0.95가 1로 반올림 표시 | 1을 실제 계수로 사용 금지 | Claude+Codex | 
+45 | C-19 | C는 상관 Γ의 분해인데 Y=μ+CZ에 표준편차 배율 없음 | 본문 μ+φz 변환과 연결 | Codex 지적(Claude 미대조) | 
+46 | C-20 | "ρ<0 불가" 주장이 상수 상관행렬에서 과도(N=26이면 −1/25<ρ<1 양의정부호) | 위치별 음의 상관과 별도 문맥 | Claude+Codex | 
+47 | 71/56 | Fig.44 pump baseline MSIP 첫 axial식의 괄호 "(50/(0.2)(x/t)" 닫힘 불명확 | 실행식 확정 보류 | Claude+Codex |

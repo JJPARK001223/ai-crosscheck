@@ -1,0 +1,7 @@
+[CROSSCHECK_WORKER] round46 blind 독립 감사 단계. 아래만 수행하라.
+
+round46/problem.md 를 읽고 지시대로 HTML 문장 감사를 수행해 round46/codex.md 에 한국어로 작성하라.
+- 대상: round46/html_cards.txt (p1~p109). 필요하면 원 HTML과 round43/txt 원문 텍스트, PDF 지면을 사용하라.
+- 서로의 답을 보지 않는 blind 단계다. round46/claude.md, round45/DECISION.md, round45/claude_review.md 는 읽지 마라.
+- 모든 카드를 점검하고, 카드별 점검 완료 목록을 남겨라. 정확한 문장은 나열하지 마라.
+- 결과 파일은 round46/codex.md 하나만 작성하라.
