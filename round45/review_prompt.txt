@@ -1,8 +1,8 @@
 [CROSSCHECK_WORKER] round45 교차검증 단계(상호 검증). 아래만 수행하라.
 
-Claude가 만든 전체본 HTML(J:\Desktop\공학\ai-crosscheck\round45\claude_html_snapshot.html, 63페이지 카드, id=p1~p63)과 round45/claude.md 를 읽고, 원문 B049(round45/problem.md 에 적힌 PDF/텍스트 round43/txt)와 쪽 단위로 직접 대조하여 round45/codex_review.md 에 한국어로 작성하라.
+Claude가 만든 전체본 HTML(J:\Desktop\공학\ai-crosscheck\round45\claude_html_snapshot.html, 109페이지 카드, id=p1~p109, 식 단위 카드 48장 포함)과 round45/claude.md 를 읽고, 원문 B049(round45/problem.md 에 적힌 PDF/텍스트 round43/txt)와 쪽 단위로 직접 대조하여 round45/codex_review.md 에 한국어로 작성하라.
 1) 맞는 점(대표만)
-2) 틀렸거나 과장된 점: HTML 카드 번호(p1~p63)·문장·원문 쪽(PDF/인쇄)·정정안을 표로. 수치(표 7~34 값, 식, 쪽 번호, 그림 번호)는 특히 꼼꼼히.
+2) 틀렸거나 과장된 점: HTML 카드 번호(p1~p109)·문장·원문 쪽(PDF/인쇄)·정정안을 표로. 수치(표 7~34 값, 식, 쪽 번호, 그림 번호)는 특히 꼼꼼히.
 3) 빠진 점: 원문 PDF 16~187쪽 중 HTML에 전혀 반영되지 않은 내용(쪽 번호와 함께). 그림·표·식 단위로.
 4) 당신의 codex.md 에서 스스로 고쳐야 할 점(있으면)
 각 판단에 PDF쪽/인쇄쪽과 짧은 근거. 확인 못한 것은 "확인 불가". 추측 금지.
