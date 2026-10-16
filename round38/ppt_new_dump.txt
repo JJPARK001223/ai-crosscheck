@@ -1,0 +1,691 @@
+===== SLIDE 1 =====
+xLPR Crack Growth and Coalescence 
+박준재
+
+서울과학기술대학교
+신뢰성기반 기계설계연구실
+2026.10.15
+===== SLIDE 2 =====
+
+ INTRODUCTION
+
+ CRACK GROWTH MODELS 
+
+ CRACK GROWTH RATE MOUDLE
+
+ CRACK COALESCENCE MODEL
+
+ CRACK COALESCENCE MODULE
+
+ RECOMMENDATIONS FOR FUTURE WORK
+
+Contents
+2
+===== SLIDE 3 =====
+PWSCC 성장 모델
+PWSCC 성장 속도를 환경변수와 하중변수의 함수로 예측하고 불확실성을 포함하는 모듈이 기본값임
+정상 PWR 환경에서 Alloy 600과 그 용접 금속 (Alloy 82 . 182 . 132 ) 에 대한 권장 매개변수를 제시함 
+다른 재료 (Alloy 52 . 152 . 오스테나이트계 스테인리스 모재와 용접부 . 페라이트 강 ) 는 매개변수를 제시하지 않았는데 이런 재료에서는 PWSCC가 일어나지 않거나 Alloy 600 보다 훨씬 느리다는 증거가 충분하다고 설명함 
+
+피로 성장 모델  
+피로 성장 모델도 같은 방식의 모듈임
+재료군별로 Ni계 합금 , 오스테나이트 스테인리스 , 페라이트강 세 가지 하위 모델을 만듬 
+PWSCC와 피로의 CGW는 더해져서 프레임워크가 균열 성장 예측에 사용됨 
+
+INTRODUCTION
+3
+===== SLIDE 4 =====
+ 합체 모델 
+규칙 기반 모듈로 , 같은 평면에 있는 원주방향 균열 중 공학적으로 의미 있는 크기의 균열이 종류, 형상 , 위치에 따라 합쳐지는 것을 모사함 
+가까운 균열 사이의 응력확대계수 증폭 (균열간섭) 이나 둘 사이 ligament의 소성 붕괴처럼 단일 균열의 PWSCC . 피로 성장보다 훨씬 빠르게 균열이 커지는 현상을 반영함
+ 매개변수는 실험 연구와 파괴역학 모델링으로 검증했다고 함 
+ 범위 
+xLPR 2.0의 CGR 모듈은 PWR 1차계통 배관 재료 (이종금속 용접과 동종금속 용접 포함) 에서 정상 1차수 환경의 SCC와 피로 CGR을 예측하는 것이 목표임 
+합체 모듈은 xLPR 2.0 프레임 워크가 다루는 이상화 된 균열 종류의 결합을 예측하는것이 목표임 
+
+
+INTRODUCTION
+4
+===== SLIDE 5 =====
+CRACK GROWTH MODELS
+5
+===== SLIDE 6 =====
+
+
+
+
+
+CRACK GROWTH MODELS
+6
+p.21
+===== SLIDE 7 =====
+CRACK GROWTH MODELS
+7
+===== SLIDE 8 =====
+
+
+CRACK GROWTH MODELS
+8
+p.27
+===== SLIDE 9 =====
+9
+CRACK GROWTH MODELS
+===== SLIDE 10 =====
+CRACK GROWTH MODELS
+10
+)
+p.33
+===== SLIDE 11 =====
+CRACK GROWTH MODELS
+11
+===== SLIDE 12 =====
+CRACK GROWTH MODELS
+12
+p.33
+===== SLIDE 13 =====
+CRACK GROWTH MODELS
+13
+===== SLIDE 14 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+14
+p.33
+===== SLIDE 15 =====
+CRACK GROWTH MODELS
+15
+===== SLIDE 16 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+16
+p.34
+===== SLIDE 17 =====
+CRACK GROWTH MODELS
+17
+===== SLIDE 18 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+18
+p.38
+===== SLIDE 19 =====
+CRACK GROWTH MODELS
+19
+===== SLIDE 20 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+20
+p.39
+===== SLIDE 21 =====
+CRACK GROWTH MODELS
+21
+===== SLIDE 22 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+22
+p.39
+===== SLIDE 23 =====
+CRACK GROWTH MODELS
+23
+===== SLIDE 24 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+24
+p.40
+===== SLIDE 25 =====
+CRACK GROWTH MODELS
+25
+===== SLIDE 26 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+26
+p.40
+===== SLIDE 27 =====
+CRACK GROWTH MODELS
+27
+===== SLIDE 28 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+28
+p.42
+===== SLIDE 29 =====
+공기 중 da/dN (Paris 형)
+공기 중 피로 성장 데이터를 Paris 거듭법칙에 하중비 , 온도 합금효과를 곱한 형태로 표현함
+사용 조건
+Ni계 재료 (코드 1~5) 의 피로에서 식 2-13 의 첫 항과 환경항 계산의 입력으로 씀 
+사용 방법
+원 자료에서는 temperature effect 라고만 정의하고 단위는 적지않음
+Alloy 690은 시험이 약 60개정도라 Paris 지수와 하중비 효과는 재추정 하지 않고 온도효과만 구함
+CRACK GROWTH MODELS
+29
+===== SLIDE 30 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+30
+p.42
+===== SLIDE 31 =====
+CRACK GROWTH MODELS
+31
+===== SLIDE 32 =====
+CRACK GROWTH MODELS
+32
+p.43
+===== SLIDE 33 =====
+CRACK GROWTH MODELS
+33
+===== SLIDE 34 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+34
+p.43
+===== SLIDE 35 =====
+CRACK GROWTH MODELS
+35
+===== SLIDE 36 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+36
+p.44
+===== SLIDE 37 =====
+CRACK GROWTH MODELS
+37
+===== SLIDE 38 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+38
+p.48
+===== SLIDE 39 =====
+CRACK GROWTH MODELS
+39
+===== SLIDE 40 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+40
+p.49
+===== SLIDE 41 =====
+CRACK GROWTH MODELS
+41
+===== SLIDE 42 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+42
+p.49
+===== SLIDE 43 =====
+CRACK GROWTH MODELS
+43
+===== SLIDE 44 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+44
+p.49
+===== SLIDE 45 =====
+CRACK GROWTH MODELS
+45
+===== SLIDE 46 =====
+CRACK GROWTH MODELS
+46
+(표2-1)
+===== SLIDE 47 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+47
+p.52
+===== SLIDE 48 =====
+CRACK GROWTH MODELS
+48
+===== SLIDE 49 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+49
+p.54
+===== SLIDE 50 =====
+CRACK GROWTH MODELS
+50
+===== SLIDE 51 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+51
+p.55
+===== SLIDE 52 =====
+CRACK GROWTH MODELS
+52
+===== SLIDE 53 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+53
+p.56
+===== SLIDE 54 =====
+CRACK GROWTH MODELS
+54
+===== SLIDE 55 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH MODELS
+55
+p.56
+===== SLIDE 56 =====
+CRACK GROWTH RATE MODELS
+56
+===== SLIDE 57 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH RATE MODELS
+57
+기호 | 의미 | 하첨자
+CGR | 균열 성장 속도  | 
+Meterial Group | 모듈이 인식하는 재료 그룹과 숫자코드 표(3-1) | 
+Transient component | 피로 계산에 쓰는 하중 천이 성분  | 
+===== SLIDE 58 =====
+CRACK GROWTH RATE MODELS
+58
+===== SLIDE 59 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH RATE MODELS
+59
+p.72
+===== SLIDE 60 =====
+CRACK GROWTH RATE MODELS
+60
+===== SLIDE 61 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH RATE MODELS
+61
+p.72
+===== SLIDE 62 =====
+커스텀 재료의 피로 
+피로 메커니즘이 켜져있고 재료 그룹이 사용자 정의재료 (No.10)  일 때 사용자가 cstm 하첨자가 붙은 5개 매개변수 피로 CGR을 지정하는 식임 
+사용조건 
+재료코드 10 (사용자 정의 재료) 의 피로에서만 사용 
+사용방법 	
+상승 시간 효과와 하중비 효과를 각각 거듭제곱으로 넣은 형태임 
+5개 값은 사용자가 직접 정의함 
+CRACK GROWTH RATE MODELS
+62
+===== SLIDE 63 =====
+Text
+Text
+Text
+Text
+CRACK GROWTH RATE MODELS
+63
+p.73
+===== SLIDE 64 =====
+합체 모델이란 
+합체 모델은 가까운 균열이 따로 자랄 때보다 빠르게 합쳐지는 현상을, 정밀한 파괴역학 계산 대신 몇 가지 규칙(convention) 으로 모의하는 것임 
+균열간섭 (가까운 균열의 응력장 때문에 균열 앞의 K 가 증폭되어 성장이 빨라짐) 
+ligament 붕괴 (두 관통균열 사이 재료가 높은 응력으로 완전 소성 파괴됨)
+사용 범위 
+이 모델은 이미 성장 중인 공학적으로 의미 있는 큰 균열 (예 : 깊이 1~3mm 이상) 둘이 하나로 합쳐지는 경우만 다루고 , 미세균열 (micro-fissure)이 합쳐지는 초기 단계는 다루지 않음
+같은 평면의 반 타원 표면균열,천이 관통균열,이상화 관통균열 세 종류에 적용하며 일반적으로 재료와 무관하게 적용할 수 있음
+적용 방법
+모든 규칙 (conventions)은 두 균열 사이의 pairwise colescence를 기준으로 함 
+세 균열 이상이 같은 곳에서 동시에 합쳐지는 드문 경우에는 pairwise coalescence을 순서대로 적용함 
+규칙이 단순해도 되는 이유로 , 몬테카를로 해석에서는 개별 예측 하나의 중요도가 작다는 점을 듬  
+
+CRACK COALESCENCE MODEL
+64
+===== SLIDE 65 =====
+Prediction of lmminent Colescence
+이 예측은 두 균열을 가르는 가장 짧은 ID ligament의 길이에 달려있음 
+이 길이가 어떤 값 (coalescence distance, 합체 거리) 보다 작아지면 합체가 임박(imminent) 했다고 하며 , xLPR프레임워크에서는 원래의 두 균열이 합쳐진 균열 하나로 대체됨 
+
+CRACK COALESCENCE MODEL
+65
+기호 | 의미 | 하첨자
+ID/OD | 내면/외면 | ID – inner diameter
+OD – outer diameter
+ligament | 두 균열 사이에 남은 재료 | -
+===== SLIDE 66 =====
+coalescence distance 
+균열 간섭(crack interaction)과 ligament collaps는 K 계산 . 성장 . 안정성 예측에서 다루지 않고 (positive) 거리의 합 으로 모의할 수 있음 
+표면균열 하나와 관통균열 하나의 기본값은 0임
+균열 유형마다 근거가 달라서 3가지로 나눠서 사용 
+사용 방법 
+표와 같이 균열의 종류에 따라 정함 
+거리기준 불확실성은 분포로 주는것을 권장함 
+더 정밀한 모델이 있으면 줄일 수 있으므로 epistemic으로 분류 권장함 
+관통균열의 거리와 길이 
+관통균열 합체 거리가 균열 길이에 따라 달라 질 수는 있지만 이 경우는 구현하지 않음(p.94)
+CRACK COALESCENCE MODEL
+66
+===== SLIDE 67 =====
+Text
+Text
+Text
+Text
+CRACK COALESCENCE MODEL
+67
+항목 | 내용 | 쪽
+표면 + 표면 | 두 convention, 최적 계수 0.5, ASME IWA-3000 | p.94
+표면+표면(불확실성) | 비는 0~약 0.75, 삼각분포 0.0 / 0.5 / 0.75 | p.98
+관통+관통 | ligament collapse, 사용자 지정 값, 0~20 in | p.94
+관통 + 관통 (길이관계) | 길이와 대략 1:1 | p.98
+표면+관통
+ | 기본값 0 | p.94
+===== SLIDE 68 =====
+type, depth, length, location
+
+적용 목적
+균열 유형 규칙은 xLPR 2.0이 인식하는 세 균열 유형의 제약 아래 물리적 기대와 논리적 고려에 따라 개발됨 (p.94)
+적용 방법
+표의 규칙으로 합친 균열의 속성을 정함
+두 균열의 ID 길이를 감싸는 호의 중심이 새 균열의 중심임 
+표면 + 관통 두개의 ID 길이는 합친 균열의 면적이 원래 두 균열 면적의 합과 같아지도록 정하며  이는 합체 전후의 안정성 예측이 이어지게 하려는것임 
+OD 길이 규칙이 물리적 기대와 일치하며 하용할 만한 누설 연속성을 가져올것이라고 설명함 (p.95)
+최대 깊이를 권장하는 이유 
+표면 + 표면 상황 에서는 두 균열 사이 재진입 구간 (re-entrant sector)의 K가 합쳐진 균열이 대략 대칭의 형태를 되찾을 때까지 증폭된다는 물리적 기대에서, 최대 깊이를 권장함 (p.95)
+CRACK COALESCENCE MODEL
+68
+===== SLIDE 69 =====
+Text
+Text
+Text
+Text
+CRACK COALESCENCE MODEL
+69
+속성 | 규칙
+유형 | 표면+표면→ 표면 . 천이+천이→천이 . 이상화 관통 + 이상화 관통 → 이상화 관통 종류가 다르면 → 천이관통 
+깊이 | 관통균열이 하나라도 있으면 부품 두께 . 표면 +표면은 최소 . 최대 . 평균 중 선택  최대 깊이 권장 
+중심 | 두 균열의 ID 길이를 감싸는 호의 중심
+ OD길이 | 두 균열의 OD길이를 감싸는 호의 길이 표면 + 표면 이면 0 표면 + 관통이면 그 관통균열의 OD 길이 
+ID길이 | 표면 + 표면 , 또는 관통 + 관통은 ID 길이를 감싸는 호의 길이 표면+관통은 합친 균열의 면적이 원래 두 균열 면적의 합과 같도록 설정
+===== SLIDE 70 =====
+Treatment of Uncertainty
+
+CRACK COALESCENCE MODEL
+70
+항목 | 내용 | 쪽
+분포된 합체거리 |   coalescence prediction 의 불확실성은 분포된 coalescence distance(distributed coalescence distances) 를 사용해 반영할 수 있음 이 불확실성은 coalescence 로 이어지는 복잡한 과정의 변동성과 모델 오차 (예 – 균열 길이에 대한 체계적의존성의 부재) 를 반영할 수 없음 더 상세한 모델이 더 정밀한 추론을 내놓을 수 있으므로 이 불확실성들은 epistemic 으로 지정할 것이 권장됨  | p.98
+표면균열 | 균열 상호작용 거리와 두 균열의 최대 깊이의 비는 0 에서 약 0.75 사이이고 best-estimate는 0.5 임더 상세한 값이 없으면 0.0과0.75 최빈값 0.5인 삼각분포를 권장함  | p.98
+관통균열 | 합체 거리는 합체를 모의하는 시점의 균열 길이와 대체로 일치해야 함 , 모델 개발 이후의 해석결과 , 합체 거리와 균열 길이가 대략 1:1임 관통균열의 합체 거리를 개별 프로그램 실행에서는 deterministic 으로 가정하고 xLPR 예측에 대한 영향을 이해하기 위한 민감도 연구에서 바꿀 수 있음  | p.98
+그 밖의 모델링 
+convention | 완전히 결정적 (fully deterministic) 임 합체하는 균열마다 type,location,depth,ID length,OD length convention 은 논리에 뿌리를 두고 있어 큰 불확실성이 있다고 보지 않음 표면균열에 원래 균열의 최대 깊이를 쓰는 convention은 물리적 기대에 근거하며 , 개별 프로그램 실행에서 바꿔 xLPR 예측에 대한 영향을 이해할 수 있음   | p.98~99
+===== SLIDE 71 =====
+Model Validation
+
+CRACK COALESCENCE MODEL
+[n] Reference
+71
+항목 | 내용 | 쪽
+개요  | 합체 모델링 conventio은 -논리적 물리적 기대를 반영하고-더 발전된 해석 . 실험 결과를 수용할 수 있도록 유연하게 개발됨 발표된 연구를 적용해 conventio은 대체로 검증(generally validated) 되었음 | p.99
+표면균열의 K 증대  | 표면균열의 응력확대계수 증대 (intensification) 가 시작되는 시점은 균열 깊이의 일부인 합체거리로 잘예측된다는 실험 증거가 있으며 , 선택한 modeling convention 을 검증함 | p.99
+
+관통균열의 양 (positive) 의 합체거리  | 상위수준 모델링은 두 균열 사이 ligament 가 균열 길이보다 짧아질 때 까지는 ligament 붕괴로 이어지는 급속한 찢김 (rapid tearing) 의 가능성이 낮다고 사사함 이는 관통균열에 어떤 양의 합체거리를 쓰는 것을 뒷받침 하지만 , 길이 의존성을 반영하는 더 상세한 관통균열 합체 모델링의 구현이 필요하다는 결과임  | p.99
+
+===== SLIDE 72 =====
+Text
+Text
+Text
+Text
+CRACK COALESCENCE MODEL
+72
+항목 | 내용 | 쪽
+두 표면균열의 최대 깊이 (convention) | 두 합체 균열의 교차 지점에서 해당 영역의 높은 응력확대계수 때문에 re-entrant sector가 경계 균열 형상에 도달할 때까지 빠르게 성장하는 것이 뒷받침됨 이 급속한 성장은 상위 수준 해석 모델링이 예측하고 실험에서 관찰됨 | p.99
+합체 후 균열 유형  | transitioning rules라고 부름, 실험 결과와 상위 수준 모델링으로 대체로 검증됨표면균열과 관통균열의 합체를 다룬 실험 데이터는 없지만, transitioning through-wall crack 형상으로 천이하는 convention이 xLPR Version 2.0의 세 균열 유형 중 가장 적절하다고 보임 | p.99
+적용 범위  | 실험 결과와 상위 수준 모델링으로 대체로 검증됨 | p.99
+===== SLIDE 73 =====
+Model Assumptions
+Convention-based modeling
+가장 중요한 단순화는 합체를 역학적·현상학적으로 모델링하는 대신 단순화된 convention 기반 모델링을 쓰는 것임
+목표는 물리적 합체를 평균적이고 물리적으로 타당한 의미에서 근사하는 것이며, 상위 수준 해석 모델링과 실험 조사가 이 convention을 검증함 
+이런 모델링은 개별 결정론적 모의 한 번의 결과가 주된 의미를 갖지 않는 확률론적 방법과 함께 흔히 쓰이는 모델은 이 단순화에 대한 민감도를 볼 수 있도록 여러 합체 규칙(conventions)을 포함함
+Convention-based modeling
+균열을 반타원 표면균열, 이상화 관통균열(라디안 기준 ID·OD 길이가 같음), 천이 관통균열 중 하나로 이상화함 
+이는 응력확대계수·균열열림변위 계산 같은 해석 모델의 개발을 다루기 쉽게 하려는 xLPR 전체의 근사(Version 2)임 
+실제 PWSCC·피로 균열은 여러 규모에서 공간적으로 변하는 복잡한 형상이지만, 매개변수를 적절히 고르면 복잡한 균열 형상에 합체 모듈을 적용해도 관찰된 합체까지의 시간과 합체 이후의 깊이·길이에 대해 합리적인 결과를 줄 것으로 믿음
+Coplanar crack assumption
+xLPR Version 2.0 프레임워크에서 모든 원주방향 균열은 같은 평면(coplanar)이라고 가정함
+실제로는 축방향으로 어긋나 독립적으로 남을 수 있는 균열이 합쳐진다는 뜻
+보수성은 균열 배치에 따라 다릅니다(Figure 4-5). 원주방향 겹침이 거의 없는 경우(Configuration A)에는 축방향으로 어긋난 두 균열 대신 큰 균열 하나가 생겨 누설 확률은 다소, 누설률은 크게, 파단 감수성은 축방향 어긋남 정도에 따라 크게 증가
+겹침이 큰 경우(Configuration B)에는 두 균열 중 하나가 더 빨리 자랄 수 있어 누설 확률은 약간 줄고 누설률은 약 절반, 파단 감수성은 다소 줄어드는 경향입니다. 더 엄밀한 정량화에는 추가 해석이 필요합니다.
+
+CRACK COALESCENCE MODEL
+73
+===== SLIDE 74 =====
+Model Assumptions
+Neglecting interaction between axial and circumferential cracks
+합체 규칙을 적용할 때 축방향 균열은 무시함
+실제로는 수직 균열이 교차하면 균열 무딤(blunting)으로 한쪽이 정지할 수 있으므로, 이는 누설 확률과 안정성에 대해 보수적인 가정임
+같은 평면의 축방향 균열은 Version 2.0에서 모델링하지 않으며, 부품의 원주방향 이산화 구간마다 공학적 의미가 있는 축방향 균열은 최대 하나로 모델링함
+이종 용접 모델링에서는 용접 잔류응력이 비교적 좁은 축방향 범위에서 최대가 되어 그곳에서 균열 발생이 가장 가능성 높다는 기대와 일치
+Neglecting systematic variation in coalescence distance
+상위 수준 해석 예측은 합체 거리가 균열 길이와 부품 두께에 민감할 수 있다고 시사함
+특히 균열 사이 ligament 응력이 온전한 상태보다 크게 높아진 아주 큰 균열의 합체에서 그렇게 나타남
+이 체계적 변화는 합체 모델에서 다루지 않으며, 그 결과 짧은 균열은 대체로 이르게, 긴 균열은 대체로 늦게 합쳐질 것으로 예상됩니다. 이 편향의 전체적인 보수성은 합체 거리 입력의 선택에 달려 있고 xLPR 프레임워크 안에서 민감도 연구로 살펴볼 수 있음
+Extension of coalescence validation to annular geometries
+사용 가능한 검증 데이터는 모두 평판(flat plate) 형상의 균열 합체에 대한 것임
+적용 대상 부품 다수에서 ID 곡률의 특성 길이가 일반적인 균열 길이보다 훨씬 길어 평판 데이터의 확장은 합리적임
+pressurizer nozzle 같은 작은 반경 부품이나 특히 큰 균열에서는 ID 곡률이 균열 상호작용과 ligament 붕괴 민감도에 영향을 줄 수 있음
+CRACK COALESCENCE MODEL
+74
+===== SLIDE 75 =====
+coalescence module은 어떻게 불리고 동작하나
+적용 목적 
+coalescence module은 프레임워크가 시간 스텝마다 부를 수 있고, 모든 활성 균열의 위치·모양·크기를 coalescence가 반영되도록 고침
+동작 방법 
+활성 균열 쌍마다 coalescence criteria에 대어 보는 반복 절차(iterative procedure)를 사용
+어떤 쌍이 기준을 만족하면 coalesced crack(두 균열 속성의 함수)과 absorbed crack(이후 사실상 무시)으로 갱신하고, 기준을 만족하는 쌍이 더 이상 없을 때까지 반복한 뒤 제어를 프레임워크에 돌려줌
+입력
+프레임워크가 균열 구성, 부품 형상, coalescence model 매개변수를 입력으로 줍니다(p.103). 모듈은 먼저 모든 입력이 허용 범위 안인지 확인하고, 균열 배열을 원주 위치 순으로 다시 정렬함
+요구사항을 함께 적용해 coalescence가 인접한 균열 사이에서만 일어나도록 함
+범위 
+원주방향 같은 평면 균열만 다룹니다. 축방향 균열은 coalescence에서 제외하며, 모든 균열은 세 가지 이상화 유형 중 하나라고 가정함
+간 스텝은 xLPR 2.0 기본값이 1개월이며, 세 균열 이상이 같은 스텝에 coalesce하는 일은 드물다고 봄
+
+CRACK COALESCENCE MODULE
+75
+===== SLIDE 76 =====
+반복 적용 규칙: Crack A와 Crack B
+coalescence criteria
+일반적으로 “Crack B”의 가장 왼쪽 끝이 “Crack A”의 두 끝 사이에 있거나, “Crack A”의 가장 오른쪽 끝에서 시계 방향으로 coalescence distance보다 가까우면 기준이 만족됨
+oalescence distance는 두 균열의 종류와 형상에 따라 달라짐
+순서
+구간 1에서 시작한 균열이 처음의 “Crack A” 로 지정 
+어떤 균열이 “Crack A”가 될 때마다 나머지 균열을 “Crack A” 바로 시계 방향 옆에서 시작해 시계 방향으로 차례로 “Crack B”로 지정
+현재 “Crack A”가 어떤 균열과도 조건을 만족하지 않으면 바로 시계 방향 옆의 균열이 새 “Crack A”가 됨
+조건을 만족하면 “Crack A”는 coalesced crack의 속성을, “Crack B”는 absorbed crack의 속성을 받고, 조건을 만족하는 쌍이 없어질 때까지 반복
+방향이 있는 이유 
+coalescence가 두 번 이상 필요한 배치에서는 순회 방향에 따라 갱신된 균열 구성이 달라질 수 있다는 우려가 있어, 순회 방향을 뒤집을 수 있게 제작함
+두 균열까지만 동시에 coalesce하면 방향은 무관하고, 세 균열 이상이 같은 시점에 coalesce할 때만 방향에 따라 달라질 수 있음
+
+CRACK COALESCENCE MODULE
+76
+===== SLIDE 77 =====
+Text
+Text
+Text
+Text
+CRACK COALESCENCE MODULE
+77
+입력 | 의미 | 값
+Coalescence direction | 반복 절차의 순회 방향 플래그 | 시계 방향 (1) / 반시계 방향 (2)
+Surface crack coalescence distance rule | 표면균열 coalescence distance를 절대 거리로 볼지 최대 깊이 비율로 볼지 | 절대 거리 (1) / 최대 깊이 비율 (2, 권장)
+Surface crack coalescence distance rule modifier | 규칙 1이면 coalescence distance 자체, 규칙 2이면 coalescence distance ÷ 최대 깊이 | 규칙 2이면 삼각분포 0.0 / 0.5 / 0.75 권장
+Through-wall crack coalescence distance rule modifier | 두 관통균열의 coalescence distance | 균열 길이와 대략 맞는 분포, 예: 0~20 in 균일분포
+Coalescence depth rule | coalesced crack 깊이를 정하는 규칙 | 최대 (1, 권장) / 최소 (2) / 평균 (3)
+===== SLIDE 78 =====
+입력 매개변수와 플래그
+적용 목적 
+coalescence model은 몇 개의 입력 매개변수와 플래그로 동작이 완전히 정해지도록 만들었음
+적용 방법
+아래 표의 입력을 설정합니다. surface crack coalescence distance rule 값이 2이면 계수는 삼각분포(0.0, 0.5, 0.75)에서 뽑도록 권장하고, through-wall crack coalescence distance는 coalescence가 모의되는 시점의 균열 길이와 대략 맞는 분포에서 뽑도록 권장
+단위와 허용 범위 
+입력 단위는 모듈에 내장되어 있어 그대로 지켜야 합니다. 허용 범위를 벗어나면 치명적 오류로 실행이 멈추며, 이 범위는 모델을 검증한 범위와 다름
+열 수 0~200, 균열 중심 0 이상 2π rad 미만, ID·OD 입력은 반길이(m), surface crack coalescence distance rule modifier는 규칙 1이면 m이고 규칙 2이면 무차원, through-wall crack coalescence distance는 m이며 거리는 모두 0 이상임
+열 유형 코드는 0 = 미발생, −1 = 표면, −2 = 천이, −3 = 이상화 관통, 양의 정수 = 흡수된 균열이고, 균열 방향 배열은 원주 1, 축 2임
+
+coalescence distance 를 정하는 규칙 
+두 표면균열은 사용자 지정 거리 또는 최대 깊이에 사용자 값을 곱한 거리, 두 관통균열은 사용자 지정 거리, 표면+관통은 0임
+CRACK COALESCENCE MODULE
+78
+===== SLIDE 79 =====
+Updating Crack Attributes
+흡수된 균열은 균열 유형 값에 양의 정수를 넣어 표시함
+그 값은 coalescence 상대인 Crack A의 발생 시점 번호이며 실행 후 진단에 도움이 됨
+Output Requirements
+coalescence에 관여하지 않은 균열의 속성은 바뀌지 않음
+모듈이 돌려주는 인수가 허용 범위를 벗어나면 어느 출력이 문제인지 오류 플래그로 알림
+한 번의 호출에서 pairwise coalescence가 한 번을 넘으면 오류 플래그가 301이 되며, xLPR에서 300번대 오류는 프로그램을 끝내지 않으며 run file에 기록함
+균열별 벡터 출력은 균열 발생 시간 순서로 다시 정렬됨
+Other Output Arguments
+0은 정상, 101~115는 입력이 표 5-1의 허용 범위(range of verification, 모델 타당성 검증(validation)에 쓴 범위와는 다름, p.109)를 벗어난 경우로 실행을 끝내야 하며 프레임워크의 알 수 없는 오류를 뜻함
+201과 210은 모듈 출력이 허용 범위를 벗어난 경우로 역시 실행을 끝내야 하며 모듈의 알 수 없는 오류를 뜻함
+301은 한 번의 호출에서 pairwise coalescence가 한 번을 넘은 경우로 실행을 끝내지는 않지만, 프레임워크가 발생 빈도를 추적해야 함. 자주 일어나면 coalescence direction 입력을 반대로 해 다시 실행해서 편향이 없었는지 확인하라고 지시. 모듈은 갱신된 배열 외에 pairwise coalescence 횟수도 돌림
+CRACK COALESCENCE MODULE
+79
+===== SLIDE 80 =====
+Performance
+실행중 메모리 30kB 이하 , 임의유형 . 깊이 . 길이의 균열이 최소 5개이고 겹치는 사례가 최소 2개인 구성에서 1000번 실행이 10초 미만이여야 함 
+CRACK COALESCENCE MODULE
+80
+===== SLIDE 81 =====
+RECOMMENDATIONS FOR FUTURE WORK
+81
+===== SLIDE 82 =====
+재료 경계면, 발생-성장 상관
+LPR 2.0은 용접 경계의 복잡한 물성 변화(모재 HAZ, 용접금속 희석 영역)를 모델링하지 않음
+용접금속 안에 있는 균열 끝은 용접금속 모델로, 모재로 들어가는 순간부터 모재 모델로 예측
+배관 맞대기 용접의 현장 PWSCC 경험에서 저 Cr 재료와의 계면 가까운 Alloy 82/182 용접금속에 균열이 몰리는 뚜렷한 경향은 보이지 않았다고 덧붙임
+ PWSCC 발생 민감도와 성장을 상관시키는 기능이 있지만 정확한 값은 권장하지 않았으며, 정량화에는 계획된 실험이 도움이 될 수 있다고 함
+이 상관은 가장 먼저 발생하는 균열에서 상대적으로 높은 CGR을 유발하는 경향이 있어 위험 평가에서 중요할 수 있음
+RECOMMENDATIONS FOR FUTURE WORK
+82
+===== SLIDE 83 =====
+다른 SCC 모델 
+내용
+Alloy 600 /82/182/132 의 PWR PWSCC 모델 개선과 함께 다른 재료 , 환경의 CGR 모델 개발이 유용 할 수 있음
+이런 모델이 현제 구현된 식 3-1의 형태에 들어가길 바라지만 다른 형태가 필요 할 수도 있음
+Alloy 690 과 용접금속 
+Alloy 600 다음으로 Alloy 690과 그 용접금속 (Alloy 52,152 등) 의 PWSCC CGR 모델 개발이 바람직하다고 설명하며, EPRI PWSCC 성장 전문가 패널에서 개발중임 
+BWR 환경 
+xLPR 이 더 다양한 부품을 다루게 되면 BWR 환경의 SCC모델이 필요 할 수도 있음 
+스테인리스의 IGSCC CGR 모델은 실험 데이터로 개발된 것이 있어 구현이 가능함
+RECOMMENDATIONS FOR FUTURE WORK
+83
+===== SLIDE 84 =====
+RECOMMENDATIONS FOR FUTURE WORK
+84
+p.119
+===== SLIDE 85 =====
+RECOMMENDATIONS FOR FUTURE WORK
+85
+p.119
+===== SLIDE 86 =====
+Material-Specific Stress Intensity Factor Range Threshold
+현재 xLPR 모델은 재료에 상관없이 같은 피로 ΔK 문턱값 모델을 씁니다. 재료별로 받아들일 만하다고 검증되었지만, ASME Section XI를 위해 재료별 threshold 시험으로 모델을 만드는 작업이 진행 중이므로 이후 개정 때 참고해야 한다고 함
+
+Future Validation Efforts
+피로CGR 모델의 검증은 주로 다른 식이나 소프트웨어의 예측에 의존했고 , 일부는 모델 개발과 독립적이지 않음 
+모델 개발과 독립적인 실험 피로 CGR 데이더가 더 필요함 
+또한 가동중 검사 보고서에서 피로로 진전중임이 확인된 균열이 한 주기 이상 사용된 사례를 찾으면, 현장 조건의 피로 CGR을 어느 정도 추정 할 수 있다고 설명함 
+RECOMMENDATIONS FOR FUTURE WORK
+86
+===== SLIDE 87 =====
+Crack Growth and Coalescence
+Complex Growth Prediction
+xLPR 2.0은 단순화된 균열·부품 형상에 의존합니다. 향후 개선 대상으로 부품 형상2.0의 기본은 세 개의 인접 환형 재료 그룹으로 나타낸 이종금속 용접이며 overlay/onlay는 네 번째 재료 그룹으로 모델링할 수 있음
+이후 두께 방향 재료 구배와 J-groove 용접 등을 개발할 것으로 기대
+비대칭 균열 성장(세 이상화 균열 형상은 모두 대칭), 같은 평면이 아닌 균열(현재 모든 원주균열은 같은 평면이라 가정), 표면 아래 결함(발생·성장·coalescence·안정성 예측이 없으며 overlay의 융합 불량 같은 예가 있음)을듬
+비동일평면 균열과 표면 아래 결함을 다루려면 프레임워크 그룹과 모델 그룹의 공동 작업이 필요
+Crack Coalescence
+K-solution 모듈은 인접 균열의 응력장 상호작용을 고려하지 않고, 안정성 모듈은 두 균열 사이 ligament 붕괴를 고려하지 않음
+이 둘을 coalescence module이 단순한 규칙으로 흉내 냄
+
+RECOMMENDATIONS FOR FUTURE WORK
+87
+===== SLIDE 88 =====
+파괴역학 기반 해를 K-solution이나 안정성·coalescence 모듈에 넣으면 더 정밀해지며, 또는 균열 길이 의존성을 coalescence 규칙에 도입하면 크게 개선될 수 있다고 함
+최근 검증 연구는 균열 간섭의 2차 결정 요인이 균열 길이이고, ligament 붕괴 시 ligament 길이가 비슷한 크기의 균열에서는 균열 길이와 대략 1:1이라고 시사함
+축방향 균열과 미세균열
+coalescence module은 축방향과 원주방향 균열의 상호작용을 무시
+교 균열의 교차 효과를 넣을 수 있지만 혼합 방향 균열의 처리는 다른 모듈에 더 큰 과제일 수 있음
+미세균열(micro-fissure) coalescence는 보통 발생 과정의 일부로 보며 발생 그룹의 향후 과제로 봄
+RECOMMENDATIONS FOR FUTURE WORK
+88
+===== SLIDE 89 =====
+Text
+Text
+Text
+Text
+RECOMMENDATIONS FOR FUTURE WORK
+[n] Reference
+89
+===== SLIDE 90 =====
+Text
+Text
+Text
+Text
+
+[n] Reference
+90
+===== SLIDE 91 =====
+
+
+감사합니다
+
+remsys.seoultech.ac.kr
