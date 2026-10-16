@@ -1,0 +1,1 @@
+[CROSSCHECK_WORKER] round44 독립 조사 단계. round44/problem.md 를 읽고 지시대로 조사하여 round44/codex.md 에 한국어로 작성하라. round44/claude.md 는 읽지 마라(blind). 원문은 problem.md 에 적힌 PDF/텍스트를 직접 확인하라. 결과 파일 외에는 쓰지 마라.
