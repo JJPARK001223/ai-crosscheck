@@ -27,3 +27,14 @@
 
 ## 한계
 - 양쪽 모두 Fig.14–23 곡선, 부록 A·B·C 세부, workbook(Subversion) 미확인. 둘이 같은 결론이어도 하나의 PDF에 의존.
+
+---
+# 추가: Codex의 codex_review.md(claude.md·HTML 검증) 확인 (원문 재대조)
+- Table 11 x/t=0.68 −189.60, 0.92 299.72, OD 200.19 확인 → HTML 5 "깊이 전체 거의 0"은 **내 오류**(E1). 수정.
+- Table 4: "Torch speed not relevant", 입열은 별도 감도(±10%: ±20/±50 MPa, A-6~7 L8485–8500) → E2 맞음. 수정.
+- Table 33=PDF 128, Table 34=PDF 129 확인 → E6 맞음(내 문장 오류). 수정.
+- Table 5(ρ=0.8 일정)와 Table 6(가변 상관)에서 ID 기여가 뒤집힘(p.77) → E5 맞음. 수정.
+- p.29 각주(보수 3명, 일부 4명), p.66 "3 또는 4", p.4 "입열 모델 규정 안 함" → E3·E4 맞음. 수정.
+- E8(325°C 범위), E9(order of magnitude는 저자 판단), E10(곱 가중 설명 범위), §3 보완(Pilot Study surge line, 200×2집합, CDF 가중 검증, 재료 표기, 부록 C 구분) 모두 HTML 반영.
+- Codex 자기정정: φ 표기, uncorrelated 조건, 재료 근사 구분, 부록 C 제목 — 타당.
+- 충돌: 없음(사실 판단 모두 원문과 일치). 분량만 상이(14장 vs 24+6장).

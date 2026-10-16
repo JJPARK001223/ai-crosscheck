@@ -1,0 +1,9 @@
+[CROSSCHECK_WORKER] round44 교차검증 단계(상호 검증). 아래만 수행하라.
+
+round44/claude.md (Claude의 독립 조사)와 Claude가 만든 발표자료 HTML(J:\Desktop\XLPR\2026_10_16_B049_용접잔류응력\XLPR_용접잔류응력_발표자료.html)을 읽고, 원문(round44/problem.md 에 적힌 PDF/텍스트 round43/txt)과 직접 대조하여 round44/codex_review.md 에 한국어로 작성하라.
+1) claude.md/HTML 이 원문과 맞는 점
+2) 틀렸거나 과장된 점 (쪽번호·수치·식·인용·원문에 없는 문장 포함. HTML 슬라이드 번호 1~14로 위치를 적어라)
+3) claude.md/HTML 이 놓친 점
+4) 당신의 codex.md 에서 스스로 고쳐야 할 점(있으면)
+각 판단에는 파일명 + PDF 쪽/인쇄 쪽 + 짧은 근거를 붙여라. 확인 못한 것은 "확인 불가". 추측 금지.
+round44/DECISION.md 와 round44/claude_review.md 는 읽지 마라(독립 검증 유지). 결과 파일은 round44/codex_review.md 하나만 작성하라.
