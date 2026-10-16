@@ -1,51 +1,32 @@
 # 작업 규칙 (Codex)
 
+- 역할: 검증·구현·실측·발굴. 가능한 한 직접 확인한다.
+- 독립 결과: roundN/codex.md. 상호 검증: roundN/codex_review.md.
+
 ## 협업 방식
-- 이 프로젝트는 Claude Code와 함께 쓴다. 공용 창구 = 이 GitHub repo.
-- 나는 검증·구현·실측·발굴 담당. 최대한 많이 찾고 실제로 확인한다.
-- Claude 결론을 자동으로 믿지 않는다. 코드·실행·데이터로 검증한다.
-- Blind 단계엔 Claude 답을 보지 않는다.
-- 의견이 다르면 합치지 말고 충돌로 기록한다.
+- 기준: 사용자가 지정한 J:\Desktop\AI\Claude Code + Codex 같이 쓰는 법 (초보자용).html.
+- Claude Code와 Codex를 각각의 대화창에서 독립 실행한다. 공용 창구는 이 GitHub repo다.
+- Blind 단계에는 상대 AI의 답을 보지 않는다. 두 AI에게 동일한 PROBLEM.md를 준다.
+- 상대 AI의 결론을 자동으로 믿지 않는다. 코드·실행·데이터·공식 문서로 직접 검증한다.
+- 의견이 다르면 억지로 합치지 말고 충돌로 남긴다. 상대 결과를 덮어쓰지 않는다.
+- 최종 결정은 사용자가 한다. Claude는 공통 의견·충돌·근거를 종합할 수 있지만 사용자 결정을 대신 확정하지 않는다.
 
 ## 작업 흐름
-- 시작할 때 git pull.
-- 끝나면 커밋하고 push.
-- 비번·API키는 절대 파일에 쓰지 않는다.
+1. 시작할 때 git pull. 미커밋 변경과 원격 변경이 충돌하면 기존 작업을 보존하고 상황을 알린다.
+2. PROBLEM.md를 읽고 독립 조사하여 지정한 본인 결과 파일에 작성한다. 기존 연구 문제를 임의로 바꾸지 않는다.
+3. 본인 결과 파일만 지정해 커밋·push하고 원격 반영을 확인한다. 다른 AI와 사용자 작업은 포함하지 않는다.
+4. 독립 결과가 모두 확정되고 Git 인계된 후 상대 결과를 읽어 맞는 점·틀린 점·놓친 점을 검증한다.
+5. 검증 결과도 별도 파일로 커밋·push한다. 사용자가 DECISION.md에 최종 결정과 이유를 기록한다. 사용자 요청 시 Claude가 기록을 도울 수 있다.
 
-## 자동 실행 모드 (표준) — Claude가 오케스트레이터
+## 실행 및 권한
+- PowerShell 자동화, codex exec, 오케스트레이터 및 상대 AI의 하위 작업자 호출을 사용하지 않는다. 과거 자동 실행 지침은 폐기한다.
+- 두 AI는 사용자가 각각의 창에서 실행하고 지시한다. 자동 승인 검토는 사용하지 않는다.
+- GitHub Desktop을 사용자가 커밋·push에 사용하는 것도 안내문에서 허용한 방식이다.
+- Git 쓰기·네트워크 명령은 처음부터 필요한 사용자 승인을 요청한다. Codex는 대화형 on-request 정책에서 sandbox_permissions=require_escalated를 사용한다.
+- 승인이 거부되거나 요청 기능이 없는 세션이면 정확한 상황을 보고한다. 샌드박스 해제로 우회하거나 완료라고 하지 않는다.
+- git status 성공만으로 commit/push 가능하다고 판단하지 않는다. 지정 파일 커밋과 원격 반영을 확인한다.
+- 비밀번호·API 키·개인정보는 파일과 커밋에 넣지 않는다.
 
-사용자는 Claude 창에서 작업을 지시한다. Claude가 전 과정을 주관하고,
-나(Codex)는 Claude가 `codex exec`로 호출할 때 지정된 단계만 수행한다.
-`ask.ps1` / `orchestrate.ps1` 는 실행하지 않는다 (Claude가 직접 단계 실행).
-
-- **호출 1 — blind 독립 조사**: `PROBLEM.md`만 읽고 독립적으로 조사·검증해서
-  `roundN/codex.md`에 정리. `roundN/claude.md`는 절대 보지 않는다. 커밋/푸시.
-- **호출 2 — 교차검증**: `roundN/claude.md`를 읽고 맞는 점 / 틀린 점 / Claude가
-  놓친 점을 근거(코드·실행결과·데이터·공식문서)와 함께 `roundN/codex_review.md`에
-  적는다. 억지로 합치지 않고 충돌은 충돌로 남긴다. 커밋/푸시.
-- **최종 답은 Claude가** `DECISION.md`에 작성한다. 나는 최종 종합을 하지 않는다.
-- 근거 없는 주장 금지. "~라고 한다"는 근거가 아니다. 직접 확인한다.
-
-## 사용자 전역 규칙 중 이 협업에 적용되는 것
-
-- 신뢰성 높은 출처만 (Nature, Science, Acta Materialia, Int. J. Fracture,
-  Engineering Fracture Mechanics 등 공신력 있는 저널·교과서·학술기관).
-- 모든 자료에 출처(저자·저널·연도) 표기.
-- 사실만. 모르면 모른다고 명시. 추측 금지.
-- 재료·파괴역학 주제는 교수 수준의 깊이·정확도로.
-- 판단에는 반드시 객관적 근거를 붙인다.
-- 비번·API키·개인정보는 파일·커밋에 절대 넣지 않는다.
-- 한국어로 작성.
-
-## Git 권한 오류 처리 (2026-10-16)
-- 자동 호출 표준은 `codex.cmd exec --approve-for-me`이다. workspace-write 보호와 자동 승인 검토를 유지한다.
-- `--approve-for-me` 자체가 workspace-write를 설정한다. CLI 인자 충돌을 일으키는 `--sandbox` 동시 지정은 하지 않는다. 자동 검토는 Git 외 승인 요청에도 적용되며 명령별로 거부될 수 있다. 지정 파일 제한은 작업 지시이고 기술적 접근 차단은 아니다.
-- `.git/FETCH_HEAD`, `.git/index.lock` Permission denied 또는 Git 네트워크 차단이 발생하면 해당 Git 명령을 권한 승인 요청으로 다시 실행한다. 일반 실행을 반복하지 않는다.
-- 지정된 본인 결과 파일만 add/commit/push한다. 다른 작업의 수정·삭제·미추적 파일은 포함하지 않는다.
-- 커밋 ID와 원격 반영을 확인해 보고한다. 승인 거부/미지원이면 정확한 이유를 보고하고 Git 인계 미완료로 기록한다. 샌드박스 해제로 우회하지 않는다.
-- 호출자는 공통 단일 단계 실행기 Invoke-CodexStage.ps1를 사용한다. approval never인 기존 세션은 새 설정을 소급 적용받지 못한다. 복구는 새 세션에서 지정 결과의 Git 인계만 수행하며 조사를 다시 실행하지 않는다.
-
-- CLI 0.163.0 실측: --approve-for-me 자체가 workspace-write와 자동 승인 검토를 설정한다. --sandbox 옵션과 동시 지정하면 CLI 인자 충돌로 시작 실패하므로 병용하지 않는다.
-- Windows 호출: powershell.exe -NoProfile -ExecutionPolicy Bypass -File J:\Desktop\공학\ai-crosscheck\Invoke-CodexStage.ps1 -PromptPath roundN\prompt.txt -HandoffFiles roundN/codex.md (실행 정책 변경은 해당 프로세스에만 적용).
-
-- 실행기에 -HandoffFiles로 지정 결과 경로를 반드시 전달한다. 교차검증 단계는 roundN/codex_review.md 등 해당 결과를 지정한다. 실행기는 결과 파일 커밋 상태 및 로컬 HEAD=원격 브랜치를 읽기 전용 검증하고 실패 시 종료 오류를 낸다.
+## 연구 작업
+- 한국어로 작성하고 사실·추론·확인 불가를 구분한다. 신뢰할 수 있는 문헌과 추적 가능한 출처를 우선한다.
+- 기존 사용자 규칙의 연구 정확성, 번역 레이아웃·수식·그림 보존, 오류 기록, 메모리 갱신 의무는 유지한다.
