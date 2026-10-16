@@ -1,0 +1,1 @@
+[CROSSCHECK_WORKER] round45 독립 조사 단계. round45/problem.md 를 읽고 지시대로 조사하여 round45/codex.md 에 한국어로 작성하라. 원문 187쪽을 빠짐없이 쪽 단위로 다뤄야 하며, 분량이 커도 요약으로 줄이지 마라. round45 내 다른 파일과 round44 결과는 읽지 마라(blind). 결과 파일 외에는 쓰지 마라.
