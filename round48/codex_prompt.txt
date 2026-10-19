@@ -1,0 +1,7 @@
+[round48 Codex blind 검증]
+round48/problem.md 를 읽고 round48/html_cards.txt 의 109개 카드를 원문 PDF(텍스트: round43/txt/(ML16341B049)Welding residual stresses.txt, 필요 시 PDF 지면)와 카드별로 대조한다. 다른 AI의 결과는 읽지 않는다.
+- 식 카드(식 5-1~6-6, A-1~A-2, C-0~C-11, 완화 규칙 F29~F55)는 TeX를 원문 식·구간·계수와 하나씩 대조.
+- 표(Table 7~34 입력표 카드)는 원문 값과 전수 대조(표 7~34 728행). 이전 round45에서 일치했으나 현재 HTML 기준으로 다시 확인.
+- 서술 카드는 모든 수치·고유명사·쪽 번호와 한정어를 점검.
+결과를 round48/codex.md 에 표로: | 카드(pid) | 위치/문장 | 문제 유형(수치·식·한정어·쪽·원문에 없음·번역) | 원문 근거(PDF 쪽, 짧은 인용) | 수정 제안 | . 문제가 없는 카드는 적지 말고 끝에 "검사 카드 수 / 지적 수 / 확정(원문 근거 있음) 수"를 쓴다. 원문 근거 없는 지적은 쓰지 않는다. HTML 파일은 수정하지 않는다.
+끝나면 round48/codex.md 만 git add/commit/push (git add . 금지), 커밋 SHA와 원격 반영 여부를 분리해 보고.
