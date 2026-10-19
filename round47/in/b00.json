@@ -1,0 +1,38 @@
+[
+{
+"id": "p005_00",
+"en": "EXECUTIVE SUMMARY"
+},
+{
+"id": "p005_01",
+"en": "The Welding Residual Stress (WRS) subgroup within the Models Task Group is responsible for identifying or developing all the mathematical models and solutions needed to calculate the weld residual stresses and corresponding loads which drive subcritical crack growth in welded nuclear piping."
+},
+{
+"id": "p005_02",
+"en": "These results feed into the stress intensity factor, K, calculation solution procedure using the Universal Weight Function Method (UWFM)."
+},
+{
+"id": "p005_03",
+"en": "This combination (WRS/K solutions), is used for calculating the driving force for the subcritical crack growth mechanisms (stress corrosion crack growth, fatigue crack growth, etc.), for the materials (Alloy 600/82/182/132, austenitic stainless steels, and ferritic steels), and environments (PWR) designated for inclusion in xLPR Version 2.0."
+},
+{
+"id": "p005_04",
+"en": "WRS is not considered to affect crack stability in nuclear materials except possibly for brittle materials such as some cast aged stainless steels."
+},
+{
+"id": "p005_05",
+"en": "This subgroup must ensure incorporation of the best estimate weld residual stress analyses to serve as input to the xLPR Version 2.0 code."
+},
+{
+"id": "p005_06",
+"en": "The development of the WRS fields for use in Version 2 requires modeling methods to calculate the weld residual stresses which have been benchmarked against experimental measurements of WRS in nozzles and pipes to defend the credibility of the model results."
+},
+{
+"id": "p005_07",
+"en": "Clear descriptions and appropriate quantification of all sources of uncertainty in model parameters are required for providing test cases for use in verifying and validating the performance of the coded crack growth models."
+},
+{
+"id": "p005_08",
+"en": "Finally, this subgroup is responsible for WRS model documentation, updating and presenting/explaining WRS model performance to review boards, and working with interested participants and users of the code to ensure proper results."
+}
+]
