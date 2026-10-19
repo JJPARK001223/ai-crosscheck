@@ -1,0 +1,562 @@
+[
+{
+"id": "p016_00",
+"en": "1 INTRODUCTION"
+},
+{
+"id": "p016_01",
+"en": "The Welding Residual Stress (WRS) subgroup within the Models task group is responsible for identifying or developing the mathematical models and solutions needed to calculate WRS that drives subcritical crack growth in welded nuclear piping."
+},
+{
+"id": "p016_02",
+"en": "WRS is known to be an important driver for stress corrosion cracking and can have an effect on fatigue crack growth due to the mean stress effect."
+},
+{
+"id": "p016_03",
+"en": "WRS is not considered to affect crack stability in nuclear materials except possibly for brittle materials such as some cast aged stainless steels."
+},
+{
+"id": "p016_04",
+"en": "In probabilistic Leak-Before-Break calculations for safety-related nuclear piping systems, it is necessary to offer best-estimate, WRS, through-thickness profiles, along with an informed characterization of the associated uncertainty."
+},
+{
+"id": "p016_05",
+"en": "These profiles then feed into the stress intensity factor (K) calculation procedure using the Universal Weight Function Method (UWFM)."
+},
+{
+"id": "p016_06",
+"en": "This combination (WRS/K solutions) is used in calculations of the driving force for the subcritical crack growth mechanisms (stress corrosion crack growth, fatigue crack growth, etc.), for materials (Alloy 600/82/182/132, austenitic stainless steels, and ferritic steels) and environments designated for inclusion in the Extremely Low Probability of Rupture (xLPR) Version 2.0 Code."
+},
+{
+"id": "p016_07",
+"en": "The purpose of this report is to describe the models that were used to develop through-wall residual stress distributions and uncertainties for use as inputs into the xLPR Version 2.0 Code."
+},
+{
+"id": "p016_08",
+"en": "Three different weld geometry cases were considered to represent nuclear piping system dissimilar metal welds."
+},
+{
+"id": "p016_09",
+"en": "If additional cases are deemed to be necessary, it is recommended that similar approaches be applied in their development."
+},
+{
+"id": "p016_10",
+"en": "This report describes the modeling and quality assurance strategies used to develop the best-estimate inputs and associated uncertainty distributions."
+},
+{
+"id": "p016_11",
+"en": "Clear descriptions and appropriate quantification of all sources of uncertainty in the WRS model parameters are required for providing test cases for use in verifying and validating the performance of the crack initiation and growth modules contained within xLPR Version 2.0."
+},
+{
+"id": "p016_12",
+"en": "For the uncertainty analyses of the WRS it was critical to model the variability as accurately as possible."
+},
+{
+"id": "p016_13",
+"en": "The use of UWFM for determination of stress intensity factors created several issues for a probabilistic analysis and treatment of uncertainty."
+},
+{
+"id": "p016_14",
+"en": "First, there is no standard analytical formulation for the WRS profile so many of the FORM/SORM1  methods are not applicable."
+},
+{
+"id": "p016_15",
+"en": "Second, a large number of random variables for characterization of WRS uncertainty are possible."
+},
+{
+"id": "p016_16",
+"en": "Based on scoping studies it was decided to provide WRS values at 26 points through the thickness at the weld centerline."
+},
+{
+"id": "p016_17",
+"en": "However, this still leaves 26 points at which the values and uncertainty must be characterized."
+},
+{
+"id": "p016_18",
+"en": "It was also desired to eliminate the possibility of a “saw-tooth” profile that could result from independently sampling the distribution of values at each of the 26 points, so a point to point correlation was required."
+},
+{
+"id": "p016_19",
+"en": "A procedure for characterizing the uncertainty was developed prior to any of the WRS analyses being finalized."
+},
+{
+"id": "p016_20",
+"en": "This procedure was complicated for the circumferential crack analyses by the requirement that axial stresses equilibrate through the thickness."
+},
+{
+"id": "p016_21",
+"en": "There was also the issue of attempting to generate probabilistic information for WRS values at the 26 through-thickness locations, plus the point-to-point correlations, based on very limited number of analyses."
+},
+{
+"id": "p016_22",
+"en": "Ultimately, a procedure that reasonably addresses the uncertainty from the analysts’ numerical modeling efforts was defined to characterize the WRS profile uncertainty."
+},
+{
+"id": "p016_23",
+"en": "Uncertainty caused by weld heat input and weld pass geometry were found to be of second order importance."
+},
+{
+"id": "p016_24",
+"en": "Material property variability in the temperature-dependent material property inputs does play a role in WRS uncertainty but could not be included due to lack of material data at high temperatures."
+},
+{
+"id": "p016_25",
+"en": "The section of the report that deals with the WRS profile 1 First Order and Second Order Reliability Methods (FORM, SORM)"
+},
+{
+"id": "p017_00",
+"en": "uncertainty details the progression in the procedure in order that a reader can understand how the final procedure, as complicated as it may seem, is justified and necessary."
+},
+{
+"id": "p018_00",
+"en": "2 WRS MODEL DEVELOPMENT"
+},
+{
+"id": "p018_01",
+"en": "It is not realistic to develop the WRS distributions for use in xLPR Version 2 by using exclusively measured values of WRS from nozzle and pipe welds because there is uncertainty in the accuracy of the measurement of WRS using current methods (although predictions fall into this same category), the database of WRS measurements is small and non-inclusive of all nozzles and pipe welds necessary for inclusion in xLPR code, and additional WRS measurements would be expensive to perform for nozzles."
+},
+{
+"id": "p018_02",
+"en": "Therefore, the WRS Subgroup used a team of finite element modelers to provide predictions of the WRS’s for each nozzle to be included in the WRS database for xLPR."
+},
+{
+"id": "p018_03",
+"en": "The average residual stress state for each component was compiled by taking the average of predictions made by four experienced weld modeling specialists from both the NRC and industry teams."
+},
+{
+"id": "p018_04",
+"en": "The WRS Subgroup formulated modeling procedures for the analysts to follow when creating the finite element models for WRS prediction."
+},
+{
+"id": "p018_05",
+"en": "This guidance was informed by experience in related research programs [5, 6], with particular finite element modeling suggestions previously documented in [7]."
+},
+{
+"id": "p018_06",
+"en": "This guidance ensured consistency among the modelers regarding details that the Subgroup found important; heat input and thermal boundary conditions, weld bead geometries, materials, etc."
+},
+{
+"id": "p018_07",
+"en": "The modeling procedures observed by the WRS Subgroup are described in detail in this Section."
+},
+{
+"id": "p018_08",
+"en": "2.1 FINITE ELEMENT PROGRAMS USED AND KEY ASSUMPTIONS AND BOUNDARY"
+},
+{
+"id": "p018_09",
+"en": "CONDITIONS WRS estimations were performed using finite element modeling of the welding process using fixed values for heat input, weld geometry, weld passes, material properties and other important parameters."
+},
+{
+"id": "p018_10",
+"en": "The four finite element modelers used to produce the xLPR WRS input tables for xLPR Version 2.0 have extensive experience with, and their predictions are consistently validated by measurements."
+},
+{
+"id": "p018_11",
+"en": "Three modelers used the commercial finite element code, ABAQUS version 6.14 with one modeler using ANSYS version 17. Commercial finite element codes are not specifically developed to model the weld process because computational weld modeling is one of the most highly nonlinear problems of mathematical physics, with convergence issues often a problem."
+},
+{
+"id": "p018_12",
+"en": "Weld process models must account for existing material melting and re-solidifying, new material continually ‘deposited’, and the material constitutive laws must have data up to temperatures beyond half the melting point, among other challenges."
+},
+{
+"id": "p018_13",
+"en": "As such, each modeler uses their own (often proprietary) numerical techniques to solve for WRS."
+},
+{
+"id": "p018_14",
+"en": "However, many of these procedures overlap and are similar."
+},
+{
+"id": "p018_15",
+"en": "Key assumptions used by each modeler are listed below."
+},
+{
+"id": "p018_16",
+"en": "• Axisymmetric solutions were used1."
+},
+{
+"id": "p018_17",
+"en": "This is a key assumption since the weld process is not inherently axisymmetric."
+},
+{
+"id": "p018_18",
+"en": "The actual weld bead progressively traverses the full circumference of the pipe or nozzle as each pass is deposited while the axisymmetric assumption forces each modeled weld pass to be deposited at once."
+},
+{
+"id": "p018_19",
+"en": "However, recent full scale 3D solution results show that WRS fields away from weld start/stop locations can compare reasonably well with axisymmetric results."
+},
+{
+"id": "p018_20",
+"en": "For weld repairs the same is true except near the start/stop locations of the repair (reference [8] and those cited therein)."
+},
+{
+"id": "p018_21",
+"en": "For the original nozzle welds the start/stop locations are typically varied for each 1 Full 3D solutions can of course be performed."
+},
+{
+"id": "p018_22",
+"en": "However, some modelers are less experienced with this and the effort for solution is much greater."
+},
+{
+"id": "p019_00",
+"en": "pass and are thus randomly distributed about the mean results."
+},
+{
+"id": "p019_01",
+"en": "However, for partial arc repair welds the start stop locations are typically at the same locations at the repair excavation sites."
+},
+{
+"id": "p019_02",
+"en": "As such, results presented here are assumed to be at the center point of the repairs, i.e., away from the start/stop."
+},
+{
+"id": "p019_03",
+"en": "• All modelers used their own FORTRAN based User routines to model the heat flux introduced while weld beads are deposited."
+},
+{
+"id": "p019_04",
+"en": "Thermal boundary conditions consisted mainly of convection loss, with radiation losses ignored."
+},
+{
+"id": "p019_05",
+"en": "Examples of user heat flux routines can be found in [1, 3] along with further discussion."
+},
+{
+"id": "p019_06",
+"en": "The key is to model the weld fusion zone correctly, which was required for each modeler."
+},
+{
+"id": "p019_07",
+"en": "In the previous research [1, 3] finite element models of WRS were shown to be only weakly sensitive to heat input, so the WRS Subgroup did not precisely define heat input models or target temperature-time profiles."
+},
+{
+"id": "p019_08",
+"en": "• Weld beads were modeled using rectangular weld beads rather than irregular shapes for convenience."
+},
+{
+"id": "p019_09",
+"en": "This is justified in [1, 3]."
+},
+{
+"id": "p019_10",
+"en": "• Fully uncoupled thermal/structural solutions were performed."
+},
+{
+"id": "p019_11",
+"en": "The thermal solution temperature versus time histories served as input to the structural portion of the analysis.  The structural solution used boundary conditions with at least one node, located away from the weld region and in the carbon steel nozzle, fixed in the axial direction."
+},
+{
+"id": "p019_12",
+"en": "• Material properties for the thermal and structural analyses of each modeler were identical and are discussed in a later section."
+},
+{
+"id": "p019_13",
+"en": "• The WRS Subgroup produced a detailed drawing for each nozzle case that defined all dimensions necessary to create the axisymmetric model (e.g., see Figure 5)."
+},
+{
+"id": "p019_14",
+"en": "• The detailed drawing was based heavily upon the information obtained from the vendors."
+},
+{
+"id": "p019_15",
+"en": "These are detailed later."
+},
+{
+"id": "p019_16",
+"en": "• The number of weld layers and total number of weld beads were prescribed for each of these cases:"
+},
+{
+"id": "p019_17",
+"en": "o Westinghouse SG nozzle"
+},
+{
+"id": "p019_18",
+"en": "o Westinghouse RPV nozzle"
+},
+{
+"id": "p019_19",
+"en": "o Babcock & Wilcox RCP nozzle"
+},
+{
+"id": "p019_20",
+"en": "• Process Sequence"
+},
+{
+"id": "p019_21",
+"en": "o The process sequence for each nozzle case consisted of modeling deposition of the butter to the nozzle followed by modeling post weld heat treat (PWHT)."
+},
+{
+"id": "p019_22",
+"en": "Next, the dissimilar metal weld was modeled via bead by bead deposition."
+},
+{
+"id": "p019_23",
+"en": "Finally, the stainless steel closure weld was modeled."
+},
+{
+"id": "p019_24",
+"en": "Some of the nozzles required machining steps that had to be modeled (see nozzle details below)."
+},
+{
+"id": "p019_25",
+"en": "o At the end of each defined process sequence, a shakedown analysis was performed: "
+},
+{
+"id": "p019_26",
+"en": "Step 1: Apply assumed operating temperature, 300°C (572°F), and pressure, 15.5 MPa (2.25 ksi)."
+},
+{
+"id": "p020_00",
+"en": ""
+},
+{
+"id": "p020_01",
+"en": "Step 2: Cool model to room temperature and set pressure to 0. "
+},
+{
+"id": "p020_02",
+"en": "Step 3: Repeat Steps 1 and 2 twice for a total of three cycles."
+},
+{
+"id": "p020_03",
+"en": "o After the shakedown analysis, the model was heated to 300°C (572°F) so that WRS data could be extracted at operating temperature"
+},
+{
+"id": "p020_04",
+"en": "• Material Properties and Strain Hardening Law"
+},
+{
+"id": "p020_05",
+"en": "o Material properties for both the thermal analysis and the mechanical analysis were specified (see Appendix B)."
+},
+{
+"id": "p020_06",
+"en": "o Each nozzle case was analyzed with two hardening law assumptions: isotropic and nonlinear kinematic hardening."
+},
+{
+"id": "p020_07",
+"en": "Results were presented as the average of these two values as it has been shown that this results in the highest accuracy."
+},
+{
+"id": "p020_08",
+"en": "• Miscellaneous: mesh density, boundary conditions"
+},
+{
+"id": "p020_09",
+"en": "o The mesh was specified to be fine at the weld beads at roughly 20-30 elements per bead."
+},
+{
+"id": "p020_10",
+"en": "o The mesh was allowed to coarsen away from the weld regions for computational efficiency."
+},
+{
+"id": "p020_11",
+"en": "• Post Processing"
+},
+{
+"id": "p020_12",
+"en": "o A common method for data extraction was specified to each of the modelers."
+},
+{
+"id": "p020_13",
+"en": "o The analysts specified a path through the thickness along which the data was extracted."
+},
+{
+"id": "p020_14",
+"en": "o The analysts extracted data along three different paths: along the butter-DMW interface, through the DMW centerline, and along the DMW-safe end interface for future reference."
+},
+{
+"id": "p020_15",
+"en": "Only centerline values are presented here."
+},
+{
+"id": "p020_16",
+"en": "However, the master spreadsheets contain all data and are available in the xLPR documentation."
+},
+{
+"id": "p020_17",
+"en": "o Data was extracted at 26 evenly spaced points along the path, beginning at the inner diameter and ending at the outer diameter."
+},
+{
+"id": "p020_18",
+"en": "The final results for input to the xLPR input spreadsheets were compiled through the weld centerline."
+},
+{
+"id": "p020_19",
+"en": "Results presented represent the average between the isotropic and kinematic hardening solutions."
+},
+{
+"id": "p020_20",
+"en": "This average provides predictions that are close to the mixed hardening solutions."
+},
+{
+"id": "p020_21",
+"en": "Mixed hardening provides the most accurate solutions for multiple pass welds since both translation and expansion of the yield surface occurs."
+},
+{
+"id": "p020_22",
+"en": "2.2 WELD GEOMETRY SELECTION"
+},
+{
+"id": "p020_23",
+"en": "To produce example WRS inputs for xLPR Version 2.0, the WRS Subgroup chose three weld geometries to model: a Westinghouse steam generator (SG) nozzle, a Westinghouse reactor pressure vessel (RPV) nozzle, and a Babcock & Wilcox reactor coolant pump (RCP) nozzle."
+},
+{
+"id": "p020_24",
+"en": "These configurations were judged to be generally representative of many DMWs within the PWR fleet and the necessary descriptive data was accessible."
+},
+{
+"id": "p020_25",
+"en": "In addition, a variant of the hot leg geometry for a plant that experienced cracking is also included below."
+},
+{
+"id": "p020_26",
+"en": "This additional geometry, the VC Summer case, resulted in in-service cracking."
+},
+{
+"id": "p020_27",
+"en": "After choosing these weld locations / configurations, the WRS Subgroup requested detailed welding information from the respective vendors."
+},
+{
+"id": "p020_28",
+"en": "This section of the report describes the rationale behind the selection process and the information received from the vendors."
+},
+{
+"id": "p021_00",
+"en": "Weld Locations 2.2.1.1 Westinghouse Reactor Pressure Vessel Hot Leg Nozzle Weld Figure 1 shows a plan view of the reactor coolant system of a 4-loop Westinghouse plant."
+},
+{
+"id": "p021_01",
+"en": "The pipe is 29.00-in."
+},
+{
+"id": "p021_02",
+"en": "(736.6-mm) inner diameter and 2.450-in."
+},
+{
+"id": "p021_03",
+"en": "(62.23-mm) thick."
+},
+{
+"id": "p021_04",
+"en": "The materials are A508 for the nozzle, Alloy 182 weld metal, and a CF8A stainless steel safe end."
+},
+{
+"id": "p021_05",
+"en": "The operating temperature is 617°F (325°C)1. Details of these particular welds and corresponding geometry and material information were provided by Westinghouse in [10, and 11]."
+},
+{
+"id": "p021_06",
+"en": "Rationale for selection:  While the pressurizer DM weld locations operate at the highest temperatures in a PWR, almost all US PWR pressurizer nozzles have been mitigated and generally only the surge line would be a candidate for inclusion within the LBB scope."
+},
+{
+"id": "p021_07",
+"en": "Hot-leg nozzles operate well within the high-susceptibility temperature range for PWSCC in PWR plants."
+},
+{
+"id": "p021_08",
+"en": "Moreover, the stainless steel safe end in the selected example is a cast material."
+},
+{
+"id": "p021_09",
+"en": "While this may not make much difference in WRS determinations, depending on weld details and material property differences between cast and wrought stainless steel grades, most WRS analyses to date have assumed wrought stainless steel materials. 1 Note that this generic plant location operates at 325 C and WRS compilations were made at 300 C. The WRS field can change slightly between 300 and 325 C (reduce in magnitude slightly)."
+},
+{
+"id": "p021_10",
+"en": "The xLPR user can account for this but this is considered unnecessary by the WRS group because the change is so small."
+},
+{
+"id": "p022_00",
+"en": "Figure 1 Hot Leg RPV Nozzle Weld (Cold Leg - Dashed Circle)"
+},
+{
+"id": "p023_00",
+"en": "2.2.1.2 Westinghouse Replacement Steam Generator Nozzle to Hot Leg Elbow Figure 2 shows a drawing of the steam generator hot leg nozzle weld location."
+},
+{
+"id": "p023_01",
+"en": "The pipe is 29.00- in."
+},
+{
+"id": "p023_02",
+"en": "(736.6 mm) inner diameter and 2.450-in."
+},
+{
+"id": "p023_03",
+"en": "(62.23 mm) thick."
+},
+{
+"id": "p023_04",
+"en": "The materials are an A508 nozzle, Alloy 182 weld metal, and a CF8A stainless steel safe end."
+},
+{
+"id": "p023_05",
+"en": "The operating temperature is 617°F (325°C)."
+},
+{
+"id": "p023_06",
+"en": "Details of these particular welds and corresponding geometry and material information were provided by Westinghouse in [12 - 17]."
+},
+{
+"id": "p023_07",
+"en": "Rationale for selection:  This geometry consists of a DMW between a nozzle and an elbow."
+},
+{
+"id": "p023_08",
+"en": "Most recent WRS analyses have assumed straight pipe stainless steel segments and SG welds have not been frequently modeled."
+},
+{
+"id": "p023_09",
+"en": "The stress strain curves used for the weld analysis may differ between wrought and cast stainless steel depending on the steel grades."
+},
+{
+"id": "p023_10",
+"en": "The steam generator inlet nozzle operates at high temperature as well."
+},
+{
+"id": "p023_11",
+"en": "The earliest Westinghouse Nuclear Steam Supply System (NSSS) SG replacements in the US fleet performed these welds with Alloy 82/182 and an Alloy 52 inlay until A52/152 welding techniques were sufficiently perfected to support a successful complete weld out."
+},
+{
+"id": "p023_12",
+"en": "Because stress strain curves as a function of temperature are almost identical between Alloy 82/182 and Alloy 52/152 this should not affect the predicted WRS fields much."
+},
+{
+"id": "p023_13",
+"en": "Figure 2 SG Hot Leg Nozzle Weld to Hot Leg Elbow 2.2.1.3 Babcock & Wilcox Cold Leg to Reactor Coolant Pump Weld To assess which welds in the Babcock & Wilcox (B&W) plant primary loop system should be evaluated further, drawings of an operating B&W plant were obtained from the licensee."
+},
+{
+"id": "p023_14",
+"en": "Figure 3 shows a reactor coolant pump nozzle weld."
+},
+{
+"id": "p023_15",
+"en": "The primary coolant large main-loop piping in the plant is stainless steel clad A106 grade C ferritic steel."
+},
+{
+"id": "p023_16",
+"en": "Replacement steam generators, comprised of A533 grade B lower bowls, were added to the plant using a narrow groove similar- metal weld in recent years."
+},
+{
+"id": "p023_17",
+"en": "The RPV is A508 material, and the reactor coolant pump is cast stainless steel."
+},
+{
+"id": "p023_18",
+"en": "The only DM girth welds in the reactor coolant system main loop piping within a B&W plant are at the piping connections to the pump (at the lower cold leg and the upper cold leg locations)."
+},
+{
+"id": "p023_19",
+"en": "It is noted that while a B&W plant has two steam generators, there are two reactor"
+},
+{
+"id": "p024_00",
+"en": "coolant pumps per generator."
+},
+{
+"id": "p024_01",
+"en": "Therefore, a total of eight DMWs are present within the primary loop piping system."
+}
+]

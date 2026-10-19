@@ -1,0 +1,562 @@
+[
+{
+"id": "p095_24",
+"en": "The first one did not use any importance sampling, while the second one had an importance sampling set for higher values of the ID stress."
+},
+{
+"id": "p095_25",
+"en": "A correlation coefficient of 0.9 was used to increase the smoothness of the profiles."
+},
+{
+"id": "p096_00",
+"en": "Figure 67 WRS profile (mean and 95% confidence interval) used as example The resulting WRS profile sets for each sampling strategy are displayed in Figure 68. The correlation improves the smoothness of the curves without forcing the solution too much."
+},
+{
+"id": "p096_01",
+"en": "As a result, 200 curves are enough to cover the 95% confidence interval."
+},
+{
+"id": "p096_02",
+"en": "While we could have expected a larger band width using 200 curves (we could in theory expect 10 curves outside of the confidence interval), it is not surprising that such a thing does not happen beyond the ID."
+},
+{
+"id": "p096_03",
+"en": "The requirement for smoothness and an integral close to zero reduces some of the freedom."
+},
+{
+"id": "p096_04",
+"en": "As expected, the importance sampling curve generates higher values at the ID."
+},
+{
+"id": "p096_05",
+"en": "In order to keep an integral close to zero, these high values at the ID are associated with low values when the WRS becomes negative."
+},
+{
+"id": "p097_00",
+"en": "Figure 68 Representation of 200 WRS profiles using no importance sampling (top) and importance sampling (bottom) Importance sampling of the WRS at the ID is now considered."
+},
+{
+"id": "p097_01",
+"en": "While it is clearly visible in Figure 68 that higher values are sampled when importance sampling is used, the strength of sampling as well as the appropriate weighting cannot be confirmed."
+},
+{
+"id": "p097_02",
+"en": "The 200 values sampled for the ID have been extracted and sorted to be presented as a CDF."
+},
+{
+"id": "p097_03",
+"en": "When importance sampling (IS) was used, the CDF was plotted both without taking into account the weight (showing the effect of"
+},
+{
+"id": "p098_00",
+"en": "importance sampling) and with inclusion of the weight for each realization (which should lead to the initial distribution)."
+},
+{
+"id": "p098_01",
+"en": "The result is displayed on Figure 69. Figure 69 CDF for ID WRS from a sample of size 200. As can be seen, importance sampling concentrates half of the sampling on the upper part of the distribution."
+},
+{
+"id": "p098_02",
+"en": "As a result, the upper tail of the distribution is densely covered, which leads to a better estimate of the top representation, as seen in the zoom of the CDF (Figure 70)."
+},
+{
+"id": "p098_03",
+"en": "Figure 70 Zoom of CDF for WRS at ID using 200 samples."
+},
+{
+"id": "p099_00",
+"en": "A normal probability plot on both samples (Figure 71) shows the gain in using importance sampling."
+},
+{
+"id": "p099_01",
+"en": "While the plot tends to lose its linearity on the edges (see values between 2 and 3 in the left frame), the importance sampling keeps a pretty linear coverage for higher quantiles (see linear behavior of sampled points between 2 and 4 on the right frame)."
+},
+{
+"id": "p099_02",
+"en": "Note that the parameters of the WRS ID distribution were ⟦수식⟧= 172.2258 and ⟦수식⟧= 36.85661."
+},
+{
+"id": "p099_03",
+"en": "The estimates for mean and standard deviation (given respectively by the y-intercept and the slope on the normal probability plot) are fairly good."
+},
+{
+"id": "p099_04",
+"en": "Figure 71 Normal probability plot for regular sampling (left) and importance sampling (right) Finally, the ability to minimize the integral value of the WRS over the thickness was studied."
+},
+{
+"id": "p099_05",
+"en": "The integral was calculated for each of the 200 realizations."
+},
+{
+"id": "p099_06",
+"en": "The absolute value was then considered."
+},
+{
+"id": "p099_07",
+"en": "The resulting sample of integrals was used to create a CDF for the simulation using no importance sampling and a CDF for the simulation using importance sampling."
+},
+{
+"id": "p099_08",
+"en": "The result is displayed in Figure 72. The black dashed line represents the integral value of the mean values of WRS."
+},
+{
+"id": "p099_09",
+"en": "As can be observed, about 80% of the realizations for regular sampling and 70% of the realizations using importance sampling give an integral value lower than the mean was giving."
+},
+{
+"id": "p099_10",
+"en": "The slight loss of efficiency for the importance sampling is expected as it creates a lot more extreme situations where it is harder to balance low and high values."
+},
+{
+"id": "p100_00",
+"en": "Figure 72 CDF of absolute values of integral of WRS through thickness In conclusion, it seems that the method developed for sampling WRS for xLPR Version 2.0 gives excellent results considering the constraints."
+},
+{
+"id": "p100_01",
+"en": "The WRS profiles are smoothed due to the correlation function and display a reasonable range of integration (the integration is closer to zero than the original mean profile most of the time)."
+},
+{
+"id": "p100_02",
+"en": "Furthermore, importance sampling can be applied to the ID stress and propagated through the thickness successfully."
+},
+{
+"id": "p130_00",
+"en": "8 IMPROVEMENTS FOR VERSION 3"
+},
+{
+"id": "p130_01",
+"en": "There are several improvements to the WRS fields that could be made if xLPR Version 3 were developed as listed below."
+},
+{
+"id": "p130_02",
+"en": "• Calculation of the mitigation WRS fields directly for the nozzles rather than estimating these values from the literature."
+},
+{
+"id": "p130_03",
+"en": "• Include three dimensional effects rather than using axisymmetric results."
+},
+{
+"id": "p130_04",
+"en": "• Develop material property uncertainty solutions in a manner suggested in Appendix A."
+},
+{
+"id": "p130_05",
+"en": "• Include additional repair depth results."
+},
+{
+"id": "p130_06",
+"en": "• The estimated mitigated WRS fields implemented into xLPR Version 2.0 should be validated for at least one of the geometries to ensure that the estimates are reasonable."
+},
+{
+"id": "p130_07",
+"en": "• Determine and include the effect of the safe end length"
+},
+{
+"id": "p130_08",
+"en": "• Estimates for mitigation should be validated for at least one of the geometries to ensure that the estimates are reasonable (as mentioned in section 3.7)."
+},
+{
+"id": "p131_00",
+"en": "9 SUMMARY"
+},
+{
+"id": "p131_01",
+"en": "The weld residual stresses were compiled for use in xLPR Version 2.0 as described in this report."
+},
+{
+"id": "p131_02",
+"en": "Results for three DMW components were compiled (narrow groove steam generator, reactor pressure vessel hot leg, and a pump pipe)."
+},
+{
+"id": "p131_03",
+"en": "These WRS fields were compiled for a baseline repair case, 15% deep repair, and 50% repair at 26 points through the center of the DM weld."
+},
+{
+"id": "p131_04",
+"en": "In addition, mitigation rules, which are used to modify these tables, were developed for FSWOL, MSIP, and Inlay cases."
+},
+{
+"id": "p131_05",
+"en": "WRS fields were provided for the four plants that are used for framework validation (VC Summer, Ringhals, North Anna, and Tsuruga) as described in this report along with uncertainty definitions."
+},
+{
+"id": "p131_06",
+"en": "The rationale for the choice of the DMWs nozzles was summarized and the geometries and weld procedures were described in as much detail as is available."
+},
+{
+"id": "p131_07",
+"en": "The assumptions used were clearly presented."
+},
+{
+"id": "p131_08",
+"en": "In addition, a novel procedure was developed to account for WRS uncertainty."
+},
+{
+"id": "p131_09",
+"en": "Details not directly relevant to the use of WRS fields in xLPR Version 2.0 are included in the Appendix A and Appendix C. The material data properties are included in Appendix B."
+},
+{
+"id": "p136_00",
+"en": "APPENDIX A"
+},
+{
+"id": "p136_01",
+"en": "SENSITIVITY STUDIES AND EPISTEMIC UNCERTAINTY"
+},
+{
+"id": "p136_02",
+"en": "A number of sources of uncertainty are possible for dissimilar metal welded nozzles."
+},
+{
+"id": "p136_03",
+"en": "These include:"
+},
+{
+"id": "p136_04",
+"en": "• Thermal physical material constant variability for the thermal analyses"
+},
+{
+"id": "p136_05",
+"en": "• Heat input and weld torch speed"
+},
+{
+"id": "p136_06",
+"en": "• Weld bead sequence and size"
+},
+{
+"id": "p136_07",
+"en": "• Structural material variability (nonlinear stress strain curves)"
+},
+{
+"id": "p136_08",
+"en": "• Elastic property variations along with coefficient of thermal expansion"
+},
+{
+"id": "p136_09",
+"en": "• Weld inter-pass temperature"
+},
+{
+"id": "p136_10",
+"en": "• Others of less importance … Based on the experience of the WRS group, along with sensitivity studies performed as part of the NRC/EPRI mock-up round robins, there are three important sources of uncertainty in WRS that are worth considering, (i) weld pass sequence (ii) heat input, and (iii) stress-strain material constants."
+},
+{
+"id": "p136_11",
+"en": "Before performing the heat input and pass sequence sensitivity studies it was decided by the WRS group to ensure that actual field practice is followed."
+},
+{
+"id": "p136_12",
+"en": "Mr. Guy DeBoo of Exelon Corporation (also a member of the Inputs Group) was contacted and the needs for xLPR were discussed."
+},
+{
+"id": "p136_13",
+"en": "Mr. DeBoo decided to ask weld engineers and welders who were involved with welding nuclear piping and nozzles in the field what standard practice would entail."
+},
+{
+"id": "p136_14",
+"en": "As will be subsequently shown, the only important uncertainty which has some effect on WRS fields is material uncertainty which is discussed below."
+},
+{
+"id": "p136_15",
+"en": "However, material uncertainty was not included in xLPR Version 2.0 because of uncertainties in the methods used and time constraints."
+},
+{
+"id": "p136_16",
+"en": "However, the proposed approach may be considered in an updated version of xLPR."
+},
+{
+"id": "p136_17",
+"en": "(i) Weld Sequence Study - Three different welding engineers were consulted with regard to sequencing."
+},
+{
+"id": "p136_18",
+"en": "They all agreed the welding sequence would be random depending on the side of the nozzle they were standing when making the DMW."
+},
+{
+"id": "p136_19",
+"en": "They would typically go from the side easiest to apply the metal and avoid bumping into the nozzle and vessel."
+},
+{
+"id": "p136_20",
+"en": "Also, it was suggested that they would alternate sequence direction by layers as shown in Figure 74. As a result of this, it was decided that Emc2 would perform the sequence study using the ‘left-right-center’ type of weld sequence (Figure 75) and NRC would perform the alternating layer sequence (Figure 74)."
+},
+{
+"id": "p136_21",
+"en": "The three possible sequences are illustrated in Figure 73, Figure 74, and Figure 751. Figure 73 shows the sequence that all modelers used in the baseline case where all welds were performed from the butter to the stainless steel in order."
+},
+{
+"id": "p136_22",
+"en": "Figure 74 shows the alternating sequence where the welds go from butter to stainless, from stainless to butter on the next layer, from butter to stainless on the next layer, and so on."
+},
+{
+"id": "p136_23",
+"en": "Figure 75 illustrates the butter-stainless-middle type sequence."
+},
+{
+"id": "p136_24",
+"en": "The Westinghouse RPV outlet nozzle (only) was used to perform these sensitivity studies."
+},
+{
+"id": "p136_25",
+"en": "The uncertainty contribution obtained from these studies were assumed to apply equally well to the Westinghouse Steam Generator inlet nozzle and the B&W pump nozzle."
+},
+{
+"id": "p136_26",
+"en": "For this study, Emc2 1 Note that these three weld sequence geometries are for reference only."
+},
+{
+"id": "p136_27",
+"en": "None of these represented the geometries solved for xLPR version 2.0."
+},
+{
+"id": "p137_00",
+"en": "performed the sensitivity study for the baseline (no repair) case and for the 50% repair using the edges first sequence followed by filling the middle as per Figure 75. NRC performed the alternating layer bead sequence as per Figure 74 for the baseline case only."
+},
+{
+"id": "p137_01",
+"en": "Figure 73 Baseline sequence (butter-to-stainless in order) Figure 74 Alternating (layered) sequence (SS to Nozzle sequence, nozzle to SS, etc.)"
+},
+{
+"id": "p138_00",
+"en": "Figure 75 Edges first then middle sequence The Emc2 results for the baseline sequence study are shown in Figure 76 using the sequence illustrated in Figure 73. It is seen that the axial stresses are changed little by using the alternate sequence."
+},
+{
+"id": "p138_01",
+"en": "However, hoop stresses do change with a difference of up to 75 MPa at some locations and smaller differences at other locations."
+},
+{
+"id": "p138_02",
+"en": "Likewise, the Emc2 results for the alternating sequence for the 50% repair case can be seen in Figure 77. Again there is little change in the axial results and differences in the hoop stress of up to about 50 MPa."
+},
+{
+"id": "p138_03",
+"en": "The NRC results are shown in Figure 78 for the alternating sequence shown in Figure 74. It is seen that there is almost no difference with the alternating sequence compared to the baseline case."
+},
+{
+"id": "p138_04",
+"en": "Of course, other sequences are possible depending on the perspective of the welder during the time these welds were made."
+},
+{
+"id": "p138_05",
+"en": "However, these were considered the most likely sequences."
+},
+{
+"id": "p138_06",
+"en": "Therefore, to summarize, the weld sequence study revealed little difference for axial stresses no matter what sequence is used."
+},
+{
+"id": "p138_07",
+"en": "However, there were some differences in hoop stresses observed between the baseline sequence and the ‘edge first then middle’ sequence of the type shown in Figure 76. The effect of this type of uncertainty is not currently included in the WRS uncertainty."
+},
+{
+"id": "p138_08",
+"en": "This is justified since the effect is negligible for axial stresses and has a relatively small effect for one type of sequence."
+},
+{
+"id": "p139_00",
+"en": "Figure 76 Axial (top) and hoop (bottom) results plotted through the weld centerline for the baseline case."
+},
+{
+"id": "p139_01",
+"en": "Here the original sequence is shown in Figure 73 and ‘new sequence’ represents that in Figure 75"
+},
+{
+"id": "p140_00",
+"en": "Figure 77 Axial (top) and hoop (bottom) results plotted through the weld centerline for the 50% repair case."
+},
+{
+"id": "p140_01",
+"en": "Here the original sequence is shown in Figure 73 and ‘new sequence’ represents that in Figure 75"
+},
+{
+"id": "p141_00",
+"en": "Figure 78 Axial (top) and hoop (bottom) results plotted through the weld centerline for the baseline case by NRC using a different alternating sequence."
+},
+{
+"id": "p141_01",
+"en": "The baseline is represented by Figure 73 and ‘variable sequence’ is Figure 74 Heat Input Sensitivity - the WRS group judged a +/-10% effect on fusion zone size was a reasonable assumption so the heat input sensitivity evaluation consisted of varying the heat input by about ±10%."
+},
+{
+"id": "p141_02",
+"en": "Fusion zone size may have an effect because, for larger fusion zone, more weld metal shrinks during cooling which typically increases distortions and conversely for smaller fusion zone size less metal shrinks resulting in lower distortions."
+},
+{
+"id": "p141_03",
+"en": "However, as shown here, this did not have a large effect on WRS."
+},
+{
+"id": "p141_04",
+"en": "DEI performed these analyses."
+},
+{
+"id": "p141_05",
+"en": "Figure 79 and Figure 80 show the"
+},
+{
+"id": "p142_00",
+"en": "differences in stress when the heat input is varied for the baseline case and 50% repair cases, respectively."
+},
+{
+"id": "p142_01",
+"en": "For the baseline case (Figure 79) the maximum differences are only about ±20 MPa for both axial and hoop stress."
+},
+{
+"id": "p142_02",
+"en": "For the 50% repair case (Figure 80) the maximum differences are about ±50 MPa."
+},
+{
+"id": "p142_03",
+"en": "These are considered small enough to neglect for the uncertainty consideration."
+},
+{
+"id": "p142_04",
+"en": "Figure 79 Heat input variation of centerline stress (compiled by DEI) for baseline case"
+},
+{
+"id": "p143_00",
+"en": "Figure 80 Heat input variation of centerline stress (compiled by DEI) for 50% repair Material Property Sensitivity - This uncertainty is expected to dominate the epistemic uncertainty based on prior weld analysis results [44]."
+},
+{
+"id": "p143_01",
+"en": "Material properties may vary significantly since processing procedures can vary between older and newer materials"
+},
+{
+"id": "p144_00",
+"en": "The DM weld joints considered for Version 2.0 of xLPR consist of three materials: a ferritic nozzle (A508) welded to stainless steel (304/316) using Alloy 182/82 weld material."
+},
+{
+"id": "p144_01",
+"en": "The xLPR Version 2.0 material data base is derived from the PIFRAC material property database and other national/international sources that include the three materials of interest."
+},
+{
+"id": "p144_02",
+"en": "As summarized above, the WRS modeling group developed the WRS distributions through the centerline of the weld by compiling the average of predictions made using both isotropic hardening and nonlinear kinematic hardening."
+},
+{
+"id": "p144_03",
+"en": "Derivation of the nonlinear kinematic hardening parameters (Chaboche constants) requires knowledge of the full stress strain curve."
+},
+{
+"id": "p144_04",
+"en": "The tensile property data for materials in the xLPR database is comprised only of yield and ultimate stress and thus statistical variations of Chaboche parameters cannot be obtained1."
+},
+{
+"id": "p144_05",
+"en": "Moreover, the properties were primarily obtained from specimens tested near the plant operating temperature of 300o C and not over the full range of test temperatures required for obtaining stress strain curves up to melting required for WRS analysis."
+},
+{
+"id": "p144_06",
+"en": "For this reason, the following procedure was used in order to estimate the epistemic uncertainty caused by material property differences on WRS fields."
+},
+{
+"id": "p144_07",
+"en": "(1)."
+},
+{
+"id": "p144_08",
+"en": "For all three materials the statistical variation of yield and ultimate stress is available in the xLPR material database at an operating temperature of 300o C. An example for 304SS is shown to the right."
+},
+{
+"id": "p144_09",
+"en": "Here the recommended distribution2 is lognormal."
+},
+{
+"id": "p144_10",
+"en": "The distribution recommended to describe variability for A516 and Alloy 182/82 is uniform."
+},
+{
+"id": "p144_11",
+"en": "There is no data available for A508 in the xLPR database."
+},
+{
+"id": "p144_12",
+"en": "(2)."
+},
+{
+"id": "p144_13",
+"en": "The stress strain curves necessary for weld analysis for A508, A516, and Alloy 182/82, 304SS and 316SS (the stainless steel differences can be neglected) and many other materials are available up to about 800 to 1000o C. An example for A516 steel and A508 steel are shown in Figure 81 where it is seen that A508 has a little higher stress values for the same plastic strain. 1 This is one reason why we choose this as epistemic uncertainty because if more data (complete stress strain curves at multiple temperatures up to the phase change temperature) were available we could greatly reduce this uncertainty. 2 The recommendation comes from using the xLPR Uncertainty spreadsheet."
+},
+{
+"id": "p144_14",
+"en": "The spreadsheet and its user manual can be found on xLPR Web Portal (https://connect.sandia.gov/sites/xLPR/SitePages/homepage.aspx)."
+},
+{
+"id": "p145_00",
+"en": "Figure 81 Stress strain curves for A508 and A516 ferritic steel (3)."
+},
+{
+"id": "p145_01",
+"en": "We assume that the material data we have for WRS analysis is close to the mean data."
+},
+{
+"id": "p145_02",
+"en": "This appears to be the case for the three materials of interest with DMW welds."
+},
+{
+"id": "p145_03",
+"en": "Then based on the xLPR material statistical database, the +2σ and -2σ1 yield stress values are determined at 300°C for the three materials2."
+},
+{
+"id": "p145_04",
+"en": "We assume that the hardening behavior remains the same for each material for a given temperature."
+},
+{
+"id": "p145_05",
+"en": "The known stress strain curves are then determined for the +2σ and -2σ set of material curves at 300°C by using the ratio of the yield stress to ultimate stress."
+},
+{
+"id": "p145_06",
+"en": "The stress strain curves at all other temperatures are then estimated by assuming that the yield stress values as a function of temperature change in the same manner as for the material data that is known (for all temperatures)3. This leads to +2σ and – 2σ stress strain curves for all materials (see example for nozzle steel A508 (Figure 82) at 315.6°C)."
+},
+{
+"id": "p145_07",
+"en": "For the weld metal, we must correct the stress strain curves to account for annealed data since the statistical data was obtained on as welded material."
+},
+{
+"id": "p145_08",
+"en": "In 1 Note that in the remainder of this section we use + and – 2σ for convenience."
+},
+{
+"id": "p145_09",
+"en": "Actually we mean the 97.7 and 2.3 percentile data."
+},
+{
+"id": "p145_10",
+"en": "A standard distribution was assumed. 2 Note: the computational group may prefer some other variation than 2σ. 3 Such empirical relationships have been established for ferritic steels and may exist for stainless and nickel base alloys."
+},
+{
+"id": "p145_11",
+"en": "If this source of uncertainty is to be included in a future version of xLPR then these relationships will be considered in developing the high temperature stress strain curves, along with any new data."
+},
+{
+"id": "p146_00",
+"en": "addition, we assume that the uncertainty for A508 is the same as that for A516 since we do not have statistical data for A508 in the database."
+},
+{
+"id": "p146_01",
+"en": "Figure 82 First estimate of + and – 2σ stress strain curves at 315.6C for A508 based on ratio of yield stress data from the xLPR database for A516 adjusted for A508"
+},
+{
+"id": "p146_02",
+"en": "• The WRS group performed analyses using only isotropic hardening using the +2σ and - 2σ stress strain curves up to melting since only data for isotropic hardening was available."
+},
+{
+"id": "p146_03",
+"en": "Finally, the WRS uncertainty results at the weld centerline for the RPV were determined by analyzing the results from two modelers for the +2σ and – 2σ data (Emc2 and NRC)."
+},
+{
+"id": "p146_04",
+"en": "Key Assumptions"
+},
+{
+"id": "p146_05",
+"en": "• Hardening behavior is the same for +2σ and – 2σ sets of data"
+},
+{
+"id": "p146_06",
+"en": "• Annealed weld stress strain curves can be estimated from the as welded data"
+},
+{
+"id": "p146_07",
+"en": "• Statistics for A516 are same as for A508"
+}
+]

@@ -1,0 +1,562 @@
+[
+{
+"id": "p083_03",
+"en": "Figure 57 Representation of the estimation of difference using L1 norm The importance of each simulation is then considered by taking the inverse of the difference: ⟦수식⟧,⟦수식⟧= 1 ⟦수식⟧,⟦수식⟧ A large difference between two simulations will lead to a small value of theta, while two profiles close together will lead to a large value of θ_(i,j)."
+},
+{
+"id": "p083_04",
+"en": "The weight associated with a specific simulation i is then estimated by using the sums or the products of the theta values: ⟦수식⟧,⟦수식⟧= ∑ ⟦수식⟧,⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ and ⟦수식⟧,⟦수식⟧= ∏ ⟦수식⟧,⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧,⟦수식⟧= ∑ ⟦수식⟧,⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ Tests have demonstrated that the resulting spread using the summation approach was slightly larger than using the product, as the ratio in weight between a curve far from the others and a curve in a cluster was less important using the product approach."
+},
+{
+"id": "p083_05",
+"en": "Therefore, the product procedure was used."
+},
+{
+"id": "p083_06",
+"en": "The mean, ⟦수식⟧, and standard deviation, ⟦수식⟧, of the weighted WRS values represent the WRS value and its uncertainty for each location ⟦수식⟧ through the thickness. ⟦수식⟧= ∑ ⟦수식⟧,⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧"
+},
+{
+"id": "p084_00",
+"en": "and ⟦수식⟧= ⟦수식⟧∑ ⟦수식⟧,⟦수식⟧−⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ The 26 resulting standard deviations are averaged to estimate a unique standard deviation applied to all 26 locations. ⟦수식⟧= ∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ Examples An Excel workbook has been developed to apply the calculation mentioned above for all the WRS profiles considered for the xLPR Version 2.0 project:  Steam Generator, Reactor Pressure Vessel (RPV), Reactor Coolant Pump (RCP) as well as some specific power plant cases (VC Summer, Ringhals, North Anna, Tsuruga and Wolf Creek)."
+},
+{
+"id": "p084_01",
+"en": "The workbook was checked internally, as well as independently, and has been made available on the subversion repository (\\trunk\\WRS- KSolutions\\WRS_uncertainty_template_v2.3 All Generic_validation.xlsx) In this workbook, the standard deviations for both the simple direct average approach and the weighted approach are displayed via confidence intervals."
+},
+{
+"id": "p084_02",
+"en": "Figure 58 displays the results for the Steam Generator unrepaired case for both axial stress (left frame) and hoop stress (right frame)."
+},
+{
+"id": "p084_03",
+"en": "The 99% confidence interval is displayed for the two methods (based on adding and subtracting 2.05 × the estimated standard deviation to the estimated mean) to better show the difference between the approaches."
+},
+{
+"id": "p084_04",
+"en": "This plot shows that when the analyses are evenly distributed such as for the axial stress, the standard deviation is not changed by much (i.e. green and red dash curves are close to each other)."
+},
+{
+"id": "p084_05",
+"en": "When there is a deviation from a single analyst, such as in the hoop stress curve, then the standard deviation is more affected by the conglomerate of points (see right frame)."
+},
+{
+"id": "p084_06",
+"en": "We believe that this new approach is more realistic as it reduces (without ignoring completely) the effect of a single analysis that deviates to a notable degree from the others in a set."
+},
+{
+"id": "p084_07",
+"en": "Figure 58 Example of application of new standard deviation on WRS for Steam Generator unrepaired case"
+},
+{
+"id": "p085_00",
+"en": "6 WRS AND IMPORTANCE SAMPLING"
+},
+{
+"id": "p085_01",
+"en": "6.1 WRS SAMPLING APPROACH (BASED ON CHOLESKY DECOMPOSITION)"
+},
+{
+"id": "p085_02",
+"en": "Without the historical perspective it can be difficult to follow the construct of the sampling method so we do this here."
+},
+{
+"id": "p085_03",
+"en": "WRS is considered one of the most significant inputs in xLPR and the ability to probabilistically evaluate its impact depends upon effectively defining and sampling from a WRS distribution."
+},
+{
+"id": "p085_04",
+"en": "Important constraints on the sampling process include: 1. To reduce the phase uncertainty, i.e., the variability in the location of WRS amplitude, the stress must be specified at equally spaced points."
+},
+{
+"id": "p085_05",
+"en": "Here 26 points through the thickness are used. 2. To maintain the generic shape of the WRS profile for a specific analysis the WRS must be, minimally, correlated by a point-to-adjacent-point correlation parameter. 3. The WRS fields presented herein were developed using axisymmetric solutions and therefore for axial stresses, used in the calculation of the circumferential crack growth, the WRS profile must integrate to zero so that stress equilibrium is achieved through the thickness. 4. The hoop stress, used for axial crack growth calculations, has no equilibrium requirement. 5. The distribution type, mean amplitude, and variance can vary at each of the fixed points through the thickness. 6. Importance sampling must be allowed."
+},
+{
+"id": "p085_06",
+"en": "Five methods for sampling from a given WRS stress input were examined: (1) Shift each stress point as a random fraction of a fixed percentage (25%) of the WRS magnitude (2) Maintain the magnitude but shift its location randomly (at each point) (3) Shift each stress point by a random fraction of a fixed value of the stress (100 MPa) (4) Do both 1 and 2 (5) Do both 1 and 3 In each of these cases one or more of the methods works well for the hoop WRS but all failed for the axial WRS when constraint 6 was implemented."
+},
+{
+"id": "p085_07",
+"en": "This is because high ID stresses are of most interest for the initiation of cracks so we wish to importance sample near higher values."
+},
+{
+"id": "p085_08",
+"en": "However, with point-to-point correlation to maintain the shape of the profile, the mid-range of the profile will have very low values which can arrest the crack."
+},
+{
+"id": "p085_09",
+"en": "Additionally, the equilibrium condition then requires subsequent stress values to be higher."
+},
+{
+"id": "p085_10",
+"en": "Furthermore, in a point-to-point correlation the points near the outer diameter become uncorrelated with earlier values, especially those near the inner diameter."
+},
+{
+"id": "p085_11",
+"en": "None of these sampling approaches turned out to be adequate after beta implementation into the xLPR Version 2.0 code in order to do importance sampling."
+},
+{
+"id": "p085_12",
+"en": "Therefore, a method based on Cholesky decomposition was developed, implemented, and vetted."
+},
+{
+"id": "p085_13",
+"en": "The primary reason for using the Cholesky decomposition, as explained next, is that the same correlation coefficient can be used to relate to the ID stress and allows the point-to-point values to satisfy all six constraints."
+},
+{
+"id": "p085_14",
+"en": "The results were satisfactory and this method was implemented into the xLPR Version 2.0 code."
+},
+{
+"id": "p086_00",
+"en": "The Cholesky decomposition WRS sampling method employs a point-to-point correlation for maintaining the shape of the WRS field (i.e., avoiding high amplitude change from one location to its neighboring location as it is considered unrealistic)."
+},
+{
+"id": "p086_01",
+"en": "As will be described, Cholesky decomposition is just an efficient numerical technique for the solution of linear equations."
+},
+{
+"id": "p086_02",
+"en": "The higher the value of the correlation coefficient the closer the sampled shape will be to the input (deterministic) profile defined by its mean."
+},
+{
+"id": "p086_03",
+"en": "For the input profile the generic inputs are the location ⟦수식⟧ and the stress ⟦수식⟧ (obtained from the uncertainty characterization developed in the previous section)."
+},
+{
+"id": "p086_04",
+"en": "These are compiled in xLPR Version 2.0 at 26 points through the thickness of the nozzle or pipe."
+},
+{
+"id": "p086_05",
+"en": "Further restrictions were placed on the input in that the value of ⟦수식⟧ was fixed for all profiles."
+},
+{
+"id": "p086_06",
+"en": "In order to define the uncertainty in the WRS, the value of ⟦수식⟧is defined as a distribution at each of the ⟦수식⟧ points."
+},
+{
+"id": "p086_07",
+"en": "For this approach we restrict the distribution type to a normal distribution, ⟦수식⟧."
+},
+{
+"id": "p086_08",
+"en": "The reason behind this restriction is that the distribution resulting from adding two normal distributions is still a normal distribution, which simplifies greatly the calculation."
+},
+{
+"id": "p086_09",
+"en": "Therefore, we have ⟦수식⟧(⟦수식⟧, ⟦수식⟧) for ⟦수식⟧= 1, . . ,26, where ⟦수식⟧ is the mean and ⟦수식⟧ is the standard deviation of ⟦수식⟧ (Here we deviate from the classical notation for the standard deviation by using ⟦수식⟧ since ⟦수식⟧ is used to represent the stress.) To perform the point-to-point correlation we generate two standard normal samples, ⟦수식⟧ ↝⟦수식⟧(0,1) and ⟦수식⟧ ↝ ⟦수식⟧(0,1)."
+},
+{
+"id": "p086_10",
+"en": "We then calculate a third correlated standard normal variable as: ⟦수식⟧= ⟦수식⟧+ ⟦수식⟧1 −⟦수식⟧ where ⟦수식⟧ represents the desired correlation coefficient."
+},
+{
+"id": "p086_11",
+"en": "Since ⟦수식⟧ and ⟦수식⟧ are standard normal distributions (i.e., with mean = 0 and standard deviation =1), the resulting distribution ⟦수식⟧ is also a standard normal distribution."
+},
+{
+"id": "p086_12",
+"en": "Indeed, the mean of the resulting distribution is equal to the sum of the mean of the two distribution (⟦수식⟧× 0 + ⟦수식⟧1 −⟦수식⟧× 0 = 0) and the standard deviation is equal to the square root of the sum of the squared standard deviations (⟦수식⟧× 1 + (1 −⟦수식⟧) × 1 = 1 )."
+},
+{
+"id": "p086_13",
+"en": "As a result, ⟦수식⟧ and ⟦수식⟧ willboth be standard normal distributions correlated with a correlation coefficient of ⟦수식⟧."
+},
+{
+"id": "p086_14",
+"en": "Such a property could not be obtained with other types of distributions, ergo the limitation of normal distribution for the WRS."
+},
+{
+"id": "p086_15",
+"en": "Note also that when ⟦수식⟧= 1 we have perfect correlation and the values of ⟦수식⟧and ⟦수식⟧ will be equal."
+},
+{
+"id": "p086_16",
+"en": "To obtain the value of the WRS profile, we sample therefore from the standard normal distribution and apply what is called an inverse Z-transform (going from standard normal to the normal with the desired mean ⟦수식⟧ and standard deviation ⟦수식⟧) ⟦수식⟧= ⟦수식⟧+ ⟦수식⟧ ⟦수식⟧= ⟦수식⟧+ ⟦수식⟧ Applied to the stress values at the first two locations (at the ID and 4% through the thickness) this gives the sampled values of stresses with correlation."
+},
+{
+"id": "p086_17",
+"en": "For a ⟦수식⟧ value equal to 1, ⟦수식⟧ and ⟦수식⟧ will be similar, meaning that each WRS profile will be defined by the sampling on the ID value (all the profiles will be parallels)."
+},
+{
+"id": "p086_18",
+"en": "This method is called the Cholesky decomposition and, while presented only for two variables, it can be extended to any number of variables."
+},
+{
+"id": "p087_00",
+"en": "It is usually presented as the LU decomposition of a symmetric positive definite matrix, where L represent a Lower Triangular matrix and U its upper triangular transpose."
+},
+{
+"id": "p087_01",
+"en": "This transformation is applied to the correlation matrix and gives in the case of a 2 x 2 correlation matrix: ⟦수식⟧1 ⟦수식⟧ ⟦수식⟧ 1⟦수식⟧= ⟦수식⟧1 ⟦수식⟧ ⟦수식⟧1 −⟦수식⟧ቈ ⟦수식⟧ ⟦수식⟧1 −⟦수식⟧቉= ⟦수식⟧ An uncorrelated vector ⟦수식⟧= ቀ⟦수식⟧ ⟦수식⟧ቁ can then be used to generate correlated data ⟦수식⟧∗= ⟦수식⟧ ∗ ⟦수식⟧ ∗⟦수식⟧ via a simple matrix operation: ⟦수식⟧∗= ⟦수식⟧. ⟦수식⟧= ⟦수식⟧1 ⟦수식⟧ ⟦수식⟧1 −⟦수식⟧. ቀ⟦수식⟧ ⟦수식⟧ቁ= ⟦수식⟧ ⟦수식⟧ ⟦수식⟧. ⟦수식⟧+ ⟦수식⟧1 −⟦수식⟧. ⟦수식⟧ ⟦수식⟧ As can be seen in the above equation, the first element of the vector remains unchanged while the second (or any subsequent vectors considering that the method can be extended to larger vectors) will be affected by the correlation coefficient ⟦수식⟧ and the first element value ⟦수식⟧."
+},
+{
+"id": "p087_02",
+"en": "Table 5 shows the resulting lower triangular distribution for a 26 × 26 correlation matrix when the coefficient of correlation is set to 0.8."
+},
+{
+"id": "p087_03",
+"en": "The first column has been highlighted in red, while the diagonal was highlighted in green."
+},
+{
+"id": "p087_04",
+"en": "They show that the sampled value at the ID contributes the most to any correlated stress (the red highlighted box represents the weight applied) and therefore strongly influences the profile generated."
+},
+{
+"id": "p087_05",
+"en": "The next biggest contributor is, as expected, the sampled value at the location itself (green highlighted box)."
+},
+{
+"id": "p087_06",
+"en": "This feature is strongly desired for this WRS representation, as it means that the profile will be strongly affected by the sampling of the first value (WRS at the ID)."
+},
+{
+"id": "p087_07",
+"en": "It means that an efficient importance sampling can be implemented by focusing only on the sampled value at the ID (one scalar value) and not having to use importance sampling on the other 25 locations."
+},
+{
+"id": "p088_00",
+"en": "Table 5 Cholesky lower triangular decomposition matrix for a correlation coefficient of 0.80"
+},
+{
+"id": "p088_01",
+"en": "6.2 APPLICATION AND COMPARISON OF CHOLESKY DECOMPOSITION TO POINT-TO-"
+},
+{
+"id": "p088_02",
+"en": "POINT CORRELATED SAMPLING TO EQUILIBRATE AXIAL STRESSES"
+},
+{
+"id": "p088_03",
+"en": "The Shifting Method Constraint #3 listed in section 6.1 requires that the axial WRS field be self-equilibrated in the sense that the integral of the axial stress through the thickness has to be equal to 0 (such requirement does not apply to the hoop WRS fields)."
+},
+{
+"id": "p088_04",
+"en": "The first method considered was to apply a constant shift to the stresses through the generated profile, so that this constraint would be met."
+},
+{
+"id": "p088_05",
+"en": "The shift applied simply consists in taking out any positive or negative integral by calculating the mean stress through the thickness (i.e.., through all 26 sampled points) and subtracting it, as indicated by the following equation: ⟦수식⟧ ∗= ⟦수식⟧− ∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ Figure 59 presents nine WRS profiles sampled using the whole range of the initial distribution for the stress at the ID."
+},
+{
+"id": "p088_06",
+"en": "Since it is estimated through Finite Element Analyses (FEA), the mean profile will usually have an integral close to zero."
+},
+{
+"id": "p088_07",
+"en": "This may not be the case for the individual WRS profiles sampled."
+},
+{
+"id": "p088_08",
+"en": "Sometimes (usually when the sampled value at the ID is close to the mean value) the difference is relatively small, e.g., profile A in Figure 59. In such instances a simple shift to force the equilibrium will not really affect the profile, or be imperceptible, as illustrated in Figure 60 where the original and equilibrated profiles are similar."
+},
+{
+"id": "p089_00",
+"en": "Figure 59 Nine samples for the axial WRS profile using all point correlation procedure Figure 60 Profile A for axial WRS shifted to account for equilibrium Figure 61 shows another set of two sampled profiles in which one is shifted up and the second is shifted down."
+},
+{
+"id": "p089_01",
+"en": "For both cases, the shifting approach looks reasonable."
+},
+{
+"id": "p090_00",
+"en": "Figure 61 Other axial WRS profiles shifted to account for equilibrium demonstrating that the net impact is nearly zero However, sometimes the difference may be more extreme, especially when the sampled value at the ID deviates a lot from the mean."
+},
+{
+"id": "p090_01",
+"en": "In Figure 62, we illustrate nine WRS profiles when the range of the quantile at the I.D. is restricted to 0.70 to 0.95 (i.e. only high values are sampled)."
+},
+{
+"id": "p090_02",
+"en": "Here we see that the WRS profiles are focused near the upper bound."
+},
+{
+"id": "p090_03",
+"en": "Figure 62 Nine samples for the axial WRS profile using all point correlation procedure and when the range of the standard normal variable is restricted to 70% to 95% In Figure 63 one of the profiles with the corresponding shift is plotted."
+},
+{
+"id": "p090_04",
+"en": "It illustrates the two major drawbacks of using a shift to account for equilibrium."
+},
+{
+"id": "p091_00",
+"en": "Figure 63 Sample A for the axial WRS profile using all point correlation procedure when the range of the standard normal variable is restricted to 70% to 95% and equilibrium is included First it can be seen that the shifted line (blue without symbols) moves sometimes outside of the confidence interval (dotted red lines) for some points over the thickness."
+},
+{
+"id": "p091_01",
+"en": "This means that by shifting, we do not respect the initial distribution shape defined at this location."
+},
+{
+"id": "p091_02",
+"en": "Second and probably more importantly, when an extreme (high or low) stress is sampled at the ID, it will likely create a profile whose integral deviates strongly from zero."
+},
+{
+"id": "p091_03",
+"en": "It will be therefore shifted, likely positioning the ID stress once again close to the mean value."
+},
+{
+"id": "p091_04",
+"en": "The shift method will therefore under-represent the more extreme conditions."
+},
+{
+"id": "p091_05",
+"en": "Highest stress values at the ID will generate more cracks and it is believed that high stress values initially in the WRS profile will have the largest impact on the risk of through wall cracking (TWC) or rupture."
+},
+{
+"id": "p091_06",
+"en": "Considering that the shifting method would underestimate the likelihood of the most extreme profiles, it was necessary to consider a different method, which is presented below."
+},
+{
+"id": "p091_07",
+"en": "Alternative Solution The issue with the previous method came from the fact that the shifting technique was changing the profile independently of the other constraints."
+},
+{
+"id": "p091_08",
+"en": "The profile was created first and a shift was applied to respect one of the constraints (integral of the profile equal to 0), while violating others (adequately representing the initial distributions)."
+},
+{
+"id": "p091_09",
+"en": "The problem was addressed with a change of strategy."
+},
+{
+"id": "p091_10",
+"en": "Instead of applying a correction after generating the profile, it was decided to relax some of the unnecessary constraints imposed by the methodology."
+},
+{
+"id": "p091_11",
+"en": "Instead of fixing the correlation coefficient to a constant value all over the profile, we allowed it to change at each location, based on the mean stress value at that location."
+},
+{
+"id": "p091_12",
+"en": "It means that when the stress becomes negative, the correlation will become negative."
+},
+{
+"id": "p092_00",
+"en": "As a result, correlations will be strong for high values of WRS (so if you start with a high positive value, all the positive values will tend to be high also)."
+},
+{
+"id": "p092_01",
+"en": "The change of sign in correlation will associate these values with strong negative values in compensation and will generate profiles whose integrals are closer to zero."
+},
+{
+"id": "p092_02",
+"en": "For the stress values in the profile with a mean close to zero, very small correlation (close to 0) will be imposed, allowing the crossing point (from negative stress to positive or reverse) to be uncertain."
+},
+{
+"id": "p092_03",
+"en": "The triangular matrix used to impose correlation using such technique is shown in Table 6. In contrast to Table 5, we can see that now the relation is reversed."
+},
+{
+"id": "p092_04",
+"en": "The value sampled at the ID (highlighted in the red box) does not contribute as much in the estimate of the values at the subsequent locations and sometimes have a negative contribution."
+},
+{
+"id": "p092_05",
+"en": "The role of the sampled value at the location is stronger."
+},
+{
+"id": "p092_06",
+"en": "It means that this new method will generate slightly more “wiggly” profile (we therefore do recommend to use a high correlation value such as 0.95, instead of the 0.8 used for the purpose of comparison here)."
+},
+{
+"id": "p092_07",
+"en": "We consider however that this consequence is an acceptable compromise considering no shift will be required."
+},
+{
+"id": "p092_08",
+"en": "Table 6 Cholesky decomposition matrix when the correlation coefficient, ρ, is a function of the WRS mean magnitude The methodology is now illustrated using the RPV WRS profile base case with no repair (see Section 3.4)."
+},
+{
+"id": "p092_09",
+"en": "Figure 64 shows 250 sampled WRS profiles with three profiles randomly selected and illustrated by very thick lines."
+},
+{
+"id": "p092_10",
+"en": "In this figure we see that the profiles cover the ±3⟦수식⟧ bounds and that they look “choppy,” as expected when no correlation is used."
+},
+{
+"id": "p093_00",
+"en": "Figure 64 Axial WRS for RPV base case with no importance sampling and no point-to- point correlation In Figure 65, we show the same information but in this case the point-to-point correlation is set to 99%."
+},
+{
+"id": "p093_01",
+"en": "Here the individual WRS profiles are not as “choppy” since adjacent points are correlated, especially for locations close to the ID."
+},
+{
+"id": "p093_02",
+"en": "Figure 65 Axial WRS for RPV base case with no importance sampling and 99% point-to- point correlation."
+},
+{
+"id": "p093_03",
+"en": "The red line is the mean and the three other bold lines are randomly selected from all of the distributions"
+},
+{
+"id": "p094_00",
+"en": "In Figure 66 we show the WRS profiles when the ID stress is restricted to the highest 1 percentile values."
+},
+{
+"id": "p094_01",
+"en": "We now see a distinct change in the profile."
+},
+{
+"id": "p094_02",
+"en": "While the first 60% of the thickness all have relatively high profiles the final 40% are relatively low."
+},
+{
+"id": "p094_03",
+"en": "This illustrates how the change in correlation value will help respect the equilibrium condition while still keeping low and high sampled values."
+},
+{
+"id": "p094_04",
+"en": "Figure 66 Axial WRS for RPV base case with importance sampling of the highest 1% ID stress and 99% point-to-point correlation."
+},
+{
+"id": "p094_05",
+"en": "The red line is the mean and the three other bold lines are randomly selected from all of the distributions"
+},
+{
+"id": "p094_06",
+"en": "6.3 SUMMARY OF WRS SAMPLING WITH CHOLESKY DECOMPOSITION INCLUDING"
+},
+{
+"id": "p094_07",
+"en": "IMPORTANCE SAMPLING PROCEDURE"
+},
+{
+"id": "p094_08",
+"en": "WRS is one of the most complex values to sample in the current xLPR Version 2.0 framework due to the following constraints: (1)."
+},
+{
+"id": "p094_09",
+"en": "It is spatially varying over the thickness of the pipe."
+},
+{
+"id": "p094_10",
+"en": "Spatial variability is represented by the mean of 26 values along the thickness of the pipe."
+},
+{
+"id": "p094_11",
+"en": "Uncertainty is represented via a normal distribution for each of these values."
+},
+{
+"id": "p094_12",
+"en": "(2)."
+},
+{
+"id": "p094_13",
+"en": "An independent sampling is not appropriate as it would lead to drastic point-to-point changes in WRS (wiggly solution) that is considered unrealistic."
+},
+{
+"id": "p094_14",
+"en": "(3)."
+},
+{
+"id": "p094_15",
+"en": "In the case of axial WRS (used for circumferential crack initiation and growth) the axisymmetric assumption requires that the integral of stress through the whole thickness be as close to zero as possible."
+},
+{
+"id": "p094_16",
+"en": "(4)."
+},
+{
+"id": "p094_17",
+"en": "Finally, while the input is spatially varying, its importance in terms of influence requires that some kind of efficient importance sampling be applied to the profile, allowing the"
+},
+{
+"id": "p095_00",
+"en": "creation of more of the extreme cases that could result in through wall cracking and/or pipe rupture."
+},
+{
+"id": "p095_01",
+"en": "The sampling procedure applied to the WRS profiles currently implemented in xLPR Version 2.0 uses Cholesky decomposition to correlate sampled values through the profile."
+},
+{
+"id": "p095_02",
+"en": "It brings the advantage of smoothing the profile (meeting constraint 2) as well as linking the values to the WRS ID stress so importance sampling can be applied efficiently (i.e., it can be applied to the ID stress value only and will still affect the whole profile) (meeting constraint 4)."
+},
+{
+"id": "p095_03",
+"en": "Furthermore, for the axial WRS profile, the strength of the correlation is controlled based on the mean WRS value at each location so that the equilibrium condition is respected (meeting constraint 3)."
+},
+{
+"id": "p095_04",
+"en": "Note that we recommend using the maximum positive stress as a reference to normalize the correlation at every location."
+},
+{
+"id": "p095_05",
+"en": "The use of the mean stress value at the ID is not considered, because it could lead to unstable results if the mean stress value at the ID was close to 0 (the ratio would then be all larger than 1 and would make no sense)."
+},
+{
+"id": "p095_06",
+"en": "It would also require considering separately the case where the ID mean stress value is positive and when it is negative."
+},
+{
+"id": "p095_07",
+"en": "The user can apply importance sampling directly to the ID value by selecting the quantile of interest at the ID (high quantile or low quantile)."
+},
+{
+"id": "p095_08",
+"en": "The use of the maximum positive stress through the profile when the mean ID stress is negative reverses the correlation for the mean ID stress."
+},
+{
+"id": "p095_09",
+"en": "As a result, the importance sampling imposed by the user has to be reversed: a low quantile value will generate high values at the ID, while a high quantile value will generate low values at the ID."
+},
+{
+"id": "p095_10",
+"en": "As explained in the previous sections, the method requires the use of normal distribution."
+},
+{
+"id": "p095_11",
+"en": "In xLPR and independent of the user input, all distributions at every point are changed to normal distributions whose mean and standard deviation match the corresponding moments."
+},
+{
+"id": "p095_12",
+"en": "It is therefore recommended to force the use of normal distribution in the user input workbook."
+},
+{
+"id": "p095_13",
+"en": "This condition must be imposed in order to satisfy the equilibrium condition and maintain the shape of the distribution."
+},
+{
+"id": "p095_14",
+"en": "While this may be seen as a limitation, it is a slight one, as the Uncertainty Analysis Spreadsheet (UAS) results have shown that a normal distribution was almost always the best choice, and that even for the rare other cases, the use of normal distribution would have been adequate."
+},
+{
+"id": "p095_15",
+"en": "6.4 EXAMPLES FOR WRS IMPORTANCE SAMPLING ANALYSES"
+},
+{
+"id": "p095_16",
+"en": "To demonstrate the procedure we examine the xLPR Pilot Study WRS field for a surge line."
+},
+{
+"id": "p095_17",
+"en": "As observed during that study, uncertainty over the WRS is one of the major contributors to the uncertainty in the probability of rupture and probability of first leakage."
+},
+{
+"id": "p095_18",
+"en": "The method summarized in the previous section meets the fourth requirement as well as possible."
+},
+{
+"id": "p095_19",
+"en": "However, the problem remains ill-posed due to the fact that some requirements contradict others."
+},
+{
+"id": "p095_20",
+"en": "Therefore, it is important to assess the quality of the approach via some testing."
+},
+{
+"id": "p095_21",
+"en": "In order to test the sampling, the following axial WRS profile (Figure 67), with mean values and 95% confidence interval represented, was considered."
+},
+{
+"id": "p095_22",
+"en": "The integral of the mean value over the thickness is about 8 MPa."
+},
+{
+"id": "p095_23",
+"en": "Two sample sets of size 200 profiles each were generated using this WRS profile."
+}
+]

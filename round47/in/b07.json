@@ -1,0 +1,562 @@
+[
+{
+"id": "p146_08",
+"en": "• Neglect effect of kinematic hardening Note that these assumptions were only made for this material property uncertainty assessment and not for the WRS fields developed for this report."
+},
+{
+"id": "p146_09",
+"en": "Stress Strain Curves Using the procedure described above, we calculated the stress strain curves for the + and – 2σ data."
+},
+{
+"id": "p146_10",
+"en": "The data is presented separately for each material."
+},
+{
+"id": "p147_00",
+"en": "A508 Stress Strain Curves The procedure for estimating the + and – 2σ stress strain curves for A508 was described above."
+},
+{
+"id": "p147_01",
+"en": "The stress strain curves for the + and -2σ curves are shown in Figure 83. It is seen that there is, indeed, quite a range for the room temperature data between the + and - 2σ sets of data."
+},
+{
+"id": "p147_02",
+"en": "Figure 83 Stress strain curves for A508 for material uncertainty analysis Alloy 182/82 Computational weld modeling requires that the material data for the weld metal be obtained in the annealed condition."
+},
+{
+"id": "p147_03",
+"en": "The reason for this is that, during the weld modeling process, the material melts and then solidifies and the hardening caused by the solidification is actually modeled by the analysis process."
+},
+{
+"id": "p147_04",
+"en": "If one uses the ‘as-welded’ properties for this analysis, the pre-strain caused by the original melting and shrinkage of the material will over predict the stress strain curve since the pre-strain is incorrectly accounted for twice."
+},
+{
+"id": "p147_05",
+"en": "For Alloy 182/82 the yield stress values from the xLPR database were obtained on as-welded material test specimens."
+},
+{
+"id": "p147_06",
+"en": "The temperature dependent material data that we have for Alloy 182/82 was obtained in the annealed condition, and is assumed to be nearly the average set of stress strain curves."
+},
+{
+"id": "p147_07",
+"en": "Therefore, the annealed stress strain curves for the + and - 2σ curves was estimated by first correcting the statistical data from the xLPR database to the annealed data and then using the standard deviation to produce the + and - 2σ curves."
+},
+{
+"id": "p147_08",
+"en": "Figure 84 shows the annealed stress strain curve for Alloy 182 at 589 K (315°C)."
+},
+{
+"id": "p147_09",
+"en": "The Inputs material database contains the yield stress at 0.00E+00 1.00E+02 2.00E+02 3.00E+02 4.00E+02 5.00E+02 6.00E+02 7.00E+02 8.00E+02 0.00 0.05 0.10 True  Stress (Mpa) Plastic True Strain (mm/mm) A508 (Ferritic Nozzle Steel) A508: T = 295K 97.7%: T = 295K 2.3%: T = 295K A508: T = 589K 97.7%: T = 589K 2.3%: T = 589K A508: T = 811K 97.7%: T = 811K 2.3%: T = 811K A508: T = 900K 97.7%: T = 900 K 2.3%: T = 900 K A508: T = 1050K 97.7%: T = 1050 K 2.3%: T = 1050 K A508: T = 1150K 97.7%: T = 1150 K 2.3%: T = 1150 K A508: T = 1250 K 97.7%: T = 1250 K 2.3%: T = 1250 K A508: T = 1373K 97.7%: T = 1373 K"
+},
+{
+"id": "p148_00",
+"en": "this temperature as 331.5 MPa for as-welded material1."
+},
+{
+"id": "p148_01",
+"en": "As seen in Figure 84, the yield stress that represents the deviation from nonlinearity (rather than the 0.2% offset) is 163 MPa and this is used for the WRS analyses of the baseline case."
+},
+{
+"id": "p148_02",
+"en": "However, experience shows that use of deviation from linearity definition of yield stress or 0.2% offset have very little influence on predicted WRS fields."
+},
+{
+"id": "p148_03",
+"en": "Note that the figure below essentially indicates that the plastic strain in the tensile specimen derived from a specimen cut from a cooled weld would represent 4.3% strain (i.e. the plastic strain in the weld specimen that is not annealed is 4.3%)."
+},
+{
+"id": "p148_04",
+"en": "When using data from a non-annealed weld specimen the 0.2% offset yield would then be 331.5 MPa."
+},
+{
+"id": "p148_05",
+"en": "Figure 84 Non-annealed stress versus total strain curve for Alloy 182 and estimate of pre-strain The 0.2% offset yield for the annealed material is 243 MPa while the 0.2% offset data for the as- welded yield is 331.5 MPa."
+},
+{
+"id": "p148_06",
+"en": "This means that an estimate of the pre-strain in as-welded data is about 4.3% as seen in Figure 84. The correction for the non-annealed data is done as follows: (1)."
+},
+{
+"id": "p148_07",
+"en": "The 0.2% offset yield ratio’s between the annealed and as-welded data at 315°C is 331.5/243 = 0.73."
+},
+{
+"id": "p148_08",
+"en": "This represents the correction factor used to ratio the annealed to non-annealed data at the operating temperature of near 300°C. 1 Recall that the Input material database was compiled at the plant operating temperature of about 300C for all materials"
+},
+{
+"id": "p149_00",
+"en": "(2)."
+},
+{
+"id": "p149_01",
+"en": "The 0.2% offset yield stress for the annealed data for temperature other than 300°C are estimated by taking the stress at 4.3% strain value from the annealed data (which represents the estimate of the 0.2% yield stress) at this temperature for as-welded data and correcting for the annealed yield reduction by using the factor (0.73) in step 1. For room temperature (for instance) the 4.3% strain estimate of 0.2% offset yield is 379 MPa."
+},
+{
+"id": "p149_02",
+"en": "Correcting this by multiplying by 0.73 we get 278 MPa as the 0.2% offset yield stress value for the annealed data."
+},
+{
+"id": "p149_03",
+"en": "See comments above related to Figure 84. (3)."
+},
+{
+"id": "p149_04",
+"en": "The standard deviation estimate for temperatures other than operating is obtained by assuming the 0.2% offset yield divided by the standard deviation for the annealed data remains a constant for any temperature, which the data suggests is reasonable."
+},
+{
+"id": "p149_05",
+"en": "The standard deviation for as-welded Alloy 182 at 315°C is 71.6 MPa."
+},
+{
+"id": "p149_06",
+"en": "Therefore, the estimate of the standard deviation at room temperature is made with the following formula: σ=σ300+σ300((Y-Y300)/Y300) with: σ300 = STD Dev 300C Y300=Yield at 300C (0.2 percent offset) Y = estimate of 0.2% offset yield at the temperature of interest For instance, the room temperature estimate of standard deviation is 77.2 MPa."
+},
+{
+"id": "p149_07",
+"en": "This is then added or subtracted from the known stress strain curve data at temperature to estimate the + and – 2σ stress strain curves."
+},
+{
+"id": "p149_08",
+"en": "Figure 85 provides the stress strain curves for the Alloy 182/82 weld metal used in the material property sensitivity studies."
+},
+{
+"id": "p149_09",
+"en": "Note that the colors for all temperatures are not consistent so read the graph carefully."
+},
+{
+"id": "p150_00",
+"en": "Figure 85 Stress strain curves for Alloy 182/82 for material uncertainty analysis 304 Stainless Steel Similarly, the stress strain curves data for the 304 stainless steel is shown in Figure 86 using the same procedure."
+},
+{
+"id": "p150_01",
+"en": "Note that good data was already available for stainless steel so the estimate was straightforward."
+},
+{
+"id": "p150_02",
+"en": "Note that the colors for all temperatures are not consistent so read the graph carefully. 0.00E+00 1.00E+02 2.00E+02 3.00E+02 4.00E+02 5.00E+02 6.00E+02 7.00E+02 8.00E+02 0.00 0.05 0.10 0.15 0.20 0.25 Stress (Mpa) Plastic Strain (mm/mm) Alloy 182/82 (Annealled Weld Metal) Alloy182: T = 295K 97.7%: T = 295K 2.3%: T = 295K Alloy182: T = 589K 97.7%: T = 589K 2.3%: T = 589K Alloy182: T = 811K 97.7%: T = 811K 2.3%: T = 811K Alloy182: T = 1033K 97.7%: T = 1033K 2.3%: T = 1033K Alloy182: T = 1255K 97.7%: T = 1255K 2.3%: T = 1255K"
+},
+{
+"id": "p151_00",
+"en": "Figure 86 Stress strain curves for 304 stainless steel for material uncertainty analysis Results - Material Property Sensitivity The RPV outlet nozzle geometry was used to define the material property variation epistemic uncertainty effect on WRS fields."
+},
+{
+"id": "p151_01",
+"en": "This same variability will be assumed to apply to all nozzles and piping that are part of xLPR Version 2.0."
+},
+{
+"id": "p151_02",
+"en": "Only the baseline case (no repair) is used to define this uncertainty."
+},
+{
+"id": "p151_03",
+"en": "Both Emc2 and NRC provided solutions."
+},
+{
+"id": "p151_04",
+"en": "We first show the Emc2 results at three locations (weld centerline, near the safe end and near the nozzle) and then present the average results between the two analyses which are to be used to define the epistemic uncertainty."
+},
+{
+"id": "p151_05",
+"en": "The weld residual stress fields for the material property variability uncertainty in the RPV nozzle are shown in Figure 87 at the weld centerline for the isotropic hardening case."
+},
+{
+"id": "p151_06",
+"en": "As before, these results are compiled at 300°C with no applied loads."
+},
+{
+"id": "p151_07",
+"en": "It is seen that the results for 2.3 percentile curves are lowest in absolute magnitude while the 97.7 percentile curves are highest in absolute magnitude for the most part, although there are some locations where this does not hold."
+},
+{
+"id": "p151_08",
+"en": "It is clear that material property variability uncertainty may be important."
+},
+{
+"id": "p151_09",
+"en": "As seen above the uncertainty due to weld bead location and heat input (weld fusion zone size) were not very important and are neglected as a source of uncertainty in xLPR Version 2.0."
+},
+{
+"id": "p151_10",
+"en": "For completeness, the material property variability for stress plots near the nozzle and near the stainless steel is shown in Figure 88 and Figure 89, respectively. 0.00E+00 2.00E+02 4.00E+02 6.00E+02 8.00E+02 1.00E+03 1.20E+03 0.00 0.05 0.10 0.15 0.20 0.25 Stress (Mpa) Plastic Strain (mm/mm) 304 SS (Stainless Steel safe end and pipe) SS 304: T = 294K 97.7%: T = 294K 2.3%: T = 294K SS 304: T = 693K 97.7%: T = 693K 2.3%: T = 693K SS 304: T = 923K 97.7%: T = 923K 2.3%: T = 923K SS 304: T = 1089K 97.7%: T = 1089K 2.3%: T = 1089K SS 304: T = 1366K 97.7%: T = 1366K 2.3%: T = 1366K"
+},
+{
+"id": "p152_00",
+"en": "Figure 87 Mean, 97.7 and 2.3 percentile WRS curves for the material property uncertainty for isotropic hardening case at weld centerline (Emc2 Results) 2.3 Percentile"
+},
+{
+"id": "p153_00",
+"en": "Figure 88 Mean, 97.7 and 2.3 percentile WRS curves for the material property uncertainty for isotropic hardening case near nozzle (Emc2 Results)"
+},
+{
+"id": "p154_00",
+"en": "Figure 89 Mean, 97.7 and 2.3 percentile WRS curves for the material property uncertainty for isotropic hardening case near stainless steel side (Emc2 Results) The average between the Emc2 and NRC results for material variability is summarized in Figure 90. These combined results are used to define the epistemic uncertainty for WRS."
+},
+{
+"id": "p155_00",
+"en": "Figure 90 Mean, 97.7, and 2.3 percentile WRS curves for the material property uncertainty for isotropic hardening case at weld centerline (Emc2 and NRC Average Results)"
+},
+{
+"id": "p156_00",
+"en": "APPENDIX B"
+},
+{
+"id": "p156_01",
+"en": "MATERIAL PROPERTIES"
+},
+{
+"id": "p156_02",
+"en": "B.1 ALLOY 82/182 - MECHANICAL PROPERTIES, ISOTROPIC HARDENING"
+},
+{
+"id": "p156_03",
+"en": "These were compiled from numerous sources over the years and reside in the NRC material database maintained at Emc2 and NRC."
+},
+{
+"id": "p156_04",
+"en": "Figure 91 Coefficient of Thermal Expansion Alloy 82/182 Figure 92 Elastic Properties Alloy 82/182"
+},
+{
+"id": "p157_00",
+"en": "Figure 93 Plastic Properties Alloy 82/182 Figure 94 Creep Properties Alloy 82/182"
+},
+{
+"id": "p158_00",
+"en": "B.2 ALLOY 82/182 – MECHANICAL PROPERTIES, KINEMATIC HARDENING"
+},
+{
+"id": "p158_01",
+"en": "Figure 95 Plastic Properties Alloy 82/182"
+},
+{
+"id": "p159_00",
+"en": "B.3 ALLOY 82/182 – THERMAL PROPERTIES"
+},
+{
+"id": "p159_01",
+"en": "Figure 96 Thermal Conductivity Alloy 82/182 Figure 97 Specific Heat Alloy 82/182"
+},
+{
+"id": "p160_00",
+"en": "B.4 A508 CL 2 – MECHANICAL PROPERTIES, ISOTROPIC HARDENING, LOW ALLOY"
+},
+{
+"id": "p160_01",
+"en": "STEEL Figure 98 Coefficient of Thermal Expansion A508 cl 2 Figure 99 Elastic Properties A508 cl 2"
+},
+{
+"id": "p161_00",
+"en": "Figure 100 Plastic Properties A508 cl 2 Figure 101 Creep Properties A508 cl 2"
+},
+{
+"id": "p162_00",
+"en": "B.5 A508 CL 2 – MECHANICAL PROPERTIES, KINEMATIC HARDENING, LOW ALLOY"
+},
+{
+"id": "p162_01",
+"en": "STEEL Figure 102 Plastic Properties A508 cl 2"
+},
+{
+"id": "p163_00",
+"en": "B.6 A508 CL 2 – THERMAL PROPERTIES, LOW ALLOY STEEL"
+},
+{
+"id": "p163_01",
+"en": "Figure 103 Thermal Conductivity A508 cl 2 Figure 104 Specific Heat A508 cl 2"
+},
+{
+"id": "p164_00",
+"en": "B.7 STAINLESS STEEL, CF8M – MECHANICAL PROPERTIES, ISOTROPIC"
+},
+{
+"id": "p164_01",
+"en": "Figure 105 Coefficient of Thermal Expansion Stainless Steel, CF8M Figure 106 Elastic Properties Stainless Steel, CF8M"
+},
+{
+"id": "p165_00",
+"en": "Figure 107 Plastic Properties Stainless Steel, CF8M Figure 108 Creep Properties Stainless Steel, CF8M"
+},
+{
+"id": "p166_00",
+"en": "B.8 STAINLESS STEEL, CF8M – MECHANICAL PROPERTIES, KINEMATIC"
+},
+{
+"id": "p166_01",
+"en": "Figure 109 Plastic Properties Stainless Steel, CF8M"
+},
+{
+"id": "p167_00",
+"en": "B.9 STAINLESS STEEL, CF8M – THERMAL PROPERTIES"
+},
+{
+"id": "p167_01",
+"en": "Figure 110 Thermal Conductivity Stainless Steel, CF8M Figure 111 Specific Heat Stainless Steel, CF8M"
+},
+{
+"id": "p168_00",
+"en": "APPENDIX C"
+},
+{
+"id": "p168_01",
+"en": "CHARACTERIZATION OF WRS UNCERTAINTY"
+},
+{
+"id": "p168_02",
+"en": "C.1 INTRODUCTION"
+},
+{
+"id": "p168_03",
+"en": "The overall strategy outlined above and implemented in this section uses the NRC/EPRI weld mock-up program as input."
+},
+{
+"id": "p168_04",
+"en": "Fourteen of the 16 data sets are the results of analysis while two of the data sets are measurements."
+},
+{
+"id": "p168_05",
+"en": "To understand the data being fit the weld mockup is briefly described."
+},
+{
+"id": "p168_06",
+"en": "Afterwards, the statistical treatment is addressed."
+},
+{
+"id": "p168_07",
+"en": "It is noted that WRS measurements were not explicitly used in xLPR Version 2.0."
+},
+{
+"id": "p168_08",
+"en": "Rather, the four WRS modeler’s experience with determining WRS fields was validated with these mock-up measurements."
+},
+{
+"id": "p168_09",
+"en": "Measurements were not included in xLPR Version 2.0 since the nozzle WRS fields here were not measured."
+},
+{
+"id": "p168_10",
+"en": "This section is included for completeness in case mock-ups are included in the future."
+},
+{
+"id": "p168_11",
+"en": "C.2 NRC/EPRI WELD MOCK-UP PROGRAM"
+},
+{
+"id": "p168_12",
+"en": "The following description of the NRC/EPRI weld mock up is taken from References [1]-[3]."
+},
+{
+"id": "p168_13",
+"en": "The geometry chosen for the WRS round robin is representative of a pressurizer surge nozzle, due to its safety significance and relevance to flaw evaluation."
+},
+{
+"id": "p168_14",
+"en": "The overall geometry is shown in Figure 112. For this mock-up, the nozzle (SA-105 nozzle from a cancelled reactor) is buttered with Alloy 82 (AWS A5.14, ERNiCr-3, UNS N06082) weld material, post weld heat treated and then welded to a forged F316L stainless steel safe-end."
+},
+{
+"id": "p168_15",
+"en": "Finally, the safe-end is welded to a TP316 stainless steel, 14-inch diameter Schedule 160 stainless steel pipe using a TP308 weld."
+},
+{
+"id": "p168_16",
+"en": "The mock-up is fabricated in the following four steps."
+},
+{
+"id": "p168_17",
+"en": "The carbon steel nozzle is buttered with 137 passes of Alloy 82. After heat treating and machining the butter, 40 passes of Alloy 82 are deposited to make up the main DMW."
+},
+{
+"id": "p168_18",
+"en": "The root of the main weld is then machined and 27 passes deposited with Alloy 82 to make up the 360 degree fill-in weld."
+},
+{
+"id": "p168_19",
+"en": "At this point, residual stress measurements are made on the DMWs."
+},
+{
+"id": "p168_20",
+"en": "The residual stress measurements are followed by the TP308 stainless steel safe-end to pipe weld, with a second set of residual stress measurements made investigating the effect of the safe-end to pipe weld."
+},
+{
+"id": "p168_21",
+"en": "Recent improvements in computational efficiency have facilitated advances in WRS predictions, but no universally accepted guidelines for these analyses have been established."
+},
+{
+"id": "p168_22",
+"en": "Therefore, the assumptions and estimation techniques employed vary from analyst to analyst, causing large variability in the predicted residual stress profiles for a given weld."
+},
+{
+"id": "p168_23",
+"en": "The U.S."
+},
+{
+"id": "p168_24",
+"en": "Nuclear Regulatory Commission (NRC) staff and its contractors are completing a WRS analysis validation program aimed at both (1) refining computational procedures for residual stress simulations in DMWs, and (2) developing and categorizing the uncertainties in the resulting residual stress predictions."
+},
+{
+"id": "p168_25",
+"en": "This program consists of four phases"
+},
+{
+"id": "p169_00",
+"en": "Figure 112 Phase 2 Weld Mock-Up Geometry Finite element modeling of the weld process for DMWs to account for the fabrication of such welds calculates a stress at points through the pipe thickness."
+},
+{
+"id": "p169_01",
+"en": "The stress components of interest are axial (needed for circumferential flaw growth) and hoop (needed for axial flaw growth)."
+},
+{
+"id": "p169_02",
+"en": "In addition there are several key parameters for performing the calculations including: a."
+},
+{
+"id": "p169_03",
+"en": "Heat input b."
+},
+{
+"id": "p169_04",
+"en": "Number of weld passes c."
+},
+{
+"id": "p169_05",
+"en": "Pass deposition sequence d."
+},
+{
+"id": "p169_06",
+"en": "Material property statistical variations e."
+},
+{
+"id": "p169_07",
+"en": "Hardening laws For older plants there is often no data on the first three items and therefore the choices used for an analysis are somewhat of an art form that is analyst dependent."
+},
+{
+"id": "p169_08",
+"en": "Material properties have a smaller impact1 but different analysts will have differing material property data bases that can lead to some uncertainty."
+},
+{
+"id": "p169_09",
+"en": "Perhaps the largest impact is the choice of hardening law."
+},
+{
+"id": "p169_10",
+"en": "Three currently are employed: (1) isotropic, (2) kinematic, and (3) mixed, which is a combination of the previous two."
+},
+{
+"id": "p169_11",
+"en": "From a theoretical standpoint, mixed hardening best represents measured stresses most of the time, especially for multiple pass welds typical in nuclear plants, but often the material parameters necessary for mixed modeling are not known with confidence."
+},
+{
+"id": "p169_12",
+"en": "C.3 MODELING THE UNCERTAINTY IN WRS DATA"
+},
+{
+"id": "p169_13",
+"en": "A rudimentary approach to the variability in the WRS data was performed2."
+},
+{
+"id": "p169_14",
+"en": "In this analysis standard mean and standard deviation formulas are used although there was a reluctance to calculate the standard deviation for data sets with only six points."
+},
+{
+"id": "p169_15",
+"en": "In this section we provide a sample data set, use the xLPR Version 2.0 uncertainty analysis protocol to define the best distribution, and then make recommendations for sampling based on these results."
+},
+{
+"id": "p169_16",
+"en": "In Figure 113 we see the predicted WRS from 14 different analysts plus two deep hole drilling measurements (identified as iDHD #1 and #2)."
+},
+{
+"id": "p169_17",
+"en": "These are the predicted axial stresses, which are important for circumferential cracks."
+},
+{
+"id": "p169_18",
+"en": "For axial cracks the hoop stress is needed and the same information for these stresses is shown in Figure 114. 1 Assuming that the analyst has the correct material 2 Jaynes, E.T., (1957) Information Theory and Statistical Mechanics, Phys."
+},
+{
+"id": "p169_19",
+"en": "Rev., Vol 106, pp 620 – 630."
+},
+{
+"id": "p170_00",
+"en": "Figure 113 Axial WRS predicted from 14 different analyses and two measurements (iDHD)"
+},
+{
+"id": "p171_00",
+"en": "Figure 114 Hoop WRS predicted from 14 different analyses and two measurements (iDHD) Clearly, there is significant uncertainty in these analyses, especially for hoop stresses."
+},
+{
+"id": "p171_01",
+"en": "It is noted that isotropic hardening predictions often produce WRS predictions that are unrealistically high – especially for hoop stress."
+},
+{
+"id": "p171_02",
+"en": "This is seen in Figure 114 where predicted stresses near 800 MPa are seen for some modelers."
+},
+{
+"id": "p171_03",
+"en": "However, for the moment we use all of the analyses as the basis for assessing the uncertainty."
+},
+{
+"id": "p171_04",
+"en": "The first thing to note is very few analysts calculate the WRS at the same point through the pipe thickness since the mesh refinements vary1."
+},
+{
+"id": "p171_05",
+"en": "Therefore, the first step is to determine the WRS at fixed intervals through the pipe."
+},
+{
+"id": "p171_06",
+"en": "For this analysis 26 points are used, i.e. 4% increments through the thickness."
+},
+{
+"id": "p171_07",
+"en": "Because this analysis is only meant to be illustrative not the final model2 no interpolation routine was used."
+},
+{
+"id": "p171_08",
+"en": "This implies that the WRS at each fixed point will be based on the point nearest to the 4% increment value but less than the increment value."
+},
+{
+"id": "p171_09",
+"en": "If one closely examines the figures it will appear to shift the WRS."
+},
+{
+"id": "p171_10",
+"en": "If this sampling scheme is adopted clearly an interpolation routine should be employed."
+},
+{
+"id": "p171_11",
+"en": "These results are shown in Figure 115. 1 This was changed in the new mock-up 2b where modelers provided results at 26 points through the nozzle wall. 2 The WRS models group will ultimately define the final model."
+},
+{
+"id": "p172_00",
+"en": "Figure 115 WRS from each analyst and measurements at fixed 4% intervals through the pipe wall thickness for hoop stress Using these set intervals we now have data points for which an assessment of the distribution describing the variability at these points can be made."
+},
+{
+"id": "p172_01",
+"en": "There are many methods for selecting a distribution but the one chosen here is the one proposed by the uncertainty analysis working group of the xLPR development team."
+},
+{
+"id": "p172_02",
+"en": "The fundamental steps in the method are to calculate the skewness and kurtosis of the data, compare these values to the values of selected theoretical distributions, choose the distribution family whose skewness and kurtosis is closest to the data, and determine the parameters of the distribution by moment matching."
+},
+{
+"id": "p172_03",
+"en": "The results of the application of this methodology are contained in an Excel spreadsheet labeled the uncertainty analysis protocol on the Subversion site that is available to all of the models group members."
+},
+{
+"id": "p172_04",
+"en": "Application to the data illustrated in Figure 115 is shown in Table 35. As one can see from this table all intervals were recommended to be represented by a uniform distribution except for the interval at 64% through the thickness."
+},
+{
+"id": "p172_05",
+"en": "However, the distance measure at this point is essentially a toss-up between the normal and uniform distribution so we elect to override the recommendation and select a uniform distribution."
+},
+{
+"id": "p173_00",
+"en": "Table 35 Result of the calculations from the uncertainty analysis protocol worksheet at each interval through the pipe wall thickness We now examine the lower bound, upper bound, and range of each of the uniform distributions calculated by the uncertainty analysis protocol worksheet."
+}
+]

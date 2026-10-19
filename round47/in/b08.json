@@ -1,0 +1,550 @@
+[
+{
+"id": "p173_01",
+"en": "These values are shown in Figure 116. One should note that the upper and lower bounds are those obtained from the protocol when moment matching to the data set is used to define the parameters of the uniform distribution."
+},
+{
+"id": "p173_02",
+"en": "Specifically: ⟦수식⟧ ⟦수식⟧= ⟦수식⟧−√3⟦수식⟧ ⟦수식⟧ ⟦수식⟧= ⟦수식⟧+ √3⟦수식⟧ In this figure we also show a step function approximation to the value of the range."
+},
+{
+"id": "p173_03",
+"en": "Thus, between 0% and 4% through the thickness the WRS range is 375 MPa, between 4% and 40% it is 550 MPa, and so forth."
+},
+{
+"id": "p173_04",
+"en": "Note that normal distributions are used now."
+},
+{
+"id": "p173_05",
+"en": "This represents an early attempt to characterize uncertainty."
+},
+{
+"id": "p174_00",
+"en": "Figure 116 The lower, upper, and range values at fixed intervals through the pipe wall thickness as calculated by the uncertainty analysis protocol worksheet Now we wish to examine how the data is bounded by different assumptions."
+},
+{
+"id": "p174_01",
+"en": "We first show the bounds assuming a normal distribution at each interval."
+},
+{
+"id": "p174_02",
+"en": "In this case the bounds are represented by a two standard deviation bound as shown in Figure 117. These results do a credible job of bounding the data and could be used."
+},
+{
+"id": "p174_03",
+"en": "However, this would require 25 epistemic variables."
+},
+{
+"id": "p174_04",
+"en": "Note that these assessments used both 2 and 3 sigma bounds and conclusions are minimally affected."
+},
+{
+"id": "p174_05",
+"en": "The standard deviation is calculated between the stress value of each step and the corresponding data values, resulting in only 4 standard deviation values associated with the 4 steps."
+},
+{
+"id": "p174_06",
+"en": "The upper and lower bounds can then be created from the data means and the twice the standard deviation over the steps."
+},
+{
+"id": "p174_07",
+"en": "This is shown in Figure 118. In this case the data are well bounded by these limits and using only 4 epistemic variables.1  One must also recall that the probability of the WRS being close to the uniform bound is much higher than it would be for the normal distribution bound. 1 The xLPR 1.0 code had 2 epistemic variables so there are only two additional variables."
+},
+{
+"id": "p175_00",
+"en": "Figure 117 Comparison of the WRS as calculated and measured with the mean and two standard deviation calculations at fixed intervals through the pipe wall thickness In the extreme we use a constant range at all points (a weighted average of the magnitude of the standard deviations for the four distinct step levels)."
+},
+{
+"id": "p175_01",
+"en": "The bounds using this strategy are compared in Figure 119. As one can see there is not a significant difference in these bounds and it only requires one epistemic variable."
+},
+{
+"id": "p176_00",
+"en": "Figure 118 Comparison of the normal distribution two sigma bounds with the uniform distribution ranges when the step function is used"
+},
+{
+"id": "p177_00",
+"en": "Figure 119 Comparison of the normal distribution two sigma bounds, the uniform distribution ranges when the step function is used, and a constant range for the uniform distribution Of course one can always be “conservative” and use a larger range for the uniform distribution."
+},
+{
+"id": "p177_01",
+"en": "A 150% range is shown in Figure 120. In this case all of the data points are bounded so that if all of the data sets are equally probable this will insure that they are bounded."
+},
+{
+"id": "p177_02",
+"en": "We return to the point made in the first section, that of correlation."
+},
+{
+"id": "p177_03",
+"en": "If we use a single range and sample at each point in an uncorrelated manner then the resulting through wall crack, using the Universal Weight Function Method (UWFM) for calculating the stress intensity factor, will see something approaching the mean value at each simulation."
+},
+{
+"id": "p177_04",
+"en": "If, on the other hand, we treat the point to point variability as perfectly correlated then the resulting WRS will be a shift of the mean curve that depends only on the value chosen for the stress at the inside diameter."
+},
+{
+"id": "p177_05",
+"en": "While the latter may seem more desirable than the former, it would only be acceptable if all curves had the same shape."
+},
+{
+"id": "p177_06",
+"en": "This can be illustrated by using a line plot for the WRS data as shown in Figure 121. Therefore, it is believed that a correlation function should be used between points."
+},
+{
+"id": "p178_00",
+"en": "Figure 120 Comparison of the constant range for the uniform distribution with the data Figure 121 Hoop stress line plot all data"
+},
+{
+"id": "p179_00",
+"en": "C.4 XLPR VERSION 2.0 WRS UNCERTAINTY"
+},
+{
+"id": "p179_01",
+"en": "Based on the results presented here, the following steps were taken to define the WRS for the xLPR Version 2.0 model: (1)."
+},
+{
+"id": "p179_02",
+"en": "Set a number of data points through the thickness with a minimum of ten and a maximum of 26. (2)."
+},
+{
+"id": "p179_03",
+"en": "Identify any data sources or analyses that produce the WRS magnitude at each of these points."
+},
+{
+"id": "p179_04",
+"en": "Note this must be done for the axial WRS for circumferential cracks and repeated for the hoop stress for axial cracks."
+},
+{
+"id": "p179_05",
+"en": "(3)."
+},
+{
+"id": "p179_06",
+"en": "Calculate the mean WRS at each of these points based on the data."
+},
+{
+"id": "p179_07",
+"en": "If no data exists then identify an expert source to define these values (4)."
+},
+{
+"id": "p179_08",
+"en": "Define the uncertainty at each point by defining the distribution of the data about the mean value and the parameters for this distribution."
+},
+{
+"id": "p179_09",
+"en": "It is highly recommended that the uncertainty analysis protocol spreadsheet be used for this task."
+},
+{
+"id": "p179_10",
+"en": "It is also noted that the uncertainty at each point does not have to be different."
+},
+{
+"id": "p179_11",
+"en": "In fact, the same uncertainty at every point can be as valid."
+},
+{
+"id": "p179_12",
+"en": "(5)."
+},
+{
+"id": "p179_13",
+"en": "Provide a point to point correlation coefficient for the WRS data."
+},
+{
+"id": "p179_14",
+"en": "In all likelihood this will be based on expert opinion."
+},
+{
+"id": "p179_15",
+"en": "The inner diameter stress will be the only true random variable if a correlation coefficient of 1.0 is selected."
+},
+{
+"id": "p179_16",
+"en": "(6)."
+},
+{
+"id": "p179_17",
+"en": "Sample a WRS magnitude at each of the points for use in the linear interpolation scheme of the UWFM for calculating K. (7)."
+},
+{
+"id": "p179_18",
+"en": "Input these results in the WRS input worksheet."
+},
+{
+"id": "p179_19",
+"en": "The current model for Weld Residual Stress (WRS) must estimate the stress through the thickness that arises from the weld process for a variety of geometries, repairs, and mitigation strategies."
+},
+{
+"id": "p179_20",
+"en": "The initial method for developing the uncertainty in the stress values at each of these 26 points was based on the NRC weld mock-up program where there were 12 to 15 solutions and two experimental results."
+},
+{
+"id": "p179_21",
+"en": "For 14 to 17 results estimating the uncertainty at each point can be done and have reasonable estimates of the uncertainty at each point1."
+},
+{
+"id": "p179_22",
+"en": "The xLPR Version 2.0 program originally had selected several geometries, one or two repair strategies, and inlay and onlay mitigation strategies that were to be analyzed by six independent analysts."
+},
+{
+"id": "p179_23",
+"en": "Once the cost of all of these analyses was compared to the budgetary resources the program had to be scaled back."
+},
+{
+"id": "p179_24",
+"en": "For the three geometry baseline cases there are, at most, three analyses available."
+},
+{
+"id": "p179_25",
+"en": "For most of the repair cases there are only two analyses available."
+},
+{
+"id": "p179_26",
+"en": "This implies that any estimate of both a mean and a standard deviation is highly uncertain."
+},
+{
+"id": "p179_27",
+"en": "And this uncertainty exists at each of 26 points."
+},
+{
+"id": "p179_28",
+"en": "Introducing an uncertainty factor based on expert judgment is one way to artificially change the point estimate."
+},
+{
+"id": "p179_29",
+"en": "However, this strategy introduces another source of epistemic uncertainty which cannot be estimated."
+},
+{
+"id": "p179_30",
+"en": "Therefore, an alternative 1 It is noted that although the uncertainty from the phase 2a mock-up WRS results was large since the data was based on results using a mixture of hardening laws, the method should still apply if for instance the uncertainty was determined based on only one hardening law."
+},
+{
+"id": "p180_00",
+"en": "strategy has been proposed, tested and implemented that is based on only using the information available to give a consistent estimate of the point uncertainty."
+},
+{
+"id": "p180_01",
+"en": "We begin by using the maximum entropy distribution to estimate the Probability Density Function (PDF) at each point."
+},
+{
+"id": "p180_02",
+"en": "This PDF does not make any assumptions about the shape of the distribution but rather bases the PDF only on the moments that are calculated from the data."
+},
+{
+"id": "p180_03",
+"en": "The maximum entropy distribution does require lower and upper bounds to also be supplied."
+},
+{
+"id": "p180_04",
+"en": "These lower and upper bounds are determined by fitting a response surface (a 6th order polynomial is used) to the standard deviation at each point of the WRS."
+},
+{
+"id": "p180_05",
+"en": "This response surface is used for two purposes."
+},
+{
+"id": "p180_06",
+"en": "First, the uncertainty at each point is spread throughout the thickness so that the shape is maintained but we do not force the profile through a single point if two analyses happen to coincide.1 We then compare the maximum entropy results to a normal assumption."
+},
+{
+"id": "p180_07",
+"en": "If the maximum entropy distribution and the normal give the same results over a large range (say four standard deviations) then the normal is used."
+},
+{
+"id": "p180_08",
+"en": "If the maximum entropy distribution is different then we use the limits determined from the analyses to define a truncated normal distribution."
+},
+{
+"id": "p180_09",
+"en": "The final points to be considered are the point to point correlation and the axisymmetric solution procedure."
+},
+{
+"id": "p180_10",
+"en": "The latter condition requires that the integral of the WRS through the thickness is equal to zero for axial stress2."
+},
+{
+"id": "p180_11",
+"en": "When this condition is coupled with a very high value of the correlation coefficient the impact is to lower the uncertainty in the WRS regardless of the information input for each point."
+},
+{
+"id": "p180_12",
+"en": "At the extreme if a correlation coefficient of 1.0 is input then the uncertainty in the WRS will be zero."
+},
+{
+"id": "p180_13",
+"en": "Because the maximum entropy distribution is not well known we describe it in the next section."
+},
+{
+"id": "p180_14",
+"en": "We then provide an example of how it fits data."
+},
+{
+"id": "p180_15",
+"en": "C.5 FITTING DISTRIBUTIONS AND MAXIMUM ENTROPY"
+},
+{
+"id": "p180_16",
+"en": "The fitting of distributions to a sparse number of data points, or perhaps worse, two or three moments, can be a significant source of uncertainty."
+},
+{
+"id": "p180_17",
+"en": "When assumptions are made about the distribution type, a source of epistemic uncertainty is introduced that is, at best, very difficult to quantify.3 Therefore, when we assume that a given distribution is applicable there is an implicit assumption that the conditional probability of it being correct is 1.0."
+},
+{
+"id": "p180_18",
+"en": "For the problem of developing WRS profiles this is precisely the situation that we encounter."
+},
+{
+"id": "p180_19",
+"en": "Therefore, we examine a methodology that can provide guidance and a justification for selecting a specific distribution and help to define the limits of such a distribution."
+},
+{
+"id": "p180_20",
+"en": "However, this methodology is not widely used so we develop the mathematics to provide the technical justification."
+},
+{
+"id": "p180_21",
+"en": "Thus, we examine Jaynes’ principle in which entropy is used as the measure to define a probability density function."
+},
+{
+"id": "p180_22",
+"en": "In this scenario there is no assumption about the form of the distribution and it will automatically generate the necessary form for truncated data."
+},
+{
+"id": "p180_23",
+"en": "C.6 JAYNES’ PRINCIPLE FOR ASSIGNING PROBABILITY DENSITY FUNCTIONS"
+},
+{
+"id": "p180_24",
+"en": "Jaynes argued that4 the minimally prejudiced probability distribution is that which maximizes the entropy subject to constraints arising from the underlying data."
+},
+{
+"id": "p180_25",
+"en": "He stated “This is the only 1 This point is investigated in more detail later 2 Hoop stresses do not have to be self-equilibrated. 3 Running sensitivity studies with different distribution assumptions still provides no probability information and simply increases the epistemic uncertainty 4 Jaynes, E.T., (1957) Information Theory and Statistical Mechanics, Phys."
+},
+{
+"id": "p180_26",
+"en": "Rev., Vol 106, pp 620 – 630."
+},
+{
+"id": "p181_00",
+"en": "unbiased assumption we can make; to use any other would amount to an arbitrary assumption of information which by hypothesis we do not have”."
+},
+{
+"id": "p181_01",
+"en": "Therefore we investigate how we can construct such a distribution."
+},
+{
+"id": "p181_02",
+"en": "C.7 USING JAYNES’ PRINCIPLE WITH MOMENTS"
+},
+{
+"id": "p181_03",
+"en": "First, we restrict ourselves to continuous random variables.1 In this case entropy is defined by ⟦수식⟧ሾ⟦수식⟧(⟦수식⟧)] = −⟦수식⟧(⟦수식⟧)⟦수식⟧(⟦수식⟧(⟦수식⟧))⟦수식⟧ ⟦수식⟧ Equation 1 Since we can define information as a measure of uncertainty for individual values of x then entropy can be examined as a measure of uncertainty for the whole range of x."
+},
+{
+"id": "p181_04",
+"en": "Thus, the greater the uncertainty, the larger the entropy."
+},
+{
+"id": "p181_05",
+"en": "The classical thermodynamic view of entropy as a measure of disorder certainly coincides with the classical information theory view2,3. We do not discuss information theory any further here but rather jump directly into how we can use Jaynes’ principle to generate a probability density function (PDF) from data."
+},
+{
+"id": "p181_06",
+"en": "Initially, we assume that the data has been analyzed and that the moments, denoted mj, have been determined up to a maximum number of 6 moments."
+},
+{
+"id": "p181_07",
+"en": "The problem we wish to solve is to maximize the entropy of the PDF, denoted S(f(x)) in Equation 1, subject to the constraint that the integral of f(x) over the real numbers is equal to 1.0 and that the integral of xkf(x) over the real numbers is equal to the kth moment, mk."
+},
+{
+"id": "p181_08",
+"en": "Thus, mathematically: ⟦수식⟧ ⟦수식⟧ሾ⟦수식⟧(⟦수식⟧)] = −⟦수식⟧(⟦수식⟧)⟦수식⟧(⟦수식⟧(⟦수식⟧))⟦수식⟧ ⟦수식⟧ Equation 2 Subject to ⟦수식⟧(⟦수식⟧)⟦수식⟧= 1.0 ⟦수식⟧ Equation 3 ⟦수식⟧(⟦수식⟧)⟦수식⟧= ⟦수식⟧ ⟦수식⟧ Equation 4 1 Discrete variables can also have a parallel development where integrals are replaced by summations 2 Abramson, N (1963) Information Theory and Coding, McGraw-Hill, New York. 3 Jones, D.S."
+},
+{
+"id": "p181_09",
+"en": "(1979) Elementary Information Theory, Clarendon Press, Oxford"
+},
+{
+"id": "p182_00",
+"en": "We could attempt to solve this directly by numerical optimizations1,2, however, we can develop an analytic form as summarized below."
+},
+{
+"id": "p182_01",
+"en": "We repeat them here for the reader as taken from this reference."
+},
+{
+"id": "p182_02",
+"en": "First, let ⟦수식⟧̅ be the modified entropy and use Lagrangian multipliers to define this modified entropy as ⟦수식⟧̅ = ⟦수식⟧+ (⟦수식⟧+ 1) ቈ⟦수식⟧(⟦수식⟧)⟦수식⟧ ⟦수식⟧ −1቉+ ⟦수식⟧ቈ⟦수식⟧(⟦수식⟧)⟦수식⟧ ⟦수식⟧ −⟦수식⟧቉ ⟦수식⟧ ⟦수식⟧ Equation 5 If we differentiate Equation 5 with respect to f(x) and combine terms we get ⟦수식⟧ ⟦수식⟧−lnሾ⟦수식⟧(⟦수식⟧)] + ⟦수식⟧+ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ = 0 Equation 6 Since the only way for the integral in Equation 6 to be zero is for the integrand to be zero then ⟦수식⟧(⟦수식⟧) = ⟦수식⟧∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ Equation 7 Equation 7 is the analytic form for the maximum entropy density function."
+},
+{
+"id": "p182_03",
+"en": "So we now use the constraints on the problem to determine the values of ⟦수식⟧."
+},
+{
+"id": "p182_04",
+"en": "We substitute Equation 7 into Equation 3 and multiply by ⟦수식⟧ to obtain, after taking the natural logarithm, ⟦수식⟧= −⟦수식⟧ቈ⟦수식⟧∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ቉ Equation 8 We can differentiate Equation 8 to obtain ⟦수식⟧ ⟦수식⟧ = −ቈ⟦수식⟧∑ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ⟦수식⟧ ቉ Equation 9 From Equation 4 and Equation 7 we can see ⟦수식⟧ ⟦수식⟧ = −⟦수식⟧ Equation 10 If we differentiate Equation 8 with respect to ⟦수식⟧ and use Equation 10 the expression for the moments then we can obtain m simultaneous equations to get the values of ⟦수식⟧, ⟦수식⟧, ⋯, ⟦수식⟧."
+},
+{
+"id": "p182_05",
+"en": "Once 1 Siddall, J.N."
+},
+{
+"id": "p182_06",
+"en": "(1982) Optimal Engineering Design: Principles and Applications, Marcel Dekker, New York. 2 Brian M. Adams, et al, Dakota, A Multilevel Parallel Object-Oriented Framework for Design Optimization, Parameter Estimation, Uncertainty Quantification, and Sensitivity Analysis, Version 5.3.1+ Theory Manual, SAND2011-9106, May 2013."
+},
+{
+"id": "p183_00",
+"en": "these values are known then Equation 8 can be used to solve for ⟦수식⟧ which gives us all of the parameters needed for the maximum entropy distribution."
+},
+{
+"id": "p183_01",
+"en": "An example of using the Maximum Entropy Distribution (MED) for a data set for the yield strength that is characterized by only two moments is provided in the following section."
+},
+{
+"id": "p183_02",
+"en": "C.8 MAXIMUM ENTROPY DISTRIBUTION EXAMPLE FOR YIELD STRENGTH"
+},
+{
+"id": "p183_03",
+"en": "The fitting of the maximum entropy distribution is problematic from the standpoint of the exponential term in Equation 7. To deal with this we renormalize the range of x to [0, 1]."
+},
+{
+"id": "p183_04",
+"en": "The reason that it is problematic is that trying to transform the interval from [−∞, ∞] to [0, 1] is not possible unless one utilizes the Dirac function which provides no probabilistic information."
+},
+{
+"id": "p183_05",
+"en": "But this renormalization process means that the cumulative distribution function (CDF) changes depending on the lower and upper bounds."
+},
+{
+"id": "p183_06",
+"en": "To illustrate this we examine Figure 122. In this case the CDF is between the normal distribution theory and the Maximum Entropy Distribution (MED)."
+},
+{
+"id": "p183_07",
+"en": "We examine the case of the yield strength that is defined by a normal distribution."
+},
+{
+"id": "p183_08",
+"en": "In this case we assume that sufficient data has been collected on the yield strength of the material that we are confident that a normal distribution adequately fits the data."
+},
+{
+"id": "p183_09",
+"en": "In this case the Maximum Entropy Distribution (MED) and the normal distribution give identical results as shown in Figure 122. Figure 122 Comparison of the normal distribution and the maximum entropy distribution for the yield strength when the lower and upper bounds are eight standard deviations from the mean Of course for the MED distribution we must supply upper and lower bounds in order to obtain the Lagrangian coefficients."
+},
+{
+"id": "p183_10",
+"en": "In the fitting of the coefficients we assumed that the lower bound was 8"
+},
+{
+"id": "p184_00",
+"en": "standard deviations below the mean and the upper bound was 8 standard deviations above the mean, i.e., the range of yield strengths was assumed to be [30, 270] based on a mean of 150 MPa and a standard deviation of 15 MPa."
+},
+{
+"id": "p184_01",
+"en": "If we had assumed a range of [120, 180], i.e. a +/-2σ range then the MED distribution would be as in Figure 123. Obviously this impacts the distribution but it is necessary in order to impose lower and upper bounds."
+},
+{
+"id": "p184_02",
+"en": "Figure 123 Comparison of the normal distribution and the maximum entropy distribution for the yield strength when the lower and upper bounds are two standard deviations from the mean Now one may think that the MED solution is just representing the truncated normal, however, this is not the case."
+},
+{
+"id": "p184_03",
+"en": "When the standard normal, truncated normal, and MED are plotted together, as they are in Figure 124, we see that the sampling scheme is not at all the same."
+},
+{
+"id": "p184_04",
+"en": "The assumption of the distribution of the random variable being normally distributed when the variable limits are within 4 standard deviations of the mean introduces a sampling procedure that is biased by this assumption."
+},
+{
+"id": "p185_00",
+"en": "Figure 124 Comparison of the normal distribution, the maximum entropy distribution, and the truncated normal distribution for the yield strength when the lower and upper bounds are two standard deviations from the mean"
+},
+{
+"id": "p185_01",
+"en": "C.9 WRS ALL POINT CORRELATION"
+},
+{
+"id": "p185_02",
+"en": "The point-to-point correlation was chosen for computational efficiency in addition to maintaining a profile shape similar to the results of finite element analyses."
+},
+{
+"id": "p185_03",
+"en": "We can examine an alternative approach in which we use the same philosophy but require all 26 points to be correlated."
+},
+{
+"id": "p185_04",
+"en": "The restriction we implement is that all points are correlated with the same correlation coefficient."
+},
+{
+"id": "p185_05",
+"en": "In this case we can calculate the Cholesky decomposition once for the input value of the correlation coefficient."
+},
+{
+"id": "p185_06",
+"en": "We show the lower triangular decomposition in Applied to the stress values at the first two locations (at the ID and 4% through the thickness) this gives the sampled values of stresses with correlation."
+},
+{
+"id": "p185_07",
+"en": "For a ⟦수식⟧ value equal to 1, ⟦수식⟧ and ⟦수식⟧ will be similar, meaning that each WRS profile will be defined by the sampling on the ID value (all the profiles will be parallels)."
+},
+{
+"id": "p185_08",
+"en": "This method is called the Cholesky decomposition and, while presented only for two variables, it can be extended to any number of variables."
+},
+{
+"id": "p185_09",
+"en": "It is usually presented as the LU decomposition of a symmetric positive definite matrix, where L represent a Lower Triangular matrix and U its upper triangular transpose."
+},
+{
+"id": "p185_10",
+"en": "This transformation is applied to the correlation matrix and gives in the case of a 2 x 2 correlation matrix: 1⟦수식⟧1=10⟦수식⟧1−⟦수식⟧21⟦수식⟧01−⟦수식⟧2=⟦수식⟧ An uncorrelated vector ⟦수식⟧= ቀ⟦수식⟧ ⟦수식⟧ቁ can then be used to generate correlated data ⟦수식⟧∗= ⟦수식⟧ ∗ ⟦수식⟧ ∗⟦수식⟧ via a simple matrix operation: ⟦수식⟧∗= ⟦수식⟧. ⟦수식⟧= ⟦수식⟧1 ⟦수식⟧ ⟦수식⟧1 −⟦수식⟧. ቀ⟦수식⟧ ⟦수식⟧ቁ=  ⟦수식⟧﷩⟦수식⟧. ⟦수식⟧+ ⟦수식⟧1 −⟦수식⟧. ⟦수식⟧﷩﷩"
+},
+{
+"id": "p186_00",
+"en": "As can be seen in the above equation, the first element of the vector remains unchanged while the second (or any subsequent vectors considering that the method can be extended to larger vectors) will be affected by the correlation coefficient ⟦수식⟧ and the first element value ⟦수식⟧."
+},
+{
+"id": "p186_01",
+"en": "Table 5 shows the resulting lower triangular distribution for a 26×26 correlation matrix when the coefficient of correlation is set to 0.8."
+},
+{
+"id": "p186_02",
+"en": "The first column has been highlighted in red, while the diagonal was highlighted in green."
+},
+{
+"id": "p186_03",
+"en": "They show that the sampled value at the ID contributes the most to any correlated stress (the red highlighted box represents the weight applied) and therefore strongly influences the profile generated."
+},
+{
+"id": "p186_04",
+"en": "The next biggest contributor is, as expected, the sampled value at the location itself (green highlighted box)."
+},
+{
+"id": "p186_05",
+"en": "This feature is strongly desired for this WRS representation, as it means that the profile will be strongly affected by the sampling of the first value (WRS at the ID)."
+},
+{
+"id": "p186_06",
+"en": "It means that an efficient importance sampling can be implemented by focusing only on the sampled value at the ID (one scalar value) and not having to use importance sampling on the other 25 locations."
+},
+{
+"id": "p186_07",
+"en": "Table 5 for a correlation coefficient of 0.80 and for a coefficient of 0.95 the matrix is shown in Table 36. Table 36 Cholesky lower triangular decomposition matrix for a correlation coefficient of 0.95 (note: 0.95 is displayed as one in the first column after rounding) In general, for N correlated random variables we define a vector of standard normal variables, ⟦수식⟧Ԧ."
+},
+{
+"id": "p186_08",
+"en": "We set the correlation matrix, Γ⟦수식⟧, to the correlation coefficient, ρ, if ⟦수식⟧≠⟦수식⟧ and to 1 if ⟦수식⟧= ⟦수식⟧."
+},
+{
+"id": "p186_09",
+"en": "We then must find C such that ⟦수식⟧̿⟦수식⟧̿⟦수식⟧= Γ⟦수식⟧ Then we can obtain a vector of correlated samples from ⟦수식⟧ሬԦ = ⟦수식⟧Ԧ + ⟦수식⟧̿⟦수식⟧Ԧ 1 0.312 1 0.152 0.272 1 0.152 0.089 0.257 1 0.152 0.089 0.063 0.249 1 0.152 0.089 0.063 0.049 0.244 1 0.152 0.089 0.063 0.049 0.04 0.241 1 0.152 0.089 0.063 0.049 0.04 0.034 0.238 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.237 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.235 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.234 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.233 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.232 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.232 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.231 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.23 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.23 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.23 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.229 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.229 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.229 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.01 0.228 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.01 0.01 0.228 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.01 0.01 0.009 0.228 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.01 0.01 0.009 0.009 0.228 1 0.152 0.089 0.063 0.049 0.04 0.034 0.029 0.026 0.023 0.021 0.019 0.017 0.016 0.015 0.014 0.013 0.012 0.012 0.011 0.01 0.01 0.009 0.009 0.009 0.22"
+},
+{
+"id": "p187_00",
+"en": "The matrix ⟦수식⟧̿ is obtained from the Cholesky decomposition values, examples of which are shown in Table 5 and Table 36. Note that such a correlation matrix could not be appropriately defined with ⟦수식⟧< 0. However, in the present situation we always consider ⟦수식⟧≫0."
+}
+]

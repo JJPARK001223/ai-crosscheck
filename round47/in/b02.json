@@ -1,0 +1,562 @@
+[
+{
+"id": "p024_02",
+"en": "However, a number of branch line connections of varying sizes are also connected to the main loop piping with DMWs."
+},
+{
+"id": "p024_03",
+"en": "Figure 3 Cold Leg to Pump Weld The selected location in the piping is 28.00-in (711 mm) nominal outer diameter with a 2.75” (69.89 mm) wall thickness."
+},
+{
+"id": "p024_04",
+"en": "Prior to obtaining information from AREVA, the materials were believed to be A106 pipe, Alloy 182 weld metal, and CF8A cast stainless steel pump nozzle."
+},
+{
+"id": "p024_05",
+"en": "The specific cold leg operating temperature was not initially known."
+},
+{
+"id": "p024_06",
+"en": "Details of these particular welds and corresponding geometry and material information were provided by the licensee in [18, 19]."
+},
+{
+"id": "p025_00",
+"en": "Rationale for selection:  Although the cold leg to pump welds operate at a lower temperature compared with the RPV hot leg nozzle and SG nozzle, these welds are the only butt weld locations directly in the Babcock & Wilcox primary loop that have a DMW."
+},
+{
+"id": "p025_01",
+"en": "The current concern with PWSCC has been in the higher operating temperature hot legs and steam generator nozzles."
+},
+{
+"id": "p025_02",
+"en": "However, concern is now shifting to the colder locations which therefore should be considered in xLPR Version 3.0."
+},
+{
+"id": "p025_03",
+"en": "Welding Information Obtained from the Vendors Hot Leg."
+},
+{
+"id": "p025_04",
+"en": "Westinghouse [11] provided non-proprietary letter MCOE-LTR-12-63 containing detailed information about the hot leg nozzle-to-safe end welding process, including filler metal specification, butter heat treatment information, piping loads, and weld groove geometry."
+},
+{
+"id": "p025_05",
+"en": "The WRS Subgroup used this information to create modeling packages for each of the analysts."
+},
+{
+"id": "p025_06",
+"en": "The purpose of the modeling packages was to eliminate unnecessary sources of uncertainty, such as that due to inconsistent data extraction methods."
+},
+{
+"id": "p025_07",
+"en": "Example geometry information from the Westinghouse letter is shown in Figure 4."
+},
+{
+"id": "p026_00",
+"en": "Figure 4 Example Drawing Provided by Westinghouse for RPV Steam Generator."
+},
+{
+"id": "p026_01",
+"en": "Since this was a steam generator replacement weld, the geometry and welding information was obtained from the fabricator, Babcock & Wilcox Canada [13]."
+},
+{
+"id": "p026_02",
+"en": "The"
+},
+{
+"id": "p027_00",
+"en": "geometry is shown in Figure 5 with the initial cross-section represented by solid lines."
+},
+{
+"id": "p027_01",
+"en": "Note the solid and dashed lines in this nozzle."
+},
+{
+"id": "p027_02",
+"en": "The solid lines indicate the shape as the weld was being performed and the dashed lines represent the cross-sectional shape following in-process machining."
+},
+{
+"id": "p027_03",
+"en": "The machining operation was modeled as occurring prior to the stainless steel closure weld being deposited."
+},
+{
+"id": "p027_04",
+"en": "Westinghouse did not provide information on the SG nozzle to elbow weld since the selected example was a steam generator replacement weld."
+},
+{
+"id": "p027_05",
+"en": "The WRS Subgroup consulted with Babcock & Wilcox Canada’s welding department, which was involved with SG replacement activities at U.S. nuclear plants, to obtain representative narrow gap weld data."
+},
+{
+"id": "p027_06",
+"en": "Figure 5 Narrow Gap SG Weld Geometry Pump."
+},
+{
+"id": "p027_07",
+"en": "AREVA provided the letter AREVA-13-00544 [15], which contained information on the pump weld."
+},
+{
+"id": "p027_08",
+"en": "This document provided material and weld geometry information that is reflected in the detailed results section as well as in the Materials Properties contained in Appendix B. Example geometry provided in the AREVA letter is shown in Figure 6."
+},
+{
+"id": "p028_00",
+"en": "Figure 6 Pump Nozzle Geometry Provided by AREVA While the WRS Subgroup drew heavily upon the vendor letters to formulate the modelling packages, other sources of information (e.g., weld procedure specifications) were also consulted in planning the modeling work to produce example WRS inputs for xLPR Version 2.0."
+},
+{
+"id": "p029_00",
+"en": "2.3 WELD GEOMETRY AND FABRICATION SEQUENCE"
+},
+{
+"id": "p029_01",
+"en": "Three weld geometries were selected for inclusion in xLPR Version 2.0:  (1) Westinghouse replacement steam generator nozzle to safe end weld from a Westinghouse plant, (2) Westinghouse reactor pressure vessel nozzle to safe end weld (two variants were considered), and (3) Babcock & Wilcox cold leg pipe to reactor coolant pump inlet weld."
+},
+{
+"id": "p029_02",
+"en": "The following sections describe the information used to develop the model geometries and to define the overall sequence used to generate the final weld geometry."
+},
+{
+"id": "p029_03",
+"en": "For each weld geometry case, the DM weld manufacturing process involves a number of steps including welding followed by machining."
+},
+{
+"id": "p029_04",
+"en": "Therefore, the description of each analysis includes the sequence of model changes necessary to simulate the full manufacturing sequence."
+},
+{
+"id": "p029_05",
+"en": "Steam Generator Dissimilar Metal Weld For the Westinghouse plant SG example, there are two nozzle-to-safe end DMWs on each SG, one on the hot leg (inlet) and one on the crossover leg (outlet), and both welds have the same nominal configuration."
+},
+{
+"id": "p029_06",
+"en": "The weld is a single-V weld with a narrow groove weld prep design."
+},
+{
+"id": "p029_07",
+"en": "The DMW joins the low alloy steel steam generator nozzle to a stainless steel safe end."
+},
+{
+"id": "p029_08",
+"en": "Later, in the field, a stainless steel weld is made near the DMW joining the safe end to the plant piping."
+},
+{
+"id": "p029_09",
+"en": "The effect of this stainless steel weld is also included in the overall analysis. 2.3.1.1 Input Documents The following documents were used to develop the geometry and fabrication sequence for the steam generator nozzle-to-safe end weld and the final weld between the safe end and the RCS piping."
+},
+{
+"id": "p029_10",
+"en": "• The Weld Procedure Specification (WPS) for the DMW [15], which provided dimensions local to the weld itself and the general weld parameters."
+},
+{
+"id": "p029_11",
+"en": "• The Shop Instruction Sheet (SIS) for the DMW [16], which described the general weld process."
+},
+{
+"id": "p029_12",
+"en": "• Plant drawings showing the configuration and dimensions of the stainless steel field weld between the safe end  and the piping [13, 14] 2.3.1.2 Weld Fabrication Sequence The steam generator nozzle DMW is fabricated using the following steps:"
+},
+{
+"id": "p029_13",
+"en": "• The nozzle is buttered and post weld heat treated, and the buttering is machined to form one side of the weld prep for the DMW."
+},
+{
+"id": "p029_14",
+"en": "• The buttered nozzle is welded to the safe end using Alloy 52 weld material."
+},
+{
+"id": "p029_15",
+"en": "The safe end is a forged ring that is thicker than the finished weld geometry with both a smaller ID and larger OD."
+},
+{
+"id": "p029_16",
+"en": "It is noted that the number of weld beads, etc., were not documented and were therefore estimated by the WRS group."
+},
+{
+"id": "p029_17",
+"en": "• The ID of the weld is machined to the finished weld dimension."
+},
+{
+"id": "p030_00",
+"en": "• It is assumed that the weld is radiographed at this point."
+},
+{
+"id": "p030_01",
+"en": "If the analysis includes a repair case, the repair cavity is machined and filled by welding."
+},
+{
+"id": "p030_02",
+"en": "• The welded configuration is heated to 300°F (149°C) and pressurized to 3,110 psig (21.44 MPa) for the ASME Code hydro-test."
+},
+{
+"id": "p030_03",
+"en": "• The remainder of the safe end is machined to form the weld prep for the stainless steel weld to the plant piping."
+},
+{
+"id": "p030_04",
+"en": "• The safe end is welded to plant piping using stainless steel weld material."
+},
+{
+"id": "p030_05",
+"en": "• The welded configuration is heated to 300oF and pressurized to 2,485 psig (17.13 MPa) for the plant design hydro-test."
+},
+{
+"id": "p030_06",
+"en": "Illustrations of the model geometry in the nozzle to safe end weld configuration and in the stainless steel weld final configuration are shown in Figure 7. Note that machining operations were modeled in the analyses (dashed lines in Figure 7) as required."
+},
+{
+"id": "p031_00",
+"en": "Nozzle to Safe End DMW Configuration Final Welded Configuration Including Safe End to Piping Weld Figure 7 Steam Generator Nozzle Model Configurations 2.3.1.3 Model Dimensions The specific dimensions chosen for the models were informed by information obtained from the vendors [16]."
+},
+{
+"id": "p031_01",
+"en": "A sketch with representative dimensions of the Westinghouse plant replacement SG nozzle is shown in Figure 5. Dimensions shown in black in this figure are taken from [15]; dimensions shown in red are assumed values based on typical industry configuration for DMWs."
+},
+{
+"id": "p031_02",
+"en": "Reactor Pressure Vessel Dissimilar Metal (DM) Weld For the example Westinghouse plant RPV nozzle case, there is one outlet nozzle and one inlet nozzle on each loop."
+},
+{
+"id": "p031_03",
+"en": "The outlet and inlet nozzles have the same weld thickness and weld configuration, but the inner diameter at the inlet nozzle is slightly smaller than the outlet nozzle."
+},
+{
+"id": "p032_00",
+"en": "The chosen weld geometry was based on the outlet nozzle location."
+},
+{
+"id": "p032_01",
+"en": "The DMW joined the low alloy steel reactor vessel nozzle to a stainless steel safe end."
+},
+{
+"id": "p032_02",
+"en": "Later, in the field, a stainless steel weld was made near the DMW, joining the safe end to the plant piping."
+},
+{
+"id": "p032_03",
+"en": "The effect of this stainless steel weld was included in the overall analysis. 2.3.2.1 Input Documents The following documents were used to develop the geometry and fabrication sequence for the reactor vessel nozzle to safe end weld and the final weld between the safe end and the RCS piping:"
+},
+{
+"id": "p032_04",
+"en": "• Westinghouse letter prepared for this project defining the outlet nozzle geometry [10]"
+},
+{
+"id": "p032_05",
+"en": "• A plant drawing showing the weld prep dimensions for the RCS piping [11] 2.3.2.2 Weld Fabrication Sequence The reactor vessel nozzle DMW was fabricated using the following steps:"
+},
+{
+"id": "p032_06",
+"en": "• The nozzle was buttered and post weld heat treated, and the buttering was machined to form one side of the weld prep for the DMW."
+},
+{
+"id": "p032_07",
+"en": "• The buttered nozzle was welded to the safe end using Alloy 82/182 weld material."
+},
+{
+"id": "p032_08",
+"en": "The safe end wall thickness was larger than the finished weld geometry."
+},
+{
+"id": "p032_09",
+"en": "Again, details of the weld passes, etc., were not documented at the time these welds were made and therefore were assumed."
+},
+{
+"id": "p032_10",
+"en": "• The ID and the OD of the weld were machined to the finished weld dimension."
+},
+{
+"id": "p032_11",
+"en": "• It was assumed that the weld was radiographed at this point."
+},
+{
+"id": "p032_12",
+"en": "If the analysis includes a repair case, the repair cavity was machined and filled by welding."
+},
+{
+"id": "p032_13",
+"en": "• The welded configuration was heated to 300°F (149°C) and pressurized to 3,110 psig (21.44 MPa) for the ASME Code hydro-test."
+},
+{
+"id": "p032_14",
+"en": "• The remainder of the safe end was machined to form the weld prep for the stainless steel weld to the plant piping."
+},
+{
+"id": "p032_15",
+"en": "• The safe end was welded to plant piping using stainless steel weld material."
+},
+{
+"id": "p032_16",
+"en": "• The welded configuration was heated to 300°F (149°C) and pressurized to 2,485 psig (17.13 MPa) for the plant design hydro-test. 2.3.2.3 Model Dimensions A dimensioned sketch of the analysis model, including the dimensions used for different steps of the model, is shown in Figure 8. Dimensions shown in black in this figure are taken from the references [11]; dimensions shown in red are assumed values based on typical industry configuration for DMWs."
+},
+{
+"id": "p033_00",
+"en": "Nozzle to Safe End DMW Configuration Final Welded Configuration Including Safe End to Piping Weld Figure 8 Reactor Vessel Nozzle Model Configurations and Dimensions 2.3.2.4 VC Summer RV Nozzle Variant A rather unique variant of the hot leg nozzle is the VC Summer plant which experienced service cracking because the welding procedures produced high tensile weld residual stresses on the nozzle inner surface near the dissimilar metal weld."
+},
+{
+"id": "p033_01",
+"en": "Although the VC Summer RV hot leg nozzle configuration is similar to that of the base example RV nozzle, the following differences were"
+},
+{
+"id": "p034_00",
+"en": "identified or assumed for the purpose of evaluating this specific operating experience degradation case (and are shown in detail in Section 3.6):"
+},
+{
+"id": "p034_01",
+"en": "• The butter layer was deposited in the shop and then post weld heat treated"
+},
+{
+"id": "p034_02",
+"en": "• The DMW was performed in the field where in-process NDE revealed defects leading to the weld being rejected"
+},
+{
+"id": "p034_03",
+"en": "• The defect was removed and a bridge left so the nozzle and stainless steel pipe would remain aligned while the repair was made"
+},
+{
+"id": "p034_04",
+"en": "• The weld metal was deposited; however, it is unknown whether the ID weld up to the bridge was made first followed by the OD weld or vice versa."
+},
+{
+"id": "p034_05",
+"en": "Reactor Coolant Pump Inlet Dissimilar Metal Weld For the example Babcock & Wilcox plant, the weld joining the cold leg piping to the reactor coolant pump inlet has been selected for evaluation."
+},
+{
+"id": "p034_06",
+"en": "The DMW joins the carbon steel piping to a stainless steel safe end."
+},
+{
+"id": "p034_07",
+"en": "Following this weld, a stainless steel weld is made near the DMW joining the safe end to a modified corresponding section of the pump inlet casing. 2.3.3.1 Input Documents The geometry and fabrication sequence for the cold leg piping to safe end weld and the weld between the safe end and the coolant pump inlet section is documented in an AREVA letter prepared for this project [18]."
+},
+{
+"id": "p034_08",
+"en": "Additional information regarding the back weld used for the DMW is provided in [19]. 2.3.3.2 Weld Fabrication Sequence The reactor coolant pump DMW is fabricated using the following steps:"
+},
+{
+"id": "p034_09",
+"en": "• The cold leg pipe section is clad, buttered, and post weld heat treated, and the buttering is machined to form one side of the weld prep for the DMW."
+},
+{
+"id": "p034_10",
+"en": "• The buttered nozzle is welded to the safe end using Alloy 82/182 weld material."
+},
+{
+"id": "p034_11",
+"en": "The safe end is a stainless steel pipe segment that is approximately 32 inches (812.8 mm) long."
+},
+{
+"id": "p034_12",
+"en": "A backing ring is used for this weld."
+},
+{
+"id": "p034_13",
+"en": "• The backing ring is machined off."
+},
+{
+"id": "p034_14",
+"en": "• The DMW is clad at the ID surface using Alloy 82/182 weld material."
+},
+{
+"id": "p034_15",
+"en": "Figure 9 below does not show this but it is believed that the root was machined after backing ring removal and this was modeled."
+},
+{
+"id": "p034_16",
+"en": "• It is assumed that the weld is radiographed at this point."
+},
+{
+"id": "p034_17",
+"en": "If the analysis includes a repair case, the repair cavity is machined and filled by welding."
+},
+{
+"id": "p034_18",
+"en": "• The safe end is machined to form the weld prep for the stainless steel weld to the pump RCP transition assembly."
+},
+{
+"id": "p034_19",
+"en": "Due to configuration changes, the safe end is reduced in length to approximately 3 inches."
+},
+{
+"id": "p035_00",
+"en": "• The safe end is welded to the reactor coolant pump transition assembly."
+},
+{
+"id": "p035_01",
+"en": "The transition assembly and piping are later welded to the pump casing."
+},
+{
+"id": "p035_02",
+"en": "• The welded configuration is heated to 300°F (149°C) and pressurized to 3,110 psig (21.44 MPa) for the ASME Code hydro-test."
+},
+{
+"id": "p035_03",
+"en": "• The welded configuration is heated to 300°F (149°C) and pressurized to 2,485 psig (17.13 MPa) for the plant design hydro-test. 2.3.3.3 Model Dimensions A dimensioned sketch of the analysis model, including the dimensions used for different steps of the model, is shown in Figure 9. All dimensions are shown in black in this figure; all are taken from references [18]."
+},
+{
+"id": "p035_04",
+"en": "DMW Configuration Safe End Machining 3.00\" R 0.38\" 15° 0.31\" 0.13\" Machined SS Safe End"
+},
+{
+"id": "p036_00",
+"en": "Stainless Steel Weld Configuration Figure 9 Reactor Coolant Pump Inlet Model Configurations and Dimensions"
+},
+{
+"id": "p036_01",
+"en": "2.4 MATERIAL PROPERTIES"
+},
+{
+"id": "p036_02",
+"en": "Material properties for both the thermal analysis and the structural analysis are required by the four analysis groups who are calculating the WRS fields for xLPR Version 2.0."
+},
+{
+"id": "p036_03",
+"en": "For computational weld modeling these properties are required from room temperature up to beyond half the melting point (up to 1200 C for some materials)."
+},
+{
+"id": "p036_04",
+"en": "The NRC, EPRI, and some modelers have developed their own databases of properties, but this can require extensive effort for each material."
+},
+{
+"id": "p036_05",
+"en": "DM welds are typically used to join ferritic steel to stainless steel using Alloy 182/82 weld metal.1  To remove this as a source of modeling uncertainty, a common set of material properties were supplied to all four modelers that were obtained from the NRC/Emc2 data base."
+},
+{
+"id": "p036_06",
+"en": "Many of the tests were performed at Emc2."
+},
+{
+"id": "p036_07",
+"en": "The material inputs are detailed in Appendix B. Thermal Properties The thermal conductivity and specific heat as a function of temperature are plotted in Appendix B on the following pages and Figures:"
+},
+{
+"id": "p036_08",
+"en": "• Alloy 182/82 – page B-4 (Figure 96, Figure 97)."
+},
+{
+"id": "p036_09",
+"en": "• Low Alloy Steel (A508 cl 2) – page B-8 (Figure 103, Figure 104)"
+},
+{
+"id": "p036_10",
+"en": "• Stainless Steel (CF8M) – page B-12 (Figure 110, Figure 111) Mechanical Properties Mechanical properties necessary for the structural portion of the solution include elastic modulus, Poisson’s ratio, coefficient of thermal expansion, stress strain curves in the plastic range, and creep properties."
+},
+{
+"id": "p036_11",
+"en": "The creep properties are necessary to model the post weld heat treat that usually is applied after application of the butter layers."
+},
+{
+"id": "p036_12",
+"en": "Note that for the weld metal (Alloy 182/82) the stress strain curves must be developed on annealed material since the weld solidification process models the shrinkage hardening within the WRS model."
+},
+{
+"id": "p036_13",
+"en": "The structural mechanical properties are shown in Appendix B as a function of temperature. 1 Now Alloy 52/152 weld metal is used because it is less susceptible to PWSCC."
+},
+{
+"id": "p036_14",
+"en": "However, the welds of concern here used Alloy 82/182. The stress strain curve differences between Alloy 52 and 82 are minimal and the WRS results predicted are not affected. 31.0\" ID 14.0\" 6.4° 15° R 0.38\" 2.81\" 0.13\" 0.31\" SS Transition Piece SS Weld This weld already completed"
+},
+{
+"id": "p037_00",
+"en": "• Alloy 182/82"
+},
+{
+"id": "p037_01",
+"en": "o Elastic modulus, Poisson’s ratio, and coefficient of thermal expansion – page B-1 (Figure 91, Figure 92)"
+},
+{
+"id": "p037_02",
+"en": "o Elastic plastic stress strain curves (isotropic hardening) and creep properties – page B-2 (Figure 93, Figure 94)"
+},
+{
+"id": "p037_03",
+"en": "o Elastic plastic properties (kinematic hardening) – page B-3 (Figure 95)"
+},
+{
+"id": "p037_04",
+"en": "• Low Alloy Steel (A508 cl 2)"
+},
+{
+"id": "p037_05",
+"en": "o Elastic modulus, Poisson’s ratio, and coefficient of thermal expansion – page B-5 (Figure 98, Figure 99)"
+},
+{
+"id": "p037_06",
+"en": "o Elastic plastic stress strain curves and creep properties – page B-6 (Figure 100, Figure 101)"
+},
+{
+"id": "p037_07",
+"en": "o Elastic plastic properties (kinematic hardening) – page B-7 (Figure 102)"
+},
+{
+"id": "p037_08",
+"en": "• Stainless Steel (CF8M)"
+},
+{
+"id": "p037_09",
+"en": "o Elastic modulus, Poisson’s ratio, and coefficient of thermal expansion – page B-9 (Figure 105, Figure 106)"
+},
+{
+"id": "p037_10",
+"en": "o Elastic plastic stress strain curves and creep properties – page B-10 (Figure 107, Figure 108)"
+},
+{
+"id": "p037_11",
+"en": "o Elastic plastic properties (kinematic hardening) – page B-11 (Figure 109)"
+},
+{
+"id": "p037_12",
+"en": "2.5 QUALITY ASSURANCE"
+},
+{
+"id": "p037_13",
+"en": "xLPR Quality Assurance Program The xLPR Version 2.0 Project was conducted under a documented Quality Assurance Program [23]."
+},
+{
+"id": "p037_14",
+"en": "This program was primarily focused on software module development and testing."
+},
+{
+"id": "p037_15",
+"en": "The development of the example WRS inputs discussed here does not require the same documentation as an xLPR software module (e.g., Software Test Plan and Software Test Results Report)."
+},
+{
+"id": "p037_16",
+"en": "However, consistent with the intent of the xLPR Quality Assurance Program, the WRS Subgroup developed and executed a Design Verification process to provide confidence in the modeling results [45]."
+},
+{
+"id": "p037_17",
+"en": "Design Verification Process A key component of model verification is to perform a detailed check and review of the model- specific inputs used to perform the analysis, as well as any post-processing used to produce results."
+},
+{
+"id": "p037_18",
+"en": "The check and review was performed by an independent analyst with sufficient experience in finite element analysis to evaluate the inputs and assumptions used for the modeling."
+},
+{
+"id": "p037_19",
+"en": "The following steps were used by the independent verifier for Design Verification: 1. The dimensions of the model should be checked against those specified in drawings or other inputs. 2. The thermal and structural boundary conditions for the models should be checked graphically to ensure that they have been applied as described by the modeler, and reviewed to ensure they reasonably represent the actual weldment conditions."
+},
+{
+"id": "p037_20",
+"en": "Thermal boundary conditions may include fixed temperatures, convection surfaces, radiation"
+},
+{
+"id": "p038_00",
+"en": "surfaces, etc."
+},
+{
+"id": "p038_01",
+"en": "Structural boundary conditions will include displacement conditions, but may also include pressure surfaces and force loads. 3. Because welding residual stress calculations are path dependent, the sequence of weld beads performed in the model should be checked against the desired sequence."
+},
+{
+"id": "p038_02",
+"en": "In particular, model changes for the incremental addition of weld beads should be checked, as should any model changes to simulate material removal for by machining. 4. The residual stress results should be checked to ensure that they are taken from the location indicated by the modeler at the appropriate time step within the model."
+},
+{
+"id": "p038_03",
+"en": "The location used for residual stresses should be reviewed for appropriateness. 5. Plots of the material properties as a function of temperature should be used to visually check that the property values are input correctly and that the values are appropriate for the materials considered."
+},
+{
+"id": "p038_04",
+"en": "Design Verification Results Four independent organizations provided results to the WRS Subgroup for inputs development: Engineering Mechanics Corporation of Columbus (Emc2); Dominion Engineering, Inc."
+}
+]

@@ -1,0 +1,562 @@
+[
+{
+"id": "p060_18",
+"en": "This is seen for repair welds as well. 3. High tensile WRS caused by repair are lowered by WOR. 4. Hoop stresses decrease at least 200 MPa near ID and level out to the non-WOR results near OD (at WOR OD). 5. Solutions for cold legs and surge lines should be given priority since R/t is similar and thickness is larger than spray/relief lines."
+},
+{
+"id": "p060_19",
+"en": "The overlay mitigation rules for the steam generator nozzle are shown in Figure 29. The plots of the baseline results for the SG nozzle and after the FSWOL (labeled WOR) for both axial and hoop stresses are shown in Figure 29. It is seen that, based on the literature results, the axial stresses will actually increase a little near the ID since the original WRS field is compressive. 1 Newer methods such as peening are not being considered at this time."
+},
+{
+"id": "p061_00",
+"en": "These same rules will also be applied for OWOL since the difference in overlay thickness between OWOL and FSWOL has been shown to have little effect on the as-left WRS field."
+},
+{
+"id": "p061_01",
+"en": "Figure 29 FSWOL rules for SG nozzle, baseline case The overlay mitigation rules for the steam generator nozzle with a 15% repair are shown in Figure 30 ."
+},
+{
+"id": "p061_02",
+"en": "The plots for the 15% repair baseline and after the FSWOL for both axial and hoop stresses are shown in Figure 30. It is seen that, based on the literature results, the axial stresses will actually decrease near the ID since the repair WRS field is tensile."
+},
+{
+"id": "p061_03",
+"en": "Note that in the rules label we use (for axial stress) ‘Axial baseline WRS Rules (SG 15% repair)’."
+},
+{
+"id": "p061_04",
+"en": "This is specified to note that the 15% repair was evaluated from the original baseline results."
+},
+{
+"id": "p061_05",
+"en": "This is the case for all other cases below also."
+},
+{
+"id": "p062_00",
+"en": "Figure 30 FSWOL rules for SG nozzle, 15% repair case The overlay mitigation rules for the steam generator nozzle with a 50% repair baseline are shown in Figure 31along with plots for the 50% repair baseline results and after the FSWOL for both axial and hoop stresses."
+},
+{
+"id": "p062_01",
+"en": "It is seen that, based on the literature results, the axial stresses will actually decrease near the ID."
+},
+{
+"id": "p063_00",
+"en": "Figure 31 FSWOL rules for SG nozzle, 50% repair case FSWOL Mitigation WRS Fields for the RPV Nozzle The overlay mitigation rules for the RPV nozzle are shown in Figure 32 along with plots of the baseline results for the RPV nozzle and after the FSWOL for both axial and hoop stresses."
+},
+{
+"id": "p063_01",
+"en": "The WOR WRS fields for the 15% and 50% RPV are shown in Figure 33 and Figure 34, respectively using similar rules."
+},
+{
+"id": "p064_00",
+"en": "Figure 32 FSWOL rules for RPV nozzle, baseline case Figure 33 FSWOL rules for RPV nozzle, 15% repair case"
+},
+{
+"id": "p065_00",
+"en": "Figure 34 FSWOL rules for RPV nozzle, 50% repair case FSWOL Mitigation WRS Fields for the Pump Nozzle The overlay mitigation rules for the pump pipe nozzle are shown in Figure 35 along with plots of the baseline results for the pump pipe and after the FSWOL for both axial and hoop stresses."
+},
+{
+"id": "p065_01",
+"en": "The WOR WRS fields for the 15% and 50% pump are shown in Figure 36 and Figure 37, respectively using similar rules."
+},
+{
+"id": "p066_00",
+"en": "Figure 35 FSWOL rules for pump pipe, baseline case Figure 36 FSWOL rules for pump pipe, 15% repair case"
+},
+{
+"id": "p067_00",
+"en": "Figure 37 FSWOL rules for pump pipe, 50% repair case MSIP Mitigation WRS Fields for the SG Nozzle The mitigation rules for determining post-MSIP residual stresses for all three configuration examples presented herein were developed based on input from three papers and reports [39 - 41]."
+},
+{
+"id": "p067_01",
+"en": "The following are high level rules that were based on results of the publications."
+},
+{
+"id": "p067_02",
+"en": "Axial WRS always is reduced near ID and increased near OD."
+},
+{
+"id": "p067_03",
+"en": "If WRS is tensile prior to application of MSIP, reduction near ID could be between 300 and 400 MPa up to a depth of R/t ~0.2 or so."
+},
+{
+"id": "p067_04",
+"en": "Near the OD the increase is about 150 MPa maximum (Figure 27 of [40]) for hot leg."
+},
+{
+"id": "p067_05",
+"en": "In general, the higher the tensile WRS at the ID the more reduction in WRS from MSIP with little improvement at ID if WRS negative prior to MSIP."
+},
+{
+"id": "p067_06",
+"en": "If axial WRS is negative (compressive) near ID prior to MSIP application, little reduction at the ID to about 100 to 150 MPa at R/t ~0.2."
+},
+{
+"id": "p067_07",
+"en": "The increase to the OD beyond R/t ~0.2 is only 50 to 100 MPa."
+},
+{
+"id": "p067_08",
+"en": "This result was for pressurizer safety and surge line examples but is assumed to apply for hot leg size."
+},
+{
+"id": "p067_09",
+"en": "If hoop stress is negative prior to application of MSIP little change near ID and slight increase near OD would be expected."
+},
+{
+"id": "p067_10",
+"en": "Solutions for cold legs and pressurizer surge lines were given greater weight since the R/t is similar and thickness is also larger than pressurizer spray/relief lines."
+},
+{
+"id": "p067_11",
+"en": "There is not a lot of MSIP residual stress analysis work in the open literature."
+},
+{
+"id": "p067_12",
+"en": "The SG nozzle mitigation rules are shown in Figure 38 along with plots for the baseline results for the SG nozzle and after the MSIP for both axial and hoop stresses."
+},
+{
+"id": "p067_13",
+"en": "The MSIP repair WRS fields for the 15% and 50% SG cases are shown in Figure 39 and Figure 40 respectively using similar rules."
+},
+{
+"id": "p067_14",
+"en": "Note that in the rules label we use (for axial stress) ‘Axial baseline WRS Rules (SG 15% repair)’."
+},
+{
+"id": "p067_15",
+"en": "This is specified to note that 15% the repair was done from the original baseline results."
+},
+{
+"id": "p067_16",
+"en": "This is also true for all other cases below."
+},
+{
+"id": "p068_00",
+"en": "Figure 38 MSIP rules for SG nozzle, baseline case Figure 39 MSIP rules for SG nozzle, 15% repair case"
+},
+{
+"id": "p069_00",
+"en": "Figure 40 MSIP rules for SG nozzle, 50% repair case MSIP Mitigation WRS Fields for the RPV Nozzle The MSIP mitigation rules for the RPV are shown in Figure 41along with plots for the baseline results for the RPV nozzle and after the MSIP for both axial and hoop stresses."
+},
+{
+"id": "p069_01",
+"en": "The MSIP repair WRS fields for the 15% and 50% RPV cases are shown in Figure 42 and Figure 43 respectively using similar rules."
+},
+{
+"id": "p069_02",
+"en": "Figure 41 MSIP rules for RPV nozzle, baseline case"
+},
+{
+"id": "p070_00",
+"en": "Figure 42 MSIP rules for RPV nozzle, 15% repair case Figure 43 MSIP rules for RPV nozzle, 50% repair case"
+},
+{
+"id": "p071_00",
+"en": "MSIP Mitigation WRS Fields for the Pump Nozzle The MSIP mitigation rules for the pump nozzle are shown in Figure 44along with plots for the baseline results for the pump nozzle and after the MSIP for both axial and hoop stresses."
+},
+{
+"id": "p071_01",
+"en": "The MSIP repair WRS fields for the 15% and 50% pump cases are shown in Figure 45 and Figure 46 respectively using similar rules."
+},
+{
+"id": "p071_02",
+"en": "Figure 44 MSIP rules for Pump nozzle, baseline case"
+},
+{
+"id": "p072_00",
+"en": "Figure 45 MSIP rules for Pump nozzle, 15% repair case Figure 46 MSIP rules for Pump nozzle, 50% repair case"
+},
+{
+"id": "p073_00",
+"en": "Inlay Mitigation WRS Fields for the SG Nozzle The mitigation rules for determining post-inlay residual stresses for all three configuration examples presented herein were developed based on input from an NRC report on WRS fields resulting from the inlay process [42]."
+},
+{
+"id": "p073_01",
+"en": "It is noted that a number of ASME PVP papers were also written which document this work."
+},
+{
+"id": "p073_02",
+"en": "The following are high level rules that were used. 1. Axial WRS always increases at the ID to a depth of about R/t ~0.15 to 0.25, depending on the WRS field prior to inlay application."
+},
+{
+"id": "p073_03",
+"en": "The ID stresses are high (near or above yield) since weld metal is applied to the ID for inlay."
+},
+{
+"id": "p073_04",
+"en": "The axial stresses are then negative from R/t ~0.2 to 0.8, then tensile near the OD but lower than the original WRS field. 2. Hoop WRS fields are also high (at or above yield) at the ID to a depth of about R/t ~0.2."
+},
+{
+"id": "p073_05",
+"en": "Beyond this point the hoop WRS fields remain about the same level as the non-inlay hoop stresses."
+},
+{
+"id": "p073_06",
+"en": "The inlay mitigation rules for the SG are shown in Figure 47 along with plots for the baseline results for the SG nozzle and after the Inlay for both axial and hoop stresses."
+},
+{
+"id": "p073_07",
+"en": "The inlay WRS fields for the 15% and 50% repair SG cases are shown in Figure 48 and Figure 49 respectively, using similar rules."
+},
+{
+"id": "p073_08",
+"en": "Note that hoop stresses are essentially unchanged beyond about 20% of the wall thickness while axial stress is affected beyond this point to ensure axial force equilibrium."
+},
+{
+"id": "p073_09",
+"en": "Note that in the rules label we use (for axial stress) ‘Axial baseline WRS Rules (SG 15% repair)’."
+},
+{
+"id": "p073_10",
+"en": "This is specified to note that the 15% repair was evaluated from the original baseline results."
+},
+{
+"id": "p073_11",
+"en": "This is also true for all other cases described below."
+},
+{
+"id": "p073_12",
+"en": "Figure 47 Inlay rules for SG nozzle, baseline case"
+},
+{
+"id": "p074_00",
+"en": "Figure 48 Inlay rules for SG nozzle, 15% repair case Figure 49 Inlay rules for SG nozzle, 50% repair case Inlay Mitigation WRS Fields for the RPV Nozzle The inlay mitigation rules for the RPV are shown in Figure 50 along with plots for the baseline results for the RPV nozzle and after the inlay for both axial and hoop stresses."
+},
+{
+"id": "p074_01",
+"en": "The inlay WRS"
+},
+{
+"id": "p075_00",
+"en": "fields for the 15% and 50% repair RPV cases are shown in Figure 51 and Figure 52 respectively, using similar rules."
+},
+{
+"id": "p075_01",
+"en": "Note that hoop stresses are essentially unchanged beyond about 20% of the wall thickness while axial stress is affected beyond this point to ensure axial force equilibrium."
+},
+{
+"id": "p075_02",
+"en": "Figure 50 Inlay rules for RPV nozzle, baseline case"
+},
+{
+"id": "p076_00",
+"en": "Figure 51 Inlay rules for RPV nozzle, 15% repair case Figure 52 Inlay rules for RPV nozzle, 50% repair case Inlay Mitigation WRS Fields for the Pump Nozzle The inlay mitigation rules for the pump nozzle are shown in Figure 53 along with plots of the baseline results for the pump nozzle and after the inlay for both axial and hoop stresses."
+},
+{
+"id": "p076_01",
+"en": "The inlay WRS fields for the 15% and 50% repair pump cases are shown in Figure 54 and Figure 55 respectively, using similar rules."
+},
+{
+"id": "p076_02",
+"en": "Note that hoop stresses are essentially unchanged beyond about 20% of the wall thickness while axial stress is affected beyond this point to ensure axial force equilibrium."
+},
+{
+"id": "p077_00",
+"en": "Figure 53 Inlay rules for pump nozzle, baseline case Figure 54 Inlay rules for pump nozzle, 15% repair case"
+},
+{
+"id": "p078_00",
+"en": "Figure 55 Inlay rules for pump nozzle, 50% repair case"
+},
+{
+"id": "p079_00",
+"en": "4 SENSITIVITY AND UNCERTAINTY STUDIES"
+},
+{
+"id": "p079_01",
+"en": "A number of sources of uncertainty are possible for WRS determination in DMWs."
+},
+{
+"id": "p079_02",
+"en": "These include:"
+},
+{
+"id": "p079_03",
+"en": "• Thermal physical material constant variability for the thermal analyses"
+},
+{
+"id": "p079_04",
+"en": "• Heat input and weld torch speed"
+},
+{
+"id": "p079_05",
+"en": "• Weld bead sequence and size"
+},
+{
+"id": "p079_06",
+"en": "• Structural material variability (nonlinear stress strain curves)"
+},
+{
+"id": "p079_07",
+"en": "• Elastic property variations along with coefficient of thermal expansion"
+},
+{
+"id": "p079_08",
+"en": "• Weld inter-pass temperature Table 4 lists these sources of uncertainty in WRS results and the corresponding implications on results."
+},
+{
+"id": "p079_09",
+"en": "Table 4 Model uncertainty characterization Sources of Uncertainty Model Assumption Implications (see Appendix A) Thermal/Physical Properties Average properties used because database not available Thermal solution of second order importance as long as fusion zone is matched [1]-[3] Heat Input and Weld Torch Speed Axisymmetric solution."
+},
+{
+"id": "p079_10",
+"en": "Torch speed not relevant because axisymmetric solution used (weld bead deposited at once) Recent full scale 3D solution results show that WRS fields away from weld start/stop locations can compare reasonably well with axisymmetric results (see References [1]-[3], and Appendix A) Weld Bead Sequence and Size Weld beads modeled with rectangular bead shapes."
+},
+{
+"id": "p079_11",
+"en": "Weld sequences and number of passes not detailed during nozzle weld fabrications."
+},
+{
+"id": "p079_12",
+"en": "Second order importance (see References [1]-[3], and Appendix A)."
+},
+{
+"id": "p079_13",
+"en": "Material Stress Strain Curve Variability Only modeler uncertainty included Can have an effect."
+},
+{
+"id": "p079_14",
+"en": "Not possible to model precisely due to lack of statistical material property data at high temperatures."
+},
+{
+"id": "p079_15",
+"en": "WRS group believes that modeler uncertainty is adequate for xLPR Version 2.0."
+},
+{
+"id": "p079_16",
+"en": "See Appendix A. Elastic Property Variability with Coefficient of Thermal Expansion Average properties used."
+},
+{
+"id": "p079_17",
+"en": "Elastic modulus of second order importance [1]-[3]."
+},
+{
+"id": "p079_18",
+"en": "Lack of statistical data for coefficient of thermal expansion preclude including this uncertainty."
+},
+{
+"id": "p079_19",
+"en": "Should be studied if more data become available."
+},
+{
+"id": "p079_20",
+"en": "Weld Interpass Temperature Each modeler cooled for long periods."
+},
+{
+"id": "p079_21",
+"en": "Second order importance for nuclear nozzle welds [1]-[3]."
+},
+{
+"id": "p080_00",
+"en": "Based on the experience of the WRS group, along with sensitivity studies performed as part of the NRC/EPRI mock-up round robins [1]-[3], three important sources of uncertainty in WRS were identified as sufficiently important for further sensitivity study evaluations; (i) weld pass sequence (ii) heat input, and (iii) stress-strain material constants."
+},
+{
+"id": "p080_01",
+"en": "It is noted that WRS measurements were not explicitly included in this uncertainty since measurements were not made on these nozzles."
+},
+{
+"id": "p080_02",
+"en": "However, benchmarking against prior measurements was used to ensure that the four modelers involved were experienced enough that their methods for WRS modeling are considered accurate."
+},
+{
+"id": "p080_03",
+"en": "Appendix A details the scope and basis for WRS sensitivity studies."
+},
+{
+"id": "p080_04",
+"en": "It was found that weld bead sequence effects and heat input effects are of second order importance, thus were ignored."
+},
+{
+"id": "p080_05",
+"en": "Material property sensitivity though was found to be much more important."
+},
+{
+"id": "p080_06",
+"en": "Statistically significant material data is only available at room temperature and operation temperature so the temperature dependent stress strain curves that are used in the WRS analyses are estimates based on a known database of yield stress values."
+},
+{
+"id": "p080_07",
+"en": "These estimates (detailed in Appendix A) are meant to represent stress strain curves and uncertainty at temperatures where limited stress strain curve data is available."
+},
+{
+"id": "p080_08",
+"en": "The WRS group determined that estimates of material property variation using ultimate stress were much better behaved than those based on yield stress, possibly since yield stress values in the statistical database might be affected by work hardening in the tensile specimens used while ultimate stress would not."
+},
+{
+"id": "p080_09",
+"en": "This process was applied to develop material property stress strain curves for all materials presently included based on the statistical variation in xLPR Version 2.0 ultimate stress (as was done in Appendix A based on yield stress)."
+},
+{
+"id": "p080_10",
+"en": "However, due to time constraints it was decided by the WRS group not to pursue this topic at this time."
+},
+{
+"id": "p080_11",
+"en": "Further investigation could be done to better define the WRS uncertainty inputs for future versions of the xLPR Code."
+},
+{
+"id": "p080_12",
+"en": "Therefore, material property variability effects on WRS are not considered in xLPR Version 2.0 and the associated uncertainty contribution cannot be quantified at this time."
+},
+{
+"id": "p080_13",
+"en": "All variability is based on the WRS variability determined by the four modelers, as discussed above."
+},
+{
+"id": "p080_14",
+"en": "Most importantly, the modeler uncertainty dominates."
+},
+{
+"id": "p080_15",
+"en": "For completeness it is noted that material property variability is considered to be smaller than an order of magnitude compared to modeler uncertainty."
+},
+{
+"id": "p080_16",
+"en": "This is something that should be examined in more detail in another version of the xLPR code when more data becomes available."
+},
+{
+"id": "p081_00",
+"en": "5 WRS SAMPLING AND UNCERTAINTY CHARACTERIZATION"
+},
+{
+"id": "p081_01",
+"en": "Development of the sampling and uncertainty characterization for WRS evolved during development of the xLPR Version 2.0 computer code."
+},
+{
+"id": "p081_02",
+"en": "The final estimate of WRS uncertainty that is implemented into xLPR Version 2.0 is summarized here."
+},
+{
+"id": "p081_03",
+"en": "Some of the alternative approaches that were considered are summarized in Appendix C. In addition, some of the approaches used for fitting the data and other issues are also included in Appendix C. The novel approach used to treat WRS uncertainty in xLPR Version 2.0 arose from numerous discussions between the WRS group and Computational group and was finalized after much iteration."
+},
+{
+"id": "p081_04",
+"en": "5.1 ESTIMATE FOR WRS UNCERTAINTY"
+},
+{
+"id": "p081_05",
+"en": "Uncertainty in Weld Residual Stress (WRS) over the thickness of the pipe is estimated from a set of Finite Element Analyses (FEA) performed for a selection of welds."
+},
+{
+"id": "p081_06",
+"en": "WRS is represented at 26 locations evenly distributed through the thickness of the pipe for input to calculate the stress intensity factor using the Universal Weight Function Method (UWFM) [43]."
+},
+{
+"id": "p081_07",
+"en": "The use of the Uncertainty Spreadsheet on the three to four WRS profiles generated has demonstrated that the use of a normal distribution of values at each of the through thickness locations was appropriate to represent the uncertainty associated to WRS at each location."
+},
+{
+"id": "p081_08",
+"en": "The expected WRS value at each location through the thickness was estimated as the arithmetic mean over all weld analyses performed (3 or 4, depending on the weld considered)."
+},
+{
+"id": "p081_09",
+"en": "While the standard deviation was similarly evaluated at each location, the average standard deviation for all locations was determined to be a more appropriate measure of uncertainty."
+},
+{
+"id": "p081_10",
+"en": "The observed variability can be considered as more stochastic in nature with sometimes very narrow variations between the three to four analyses and sometimes larger variations; the same way random samples can generate values close to each other or far from each other."
+},
+{
+"id": "p081_11",
+"en": "Thus, our purposes are better served if the uncertainty is represented with a constant standard deviation over all points."
+},
+{
+"id": "p081_12",
+"en": "One concern that arose from previous analyses was related to the differences between the simulation results themselves."
+},
+{
+"id": "p081_13",
+"en": "In several instances, a set of four simulations was composed of three simulations fairly close to each other and one further apart (see for instance hoop stress with unrepaired weld for the pump case Figure 21)."
+},
+{
+"id": "p081_14",
+"en": "The resulting uncertainty was unrealistically large, with the 95% band (true value of WRS should be within these bands 95% of the time) covering a range of almost 300 MPa."
+},
+{
+"id": "p081_15",
+"en": "When the four modeler results were examined from a statistical standpoint there were a limited number of cases where results at some locations had an ‘outlier’, or results notably different from the other three modelers."
+},
+{
+"id": "p081_16",
+"en": "For these cases, which were rare, the WRS distributions were weighted to reduce the influence of the outlier using standard statistical practices."
+},
+{
+"id": "p081_17",
+"en": "The final WRS fields were thus slightly modified from the average of the four modelers to account for such outliers."
+},
+{
+"id": "p081_18",
+"en": "This is discussed below."
+},
+{
+"id": "p081_19",
+"en": "While it would not be appropriate to reject completely one profile on the sole basis that it is different from the other profiles, it is necessary to keep a reasonable range of uncertainty."
+},
+{
+"id": "p081_20",
+"en": "The approach applied is based on the distance between each set of two profiles."
+},
+{
+"id": "p081_21",
+"en": "The further apart two profiles are, the less will be their influence."
+},
+{
+"id": "p081_22",
+"en": "This approach therefore favors the clusters of profiles (or evenly distributed) against isolated profiles."
+},
+{
+"id": "p081_23",
+"en": "One argument in favor of this approach is that we deal here with epistemic uncertainty (lack of knowledge)."
+},
+{
+"id": "p081_24",
+"en": "If the difference between profiles were reflecting pure randomness, one would expect that sometimes the values can be far from the central tendency (mean or median)."
+},
+{
+"id": "p081_25",
+"en": "In the present situation, a large difference is probably due to different assumptions employed in the WRS modeling that are not shared by the other experts."
+},
+{
+"id": "p082_00",
+"en": "As experts did not communicate when generating their results (and did not influence each other) we consider that increasing the confidence toward the region of clustered results is an acceptable approach."
+},
+{
+"id": "p082_01",
+"en": "The following section will describe the mathematical characterization of the methodology."
+},
+{
+"id": "p082_02",
+"en": "After the description some results illustrating the improvements made by this model for uncertainty are presented for representative welds that were included in the weld modeling study."
+},
+{
+"id": "p082_03",
+"en": "Mathematical Characterization Let ⟦수식⟧, ⟦수식⟧, … . , ⟦수식⟧_⟦수식⟧ be a set of ⟦수식⟧ distinct simulations to estimate WRS through the thickness."
+},
+{
+"id": "p082_04",
+"en": "The data for each simulation consists of the WRS estimation for 26 points through the thickness, i.e. ⟦수식⟧= ⟦수식⟧,⟦수식⟧, ⟦수식⟧,⟦수식⟧, … , ⟦수식⟧,⟦수식⟧ ⟦수식⟧= ⟦수식⟧,⟦수식⟧, ⟦수식⟧,⟦수식⟧, … , ⟦수식⟧,⟦수식⟧ … ⟦수식⟧= ⟦수식⟧,⟦수식⟧, ⟦수식⟧,⟦수식⟧, … , ⟦수식⟧,⟦수식⟧ where ⟦수식⟧,⟦수식⟧ represents the estimated WRS value for simulation ⟦수식⟧ at location ⟦수식⟧ In this approach, we consider all combinations of two different simulations: (⟦수식⟧, ⟦수식⟧)."
+},
+{
+"id": "p082_05",
+"en": "An illustration of such a combination can be seen in Figure 56. Figure 56 Illustrative example representing two possible WRS distribution for a weld."
+},
+{
+"id": "p082_06",
+"en": "We calculate the difference between simulations i and j as the absolute difference between the WRS |⟦수식⟧− ⟦수식⟧| for each simulation pair ⟦수식⟧,⟦수식⟧  ⟦수식⟧≠⟦수식⟧ averaging over all 26 k locations ⟦수식⟧,⟦수식⟧= ∑ ⟦수식⟧,⟦수식⟧−⟦수식⟧,⟦수식⟧ ⟦수식⟧ ⟦수식⟧"
+},
+{
+"id": "p083_00",
+"en": "The difference between the two simulations is estimated using the L1-norm, illustrated in Figure 57. The use of the L1-norm in the present context seems more appropriate than the traditional L2 norm."
+},
+{
+"id": "p083_01",
+"en": "Lk norm with ⟦수식⟧1 tends to emphasize the importance of the largest values toward the smallest ones."
+},
+{
+"id": "p083_02",
+"en": "In the present calculation, such predominance is unnecessary."
+}
+]

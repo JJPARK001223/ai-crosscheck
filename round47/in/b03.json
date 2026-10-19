@@ -1,0 +1,562 @@
+[
+{
+"id": "p038_05",
+"en": "(DEI); U.S."
+},
+{
+"id": "p038_06",
+"en": "Nuclear Regulatory Commission (NRC), and Battelle."
+},
+{
+"id": "p038_07",
+"en": "Each analyst chose an appropriate independent verifier to perform Design Verification according to the Design Verification Process discussed in the last section."
+},
+{
+"id": "p038_08",
+"en": "Verification of the Emc2 Models As an example of the verification process for WRS, one case is shown below."
+},
+{
+"id": "p038_09",
+"en": "NRC performed the verification of the Emc2 models."
+},
+{
+"id": "p038_10",
+"en": "Table 1 Design Verification of the Steam Generator Nozzle DMW Design Verification Element Description Result Action Check dimensions Stainless steel pipe inner diameter was 29 in. as opposed to the specified 31 in."
+},
+{
+"id": "p038_11",
+"en": "All other dimensions verified."
+},
+{
+"id": "p038_12",
+"en": "Emc2 re-meshed the model to correct the stainless steel pipe diameter."
+},
+{
+"id": "p038_13",
+"en": "Dimensions were verified to be correct in the new model."
+},
+{
+"id": "p038_14",
+"en": "Check boundary conditions Boundary conditions verified None Check process sequence Process sequence verified None Review data extraction Data extraction verified None Check material property inputs Material property inputs verified None"
+},
+{
+"id": "p039_00",
+"en": "Table 2 Design Verification of the Reactor Pressure Vessel Nozzle DMW Design Verification Element Description Result Action Check dimensions Dimensions verified None Check boundary conditions Boundary conditions verified None Check process sequence Process sequence verified None Review data extraction Data extraction verified None Check material property inputs Material property inputs verified None Table 3 Design Verification of the Reactor Coolant Pump DMW Design Verification Element Description Result Action Check dimensions Dimensions verified None Check boundary conditions Boundary conditions verified None Check process sequence Process sequence verified None Review data extraction Data extraction verified None Check material property inputs Material property inputs verified None"
+},
+{
+"id": "p040_00",
+"en": "3 MODELING RESULTS"
+},
+{
+"id": "p040_01",
+"en": "3.1 XLPR WRS MODELING EFFORTS"
+},
+{
+"id": "p040_02",
+"en": "The results presented in this section were based upon axisymmetric finite element models to estimate weld residual stress."
+},
+{
+"id": "p040_03",
+"en": "The fabrication sequence, component geometry modeled and modeling procedures were discussed in earlier sections."
+},
+{
+"id": "p040_04",
+"en": "These results were utilized to define the best estimate weld residual stress profiles provided in the xLPR Version 2.0 input database and the associated uncertainty."
+},
+{
+"id": "p040_05",
+"en": "Figure 10 shows an example mesh for this work."
+},
+{
+"id": "p040_06",
+"en": "Figure 10 Example Finite Element Mesh"
+},
+{
+"id": "p040_07",
+"en": "3.2 POST PROCESSING AND RESULTS FORMAT"
+},
+{
+"id": "p040_08",
+"en": "Before presenting results, it is useful to provide details about how results were processed."
+},
+{
+"id": "p040_09",
+"en": "The WRS Subgroup established specific procedures for extracting axial and hoop stress data from the models, as described earlier (see Section 2.1)."
+},
+{
+"id": "p040_10",
+"en": "These procedures were applied to both the isotropic hardening models and the kinematic hardening models for a given extraction path (e.g., along the DMW centerline)."
+},
+{
+"id": "p040_11",
+"en": "The isotropic and kinematic through-wall profiles were then averaged, as illustrated in Figure 11, to obtain the analyst’s final estimation of WRS."
+},
+{
+"id": "p040_12",
+"en": "The results were extracted at 26 points through the thickness."
+},
+{
+"id": "p041_00",
+"en": "Figure 11 Averaging Procedure The results from each analyst were compiled by one member of the WRS Subgroup in preparation to determine the best estimate profile for a given geometry and characterize the associated uncertainty."
+},
+{
+"id": "p041_01",
+"en": "It is noted that the WRS fields typically vary over the cross section of the weld."
+},
+{
+"id": "p041_02",
+"en": "Therefore, modelers compiled solutions at three locations: near the weld-butter interface, in the center of the weld, and near the stainless safe end, as illustrated in Figure 12 for the steam generator nozzle case."
+},
+{
+"id": "p041_03",
+"en": "Note that for this case, which had a narrow gap weld, the butter width is actually wider than the weld itself."
+},
+{
+"id": "p041_04",
+"en": "The compilations input to xLPR Version 2.0 were made at the weld centerline although there were some differences in the WRS fields at the different locations for each modeler."
+},
+{
+"id": "p041_05",
+"en": "However, since results were compiled by all four modelers, and documented, the WRS fields are available for xLPR Version 2.0 if needed in the future."
+},
+{
+"id": "p041_06",
+"en": "These are currently available on Subversion and will be made available from the xLPR web portal (https://connect.sandia.gov/sites/xLPR/SitePages/homepage.aspx) with all results and the averages for baseline, repair cases, and mitigation."
+},
+{
+"id": "p041_07",
+"en": "Figure 12 WRS Calculation Locations for SG Nozzle"
+},
+{
+"id": "p042_00",
+"en": "3.3 WESTINGHOUSE PLANT STEAM GENERATOR INLET NOZZLE RESULTS"
+},
+{
+"id": "p042_01",
+"en": "The steam generator (SG) inlet nozzle geometry is shown in Figure 5. This geometry represents a replacement steam generator weld using a narrow gap groove."
+},
+{
+"id": "p042_02",
+"en": "In Figure 5 the dashed line represents the full geometry after machining operations, which were modeled as well."
+},
+{
+"id": "p042_03",
+"en": "Weld residual stresses were calculated through the center of the narrow groove weld as seen in Figure 13. As noted from Figure 12, results were actually obtained at three locations but only the centerline results are presented here."
+},
+{
+"id": "p042_04",
+"en": "The results tables, which are included in xLPR Version 2.0, are provided in Section 7. Figure 13 Weld Centerline Path Definition The axial and hoop weld residual stresses through the center of the weld for the baseline case (i.e., no repair or mitigation) are shown in Figure 14. The results were compiled at an operating temperature of 300°C for all cases to ensure that the effect of coefficient of thermal expansion differences between the three materials at temperature is properly included along with the slight reduction of stress strain curves with elevated temperature."
+},
+{
+"id": "p042_05",
+"en": "The results were independently calculated by the four participants."
+},
+{
+"id": "p042_06",
+"en": "This independence included mesh development, interpretation of the weld process, heat input, bead shape definition, definition of the repairs, etc."
+},
+{
+"id": "p042_07",
+"en": "It is seen that the predictions from the four modelers were rather close."
+},
+{
+"id": "p042_08",
+"en": "The average of the predictions are shown in black in Figure 14 and the diamond symbols represent the actual points through the thickness (26 points) where all results are tabulated."
+},
+{
+"id": "p042_09",
+"en": "The xLPR Version 2.0 code combines these data at the 26 points with service loads to calculate the stress intensity factors using the Universal Weight Function Method (UWFM) in order to grow the crack in the probabilistic leak before break calculation time loop."
+},
+{
+"id": "p042_10",
+"en": "Note that adding service loads linearly to the WRS field over predicts the actual loads for calculation of K, since the effective plastic hardening modulus (local slope of the stress versus strain curve beyond yield at a given plastic strain) should be used when the stresses become larger than yield."
+},
+{
+"id": "p042_11",
+"en": "This effect may be"
+},
+{
+"id": "p043_00",
+"en": "corrected in a later version of xLPR to improve predictions."
+},
+{
+"id": "p043_01",
+"en": "The xLPR Version 2.0 WRS input tables are listed in Section 7. Figure 14 Steam Generator Baseline Results"
+},
+{
+"id": "p044_00",
+"en": "In addition to the baseline case results shown in Figure 14, repair welds were also modeled."
+},
+{
+"id": "p044_01",
+"en": "The repairs were independently defined and results calculated by three of the team members1."
+},
+{
+"id": "p044_02",
+"en": "Figure 15 Steam Generator 15% Repair Results The repairs were modeled prior to performing the stainless steel closure weld.  15% and 50% through the wall repairs were assumed."
+},
+{
+"id": "p044_03",
+"en": "For both repair depths, the modelers independently 1 For some cases all 4 members performed the repair analyses."
+},
+{
+"id": "p045_00",
+"en": "defined the repair groove geometry, their axial location, etc., so that uncertainty is present."
+},
+{
+"id": "p045_01",
+"en": "Figure 15 and Figure 16 illustrate the 15% and 50% repair cases, respectively."
+},
+{
+"id": "p045_02",
+"en": "Figure 16 Steam Generator 50% Repair Results"
+},
+{
+"id": "p046_00",
+"en": "It is seen from Figure 15 that the axial stresses become tensile near the ID of the nozzle and reverse to compression near the point of the repair depth (15%) while the hoop stresses rise as well in the region of the repair."
+},
+{
+"id": "p046_01",
+"en": "By comparing results to the baseline case (Figure 14) both axial and hoop stresses for the repair nearly return to the non-repair results beyond about 50% of the thickness."
+},
+{
+"id": "p046_02",
+"en": "The results in Figure 16 are quite interesting in that the axial stresses remain nearly zero over the depth of the 50% deep repair except near the ID."
+},
+{
+"id": "p046_03",
+"en": "There is then an axial compression zone beginning at the depth of the repair, which reverses to tension near the OD."
+},
+{
+"id": "p046_04",
+"en": "The hoop stresses look similar to the 15% repair results but pushed further to the OD."
+},
+{
+"id": "p046_05",
+"en": "Uncertainty has increased in the repair predictions because the modelers chose the repair size themselves."
+},
+{
+"id": "p046_06",
+"en": "It is noted that repairs also include increased uncertainty because repair documentation in plants was often not detailed."
+},
+{
+"id": "p046_07",
+"en": "3.4 WESTINGHOUSE REACTOR PRESSURE VESSEL OUTLET NOZZLE"
+},
+{
+"id": "p046_08",
+"en": "The reactor pressure vessel nozzle geometry is shown in Figure 8. The stainless steel safe end after machining is less than 57.2 mm long, which is very short."
+},
+{
+"id": "p046_09",
+"en": "The relatively short safe end geometry can lead to yield level compressive residual stresses at the inner diameter of the dissimilar metal weld due to the beneficial bending applied by the safe end-to-pipe weld."
+},
+{
+"id": "p046_10",
+"en": "However, superposition of operating loads on these calculated weld residual stresses may still make PWSCC initiation and growth possible."
+},
+{
+"id": "p046_11",
+"en": "The results tables, which are included in xLPR Version 2.0, are provided in Section 7. Weld residual stresses were calculated through the center of the weld as seen in the inset at the top of Figure 17. For the RPV it is seen that there was more variation in the hoop stress between the four modelers."
+},
+{
+"id": "p046_12",
+"en": "Figure 18 and Figure 19 show the results for the 15% and 50% repair cases, respectively."
+},
+{
+"id": "p046_13",
+"en": "Again, there was more variability in the hoop weld residual stresses."
+},
+{
+"id": "p046_14",
+"en": "From Figure 17, Figure 18, and Figure 19, it is seen that the WRS fields were dominated by the fact that the stainless steel closure weld was so close to the DMW."
+},
+{
+"id": "p047_00",
+"en": "Figure 17 Reactor Pressure Vessel Baseline Results"
+},
+{
+"id": "p048_00",
+"en": "Figure 18 Reactor Pressure Vessel 15% Repair Results"
+},
+{
+"id": "p049_00",
+"en": "Figure 19 Reactor Pressure Vessel 50% Repair Results"
+},
+{
+"id": "p050_00",
+"en": "Figure 20 compares the baseline with repair cases."
+},
+{
+"id": "p050_01",
+"en": "For this assessment the Emc2 Monte Carlo results were used and a 30% repair depth case was also included."
+},
+{
+"id": "p050_02",
+"en": "The repair cases most affect the stress magnitude near the ID, with the effect being deeper through the thickness in concert with the relative depth of the repair."
+},
+{
+"id": "p050_03",
+"en": "Just beyond the repair depth, there is a relatively rapid decrease in stress magnitude followed by increasing stresses (i.e., a concave upward shape)."
+},
+{
+"id": "p050_04",
+"en": "This is rather different behavior compared to that seen in some prior analyses probably due to the fact that the stainless steel closure weld is so close to the DMW nozzle weld that it dominates the axial WRS field."
+},
+{
+"id": "p050_05",
+"en": "Prior analyses have often shown the deeper the repair the higher the ID axial stress becomes [24]."
+},
+{
+"id": "p050_06",
+"en": "The axial stresses approach the baseline case for all three repair cases near the OD."
+},
+{
+"id": "p050_07",
+"en": "Figure 20 Effect of Repair"
+},
+{
+"id": "p051_00",
+"en": "The hoop stresses (bottom of Figure 20) increase most near the ID for the 15% repair case compared to the baseline case and then decrease a little more for the 30% repair case, and finally become nearly the same as the baseline case for the 50% repair over the first half of the thickness."
+},
+{
+"id": "p051_01",
+"en": "This again is different behavior from that seen before for cases where the stainless steel closure weld is further from the DMW."
+},
+{
+"id": "p051_02",
+"en": "Indeed, the effect of the closure weld is important here."
+},
+{
+"id": "p051_03",
+"en": "3.5 BABCOCK AND WILCOX REACTOR COOLANT PUMP OUTLET NOZZLE"
+},
+{
+"id": "p051_04",
+"en": "The reactor coolant pump outlet nozzle shown in Figure 9 differs from the SG and RV nozzle examples."
+},
+{
+"id": "p051_05",
+"en": "After the dissimilar metal weld is performed and prior to the addition of the stainless steel safe end, the ID is machined, removing the weld root to sound metal and replaced with a back clad."
+},
+{
+"id": "p051_06",
+"en": "The source documents were unclear about the material of the back-clad."
+},
+{
+"id": "p051_07",
+"en": "Because of this uncertainty, NRC and DEI modeled the back-clad as Alloy 182, while Emc2 modeled the back- clad as 316 stainless steel."
+},
+{
+"id": "p051_08",
+"en": "In addition, the weld of the stainless steel transition piece is ignored since the three-inch safe end length isolates it sufficiently from the weld that it would have no effect."
+},
+{
+"id": "p051_09",
+"en": "The weld process was rather complicated with machining and addition of the transition piece."
+},
+{
+"id": "p051_10",
+"en": "The results tables that are included in xLPR Version 2.0 are provided in Section 7. Figure 21 shows the axial and hoop weld residual stresses for this case, while Figure 22 and Figure 23 show the results for the 15% and 50% repair cases, respectively."
+},
+{
+"id": "p051_11",
+"en": "There is a little more variation in all of these results compared with the SG and RPV nozzles."
+},
+{
+"id": "p052_00",
+"en": "Figure 21 Reactor Coolant Pump Baseline Results"
+},
+{
+"id": "p053_00",
+"en": "Figure 22 Reactor Coolant Pump 15% Repair Case"
+},
+{
+"id": "p054_00",
+"en": "Figure 23 Reactor Coolant Pump 50% Repair Case"
+},
+{
+"id": "p054_01",
+"en": "3.6 V.C."
+},
+{
+"id": "p054_02",
+"en": "SUMMER WRS FIELDS"
+},
+{
+"id": "p054_03",
+"en": "The validation test plan for xLPR Version 2.0 includes analyses of in-service cracking experience caused by PWSCC."
+},
+{
+"id": "p054_04",
+"en": "One such case to be considered is the VC Summer cracking that occurred in 2001 [21, 22] and although Emc2 staff members performed weld residual stress analysis for the VC Summer case in 2004 and 2005 [25], that work predated the development of the current best analytical practices."
+},
+{
+"id": "p054_05",
+"en": "Since WRS uncertainty for xLPR Version 2.0 is being determined from"
+},
+{
+"id": "p055_00",
+"en": "solutions by four participants in the WRS group, along with other sources of uncertainty, and since only Emc2 would be providing the VC Summer distributions, it was decided that for consistency the VC Summer solutions would be redone."
+},
+{
+"id": "p055_01",
+"en": "The prior model from 2004 is shown in Figure 24. The weld procedure for VC Summer was rather unique and is illustrated in Figure 25 with the modeling steps, and visually in Figure 26. The butter layer was deposited in the shop and then post weld heat treated."
+},
+{
+"id": "p055_02",
+"en": "The DMW was performed in the field and when in-process NDE revealed defects early in the weld-out, the weld was rejected (Figure 26c)."
+},
+{
+"id": "p055_03",
+"en": "The defect was then removed and a bridge was left so that the nozzle and stainless steel pipe would remain aligned while the repair was made (Figure 26d)."
+},
+{
+"id": "p055_04",
+"en": "After this, weld metal was deposited to complete the weld."
+},
+{
+"id": "p055_05",
+"en": "However, it is not known whether the ID weld was made first up to the bridge (Figure 26d) followed by the OD weld, or the OD weld was made first followed by the ID weld."
+},
+{
+"id": "p055_06",
+"en": "Figure 24 VC Summer model"
+},
+{
+"id": "p056_00",
+"en": "Figure 25 VC Summer modeling steps"
+},
+{
+"id": "p057_00",
+"en": "Figure 26 VC Summer fabrication procedure Experience suggests that performing the ID weld last is a worst case scenario."
+},
+{
+"id": "p057_01",
+"en": "However, since the sequence of the repair weld is not known with certainty, both options (inside-out and outside- in) were considered."
+},
+{
+"id": "p057_02",
+"en": "The case where the outside weld was followed by the inside weld is considered most limiting since it leads to the highest tensile stresses at the ID near the wetted surface."
+},
+{
+"id": "p057_03",
+"en": "Therefore, the results that are included in xLPR Version 2.0 and are provided in Section 7 contain both sets of VC Summer WRS fields that were developed."
+},
+{
+"id": "p057_04",
+"en": "The results are shown in Figure 27 for the case of the final sequence with outside weld followed by the inside weld."
+},
+{
+"id": "p057_05",
+"en": "It is seen that tensile axial weld residual stresses persist from near the ID to nearly 40% of the thickness with hoop stresses tensile through the entire thickness."
+},
+{
+"id": "p057_06",
+"en": "Note that the results for isotropic and nonlinear kinematic hardening are shown but only the average values are intended for xLPR Version 2.0 use."
+},
+{
+"id": "p057_07",
+"en": "Figure 28 shows results for inside weld followed by outside weld."
+},
+{
+"id": "p057_08",
+"en": "It is seen that this case is not as severe in terms of tensile WRS near the ID as compared to the outside-inside weld (Figure 27)."
+},
+{
+"id": "p057_09",
+"en": "Because Emc2 was the only member of the WRS group that performed the VC Summer analysis, the uncertainty will have to be estimated from the other results."
+},
+{
+"id": "p057_10",
+"en": "Since the RPV geometry is most similar to the VC Summer case, the uncertainty will be estimated from these results."
+},
+{
+"id": "p057_11",
+"en": "Finally, other field experience with observed cracking is included in xLPR Version 2.0 validation testing, so relevant data and WRS field results are included in Section 7 in tabular form for North Anna, Ringhals, and Tsuruga."
+},
+{
+"id": "p057_12",
+"en": "The WRS fields for these cases came from the literature for each plant and are summarized in the Framework Acceptance Software Test Plan (STP) [26]."
+},
+{
+"id": "p058_00",
+"en": "Figure 27 VC Summer WRS field (outside weld followed by inside weld).  ‘iso’ is isotropic hardening and ‘NLKN’ represents nonlinear kinematic hardening (Chaboche Model)."
+},
+{
+"id": "p059_00",
+"en": "Figure 28 VC Summer WRS field (inside weld followed by outside weld)"
+},
+{
+"id": "p060_00",
+"en": "3.7 WRS MITIGATION EFFECTS"
+},
+{
+"id": "p060_01",
+"en": "The xLPR Version 2.0 strategy for characterizing the WRS fields resulting from stress mitigation processes is summarized here."
+},
+{
+"id": "p060_02",
+"en": "WRS mitigation was estimated based on literature solutions for the main four types of service mitigation used in PWR’s."
+},
+{
+"id": "p060_03",
+"en": "These are full structural weld overlay (FSWOL) and optimized weld overlay (OWOL) which are grouped in the weld overlay repair (WOR) category, mechanical stress improvement process (MSIP), and inlay1."
+},
+{
+"id": "p060_04",
+"en": "The mitigated WRS fields are implemented into xLPR Version 2.0 geometries as a set of rules based on estimates made from the literature."
+},
+{
+"id": "p060_05",
+"en": "It is recommended that for future versions of the xLPR code these estimates be validated for at least one of the geometries to ensure that the estimates are reasonable."
+},
+{
+"id": "p060_06",
+"en": "The rules listed below are to be applied directly to the WRS 26-point datasets."
+},
+{
+"id": "p060_07",
+"en": "For instance, the rules for the steam generator baseline case, shown in Figure 29, are applied directly to the table of results for the baseline SG case (Table 7, Table 8)."
+},
+{
+"id": "p060_08",
+"en": "This means that the input tables of WRS for use in xLPR Version 2.0 already contain the corrections in separate tables for each mitigation case."
+},
+{
+"id": "p060_09",
+"en": "A similar procedure was performed to obtain the FSWOL mitigation results for both the RPV and the pump nozzle."
+},
+{
+"id": "p060_10",
+"en": "In addition, a similar procedure was used to obtain the results for the inlay mitigation and MSIP mitigation."
+},
+{
+"id": "p060_11",
+"en": "There are fewer publications for these two mitigation methods but they will be used regardless."
+},
+{
+"id": "p060_12",
+"en": "These are also summarized below."
+},
+{
+"id": "p060_13",
+"en": "FSWOL Mitigation WRS Fields for the SG Nozzle The post-weld overlay residual stresses were estimated by examining published papers and reports on WRS fields resulting from the weld overlay process [27]-[38]."
+},
+{
+"id": "p060_14",
+"en": "The estimate of WOR residual stresses were estimated by examining 12 papers and reports."
+},
+{
+"id": "p060_15",
+"en": "The following are high level rules that were used that are based on summaries of the results in the publications."
+},
+{
+"id": "p060_16",
+"en": "A spreadsheet has been added to subversion which summarizes the results of references and how rules for FSWOL were developed."
+},
+{
+"id": "p060_17",
+"en": "In addition, the spreadsheets for the nozzles also summarize the rules. 1. If axial WRS prior to WOR are compressive, there is little change or slight increase in WRS after WOR to about x/t~0.2 to 0.3. 2. If axial WRS tensile prior to WOR, then WOR causes change to compression (or reduction from tension to lower tension)."
+}
+]
