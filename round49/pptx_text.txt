@@ -1,0 +1,905 @@
+=== slide 1
+WELDING RESIDUAL STRESSES
+박준재
+
+서울과학기술대학교
+신뢰성기반 기계설계연구실
+2026.10.??
+=== slide 2
+INTRODUCTION
+WRS MODEL DEVELOPMENT
+MODELING RESULTS
+Sensitivity and Uncertainty Studies
+WRS AND IMPORTANCE SAMPLING
+Contents
+[n] Reference
+2
+=== slide 3
+목적
+WRS를 두께방향 26점의 평균과 불확실성으로 만들어 UWFM K 계산에 넣는 방법을 설명
+대표적 DMW
+확률론적 LBB 꼐산에서는 best-estimate WRS 두께 방향 프로파일과 불확실성이 필요함
+프로파일은 UWFM K 계산에 들어감
+The use of UWFM for determination of stress intensity factors created several issues for a probabilistic analysis and treatment of uncertainty
+WRS 프로파일의 표준 해석식이 없어 FORM/SORM이 대부분 적용불가 
+불확실성을 정할 확률변수가 너무 많음
+원주방향 균열용 축응력은 두께 방향으로 평형해야 함 
+매우 적은수의 해석으로 26점 값과 상관을 추정해야 함
+INTRODUCTION
+[n] Reference
+3
+=== slide 4
+왜 FE 예측이고 어떤 가정을 사용했나 
+측정만으로 신뢰가 어려운 이유 
+WRS 측정 정확도에 불확실성이 있고, 측정 DB가 작고 Xlpr에 필요한 노즐 . 배관을 모두 포함하지 않으며 , 노즐 추가 측정은 비용이 많이들기 때문에 권장하지 않음 
+방법 
+NRC와 산업계의 숙련 용접 모델러 4명이 각 노즐 WRS를 예측하고 , 평균을 각 부품의 평균 잔류응력 상태로 정의함 
+소그룹 모델링 절차를 정해 입열.경계조건.비드형상.재료에서 일관성 확보 
+핵심 가정
+WRS MODEL DEVELOPMENT
+4
+항목 | 내용
+FE코드 | ABAQUS , ANSYS 등 수치 기법 사용 
+축대칭 | 비드 전체 한번에 적층원주방향으로 진행되는 실제 용접과 다름
+시작/종료점에서 먼 곳은 3D와 대체로 일치  
+열원 | 각자 FORTRAN 사용자 루틴 . 열경계조건은 주로 대류손실 , 복사 무시 . 정확한 입열모델 . 목표온도 이력을 규정하지 않음 
+비드 | 편의상 직사각형 비드 
+열구조 | 열해석 온도 이력이 구조해석 입력 
+구조경계 | 용접부에서 먼 탄소강 노즐의 한 절점 이상의 축방향 고정
+=== slide 5
+Shake down 3사이클 
+공정 순서 
+Butter 적층 → PWHT → DMW 비드별 적층 → 스테인리스 페쇄 용접 (closure weld)
+일부 노즐은 기계가공 
+각 공정 후 
+1. 가정 운전온도 300°C . 압력 15.5MPa
+2. 상온으로 냉각 . 압력 0
+3. 1~2단계를 두번 더 반복 → 총 3사이클 
+WRS 추출을 위해 300°C 로 가열
+메쉬 
+각 노즐을 isotropic . nonliner kinematic 경화 두 가지로 해석함 
+결과는 두 값의 평균 (정확도가 가장 높다고 알려짐  혼합경화에 가까운 값)
+비드당 약 2~30 요소 
+후처리 
+데이터 추출 방법을 공통지정 
+ID에서 OD까지 26개 등간격 점 
+최종 xLPR 입력은 용접 중심선으로 작성
+WRS MODEL DEVELOPMENT
+[n] Reference
+5
+=== slide 6
+평가위치를 선정한 3개 용접부와 RPV 고온관 노즐 
+Westinghouse SG 노즐 , Westinghouse RPV 노즐, Babcock & Wilcox 원자로냉각재펌프(RCP) 노즐 세 가지
+PWR 전반의 DMW를 대표하고 필요한 자료를 입수할 수 있었습니다. 추가로 균열이 발생한 플랜트의 고온관 변형(VC Summer)도 포함
+선정 이유 
+가압기 DM 용접이 PWR에서 가장 고온이나 대부분 미국 PWR 가압기 노즐은 이미 완화되었고 LBB 범위에 포함할 후보는 일반적으로 surge line 뿐임 
+고온관 노즐은 PWSCC 고감수성 온도 범위에서 운전됨 
+선정한 예의 safe end 는 주조로 , 지금까지 대부분의 WRS 해석은 소성가공재 (wrought) 스테인리스를 가정함
+WRS MODEL DEVELOPMENT
+6
+항목 | 내용
+위치 | 4-loop Westinghouse 플랜트 원자로 냉각재 계통 (fig.1)
+치수 | 배관 ID 29.00 in(736.6mm),두께2.450 in(62.23mm)
+재료 | 노즐 A508,용접금속 Alloy 182, safe end CF8A
+운전온도 | 325°C WRS 취합은 300°C 에서 했고 , 300~325°C  사이 변화는 약간 감소하는 정도라 보정 불필요 
+출처 | Westinghouse 제공 자료 
+=== slide 7
+SG노즐 – 엘보 , B&W 냉각재 펌프노즐 
+Westinghouse 교체 SG노블 – 고온관 엘보 (p.8 , fig 2)
+ID 29.00 in , 두께 2.450 in , A580노즐 / Alloy 182 / CF8A safe end , 운전 325 °C
+노즐과 엘보의 DMW 
+최근 WRS 해석은 직관 스테인리스 구간 가저이 많고 SG용접부는 자주 모델링된 대상이 아님 
+초기 교체 SG는 Alloy 82/182/52inlay 를 사용하다 A52/152 용접이 완숙되어 전체 용접으로 전환함
+응력 변형률 곡선이 거의 같아 WRS에 큰 영향이 없다고 봄 
+B&W 저온관 – 원자로 냉각재펌프 용접 (p.8 , fig 3)
+B&W 주회로의 유일한 DM 원주 용접은 펌프 연결부
+위치 : OD 28 in , 두께 2.75in (69.89mm)
+AREVA 정보 입수 전에는 A106배관 /Alloy 182 / CF8A 주조 펌프 노즐로 믿음 
+저온관 운전온도는 처음엔 알지 못함 
+고온관보다 낮은 온도지만 PWSCC 우려가 저온 위치로 옮겨가고 있어 V3에서 고려해야 함
+WRS MODEL DEVELOPMENT
+[n] Reference
+7
+=== slide 8
+SG노즐 – safe end 용접의 제작 순서 
+개요
+SG 한대마다 노즐 –safe end DMW 2개 (고온관 inlet 1, 크로스오버관 outlet 1, 원문 “on each SG”)로 공칭 형상은 같음 
+단일 V 좁은 개선으로 저 합금강 SG노즐과 스테인리스 safe end 를 잇고 현장에서 스테인리스 용접으로 safe end를 배관에 이음 
+입력문서
+WPS (DMW 용접 절차 명세, 용접 자체 치수 . 일반 변수)
+SIS (shop instruction sheet,일반 용접 과정)
+스테인리스 현장 용접 배치 도면 
+제작단계
+노즐 butter + PWHT , butter 를 가공해 DMW 개선 한 면 형성 
+Alloy 52로 safe end와 용접 
+ID 가공 , 방사선 검사 가정 , 수리 공동 가공 용접 
+ASME 수압 시험 : 149°C , 21.44 MPa
+safe end 나머지 가공 후 스테인리스 용접 개선 (배관에 용접)
+설계 수압 시험 : 149°C , 17.13MPa
+WRS MODEL DEVELOPMENT
+[n] Reference
+8
+=== slide 9
+RPV 노즐 safe end 용접과 VC Summer 변형
+RPV 제작
+루프마다 outlet . inlet 노즐 1개씩 이며 용접 두께 . 구성은 같고  inlet ID가 약간 작음 
+outlet 위치를 기준으로 했고 DMW 후 현장 스테인리스 용접 효과도 포함함
+VS Summer 변형 
+서비스중 균열이 발생한 플랜트 (용접 절차가 ID 인자 WRS를 크게 만들었음)
+butter는 공자에서 용접 PWHT , DMW는 현장에서 시공 
+용접 초기 in-process NDE에서 결함이 발견되어 용접 불합격
+결함 제거 후 노즐과 스테인리스 배관 정렬을 위해 bridge 를 남기고 수리 
+ID를 bridge 까지 먼저 용접했는지 , OD를 먼저 용접했는지 불명
+WRS MODEL DEVELOPMENT
+[n] Reference
+9
+=== slide 10
+B&W 저온관 RCP용접의 제작 순서 
+냉각재 관 구간을 cladding . butter . PWHT ,  butter 가공으로 개선한 면 형성
+Alloy 82/182로 safe end와 용접 (safe end는 약 32in (812.8mm) 스테인리스관 , 백킹링 사용)
+백킹링 가공 제거 
+DMW ID 면을 Aooly 82/182 로 cladding 
+방사선 검사 가정 , 수리 케이스는 수리 공동 가공 . 용접 
+safe end 를 가공해 RCP transition assembly와의 스테인리스 용접 개선 형성 
+safe end 를 transition assembly 에 용접 이후 pump casing 에 용접 
+수압시험 149°C , 21.44 Mpa , 설계 수압시험 149°C , 17.13 MPa
+WRS MODEL DEVELOPMENT
+[n] Reference
+10
+=== slide 11
+열 , 구조 물성 
+원칙 
+용접 모델링은 상온으로부터 융점의 절반 이상 (일부 재료는 1200 °C)까지 물성이 필요함
+각기 다른 DB를 쓰면 결과값에 대한 신뢰도가 없으므로 NRC/Emc2 DB의 공통 물성을 제공함 
+creep 물성은 butter 적층 후 PWHT 모델링에 필요 
+응고 과정의 수축 및 경화는 WRS 모델이 직접 모델링 진행
+WRS MODEL DEVELOPMENT
+[n] Reference
+11
+구분 | 물성  | 위치 (부록B)
+열 | 열전도도 , 비열 | Fig.69-97 , fig 103-104 , fig.110-111
+구조 | 탄성계수 , 푸아송비 , 열팽창계수 | Fig.91-92 , fig.98-99 , fig.105-106
+등방 | 응력-변형률 곡선 , 크리프  | Fig.93-94 , fig.100-101, fig.107-108
+이동경화 | 탄소성 곡선 | Fig.95 , fig.102 , fig.109
+=== slide 12
+xLPR QA 프로그램과 설계검증 5가지 
+QA 
+xLPR 2.0은 문서화된 프로그램 을 따름 
+WRS 예시 입력 개발에는 소프트웨어 모듈과 같은 문서화 (STP) 가 필요하지 않지만 QA의 취지에 맟게 설계검증을 수행함 
+설계검증 5단계
+모델 치수를 도면과 대조 
+열 구조 경계조건을 그래픽으로 점검
+비드 순서와 가공단계 점검
+잔류응력 결과를 표시된 위치 , 시간 단계에서 기입했는지 점검
+물성 입력을 온도 곡선으로 점검
+WRS MODEL DEVELOPMENT
+[n] Reference
+12
+=== slide 13
+결과 처리 방법 
+처리방법은 축대칭 FE모델에 기본 (fig.10) 
+등방 . 이동경화 두 모델의 중심선 프로파일을 (fig.11)  평균 해의 해석 후 추정WRS를 만듬
+WRS 는 용접 위치마다 다름
+MODE LING RESULTS
+[n] Reference
+13
+=== slide 14
+SG baseline 에서의 WRS
+SG 입구 노즐 형상은 (fig.5) 
+용접 중심선의 경로 (fig.13)
+Base line 의 축 . 후프 WRS는 (fig.14) 모든 케이스를 300°C 에서 취함해 세 재료의 열팽창계수 차이와 온도에 따른 응력 변형률 곡선상 약간 감소의 영향을 반영함
+참여자가 메쉬 , 용접과정해석 , 입열 , 비드형상 , 수리정의 등 독립적으로 계산함
+xLPR 2.0 은 자료들을 취합하여 서비스 하중과 합쳐 UWFM으로 K를 계산해 확률론적 LBB 시간 루프 내에서 균열을 키움 
+WRS에 서비스 하중을 선형으로 더하면 , 응력이 항복을 넘을때 K 하중이 과대평가됨
+유효 소성 경화 계수 (항복 이후 응력-변형률 곡선의 국비 기울기) 를 써야하며  , 이 효과를 이후 버전에서 보정할 수 있음
+MODE LING RESULTS
+[n] Reference
+14
+=== slide 15
+SG Repair case
+repair  case 는 스테인리스 패쇄 용접 이전에 모델 15 % , 50% repair case 를 가정 
+수리 형상 축방향 위치는 각 모델마다 독립정의 함 (불확실함)
+15 % repair (fig.15) 노즐 ID부근에서 축 응력이 인장응력을 받다가 수리 깊이 15% 근처에서 압축응력으로 반전함
+후프도 repair 영역에서 상승 
+ID 부근을 제외하면 50% repair 깊이까지 축 응력이 거의 0 
+repair 깊이에서 압축 구간이 시작되어 OD 부근에서 인장으로 반전함 
+후프는 15% 결과와 비슷하지만 OD쪽으로 밀림
+MODE LING RESULTS
+[n] Reference
+15
+=== slide 16
+WRS 분포는 스테인리스 폐쇄 용접이 DMW에 매우 가깝다는 사실에 지배됨 
+원자로압력용기(RPV) 노즐 형상은 Figure 8. 가공 후 스테인리스 safe end 길이가 57.2 mm 미만으로 매우 짧음
+safe end가 비교적 짧은 형상에서는 safe end 배관 용접이 가하는 굽힘 때문에 이종금속용접(DMW) 내경(ID)에 항복 수준의 압축 잔류응력이 생길 수 있음
+용접 잔류응력(WRS)은 용접부 중심을 지나는 선을 따라 계산(Fig.17) RPV에서는 각 모델들 사이에 후프응력 변동이 더큼
+WRS 분포는 스테인리스 폐쇄 용접 (closure weld)이 DMW에 매우 가깝다는 사실임 
+repair effect 비교 
+Emc2 Monte carlo 결과로 30% repair case 도 포함해 비교 
+repair case는 ID 부근 응력 크기에 가장 큰 영향을 주며 , 그 영향은 repair case 의 상대적인 깊이에 따라 두께 방향으로 더 깊어짐 
+이는 일부 해석에서 본 거동과 상당히 다르며 , closure weld 가 DMW 노즐 용접에 너무 가까워 , 축방향 WRS를 지배하기 때문으로 추정함 
+이전 해석들은 repair case 가 깊을수록 ID 축응력이 높아지는 경우가 많았음
+MODE LING RESULTS
+[n] Reference
+16
+=== slide 17
+펌프 노즐의 복잡한 제작과 back clad 재질의 불확실성 
+fig.9의 펌프노즐은 SG.RPV와 다름 
+DMW 후 safe end 추가 전에 ID를 가공해 Root를 건전한 금속까지 제거하고 back clad로 교체함 
+safe end 길이 3 in 이 스테인리스 transitaion 용접 영향을 충분히 격리한다고 보고 그 용접은 무시함 
+제작이 더 복잡함 (fig.21 ~ 23 ) 에서 SG.RPV보다 모든 결과의 변동이 조금 더 큼
+MODE LING RESULTS
+[n] Reference
+17
+=== slide 18
+실제 균열 사례 재해석
+xLPR 2.0 검증 시험 계획에는 PWSCC 현장 균열 사례가 포함 (2001년 VC Sumer)
+Emc2가 2004~2005년에 WRS 해석 실행 하지만 현재 모범 사례 개발 이전의 작업이기에 작업의 일관성을 위해 VC Summer 를 다시 해석 
+2004년 모델 (fig.24) 모델링 단계 (fig.25) 시각적 제작절차 (fig.26) 
+butter 은 공장 용접 . PWHT , DMW는 현장 , 초기 NDE 결함 , 용접 불합격 (fig.26c) 
+결함 제거 후 bridg를 남기고 (pig.26d) 용접 완성 
+ID를 bridge 까지 먼저 했는지 OD를 먼저 했는지 불명함  
+경험적으로 ID를 마지막에 용접하는것이 최악임 
+그림에서는 등방 (iso) , 비선형 이동 (NLKN , Chaboche 모델) 결과가 모두 있으나 xLPR 2.0에는 평균값만 사용함 
+Emc2 만 해석했으므로 형상이 가장 비슷한 RPV 결과로 추정함 
+관측된 균열 사례 North Anna , Ringhals , Tsurga 의 WRS는 문헌에서 가져와 Framework Accptance STP[26] 에 요약됨
+MODE LING RESULTS
+[n] Reference
+18
+=== slide 19
+WRS 완화 효과 
+서비스 중 완화 4가지: FSWOL(full structural weld overlay), OWOL(optimized weld overlay)(이 둘은 WOR 범주로 묶임), MSIP(mechanical stress improvement process), inlay. 새 방법(peening)은 고려 안 함
+완화 WRS는 문헌을 근거로 한 rules 로 xLPR2.0 형상에 구현 
+최소 한 형상으로 규칙을 검증하는 것을 이후 버전에 권고함
+FSWOL rules 는 12편의 논문 및 보고서에 요약됨 [27-38]
+FSWOL rules
+overlay 전 축 WRS가 압축이면 x/t 0.2~0.3까지 변화가 작거나 약간 증가 
+overlay 전 축 WRS가 인장이면 압축으로 변화
+repair 가 만든 높은 인장 WRS는 overla로 낮아짐 
+후프 응력은 ID 부근에서 최소 200MPa로 감소하고 OD(overlay OD) 에서는 non-WOR 결과로 수렴함
+R/t 가비슷하고 두께가 큰 cold leg . sugar line을 우선함
+MODE LING RESULTS
+[n] Reference
+19
+=== slide 20
+FSWOL 완화 . SG.RPV 펌프
+MODE LING RESULTS
+[n] Reference
+20
+대상  | 그림  | 설명
+SG baseline | Fig.29 | 원래 WRS가 압축이므로 축응력이 ID부근에서 약간 증가 OWOL도 같은 규칙 
+SG 15% repair | Fig.30 | Repair WRS가 인장이므로 ID부근 축응력이 감소함 (Axial base line WRS Rules )(SG 15% repair) 는 15% repair 가 결과로부터 평가됨 
+SG 50% repair | Fig.31 | ID부근 축응력 감소 
+RPV base line 15% . 50% | Fig.32~34 | 같은 규칙으로 baseline 수리 후 overlay 후 축 .후프 표시 
+펌프 base line 15% . 50% | Fig.35~37 | 같은 규칙 
+=== slide 21
+FSWOL (WOR) 완화 rule (SG baseline)
+MODE LING RESULTS
+[n] Reference
+21
+=== slide 22
+FSWOL (WOR) 완화 rule (SG baseline)
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 조건 
+SG baseline 
+FSWOL(WOR) 축응력과 후프응력 규칙이 각각 존재 
+SG baseline은 원래 WRS가 압축이므로 축응력이 ID부근에서 약간 증가함
+OWOL도 같은 규칙이라고 설명 
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+22
+=== slide 23
+FSWOL(WOR) 완화 rule – SG 15% repair
+MODE LING RESULTS
+23
+=== slide 24
+FSWOL (WOR) 완화 rule (SG baseline)
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 조건 
+SG baseline 
+FSWOL(WOR) 축응력과 후프응력 규칙이 각각 존재 
+SG baseline은 원래 WRS가 압축이므로 축응력이 ID부근에서 약간 증가함
+OWOL도 같은 규칙이라고 설명 
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+24
+=== slide 25
+FSWOL(WOR) 완화 rule – SG 50% repair
+MODE LING RESULTS
+[n] Reference
+25
+=== slide 26
+FSWOL(WOR) 완화 rule – SG 50% repair
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 조건 
+SWOL(WOR)(Fig.31)
+ 축응력과 후프응력 규칙이 각각 존재함
+ SG 50% 수리: ID 부근 축응력 감소
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+26
+=== slide 27
+FSWOL(WOR)완화 –RPV baseline
+[n] Reference
+27
+=== slide 28
+FSWOL(WOR)완화 –RPV baseline
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+RPV baseline 
+FSWOL(WOR)(fig.32) 축응력과 후프응력 규칙이 각각 존재함
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+28
+=== slide 29
+FSWOL(WOR)완화 –RPV 15% repair
+MODE LING RESULTS
+[n] Reference
+29
+=== slide 30
+FSWOL(WOR)완화 –RPV 15% repair
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+RPV 15% repair
+FSWOL(WOR)(fig.33) 축응력과 후프응력 규칙이 각각 존재함(p.64)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+30
+=== slide 31
+FSWOL(WOR)완화 –RPV 50% repair
+MODE LING RESULTS
+[n] Reference
+31
+=== slide 32
+FSWOL(WOR)완화 –RPV 50% repair
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+RPV 50% repair
+FSWOL(WOR)(fig.34) 축응력과 후프응력 규칙이 각각 존재함(p.65)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+32
+=== slide 33
+FSWOL(WOR)완화 –펌프 baseline
+MODE LING RESULTS
+[n] Reference
+33
+=== slide 34
+FSWOL(WOR)완화 –펌프 baseline
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+펌프 baseline 
+FSWOL(WOR)(fig.35) 축응력과 후프응력 규칙이 각각 존재함(p.66)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+34
+=== slide 35
+FSWOL(WOR)완화 –펌프 15% repair
+MODE LING RESULTS
+[n] Reference
+35
+=== slide 36
+FSWOL(WOR)완화 –펌프 15% repair
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+펌프 15% repair
+FSWOL(WOR)(fig.36) 축응력과 후프응력 규칙이 각각 존재함(p.66)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+36
+=== slide 37
+FSWOL(WOR)완화 –펌프 50% repair
+MODE LING RESULTS
+[n] Reference
+37
+=== slide 38
+FSWOL(WOR)완화 –펌프 50% repair
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+펌프 50% repair
+FSWOL(WOR)(fig.37) 축응력과 후프응력 규칙이 각각 존재함(p.67)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+38
+=== slide 39
+MSIP Mitigation WRS Fields for the SG Nozzle / RPV Nozzle
+축 WRS는 항상 ID 부근에서 감소하고 OD 부근에서 증가함
+MSIP 전 WRS가 인장이면 ID 부근 감소는 R/t=0.2 정도 깊이까지 300 ~ 400 MPa일 수 있음
+OD 증가는 고온관에서 최대 약 150 MPa(fig.27). ID 인장이 높을수록 감소가 큼, MSIP 압축이면 ID 개선 거의 없음
+축 WRS가 ID 부근에서 압축이면 ID 감소는 R/t = 0.2에서 약 100 ~ 150 MPa, R/t =0.2 너머 OD 증가는 50–100 MPa에 불과함
+MODE LING RESULTS
+[n] Reference
+39
+대상 | 그림
+SG.baseline 15.50% | Fig 38~40
+RPV baseline 15.50% | Fig 41~43
+펌프 baseline 15.50% | Fig 44~46
+=== slide 40
+Figure 38 MSIP rules for SG nozzle, baseline case
+MODE LING RESULTS
+[n] Reference
+40
+=== slide 41
+Figure 38 MSIP rules for SG nozzle, baseline case 
+식의 사용이유 
+서비스 중 weld overlay 후의 WRS를 케이스마다 새 FE 해석 없이 만들기 위해 
+xLPR 2.0은 WRS를 직접 계산하지 않고 이 규칙으로 구현함 
+사용 대상
+SG baseline
+MSIP(fig.38) 축응력과 후프응력 규칙이 각각 존재함(p.68)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+41
+=== slide 42
+MSIP rules for SG nozzle 15% repair case
+MODE LING RESULTS
+[n] Reference
+42
+=== slide 43
+MSIP rules for SG nozzle 15% repair case 
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+SG 15% repair
+MSIP(fig.39) 축응력과 후프응력 규칙이 각각 존재함(p.68)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+43
+=== slide 44
+MSIP rules for SG nozzle 50% repair case
+MODE LING RESULTS
+[n] Reference
+44
+=== slide 45
+MSIP rules for SG nozzle 50% repair case 
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+SG 50% repair
+MSIP(fig.40) 축응력과 후프응력 규칙이 각각 존재함(p.69)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+45
+=== slide 46
+MSIP rules for RPV nozzle , baseline case
+MODE LING RESULTS
+[n] Reference
+46
+=== slide 47
+MSIP rules for RPV nozzle , baseline case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+RPV baselline
+MSIP(fig.41) 축응력과 후프응력 규칙이 각각 존재함(p.69)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+47
+=== slide 48
+MSIP rules for RPV nozzle , 15% repair case
+MODE LING RESULTS
+[n] Reference
+48
+=== slide 49
+MSIP rules for RPV nozzle , 15% repair case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+RPV 15% repair
+MSIP(fig.42) 축응력과 후프응력 규칙이 각각 존재함(p.70)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+49
+=== slide 50
+MSIP rules for RPV nozzle , 50% repair case
+MODE LING RESULTS
+[n] Reference
+50
+=== slide 51
+MSIP rules for RPV nozzle , 50% repair case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+RPV 50% repair
+MSIP(fig.43) 축응력과 후프응력 규칙이 각각 존재함(p.70)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+51
+=== slide 52
+MSIP rules for pump nozzle , baseline case
+MODE LING RESULTS
+[n] Reference
+52
+=== slide 53
+MSIP rules for pump nozzle , baseline case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+pump baseline
+MSIP(fig.44) 축응력과 후프응력 규칙이 각각 존재함(p.71)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+53
+=== slide 54
+MSIP rules for pump nozzle , 15% repair case
+MODE LING RESULTS
+[n] Reference
+54
+=== slide 55
+MSIP rules for pump nozzle , 15% repair case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+pump 15% repair
+MSIP(fig.45) 축응력과 후프응력 규칙이 각각 존재함(p.72)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+55
+=== slide 56
+MSIP rules for pump nozzle , 50% repair case
+MODE LING RESULTS
+[n] Reference
+56
+=== slide 57
+MSIP rules for pump nozzle , 50% repair case
+식의 사용이유 
+MSIP(기계적 응력 개선) 후 WRS를 새 해석 없이 만들기 위해 
+사용 대상
+pump 50% repair
+MSIP(fig.46) 축응력과 후프응력 규칙이 각각 존재함(p.72)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+57
+=== slide 58
+Inlay rules for SG nozzle, baseline case
+MODE LING RESULTS
+[n] Reference
+58
+=== slide 59
+Inlay rules for SG nozzle, baseline case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+SG baseline
+inlay (fig.47)축응력과 후프응력 규칙이 각각 존재함 (p.73)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+59
+=== slide 60
+Inlay rules for SG nozzle, 15% repair case
+MODE LING RESULTS
+[n] Reference
+60
+=== slide 61
+Inlay rules for SG nozzle, 15% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+SG 15% repair
+inlay (fig.48)축응력과 후프응력 규칙이 각각 존재함 (p.74)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+61
+=== slide 62
+Inlay rules for SG nozzle, 50% repair case
+MODE LING RESULTS
+[n] Reference
+62
+=== slide 63
+Inlay rules for SG nozzle, 50% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+SG 50% repair
+inlay (fig.49)축응력과 후프응력 규칙이 각각 존재함 (p.74)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+63
+=== slide 64
+Inlay rules for RPV nozzle, baseline case
+MODE LING RESULTS
+[n] Reference
+64
+=== slide 65
+Inlay rules for RPV nozzle, baseline case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+RPV baseline
+inlay (fig.50)축응력과 후프응력 규칙이 각각 존재함 (p.75)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+65
+=== slide 66
+Inlay rules for RPV nozzle, 15% repair case
+MODE LING RESULTS
+[n] Reference
+66
+=== slide 67
+Inlay rules for RPV nozzle, 15% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+RPV 15% repair
+inlay (fig.51)축응력과 후프응력 규칙이 각각 존재함 (p.76)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+67
+=== slide 68
+Inlay rules for RPV nozzle, 50% repair case
+MODE LING RESULTS
+[n] Reference
+68
+=== slide 69
+Inlay rules for RPV nozzle, 50% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+RPV 50% repair
+inlay (fig.52)축응력과 후프응력 규칙이 각각 존재함 (p.76)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+69
+=== slide 70
+Inlay rules for pump nozzle, baseline case
+MODE LING RESULTS
+[n] Reference
+70
+=== slide 71
+Inlay rules for pump nozzle, baseline case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+pump baseline
+inlay (fig.53)축응력과 후프응력 규칙이 각각 존재함 (p.77)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+71
+=== slide 72
+Inlay rules for pump nozzle, 15% repair case
+MODE LING RESULTS
+[n] Reference
+72
+=== slide 73
+Inlay rules for pump nozzle, 15% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+pump 15%repair
+inlay (fig.54)축응력과 후프응력 규칙이 각각 존재함 (p.77)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+73
+=== slide 74
+Inlay rules for pump nozzle, 50% repair case
+MODE LING RESULTS
+[n] Reference
+74
+=== slide 75
+Inlay rules for pump nozzle, 15% repair case
+식의 사용이유 
+inlay 후 WRS를 새 해석 없이 만들기 위해 NRC 보고서 에서 도출한 규칙 
+ID응력이 항복 근처까지 증가 , 0.2~0.8구간 압축
+사용 대상
+pump 15%repair
+inlay (fig.55)축응력과 후프응력 규칙이 각각 존재함 (p.78)
+적용 방법
+u=x/t로 26점의 위치를 구간에 대입해 해당 케이스의 완화 전 WRS를 구간별 식으로 보정해 완화 후 표를 만듬 (p.86)
+MODE LING RESULTS
+[n] Reference
+75
+=== slide 76
+The difference between simulations i and j
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+76
+=== slide 77
+The difference between simulations i and j 
+식의 사용 이유
+각 모델러들의 결과가 서로 얼마나 다른지 수치로 재서 가까운 결과에 더 큰 가중을 주기 위한 첫 단계임
+한 모델러만 멀리 벗어난 경우 단순 평균 , 표준편차가 비현실적으로 커지는 문제를 줄이려는것임(p.66-67)
+사용 조건
+n개의 독립 시뮬레이션이 각각 26점(두께4% 간격)의 WRS를 준 경우
+서로 다른 모든 쌍을 비교함 (fig.56)
+이 가중은 실측으로 이상치를 판정할 절차가 아니라 , 서로 소통 없이 낸 결과가 모인 쪽에 더 신뢰를 둔다 라는 가정임 (p.67)
+적용 방법
+모든 쌍에서 26점 절대 차이를 구해 평균을 냄 (fig.57)
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+77
+=== slide 78
+taking the inverse of the difference
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+78
+=== slide 79
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+79
+=== slide 80
+The weight associated with a specific simulation i
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+80
+=== slide 81
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+81
+=== slide 82
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+82
+=== slide 83
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+83
+=== slide 84
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+84
+=== slide 85
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+85
+=== slide 86
+a umique standard deviation applie to all 26 locations
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+86
+=== slide 87
+SENSITIVITY AND UNCERATAINTY STUDIES
+[n] Reference
+87
+=== slide 88
+a third correlated standard normal variable
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+88
+=== slide 89
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+89
+=== slide 90
+inverse Z-transform
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+90
+=== slide 91
+inverse Z-transform
+식의 사용 이유
+표준 정규 표본을 실제 응력분포로 되돌리기 위해서
+사용 조건
+ID와 4%위치 에 대한 예시 (2개의 점) 
+변수 수에 관계없이 확장 가능 
+적용 방법
+z를 샘플링 한 뒤 각 위치의 평균과 표준편차로 응력을 계산함
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+91
+=== slide 92
+2X2 correlation matrix
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+92
+=== slide 93
+2X2 correlation matrix
+식의 사용 이유 
+식 6-1을 행렬로 일반화해 여러 점을 한번에 처리하기 위함 
+Cholesky 분해는 선형방정식을 푸는 효율적인 수치 기법임 
+사용 조건
+대칭 상관행렬 
+적용 방법
+상관행렬을 L과 그 전치로 분해해 L을 얻음
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+93
+=== slide 94
+correlated data z* via a simple matrix operation
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+94
+기호 | 의미 | 하첨자
+Z | 무상관 표준 정규 벡터 | -
+Z* | 상관된 벡터 | -
+L | 식 6-3의 하삼각 행렬  | -
+=== slide 95
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+95
+=== slide 96
+Calculating the mean stress through the thickness
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+96
+=== slide 97
+Calculating the mean stress through the thickness
+식의 사용 이유
+축 WRS는 축대칭 가정상 두께방향 적분이 0이여야 함 
+첫 방법으로 샘플링 한 프로파일의 두께 평균을 빼서 적분을 0으로 맟추려고 함 
+사용 조건
+축 WRS(원주균열용) ID 샘플이 평균에 가까우면 이동이 미미함 
+적용 방법
+26점 평균을 구해 모든 점에서 같은 값을 제외함
+WRS AND IMPORTANCE SAMPLING
+[n] Reference
+97
+=== slide 98
+감사합니다
+remsys.seoultech.ac.kr
