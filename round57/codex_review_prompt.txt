@@ -1,0 +1,10 @@
+[round57 Codex 2단계 — HTML 전수 검증 + Claude 전사 검증]
+입력: (a) round57/claude.md, round57/claude_review.md (Claude 전사·검증), (b) 최종 HTML J:\Desktop\XLPR\2026_10_21_B048_주기응력확대계수\XLPR_주기응력확대계수_B048.html (28페이지 카드), (c) 원문 PDF J:\Desktop\XLPR\xLPR참고문헌\(ML16341B048)Cyclic stress intensity factors.pdf, (d) 당신의 round57/codex.md.
+사용자 규칙(반드시 준수): ① B048 PDF에 있는 내용만 ② Claude/Codex 주관·해석·보충 금지 ③ 한국어가 어색하거나 기계적이면 원문 영어를 그대로 둘 것 ④ 수식·수식 해석은 원문에 있는 것만 ⑤ 원문 자체 오타·불일치는 교정하지 말고 표시.
+작업(원문 PDF를 이미지로 직접 대조, 텍스트 레이어만 의존 금지):
+1) HTML 28페이지를 처음부터 끝까지 읽고 PDF와 대조: 식 12개(Eqn.1,2,3a–c,4,5a–c,6,K_I,ΔK)의 LaTeX를 지면과 항 단위로 대조(특히 Eqn.2 끝 소괄호, Eqn.4·5a의 T_o·r_1 지면 표기, 5b 분자), Table 1(RTIF-1~38)·Table 2(49개 변수)·Table 3·Table 4·가정표·기호표·약어표·참고문헌의 모든 칸.
+2) 한국어 번역 문장 전부를 원문 영어와 대조해 (가) 의미 오역·누락·추가 (나) 원문에 없는 해석·주관 (다) 기계적/어색해 원문 영어로 바꿔야 할 문장을 지적한다. 인쇄쪽(PDF쪽−10) 표기도 틀린 곳이 있으면 지적한다.
+3) round57/claude.md의 사실 서술과 표를 PDF와 대조해 오류를 지적한다(양방향 검증).
+4) 지적은 반드시 원문 근거(영어 인용 + 인쇄쪽)를 붙인다. 근거 없는 지적 금지. HTML은 수정하지 않는다.
+결과를 round57/codex_review.md 에 쓴다. 구성: (A) 페이지별 점검 결과표(페이지 | 항목 | 일치/불일치 | 원문 근거), (B) 불일치·오역·주관 목록 | 페이지 | 현재 | 원문 | 수정안 | 확신도 |, (C) claude.md 오류 목록, (D) 확인 불가 항목과 이유.
+끝나면 round57/codex_review.md 만 git add/commit/push (git add . 금지), 커밋 SHA와 원격 반영 여부를 분리해 보고.
