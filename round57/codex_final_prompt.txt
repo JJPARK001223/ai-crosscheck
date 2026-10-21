@@ -1,0 +1,5 @@
+[round57 Codex 3단계 — 수정 반영 재검증]
+round57/codex_review.md (당신의 2단계 결과)와 round57/claude_review.md 끝의 "추가 — Codex 2단계 반영 결과"를 읽는다. 수정된 HTML: J:\Desktop\XLPR\2026_10_21_B048_주기응력확대계수\XLPR_주기응력확대계수_B048.html. 원문 PDF: J:\Desktop\XLPR\xLPR참고문헌\(ML16341B048)Cyclic stress intensity factors.pdf.
+사용자 규칙: B048 원문 내용만, 주관·해석 금지, 어색한 번역은 원문 영어 유지, 수식·해석은 원문 것만, 원문 오류는 교정하지 않고 표시.
+작업: (1) B01~B14가 각각 HTML에 정확히 반영됐는지 확인한다(반영/미반영/부분). (2) 이번 수정으로 새로 생긴 오류나 원문 밖 서술이 없는지 수정된 문단·표 전부를 PDF와 다시 대조한다(특히 Table 3 rowspan 범위, 원문 영어 인용 문장의 글자 일치, 쪽번호). (3) 전체 28페이지를 한 번 더 훑어 남은 주관·해석·오역·쪽번호 오류가 있으면 원문 근거와 함께 적는다. HTML은 수정하지 않는다.
+결과를 round57/codex_final.md 에 쓴다: (A) B01~B14 반영 확인표 (B) 새로 발견한 문제 | 페이지 | 현재 | 원문 | 수정안 | 확신도 (C) 확인 불가. 끝나면 round57/codex_final.md 만 git add/commit/push (git add . 금지), 커밋 SHA와 원격 반영 여부를 분리해 보고.
