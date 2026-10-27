@@ -1,0 +1,5 @@
+[CROSSCHECK_WORKER]
+Round 70 verification. Read round70/PROBLEM.md and follow it. Read-only inputs: round66/input/paper.pdf (render pages as needed),
+J:\Desktop\기계안전설계특론\Tension_Bar_피로수명_장별설명.html (do NOT modify). Reuse earlier Codex reports (round66-69) where helpful.
+Focus on the #c1 section (1.1-1.6) and the inline SVG flowchart. Recompute the numbers in table 1.6 with Node.js.
+Write result ONLY to round70/codex_review.md (Korean). Then commit only that file, push, and verify the remote branch.
