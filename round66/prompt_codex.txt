@@ -1,0 +1,7 @@
+[CROSSCHECK_WORKER]
+Round 66 blind investigation. Read round66/PROBLEM.md and follow it exactly.
+Source: round66/input/paper.pdf (Korean, 7 pages; use page images/rendering if text extraction fails).
+Write your result ONLY to round66/codex.md (Korean). Do NOT read round66/claude*.md or anything under J:\Desktop\기계안전설계특론\.
+Verify numbers directly against the paper tables/figures. Where the paper's body, figures, tables and conclusion disagree, list it.
+Also independently recompute where possible (e.g., Total damage = sum of Nj/Nf in Tables 3, 4, 6, 7; predicted life = 1/Total damage; Goodman equivalent stress; S-N equations (1),(2) vs Table 3/4 Nj/Nf) and report whether they reproduce.
+Then commit only round66/codex.md, push, and verify the remote branch.

@@ -1,0 +1,7 @@
+[CROSSCHECK_WORKER]
+Round 66 stage 2: cross-review. Read round66/PROBLEM.md, round66/claude.md, round66/claude_review.md, and the HTML
+J:\Desktop\기계안전설계특론\Tension_Bar_피로수명_5초설명.html (read-only; do NOT modify it).
+Verify, against round66/input/paper.pdf (render pages as needed), (a) every claim in claude.md and claude_review.md, and (b) every number and sentence in the HTML.
+List: confirmed items, wrong/unsupported items (with page/table), anything missing, and whether the planned fixes in claude_review.md section 5 are adequate or need changes.
+Also judge whether the HTML achieves "understandable in 5 seconds" without overstating the paper's conclusions.
+Write result ONLY to round66/codex_review.md (Korean). Then commit only that file, push, and verify the remote branch.
