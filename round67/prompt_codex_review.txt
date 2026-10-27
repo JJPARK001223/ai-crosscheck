@@ -1,0 +1,6 @@
+[CROSSCHECK_WORKER]
+Round 67 verification. Read round67/PROBLEM.md and follow it. Read-only inputs: round66/input/paper.pdf (render pages as needed),
+J:\Desktop\기계안전설계특론\Tension_Bar_피로수명_상세설명.html (do NOT modify). You may reuse your round66/codex.md and codex_review.md.
+Verify every number and claim in the HTML against the paper and by recomputation (Node.js is available; python is not on the shell path unless Codex's runtime provides it).
+Pay special attention to: Table 2 summary row groupings and ranges in section 4, the j=1 worked example (sigma_e, Nf, Nj/Nf), the "damage concentrated in small-amplitude bins" claim, safety-factor table (k, 4,500/4,100 ships), the Fig.5 five-phase list, conclusion (1)-(4) paraphrase, and section 9.
+Write result ONLY to round67/codex_review.md (Korean). Then commit only that file, push, and verify the remote branch.

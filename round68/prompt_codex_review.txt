@@ -1,0 +1,5 @@
+[CROSSCHECK_WORKER]
+Round 68 verification. Read round68/PROBLEM.md and follow it. Read-only inputs: round66/input/paper.pdf (render pages as needed),
+J:\Desktop\기계안전설계특론\Tension_Bar_피로수명_장별설명.html (do NOT modify). You may reuse round66/codex.md, round66/codex_review.md, round67/codex_review.md.
+Verify the terminology table against the paper's own wording, each chapter section against the corresponding chapter, and all numbers by recomputation (Node.js).
+Flag any colloquial/analogy phrasing left and any unsupported claim. Write result ONLY to round68/codex_review.md (Korean). Then commit only that file, push, and verify the remote branch.
