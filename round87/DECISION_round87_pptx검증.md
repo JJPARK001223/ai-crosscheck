@@ -21,10 +21,14 @@
 - `/tmp/midterm_unzip`에서 슬라이드7·12 XML 직접 수정 → 재압축 → `validate.py` 재검증(All validations PASSED) →
   `J:\Desktop\과학논문작성법 과제\중간평가.pptx` 덮어쓰기 완료(덮어쓰기 전 `중간평가_교차검증전_백업2.pptx`로 백업).
 
-## 사용자 결정 필요 (아직 미확정)
-- **E1 (Abstact → Abstract로 15곳 전부 통일할지)**: 사용자 본인이 슬라이드5·6에 이미 "Abstact"로 썼기 때문에, 전부 고치려면
-  사용자 작성분까지 수정해야 함. 과제 제출용이면 통일해서 고치는 것을 권장하나, 최종 결정은 사용자가 내려야 함.
-- E2, E3도 마찬가지로 사용자 본인 작성분 수정 여부는 사용자가 결정.
+## 사용자 결정 및 최종 반영
+사용자가 "전부 다 고쳐줘"로 확정함(2026-11-02). 아래 3건을 전부 수정해 반영 완료:
+- E1: 슬라이드5~16, 18~20의 `Abstact`(15곳) → `Abstract`로 통일.
+- E2: 슬라이드5(No.1) "3중 알코올"(2곳, Abstract 연관성·Methodology 연관성) → "3종 알코올"(Codex 제안 수정).
+- E3: 슬라이드6(No.2) Abstract 구체성 "COV 33% ~ 32%" → "COV ~33%·~32%"(evaluation_data.md 원문 표기 복원).
+
+수정 후 `validate.py` 재검증(All validations PASSED), `slide_text.py`로 Abstract 15/15·Abstact 0건 확인.
+덮어쓰기 전 `중간평가_Abstact수정전_백업3.pptx`로 백업 후 `중간평가.pptx`에 최종 반영.
 
 ## 커밋
 - claude.md, PROBLEM.md, input/: commit 5efcc38
