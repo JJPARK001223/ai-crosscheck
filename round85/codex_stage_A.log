@@ -1,0 +1,620 @@
+OpenAI Codex v0.163.0
+--------
+workdir: J:\Desktop\공학\ai-crosscheck
+model: gpt-6.1-sol
+provider: openai
+approval: on-request
+sandbox: workspace-write [workdir, /tmp, $TMPDIR, J:\Desktop\XLPR]
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a19bc0-92f1-7a92-a523-f6b8bbf286e6
+--------
+user
+[CROSSCHECK_WORKER]
+Do not start another AI or orchestration script. Perform only the assigned stage.
+Git filesystem or network denial: retry the same authorized Git command with sandbox_permissions=require_escalated and a clear justification. Do not retry ordinary execution repeatedly. Do not disable the sandbox.
+If approvals are unsupported or rejected, report the exact action and reason and leave Git handoff incomplete. Never claim completion without verifying the commit and remote branch.
+Do not read the other AI's findings during a blind stage. Stage only explicitly assigned output files.
+Complete the Git handoff of assigned result reports unless the user explicitly forbids Git changes. Commit only those reports, push, and verify the remote branch; report any incomplete handoff.
+Assigned Git handoff files: round85/codex.md
+System.Management.Automation.RemoteException
+round85/PROBLEM.md 를 읽어라. 이 문서가 이번 작업 지시 전체다.
+System.Management.Automation.RemoteException
+round85/input/evaluation_data.md 에 이미 확정된 가솔린 엔진 SCI(E) 논문 15편의 Abstract/Introduction/Methodology/Results
+4개 섹션 평가(각 섹션당 "구체성"/"연관성" 2기준, 상/중/하 등급과 근거문장)가 전부 들어있다.
+System.Management.Automation.RemoteException
+너의 작업: round85/PROBLEM.md의 "과제" 절에 적힌 제약과 "보고서에 포함할 내용"을 전부 충족하는 종합 보고서를
+round85/codex.md 에 작성하라.
+System.Management.Automation.RemoteException
+중요: round85/claude.md 는 절대 읽지 마라(blind 단계). evaluation_data.md 에 없는 새로운 등급·수치·추측을 추가하지 마라.
+작성이 끝나면 round85/codex.md 파일만 git add/commit/push 하고 원격 반영까지 확인하라. 다른 파일은 건드리지 마라.
+System.Management.Automation.RemoteException
+System.Management.Automation.RemoteException
+codex
+지시 문서와 확정 평가자료만 읽어 종합 보고서를 작성하겠습니다. blind 단계에 따라 Claude 결과는 열지 않고, Git 인계는 `round85/codex.md`만 대상으로 진행하겠습니다.
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git pull' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 783ms:
+Already up to date.
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c "type round85\\PROBLEM.md" in J:\Desktop\공학\ai-crosscheck
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c "type round85\\input\\evaluation_data.md" in J:\Desktop\공학\ai-crosscheck
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git status --short' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+# round85 — 가솔린 엔진 SCI 논문 15편 "4섹션 평가 종합 보고서" 작성 (Claude↔Codex 교차검증)
+System.Management.Automation.RemoteException
+## 배경
+사용자(서울과학기술대학교 신뢰성기반 기계설계연구실, 과학논문작성법 수업 과제)가 가솔린 엔진 출력 관련 SCI(E) 논문 15편에 대해
+이미 Abstract / Introduction / Methodology / Results 네 섹션을 각각 "[섹션] 구체성"과 "논문과 [섹션]의 연관성" 두 기준(상/중/하)으로
+평가 완료했다. 그 확정 결과와 근거 문장 전체가 `round85/input/evaluation_data.md`에 논문 15편 × 섹션 4개 = 총 60개 평가항목으로 정리되어 있다.
+System.Management.Automation.RemoteException
+## 과제
+`round85/input/evaluation_data.md`만을 근거로, 15편 논문에 대한 **종합 평가 보고서**를 작성하라.
+System.Management.Automation.RemoteException
+### 반드시 지킬 제약
+1. **입력 파일(evaluation_data.md)에 없는 새로운 평가·등급·수치는 절대 추가하지 말 것.** 새로 PDF를 읽거나 추측으로 등급을 바꾸지 않는다.
+   이 라운드의 목적은 "이미 끝난 60개 평가"를 **종합·설명**하는 보고서를 쓰는 것이며, 재평가가 아니다.
+2. 각 등급(상/중/하)마다 **왜 그렇게 평가되었는지**(evaluation_data.md에 적힌 근거 문장)를 보고서에 반드시 포함할 것.
+3. 사실(이미 확정된 등급·근거)과 너의 해석(그 근거가 타당한지에 대한 판단)을 구분해서 쓸 것. "이미 확정된 자료에 근거해 타당하다고 판단한다 / 근거가 약하다고 생각한다" 식으로 명시.
+4. 모르거나 input에 없는 내용은 "확인 불가"라고 쓸 것. 추측 금지.
+System.Management.Automation.RemoteException
+### 보고서에 포함할 내용
+- **논문별 요약**: No.1~15 각각에 대해 4섹션 등급을 표로 정리하고, 가장 특징적인 근거 1~2개를 요약.
+- **섹션별 종합 경향**: Abstract/Introduction/Methodology/Results 각각에서 상/중/하 분포가 어떻게 다른지, 그리고 그 차이가 "왜" 발생했는지(evaluation_data.md의 근거에 기반해) 설명.
+  (참고: 이미 확정된 경향 — Methodology·Results는 상 비율이 높고 Abstract는 하/중이 많다. 이 패턴이 evaluation_data.md의 근거들로 볼 때 타당한지 네 의견을 밝혀라.)
+- **특이사례**: No.11(시뮬레이션 전체에서 실험적 정량검증 부족이 4섹션 전체에서 일관 지적됨), No.9(Introduction만 연관성 "중", Methodology·Results는 "상"으로 바뀌는 섹션간 불일치), No.13/14/15(가솔린이 아닌 디젤/수소 엔진 논문이지만 섹션 내부 품질은 높게 평가된 경우) 각각에 대해 evaluation_data.md의 근거를 인용하며 설명.
+- **이 평가 체계 자체에 대한 네 의견**: "상/중/하" 2축 평가 기준(구체성, 연관성)이 15편을 구분하는 데 실제로 유효했는지, evaluation_data.md에 나타난 근거의 질(수치 밀도, 논리 연결)을 보고 판단하라.
+System.Management.Automation.RemoteException
+### 출력
+`round85/claude.md` (Claude 작성) / `round85/codex.md` (Codex 작성) 각자 독립적으로 작성한다. **서로의 결과 파일을 보지 않고** 작성할 것(blind).
+형식은 자유(마크다운), 단 위 "반드시 지킬 제약"과 "포함할 내용"은 전부 충족해야 한다.
+System.Management.Automation.RemoteException
+## 이후 단계 (이 PROBLEM.md에 포함, 별도 지시 없이 순서대로 진행)
+1. Claude: `round85/claude.md` 작성.
+2. Codex: `round85/codex.md` 작성 (blind).
+3. Claude: `round85/codex.md`를 읽고 검증 — 더 맞는 점, 틀린 점(evaluation_data.md 근거와 불일치하는 부분), 놓친 점을 `round85/claude_review.md`에 근거와 함께 작성.
+4. Codex: `round85/claude.md`를 읽고 같은 방식으로 `round85/codex_review.md` 작성.
+5. 최종 종합은 사용자에게 보고할 때 Claude가 "Codex 단독 의견 / Claude 단독 의견 / 공통 의견(Codex+Claude)" 세 챕터로 구성한다. 이 종합 자체는 PROBLEM.md의 범위를 벗어나는 새 평가를 추가하지 않고, claude.md/codex.md/두 review 파일에 이미 쓰인 내용만 재구성한다.
+System.Management.Automation.RemoteException
+## Git
+이 라운드는 보고서 작성 라운드이며, 각자 자신이 작성한 파일만 커밋한다. 커밋·push는 사용자 승인 후 진행한다(AGENTS.md 전역 규칙 #20).
+System.Management.Automation.RemoteException
+ succeeded in 0ms:
+ M round32/codex_review_A.md
+ D round36_ppt/build_codex_report.js
+ M round36_ppt/codex_ppt.md
+ D round36_ppt/report_validation.txt
+ M round36_ppt/run.log
+ M round47/fixes.json
+ M round47/merge.py
+?? Invoke-CodexStage.ps1
+?? ops/git_recovery_20261016/powershell_verification.log
+?? ops/git_recovery_20261016/pull_verification.log
+?? ops/git_recovery_20261016/recovery.log
+?? ops/git_recovery_20261016/recovery_v2.log
+?? ops/git_recovery_20261016/verification.log
+?? round19/codex.md
+?? round21/codex_run.log
+?? round24/codex_run.log
+?? round24/codex_run2.log
+?? round24/codex_run3.log
+?? round28/codex_review_run.log
+?? round28/codex_run.log
+?? round30/tmp/
+?? round31/pdf_layout.txt
+?? round31/table3-1.png
+?? round31/table5-1.png
+?? round33/audit_B_images/
+?? round33/audit_html.txt
+?? round33/pdf_images/
+?? round33/source_a/
+?? round33/write_review_B.py
+?? round33/write_review_D.py
+?? round33/write_review_a.py
+?? round34/codex_run.log
+?? round39/dump2.py
+?? round39/ppt_dump.txt
+?? round39/ppt_dump2.txt
+?? round39/ppt_prev_dump.txt
+?? round39/prompt.txt
+?? round39/run.log
+?? round40/ppt_dump.txt
+?? round40/ppt_prev_dump.txt
+?? round40/prompt.txt
+?? round40/run.log
+?? round41/dumpx.py
+?? round41/ppt_dump.txt
+?? round41/prompt.txt
+?? round41/run.log
+?? round42/chk.py
+?? round42/dumpx.py
+?? round42/ppt_dump.txt
+?? round42/prompt.txt
+?? round42/run.log
+?? round43/codex_review_stage.log
+?? round43/run.log
+?? round43/txt/
+?? round44/codex_review_stage.log
+?? round44/codex_stage.log
+?? round44/img/
+?? round45/codex_review_stage.log
+?? round45/codex_review_stage2.log
+?? round45/codex_stage.log
+?? round46/codex_review_stage.log
+?? round46/codex_stage.log
+?? round47/__pycache__/
+?? round47/chk.py
+?? round47/chk2.py
+?? round47/chk2_flags.json
+?? round47/claude_review.md
+?? round47/codex_review_prompt.txt
+?? round47/codex_review_stage.log
+?? round47/codex_stage.log
+?? round47/show.py
+?? round48/codex_stage.log
+?? round49/codex_stage.log
+?? round49/run.out
+?? round50/codex_stage.log
+?? round50/run.out
+?? round51/
+?? round52/
+?? round53/
+?? round54/
+?? round56/
+?? round57/codex_eq_stage.log
+?? round57/codex_final_stage.log
+?? round57/codex_review_stage.log
+?? round57/codex_stage.log
+?? round58/PROBLEM.md
+?? round58/claude.md
+?? round58/claude_review.md
+?? round58/codex_prompt.txt
+?? round58/codex_stage.log
+?? round58/input/
+?? round59/PROBLEM.md
+?? round59/claude.md
+?? round59/claude_review.md
+?? round59/codex_html_prompt.txt
+?? round59/codex_html_stage.log
+?? round59/codex_prompt.txt
+?? round59/codex_stage.log
+?? round59/input/
+?? round59/run_html_out.txt
+?? round59/run_out.txt
+?? round60/PROBLEM.md
+?? round60/claude.md
+?? round60/cmp.py
+?? round60/codex_prompt.txt
+?? round60/codex_stage.log
+?? round60/input/
+?? round60/run_out.txt
+?? round61/PROBLEM.md
+?? round61/codex_prompt.txt
+?? round61/codex_stage.log
+?? round61/input/
+?? round61/run_out.txt
+?? round62/PROBLEM.md
+?? round62/codex_prompt.txt
+?? round62/codex_stage.log
+?? round62/input/
+?? round62/run_out.txt
+?? round63/PROBLEM.md
+?? round63/codex_prompt.txt
+?? round63/codex_stage.log
+?? round63/input/
+?? round63/run_out.txt
+?? round64/B_text.txt
+?? round64/PROBLEM.md
+?? round64/codex_prompt_A.txt
+?? round64/codex_prompt_B.txt
+?? round64/codex_stage_A.log
+?? round64/codex_stage_B.log
+?? round64/input/
+?? round64/page-42.png
+?? round64/page-43.png
+?? round64/page-44.png
+?? round64/page-45.png
+?? round64/page-46.png
+?? round64/page-47.png
+?? round64/page-48.png
+?? round64/page-49.png
+?? round64/page-50.png
+?? round64/page-51.png
+?? round64/page-52.png
+?? round64/page-53.png
+?? round64/page-54.png
+?? round64/page-55.png
+?? round64/page-56.png
+?? round64/page-57.png
+?? round64/page-58.png
+?? round64/page-59.png
+?? round64/page-60.png
+?? round64/page-61.png
+?? round64/page-62.png
+?? round64/page-63.png
+?? round64/page-64.png
+?? round64/page-65.png
+?? round64/page-66.png
+?? round64/page-67.png
+?? round64/page-68.png
+?? round64/page-69.png
+?? round64/page-70.png
+?? round64/page-71.png
+?? round64/page-72.png
+?? round64/page-73.png
+?? round64/page-74.png
+?? round64/page-75.png
+?? round64/page-76.png
+?? round64/page-77.png
+?? round64/page-78.png
+?? round64/page-79.png
+?? round64/page-80.png
+?? round64/page-81.png
+?? round64/page-82.png
+?? round64/page-83.png
+?? round64/page-84.png
+?? round64/page-85.png
+?? round64/page-86.png
+?? round64/page-87.png
+?? round64/page-88.png
+?? round64/page-89.png
+?? round64/page-90.png
+?? round64/page-91.png
+?? round64/page-92.png
+?? round64/page-93.png
+?? round64/page-94.png
+?? round64/page-95.png
+?? round64/page-96.png
+?? round64/page-97.png
+?? round64/page-98.png
+?? round64/run_err_A.txt
+?? round64/run_err_B.txt
+?? round64/run_out_A.txt
+?? round64/run_out_B.txt
+?? round65/PROBLEM.md
+?? round65/codex_prompt_A.txt
+?? round65/codex_prompt_B.txt
+?? round65/codex_stage_A.log
+?? round65/codex_stage_B.log
+?? round65/input/
+?? round65/run_err_A.txt
+?? round65/run_err_B.txt
+?? round65/run_out_A.txt
+?? round65/run_out_B.txt
+?? round66/codex_review_stage.log
+?? round66/codex_stage.log
+?? round66/input/
+?? round67/codex_review_stage.log
+?? round68/codex_review_stage.log
+?? round69/codex_review_stage.log
+?? round70/codex_review_stage.log
+?? round80/PROBLEM.md
+?? round80/claude.md
+?? round80/claude_review.md
+?? round80/codex_stage_A.log
+?? round80/codex_stage_B.log
+?? round80/input/
+?? round80/pdf_layout_B.txt
+?? round80/prompt_A.txt
+?? round80/prompt_B.txt
+?? round80/run_err_A.txt
+?? round80/run_err_B.txt
+?? round80/run_out_A.txt
+?? round80/run_out_B.txt
+?? round80/tmp_B/
+?? round81/PROBLEM.md
+?? round81/codex_stage_A.log
+?? round81/codex_stage_B.log
+?? round81/codex_stage_C.log
+?? round81/input/
+?? round81/prompt_A.txt
+?? round81/prompt_B.txt
+?? round81/prompt_C.txt
+?? round81/run_err_A.txt
+?? round81/run_err_B.txt
+?? round81/run_err_C.txt
+?? round81/run_out_A.txt
+?? round81/run_out_B.txt
+?? round81/run_out_C.txt
+?? round81/tmp_A/
+?? round82/PROBLEM.md
+?? round82/codex_stage_A.log
+?? round82/codex_stage_B.log
+?? round82/codex_stage_B2.log
+?? round82/codex_stage_C.log
+?? round82/input/
+?? round82/prompt_A.txt
+?? round82/prompt_B.txt
+?? round82/prompt_B2.txt
+?? round82/prompt_C.txt
+?? round83/
+?? round84/
+?? round85/
+?? tmp_c202_layout.txt
+?? "\354\277\240\354\231\200\354\235\264\352\271\214_\353\217\231\355\225\264_\353\266\204\355\217\254\354\241\260\354\202\254.md"
+System.Management.Automation.RemoteException
+ succeeded in 0ms:
+# 가솔린 엔진 SCI(E) 논문 15편 — Abstract/Introduction/Methodology/Results 평가 결과 (기존 확정본)
+System.Management.Automation.RemoteException
+이 파일은 이전 작업에서 이미 확정된 4개 분석표(Abstract, Introduction, Methodology, Results)의 등급(상/중/하)과
+근거 문장을 그대로 옮긴 것이다. 각 섹션마다 두 개의 평가축이 있다:
+System.Management.Automation.RemoteException
+- **[섹션] 구체성**: 해당 섹션의 서술이 정량적 수치(%, 구체값, 장비 사양 등)로 뒷받침되는 밀도
+- **논문과 [섹션]의 연관성**: 그 섹션의 실제 내용이 제목(Title)이 제시한 구체적 연구범위와 얼마나 정확히 일치하는가
+System.Management.Automation.RemoteException
+등급 기준(공통): 상 = 제목의 핵심 변수가 수치/구체적 근거로 뒷받침됨, 중 = 주제는 일치하나 근거가 제한적,
+하 = 정성적 서술에 머물러 뒷받침이 약함.
+System.Management.Automation.RemoteException
+---
+System.Management.Automation.RemoteException
+## No.1 — Processes(2021) — "A Comparison of Ethanol, Methanol, and Butanol Blending with Gasoline and Its Effect on Engine Performance and Emissions Using Engine Simulation"
+- Abstract 구체성: **하** — 정성적 서술 위주(decreased/increased만 표현), 구체 수치 없음
+- 논문-Abstract 연관성: **중** — 3가지 알코올 비교라는 제목 주제는 일치하나, Abstract는 정량적 수치 없이 서술에 그침
+- Introduction 구체성: **하** — 메탄올·에탄올·부탄올의 일반적 배경과 연료 물성표(Table 1)만 제시, 선행연구의 정량적 결과 인용은 거의 없음
+- 논문-Introduction 연관성: **하** — 알코올 연료 일반론 중심으로 전개되어, 3종 알코올-가솔린 블렌딩의 엔진 시뮬레이션 비교라는 제목의 구체적 범위와의 연결이 약함
+- Methodology 구체성: **중** — AVL BOOST 소프트웨어로 1D PFI 엔진 모델을 구성하고 2-zone Vibe 연소모델 지배방정식(1)-(4)과 엔진 사양표(보어 86mm, 압축비 10.5 등)를 제시하나, 모델의 보정·검증 자체는 저자의 선행연구[49]에 위임되어 본 논문 내에서 재현 가능한 검증 데이터는 제시되지 않음
+- 논문-Methodology 연관성: **상** — 1D AVL BOOST 시뮬레이션으로 에탄올·메탄올·부탄올-가솔린 블렌드가 출력·배출가스에 미치는 영향을 정량 분석하는 구성으로, 제목의 '엔진 시뮬레이션' 범위와 정확히 일치
+- Results 구체성: **중** — 브레이크 출력·BSFC의 증감 경향을 Figure 2·3으로 제시하지만, 본문 설명은 대부분 정성적 서술('slightly increased', 'decreased')이며 블렌드별 구체적 %수치 비교는 제한적
+- 논문-Results 연관성: **상** — 1D 시뮬레이션으로 메탄올·에탄올·부탄올 각각의 혼합비(5~85%)가 출력·BSFC에 미치는 영향을 전부 비교하는 구성으로, 제목의 '3종 알코올 블렌딩·엔진 시뮬레이션'과 정확히 일치
+System.Management.Automation.RemoteException
+## No.2 — Case Studies in Thermal Engineering(2021) — "An approach to estimate CCV (cycle-to-cycle variation) of effective energy output of thermal engine: A case study on a high speed gasoline engine"
+- Abstract 구체성: **중** — COV ~33%·~32% 등 일부 수치 제시
+- 논문-Abstract 연관성: **상** — 제목의 핵심 변수인 CCV 추정이 Abstract 수치(COV %)로 직접 뒷받침됨
+- Introduction 구체성: **상** — Ozdor et al.(출력 10% 개선), Kaleli et al.(Pmax 분산 27.184% 감소), Zhou et al.(IMEP 편차 최대 ±30%) 등 다수 선행연구의 정량적 수치를 구체적으로 인용
+- 논문-Introduction 연관성: **상** — "대부분의 선행연구가 지시 파라미터만으로 CCV를 추정했고 유효출력(BMEP)의 CCV는 다루지 않았다"는 명확한 연구공백을 제시, 제목의 CCV 추정 주제와 직접 연결됨
+- Methodology 구체성: **상** — 단일실린더 트윈스파크 엔진에 장착된 10종 계측기(다이나모미터·Kistler 압력센서 등)를 제조사·측정범위·정밀도까지 Table2로 제시하고, Heywood 모델 대신 Chen-Flynn 마찰손실모델(식5)을 자체 데이터로 재보정(m=2→1.82)한 과정까지 수치로 제시
+- 논문-Methodology 연관성: **상** — 실린더 내 압력-회전속도 데이터로부터 BMEP의 사이클간변동(CCV)을 추정하는 전체 계산과정(식1-7)을 그대로 제시, 제목의 CCV 추정 접근법과 완전히 일치
+- Results 구체성: **상** — BMEP의 COV가 IMEP보다 60%·100% 부하에서 각각 약 33%·32% 낮다는 수치, 3000rpm에서는 반대로 1.41%→1.84%로 역전된다는 구체적 비교수치를 제시
+- 논문-Results 연관성: **상** — 제안한 방법으로 실제 BMEP의 CCV를 추정하고 IMEP·FMEP와의 관계를 수치로 검증하는 구성이, 제목의 'CCV 추정 접근법' 그대로를 입증
+System.Management.Automation.RemoteException
+## No.3 — Fuel(2021) — "Effect of H2 addition to methanol-gasoline blend on an SI engine at various lambda values and engine loads: A case of performance, combustion, and emission characteristics"
+- Abstract 구체성: **상** — 20개 이상의 %수치 나열
+- 논문-Abstract 연관성: **상** — 제목이 제시한 성능·연소·배출 특성이 Abstract 전반에 다수 수치로 뒷받침됨
+- Introduction 구체성: **상** — Balki&Sayin(연소효율 99.45%), Meng et al.(연료소비율 12%↓·수소비율 18%↑), Yang&Ji 등 다수 선행연구의 구체적 수치를 인용
+- 논문-Introduction 연관성: **상** — "선행연구가 다양한 람다값·부하조건에서 수소/메탄올/가솔린 혼합을 상세히 다루지 않았다"는 공백을 제시, 제목의 람다값·엔진부하 조건과 직접 연결됨
+- Methodology 구체성: **상** — 다이나모미터(SAJ SE150, ±0.25%)·압력센서(PCB 113B22)·유량계(Krohne/Alicat) 등 계측기를 정밀도까지 Table2로 제시하고, BTE·BSFC·HES(수소에너지대체율)·HRR 계산식(1)-(5)과 Kline&McClintock 불확도분석을 직접 수행
+- 논문-Methodology 연관성: **상** — 5가지 부하(25~100%)·3가지 람다값(0.8/1/1.2) 전 조건에서 배출가스·연소특성을 측정하는 설계로, 제목의 'various lambda values and engine loads' 범위와 정확히 일치
+- Results 구체성: **상** — 수소첨가 시 최고효율 35.79%(λ=1.2·100%부하), 평균효율 0.61%↑, BSFC 234.29~584.91 g/kWh, CPmax·HRRmax 구체값 등 조건별 수치를 전부 제시
+- 논문-Results 연관성: **상** — 5개 부하·3개 람다값 전 조건에서 수소첨가 효과를 성능·연소·배출 지표로 검증하는 구성이, 제목의 'various lambda values and engine loads' 범위와 정확히 일치
+System.Management.Automation.RemoteException
+## No.4 — Energy(2024) — "Effect of engine parameters on the mixture distribution, performance and emission characteristics of a gasoline direct injection engine with baffles – A numerical analysis"
+- Abstract 구체성: **하** — 정성적 서술 위주(comparable to/better/lower 등), 구체 수치 없음
+- 논문-Abstract 연관성: **하** — 제목은 파라미터별 상세 분석을 제시하나 Abstract는 정량적 근거 없이 정성적 서술에 머묾
+- Introduction 구체성: **중** — 배플 높이 1~3mm 변화에 따른 유동 변화 등 치수 정보는 있으나, 선행연구의 정량적 성능수치 인용은 제한적
+- 논문-Introduction 연관성: **중** — 배플의 로켓엔진 기원 및 저자 자신의 선행연구 설명은 주제와 일치하나, 제목이 제시한 엔진 파라미터별 상세 분석과의 구체적 연결은 약함
+- Methodology 구체성: **상** — CONVERGE 소프트웨어로 질량·운동량·에너지 보존방정식(식2-4)을 직접 제시하고, 고정임베딩+AMR로 격자를 1mm~0.125mm까지 세분화하는 수치까지 명시, SOLIDWORKS로 배플 형상을 모델링
+- 논문-Methodology 연관성: **상** — 배플 유무·배플 치수(Table2)를 반영한 CFD 수치해석으로 연료분사압력·엔진속도·부하에 따른 혼합물 분포를 분석하는 구성이, 제목의 '엔진 파라미터 효과—수치해석' 범위와 정확히 일치
+- Results 구체성: **상** — EWB가 FIP 30/50/80/120bar에서 ER 0.5~1.5 구간 혼합기 비율 88%·89%·74%·82%를 기록해 베이스엔진의 72%·80%·70%·77%보다 높다는 구체적 비교수치를 제시
+- 논문-Results 연관성: **상** — 분사압력·엔진속도·등가비 전 조건에서 배플 유무에 따른 혼합기 분포를 정량 비교하는 구성이, 제목의 '엔진 파라미터 효과—수치해석' 범위와 정확히 일치
+System.Management.Automation.RemoteException
+## No.5 — Fuel(2025) — "Effect of the use of methanol, toluene and nitromethane mixtures as fuel additives in a gasoline engine on engine performance and exhaust emissions"
+- Abstract 구체성: **상** — 9.70%·17.14%·56.8%·60.92%·102.53% 등 다수 수치
+- 논문-Abstract 연관성: **상** — 제목의 첨가제별 성능·배출 효과가 Abstract 수치로 구체적으로 뒷받침됨
+- Introduction 구체성: **상** — 30% 톨루엔 배합 최적, 2.5% 니트로메탄 혼합(D-M5-NM2.5) 최적 등 선행연구의 구체적 배합비·수치를 인용
+- 논문-Introduction 연관성: **상** — "세 첨가제를 단일 블렌드로 함께 사용한 상호작용 연구는 미비하다"는 명확한 공백을 제시, 제목의 메탄올·톨루엔·니트로메탄 혼합이라는 구체적 범위와 직접 연결됨
+- Methodology 구체성: **상** — Honda GX200 단기통 엔진, Bilsa 배기가스분석기, 0.1g 정밀저울 등 구체적 장비·모델명을 제시하고, RSS(Kline&McClintock) 불확도분석으로 BP·BSFC·BTE 불확도 ±2.5%, 배출가스 ±2% 수치까지 제시
+- 논문-Methodology 연관성: **상** — 2500rpm 고정, 0~100% 부하를 25%씩 증가시키며 G100 기준 대비 메탄올·톨루엔·니트로메탄 3종 첨가제 블렌드를 비교하는 설계로, 제목의 3종 첨가제 성능·배출가스 평가와 정확히 일치
+- Results 구체성: **상** — 부하별(25/50/75/100%)·블렌드별 BSFC 변화율을 6.25%, 15.62%, 8.92%, 9.70% 등 세부 수치로 전부 제시하고 Table5로 불확도까지 수치화
+- 논문-Results 연관성: **상** — 메탄올·톨루엔·니트로메탄 3종 첨가제의 BSFC·EGT 변화를 전 부하조건에서 비교하는 구성이, 제목의 '3종 첨가제의 성능·배출가스 평가'와 정확히 일치
+System.Management.Automation.RemoteException
+## No.6 — ACS Omega(2021) — "Effects of Piston Shape on the Performance of a Gasoline Direct Injection Engine"
+- Abstract 구체성: **하** — 7.7mm 수치 1개 외 정성적 서술 위주
+- 논문-Abstract 연관성: **중** — 피스톤 형상-성능 관계라는 주제는 일치하나 정량적 근거가 1개 수치에 그쳐 제한적
+- Introduction 구체성: **상** — Harshavardhan&Mallikarjuna(텀블비 51%↑·TKE 21%↑), Krishna&Mallikarjuna(텀블비 41%↑·TKE 103%↑), Shafie&Said(스월비 34.8%↑) 등 다수 정량적 수치를 인용
+- 논문-Introduction 연관성: **상** — "선행연구는 동일 유형의 피트 형상만 연구했고 피트 깊이 등 세부 형상은 다루지 않았다"는 구체적 공백을 제시, 제목의 피스톤 형상 효과 연구와 직접 연결됨
+- Methodology 구체성: **상** — 난류모델(κ-zeta-f)·분무모델(DDM)·연소모델(ECFM)·NOx모델(확장 Zeldovich)·매연모델(Frolov) 등 Table3에 9개 수치해석 서브모델을 전부 명시하고, 정적분사실험으로 분무모델을 검증한 결과(Fig.4)까지 제시
+- 논문-Methodology 연관성: **상** — ProE로 피스톤 A형(구형 피트)·B형(사다리꼴 피트) 두 형상을 직접 설계해 비교하는 구성이, 제목의 '피스톤 형상 효과' 그대로를 구현
+- Results 구체성: **상** — 점화시점 연료막 질량(피스톤A 1.3mg vs 피스톤B 1.7mg), 점화시점 공기-연료 등가비(A: 1.29~1.3 vs B: 0.75~0.76) 등 두 피스톤의 구체적 수치를 직접 비교
+- 논문-Results 연관성: **상** — 피스톤 A·B 두 형상의 연료증발·연료막·등가비를 전부 수치로 비교하는 구성이, 제목의 '피스톤 형상 효과' 그대로를 검증
+System.Management.Automation.RemoteException
+## No.7 — International Journal of Engine Research(2022) — "Effects of turbocharger rotational inertia on engine and turbine performance in a turbocharged gasoline direct injection engine under transient and steady conditions"
+- Abstract 구체성: **하** — 정성적 서술 위주, 구체 %수치 없음
+- 논문-Abstract 연관성: **중** — 터보 관성-성능 관계라는 주제는 일치하나 Abstract에 정량적 결과 수치가 없음
+- Introduction 구체성: **상** — T/C 관성에 의한 출력손실 20.4%, TiAl 터빈휠 적용 시 터보랙 25.6% 감소, 엔진 다운사이징 배기량 28.5%↓·출력 12.4%↑ 등 구체적 통계를 인용
+- 논문-Introduction 연관성: **상** — "선행연구는 경량 관성 T/C의 부스트압 응답만 비교했고 엔진 연소와의 관계는 실험적으로 다루지 않았다"는 공백을 제시, 제목의 터보차저 회전관성-엔진/터빈 성능 주제와 직접 연결됨
+- Methodology 구체성: **상** — 현대 2.0L T-GDI 엔진에 Kistler 압전압력센서·AC 다이나모미터·INCA 데이터수집 시스템을 장착하고, T/C 회전체 관성값을 Inconel 대비 정규화한 수치까지(Table2) 제시
+- 논문-Methodology 연관성: **상** — 경량화된 터보차저 로터(T/W) 조합별 케이스(Table3)를 실제로 제작·시험하는 구성이, 제목의 '터보차저 회전관성이 엔진·터빈 성능에 미치는 영향—과도/정상상태' 범위와 정확히 일치
+- Results 구체성: **상** — Light T/C의 부스트압 상승시간이 BASE 대비 18.4% 단축, Table6에 BP10/BP90/응답시간/상대개선율(81.6%)까지 구체적으로 제시
+- 논문-Results 연관성: **상** — BASE·Light 두 T/C의 과도응답(MAP·ISFC 등)을 직접 비교검증하는 구성이, 제목의 '터보차저 회전관성—과도/정상상태' 범위와 정확히 일치
+System.Management.Automation.RemoteException
+## No.8 — Energy(2022) — "Enhancing engine power and torque and reducing exhaust emissions of blended fuels derived from gasoline-propanol-nano particles"
+- Abstract 구체성: **상** — 8wt%·0.2wt%·1750rpm·26%·CO 2.24ppm 등 다수 수치
+- 논문-Abstract 연관성: **상** — 제목의 출력 향상·배출 감소 주장이 Abstract의 구체적 수치(26% 등)로 직접 뒷받침됨
+- Introduction 구체성: **중** — Furey et al.(에탄올10%+MTBE15% 혼합 시 HC·CO 감소), Ceviz et al.(에탄올10%) 등 일부 수치는 인용되나 전반적으로 정성적 서술 비중이 큼
+- 논문-Introduction 연관성: **상** — "산소함유 첨가제·나노첨가제·엔진운전변수를 동시에 다룬 선행연구가 부족하다"는 공백을 명시하며 이를 "본 연구의 novelty"라고 직접 서술, 제목의 프로판올+나노입자 복합 최적화와 정확히 일치
+- Methodology 구체성: **상** — n-프로판올(X1)·나노입자 종류(X2:Al2O3/MgO)·나노입자농도(X3)·엔진속도(X4)·스로틀(X5) 5변수 2수준 요인설계(Table2)와 반응표면모델식(2), Design-Expert®의 CV·R²·수정R²까지 제시
+- 논문-Methodology 연관성: **상** — 프로판올+나노입자(Al2O3/MgO) 블렌드의 출력·토크·배출가스를 반응변수로 설정한 실험계획법 설계가, 제목의 '가솔린-프로판올-나노입자 블렌드로 출력·토크 향상, 배출가스 저감'과 정확히 일치
+- Results 구체성: **상** — Table3에 변수조합(X1~X5)별 CO·CO2·HC·NOx·출력·토크 실측값을 전부 수치로 제시하나, 본문 설명은 'negligible', 'enhanced' 등 메커니즘 서술 비중이 큼
+- 논문-Results 연관성: **상** — 프로판올·나노입자(Al2O3/MgO)·엔진속도·스로틀 조합별 출력·토크·배출가스 실측 데이터를 제시하는 구성이, 제목의 '프로판올-나노입자 블렌드로 출력·토크 향상, 배출가스 저감'과 정확히 일치
+System.Management.Automation.RemoteException
+## No.9 — Journal of the Energy Institute(2024) — "Evaluation of gasoline-phthalocyanines fuel blends in terms of engine performance and emissions in gasoline engines"
+- Abstract 구체성: **상** — 4.93%·2.12%·8.04%·15.34%·19.46%·9.61% 등 다수 수치
+- 논문-Abstract 연관성: **상** — 제목의 성능·배출 평가가 Abstract의 다수 수치로 구체적으로 뒷받침됨
+- Introduction 구체성: **상** — Yücesu et al., Rao et al.(에탄올 40%), Sarıkoç(M20), Behçet&Yakın 등 다수 선행연구의 구체적 배합비와 수치를 인용
+- 논문-Introduction 연관성: **중** — 문헌리뷰 대부분이 에탄올·메탄올 등 알코올 첨가제 선행연구이며, 실제 연구대상인 프탈로시아닌 첨가제에 대한 직접적 선행연구 연계는 약함(별도 "1.1 For Phthalocyanine" 소단락에서 화학식만 제시)
+- Methodology 구체성: **상** — Ricardo Hydra 엔진(Table2)·McClure 전기다이나모미터(30kW@6500rpm)·Bosch BEA060 배기가스분석기(Table3)의 구체적 사양을 제시하고, PH10/20/30 블렌드를 1400~3000rpm 5개 속도에서 3회 반복측정
+- 논문-Methodology 연관성: **상** — 프탈로시아닌을 아세토니트릴에 용해해 가솔린에 10/20/30% 혼합한 PH10/PH20/PH30 블렌드를 실제로 제작·시험하는 구성으로, 제목의 '가솔린-프탈로시아닌 블렌드의 성능·배출가스 평가'와 정확히 일치 (Introduction 분석에서 지적된 '알코올 첨가제 문헌 중심' 문제와 달리, Methodology 자체는 실제 연구대상 물질을 직접 다룸)
+- Results 구체성: **상** — 가솔린 대비 토크 변화 PH10 -1.64%, PH20 +2.39%, PH30 +4.8%, EGT 변화 PH10 +3.37%·PH20 -4.16%·PH30 -2.45% 등 블렌드별 구체 수치를 전부 제시
+- 논문-Results 연관성: **상** — PH10/PH20/PH30 블렌드의 토크·배기가스온도 실측 비교 결과를 그대로 제시하는 구성이, 제목의 '가솔린-프탈로시아닌 블렌드 성능·배출가스 평가'와 정확히 일치
+System.Management.Automation.RemoteException
+## No.10 — Fuel(2022) — "Experimental comparative study on combustion, performance and emissions characteristics of ethanol-gasoline blends in a two stroke uniflow gasoline engine"
+- Abstract 구체성: **하** — 1800rpm 설정값 외 정성적 서술 위주
+- 논문-Abstract 연관성: **중** — 비교 연구라는 제목 주제는 일치하나 Abstract에 비교 결과를 뒷받침할 정량적 수치가 부족
+- Introduction 구체성: **상** — Ghazikhani et al.(CO 35%↓·HC 30%↓·NOx 38~83%↓), 모터사이클 등록통계(94%↑) 등 구체적 수치를 인용
+- 논문-Introduction 연관성: **상** — "2행정 유니플로우 가솔린엔진에서의 에탄올-가솔린 블렌드 연구는 발표된 바 없다"는 명확한 공백을 제시, 제목의 2행정 유니플로우 엔진·연료비교 주제와 직접 일치
+- Methodology 구체성: **상** — ESIT 로드셀·PWI-P 인디케이터·ITALO PLUS 배기가스분석기(Table4)의 측정범위·감도를 제시하고, 열방출률(식2)·혼합기비열(식3-4)·질량연소율(Rassweiler-Withrow, 식6-7) 계산식과 측정 불확도(Table3, 토크 ±0.91% 등)까지 수치화
+- 논문-Methodology 연관성: **상** — G100/E10/E30/E50 4종 연료를 동일 2행정 유니플로우 엔진에서 비교측정하는 설계로, 제목의 '2행정 유니플로우 가솔린엔진에서 에탄올-가솔린 블렌드의 연소·성능·배출특성 비교'와 정확히 일치
+- Results 구체성: **중** — 실린더압력·열방출률의 변화 시점을 정성적으로 서술('started earlier', 'increase')하고 MFB·DR·소기효율 계산식(식7-13)을 재제시하는 데 비중이 커서, 확인된 구간에서는 블렌드별 정량적 %비교가 제한적으로 나타남
+- 논문-Results 연관성: **상** — G100/E10/E30/E50 4종 연료를 동일 2행정 유니플로우 엔진에서 연소특성(압력·열방출률·MFB)으로 비교하는 구성이, 제목의 '2행정 유니플로우 엔진에서 에탄올-가솔린 블렌드 비교'와 정확히 일치
+System.Management.Automation.RemoteException
+## No.11 — Journal of Engineering for Gas Turbines and Power(2021) — "Model-Based Unified Framework for Detection and Mitigation of Cyclic Torque Imbalance in a Gasoline Engine"
+- Abstract 구체성: **하** — 시뮬레이션 기법 설명 위주, 결과 수치 없음
+- 논문-Abstract 연관성: **중** — 프레임워크 제안이라는 제목 주제와 방법론 설명은 일치하나, 정량적 성능 결과가 Abstract에 제시되지 않음
+- Introduction 구체성: **하** — 토크 불균형 검출을 위한 3가지 방법론(실린더압력/배기산소농도/엔진회전속도)을 설명하나, 각 선행연구의 정량적 성능수치 인용은 거의 없음
+- 논문-Introduction 연관성: **중** — 기존 검출기법들을 체계적으로 분류·비교하여 제안 프레임워크의 위치를 설명하므로 주제는 일치하나, 제목이 제시한 프레임워크의 정량적 우수성에 대한 근거 연결은 약함
+- Methodology 구체성: **중** — 라그랑지안 역학 기반 제약조건 운동방정식(식1a-1b)과 토크생성기구 모델(식2-6)을 제시하지만, 핵심 함수 g1·g2·g3의 완전한 수식은 본문이 아닌 부록(Appendix)으로, 모델 검증 결과는 선행문헌[16]으로 위임되어 본문만으로는 수치 재현이 어려움
+- 논문-Methodology 연관성: **상** — FPEM(1계원리 기반 엔진모델)으로 실린더압력-토크생성기구를 직접 유도하고 이를 CESTA 기반 결함허용제어로 연결하는 구성이, 제목의 'Model-Based Unified Framework for Detection and Mitigation' 그대로를 구현
+- Results 구체성: **중** — 연료질량 15% 고장 주입, 추정오차 0.03s 내 수렴 등 일부 수치는 제시되나, 전반적으로 Fig.4-11의 그래프에 대한 정성적 설명('swift and exact convergence', 'chattering reduced significantly') 위주로, 실험적 정량 검증수치는 제한적(Abstract·Introduction 분석에서도 동일하게 지적된 특징)
+- 논문-Results 연관성: **상** — MATLAB/SIMULINK로 연료분사 고장을 인위적으로 주입하고 제안된 관측기·제어기법으로 검출·완화하는 과정을 그대로 시연하는 구성이, 제목의 'Detection and Mitigation of Cyclic Torque Imbalance' 그대로를 구현
+- **교차-섹션 특이사항**: Abstract·Introduction·Methodology·Results 네 섹션 전체에서 일관되게 "시뮬레이션/수식 설명 위주, 물리적 실험 정량 검증 부족"이 지적된 유일한 논문
+System.Management.Automation.RemoteException
+## No.12 — Topics in Catalysis(2022) — "The Impact of Thermochemical Exhaust Energy Recovery Using Ethanol-Gasoline Blend on Gasoline Direct Injection Engine Performance"
+- Abstract 구체성: **중** — 16% 수치 1개, 제한적
+- 논문-Abstract 연관성: **중** — 배기열 회수의 성능 영향이라는 제목 주제는 일치하나 정량적 근거가 수치 1개로 제한적
+- Introduction 구체성: **중** — 연료 개질 반응식과 반응열(ΔH) 수치는 구체적으로 제시되나, 선행 촉매 성능 연구는 대부분 정성적 서술("promising performance" 등)에 그침
+- 논문-Introduction 연관성: **상** — "에탄올-가솔린 블렌드 기반 배기열 촉매 개질을 통한 GDI 엔진 성능·연료경제성 향상"이라는 연구 목적을 서론 말미에 명확히 제시, 제목과 직접 일치
+- Methodology 구체성: **상** — CHEMKIN 18.2로 S/C몰비 2.0~4.0·온도 300~800°C Gibbs자유에너지 평형계산을 수행하고, CZA촉매(3.6g/in³, Pt 3.3%+Rh 1.7%)·FTIR MKS2030·HSense H2센서 등 구체적 장비·소재 사양과 2개 운전점의 배기성분 수치(Table4)까지 제시
+- 논문-Methodology 연관성: **상** — 에탄올 25%+가솔린 75% 블렌드를 실제 배기열 개질기(촉매판)에 투입해 H2/CO/CO2 개질가스 생성을 측정하는 구성이, 제목의 '에탄올-가솔린 블렌드를 이용한 열화학적 배기에너지 회수가 GDI엔진 성능에 미치는 영향'과 정확히 일치
+- Results 구체성: **상** — E25 개질 시 H2 생산량이 순수가솔린보다 높다는 결과를 평형계산·실험 양쪽에서 교차검증하고, S/C몰비·운전점별(Table5) H2/CO·H2/CO2 비율 변화를 그래프와 수치로 전부 제시
+- 논문-Results 연관성: **상** — 가솔린 대비 E25 블렌드의 배기열 개질 성능(H2/CO/CO2 생성)을 직접 비교검증하는 구성이, 제목의 '에탄올-가솔린 블렌드를 이용한 열화학적 배기에너지 회수—GDI엔진 성능'과 정확히 일치
+System.Management.Automation.RemoteException
+## No.13 — Energy(2018) — "Exergoeconomic analysis of a DI diesel engine fueled with diesel/biodiesel (B5) emulsions containing aqueous nano cerium oxide" (가솔린이 아닌 디젤 엔진 논문)
+- Abstract 구체성: **상** — 48.61 USD/MJ·25-100%·3/5/7wt%·0/90ppm 등 다수 수치
+- 논문-Abstract 연관성: **상** — exergoeconomic 분석 결과가 Abstract의 구체적 비용·배출 수치로 뒷받침됨(주제 범위는 가솔린에서 벗어남)
+- Introduction 구체성: **상** — Caliskan&Hepbasli(연간 배기손실비용 1225.143 USD), Jena&Misra(팜바이오디젤 엑서지효율 26.02%) 등 Table 1로 선행연구 수치를 체계적으로 정리
+- 논문-Introduction 연관성: **상** — "엑서고이코노믹 방법을 디젤엔진 개선에 적용한 연구는 소수에 불과하다"는 명확한 공백을 제시, 제목과 직접 일치(주제 범위는 가솔린에서 벗어남)
+- Methodology 구체성: **중** — SPECO 엑서지 계산식(식1-7)은 상세히 제시되나, 바이오디젤 생산·블렌드 제조·실험장치·연소실험의 세부사항은 '선행문헌[1,25]에서 확인 가능(elsewhere)'이라며 본 실험 수행과정 자체는 본문에서 생략·요약됨
+- 논문-Methodology 연관성: **상** — B5에 함수율 3/5/7%·나노세리아산화물을 첨가한 블렌드의 엑서지·엑서고이코노믹 변수를 계산하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+- Results 구체성: **상** — 연료비용률이 B5W7의 0.127 USD/h(25%부하)부터 B5W3m의 0.865 USD/h(100%부하)까지 구체적 범위로 제시되고, 주요 엑서지 파라미터의 불확도가 5% 미만임을 수치로 확인
+- 논문-Results 연관성: **상** — 디젤·B5·나노세리아 첨가 블렌드 7종의 엑서지손실률·엑서지효율·비용률을 전부 비교하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+System.Management.Automation.RemoteException
+## No.14 — Combustion and Flame(2025) — "Modelling thermodiffusive instabilities in hydrogen flames and their impact on the combustion process in a direct-injection hydrogen engine" (가솔린이 아닌 수소 엔진 논문)
+- Abstract 구체성: **하** — 메커니즘 설명 중심, 구체 수치 거의 없음
+- 논문-Abstract 연관성: **중** — 열확산 불안정성 모델링 주제와 메커니즘 설명은 일치하나 정량적 수치 제시가 적음(주제 범위는 가솔린에서 벗어남)
+- Introduction 구체성: **상** — 가연한계 4~75vol%, 람다값 2.0/2.4/3.0/3.5 조건별 모델 결과 등 선행 수치모델 연구를 구체적으로 인용
+- 논문-Introduction 연관성: **상** — "열확산 불안정성의 효과를 RANS 기반 3D-CFD 환경에 체계적으로 반영한 연구가 없다"는 명확한 공백을 제시, 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+- Methodology 구체성: **상** — Converge 3.1로 1D 예혼합화학 계산을 15,960개 조건에 대해 수행하고, ECFM 연소모델 수송방정식(식1-7)·AMR 격자(최소 62.5μm) 등 수치해석 세부값을 전부 명시
+- 논문-Methodology 연관성: **상** — Kohler KDH 수소직접분사엔진(CR 11:1)에서 람다 조건별 열확산 불안정성을 3D-CFD로 재현하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+- Results 구체성: **상** — Table2의 보정매트릭스(λ=1.8/2.0/2.3별 난류신장계수)와 800사이클 실험데이터 대비 모델 검증결과를 구체적으로 제시
+- 논문-Results 연관성: **상** — SM 모델이 람다 전 구간에서 실험데이터와 SL 모델보다 더 잘 일치한다는 것을 직접 검증하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+System.Management.Automation.RemoteException
+## No.15 — Applied Thermal Engineering(2018) — "Novel fuel injection strategies for PCCI operation of a heavy-duty turbocharged diesel engine" (가솔린이 아닌 디젤 엔진 논문)
+- Abstract 구체성: **상** — 0.78·0.95·20%·48%·5-10% 등 다수 수치
+- 논문-Abstract 연관성: **상** — 신규 분사 전략 효과가 Abstract의 구체적 수치로 뒷받침됨(주제 범위는 가솔린에서 벗어남)
+- Introduction 구체성: **상** — Mathivanan et al.(열효율 15%↑·매연 24%↓), Rohani et al.(HC 40%↓) 등 다수 선행연구의 구체적 수치를 인용
+- 논문-Introduction 연관성: **상** — "균질혼합 형성을 위한 분사전략 연구가 제한적이다"는 공백을 제시, 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+- Methodology 구체성: **상** — AVL ALPHA-500 다이나모미터·HORIBA 7100 DEGR 분석기 등 구체적 계측기 모델명과, Table2에 분사타이밍·분사량·분사각·노즐홀수 등 파라미터를 수치로 제시
+- 논문-Methodology 연관성: **상** — 공기보조분사 시스템을 EGR스트림/흡기관 두 위치에 적용한 신규 분사전략을 CFD+실험으로 평가하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+- Results 구체성: **상** — Case1 분사전략에서 연료증발량 35.1mg/38.5mg, 균일성지수(UI) 0.69 등 케이스별 구체적 수치를 제시
+- 논문-Results 연관성: **상** — 직접분사 다중펄스 전략과 공기보조분사의 균일성지수·연료증발을 비교검증하는 구성이 제목과 정확히 일치(주제 범위는 가솔린에서 벗어남)
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c "type \"J:\\Desktop\\AI\\Claude Code + Codex 같이 쓰는 법 (초보자용).html\"" in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 0ms:
+���� �̸�, ���͸� �̸� �Ǵ� ���� ���̺� ������ �߸��Ǿ����ϴ�.
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c "python -c \"from pathlib import Path; s=Path('round85/input/evaluation_data.md').read_text(encoding='utf-8'); print(s[s.index('## No.5'):s.index('## No.7')])\"" in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 0ms:
+'python'��(��) ���� �Ǵ� �ܺ� ����, ������ �� �ִ� ���α׷�, �Ǵ�
+��ġ ������ �ƴմϴ�.
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c "python -c \"from pathlib import Path; p=next(Path('J:/Desktop/AI').glob('*초보자용*.html')); print(p.read_text(encoding='utf-8'))\"" in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 0ms:
+'python'��(��) ���� �Ǵ� �ܺ� ����, ������ �� �ִ� ���α׷�, �Ǵ�
+��ġ ������ �ƴմϴ�.
+System.Management.Automation.RemoteException
+mcp: node_repl/js started
+mcp: node_repl/js (completed)
+codex
+자료에서는 Methodology·Results의 높은 등급과 Abstract의 정량 근거 부족이 확인됩니다. 등급별 근거를 빠짐없이 보존하고, 분포는 논문 번호로 제시해 새로운 집계 수치를 추가하지 않겠습니다. 기존 미커밋 변경은 그대로 두고 진행 중입니다.
+System.Management.Automation.RemoteException
+mcp: node_repl/js started
+mcp: node_repl/js (completed)
+mcp: node_repl/js started
+mcp: node_repl/js (completed)
+mcp: node_repl/js started
+mcp: node_repl/js (completed)
+mcp: node_repl/js started
+mcp: node_repl/js (completed)
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git diff --cached --name-only' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+codex
+보고서를 작성했고, 모든 논문의 등급과 근거가 입력과 일치하는지 확인했습니다. 지정된 특이사례와 평가 체계에 대한 의견을 포함했으며, 사실과 해석도 구분했습니다. 이제 지정 파일만 커밋·push하고 원격 반영을 확인하겠습니다.
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git add -- round85/codex.md' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+warning: in the working copy of 'round85/codex.md', LF will be replaced by CRLF the next time Git touches it
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git diff --cached --name-only' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+round85/codex.md
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git diff --cached --check' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git commit --only -m "docs(round85): add Codex blind synthesis report" -- round85/codex.md' in J:\Desktop\공학\ai-crosscheck
+ exited 1 in 0ms:
+error: pathspec 'add' did not match any file(s) known to git
+error: pathspec 'Codex' did not match any file(s) known to git
+error: pathspec 'blind' did not match any file(s) known to git
+error: pathspec 'synthesis' did not match any file(s) known to git
+error: pathspec 'report"' did not match any file(s) known to git
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git commit --only -m docs-round85-codex-blind-synthesis -- round85/codex.md' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 16ms:
+warning: in the working copy of 'round85/codex.md', LF will be replaced by CRLF the next time Git touches it
+[main cd65033] docs-round85-codex-blind-synthesis
+ 1 file changed, 250 insertions(+)
+ create mode 100644 round85/codex.md
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git push' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 2819ms:
+To https://github.com/JJPARK001223/ai-crosscheck.git
+   c0cecac..cd65033  main -> main
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git ls-remote --exit-code origin refs/heads/main' in J:\Desktop\공학\ai-crosscheck
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git rev-parse HEAD' in J:\Desktop\공학\ai-crosscheck
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git show --format=fuller --stat HEAD -- round85/codex.md' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+cd650335555d936609a2f412a7dac45030f5d181
+System.Management.Automation.RemoteException
+ succeeded in 0ms:
+commit cd650335555d936609a2f412a7dac45030f5d181
+Author:     JJPARK001223 <junjaepark2311@gmail.com>
+AuthorDate: Mon Nov 2 19:17:11 2026 +0900
+Commit:     JJPARK001223 <junjaepark2311@gmail.com>
+CommitDate: Mon Nov 2 19:17:11 2026 +0900
+System.Management.Automation.RemoteException
+    docs-round85-codex-blind-synthesis
+System.Management.Automation.RemoteException
+ round85/codex.md | 250 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 250 insertions(+)
+System.Management.Automation.RemoteException
+exec
+"C:\\WINDOWS\\system32\\cmd.exe" /c 'git status --short -- round85/codex.md' in J:\Desktop\공학\ai-crosscheck
+ succeeded in 0ms:
+ succeeded in 439ms:
+cd650335555d936609a2f412a7dac45030f5d181	refs/heads/main
+System.Management.Automation.RemoteException
+codex
+[round85/codex.md](J:/Desktop/공학/ai-crosscheck/round85/codex.md) 작성 완료했습니다.
+System.Management.Automation.RemoteException
+- 논문별 등급·근거, 섹션별 경향, 특이사례, 평가 체계 의견 포함
+- 입력의 모든 등급·근거 일치 확인
+- Claude 결과 미열람, 지정 파일만 커밋·push
+System.Management.Automation.RemoteException
+커밋 `cd65033`과 원격 `main`의 일치를 확인했습니다.
+tokens used
+62,767
+[round85/codex.md](J:/Desktop/공학/ai-crosscheck/round85/codex.md) 작성 완료했습니다.
+
+- 논문별 등급·근거, 섹션별 경향, 특이사례, 평가 체계 의견 포함
+- 입력의 모든 등급·근거 일치 확인
+- Claude 결과 미열람, 지정 파일만 커밋·push
+
+커밋 `cd65033`과 원격 `main`의 일치를 확인했습니다.

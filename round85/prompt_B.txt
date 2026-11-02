@@ -1,0 +1,9 @@
+round85/PROBLEM.md 의 5단계(검증 단계)를 수행한다.
+
+round85/claude.md (Claude가 독립적으로 작성한 종합 보고서)를 읽고, round85/input/evaluation_data.md와 대조하여 검증하라.
+1. claude.md가 evaluation_data.md에 없는 등급·수치·근거를 추가하거나 왜곡한 곳이 있는지 확인(사실 왜곡 점검).
+2. claude.md의 해석(의견) 중 input 근거로 뒷받침되는 것과, 근거가 약하거나 과장된 것을 구분해 지적.
+3. claude.md가 놓친 점(예: 평가기준의 모호함, 특이사례의 추가 해석 등)이 있으면 지적.
+4. 너(Codex)의 round85/codex.md와 비교해 더 맞는 점·틀린 점이 있으면 구체적으로 언급(이미 두 blind 보고서가 모두 작성되었으므로 이 단계에서는 비교해도 된다).
+
+결과를 round85/codex_review.md 에 써라. 형식은 자유. 끝나면 round85/codex_review.md 파일만 git add/commit/push 하고 원격 반영까지 확인하라. 다른 파일은 건드리지 마라.

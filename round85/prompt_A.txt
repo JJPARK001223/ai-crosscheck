@@ -1,0 +1,10 @@
+round85/PROBLEM.md 를 읽어라. 이 문서가 이번 작업 지시 전체다.
+
+round85/input/evaluation_data.md 에 이미 확정된 가솔린 엔진 SCI(E) 논문 15편의 Abstract/Introduction/Methodology/Results
+4개 섹션 평가(각 섹션당 "구체성"/"연관성" 2기준, 상/중/하 등급과 근거문장)가 전부 들어있다.
+
+너의 작업: round85/PROBLEM.md의 "과제" 절에 적힌 제약과 "보고서에 포함할 내용"을 전부 충족하는 종합 보고서를
+round85/codex.md 에 작성하라.
+
+중요: round85/claude.md 는 절대 읽지 마라(blind 단계). evaluation_data.md 에 없는 새로운 등급·수치·추측을 추가하지 마라.
+작성이 끝나면 round85/codex.md 파일만 git add/commit/push 하고 원격 반영까지 확인하라. 다른 파일은 건드리지 마라.
