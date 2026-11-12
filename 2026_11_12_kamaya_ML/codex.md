@@ -1,0 +1,15 @@
+# Codex independent findings, 2026-11-12
+
+Source: Masayuki Kamaya, J-Integral Solutions for Surface Crack Inside Pipe under Bending Load, Journal of Solid Mechanics and Materials Engineering 3(10), 1115-1126 (2009), DOI 10.1299/jmmp.3.1115. Local Compressed3_1115.pdf pages 2-3 rendered and visually verified.
+
+Eq.7: ML=2*sy*Rm^2*t*(2*sin(beta)-(a/t)*sin(theta)). Eq.8: beta=(pi-(a/t)*theta)/2. theta is half crack angle, radians. Scope: uniform-depth circumferential inner-surface crack, not semiellipse. Eq.2 Jp=h1*alpha*sy^2*t/E*(M/ML)^(n+1). Table 2(a) case Rm/t5,theta/pi.5,a/t.5,n5 gives h1=1.52, not workbook semiellipse4.410. Paper Table1 f1=1.29.
+
+For Rm300,t60,a30,sy200,theta=pi/2: ML=2911159580.44876 Nmm. Input magnitude4366740000 = 1.50000021617738*ML; this alone does not determine full/model load conversion. Existing ML5e8 is inconsistent with this definition.
+
+Actual new INP inspected: part 249004 nodes, xyz bounds x[-.000093,329.991669],y[-330,330],z[0,1500]; r bounds269.9999845..330.0000155. Ri270,Ro330,Rm300,t60 confirmed within mesh coordinate rounding. Front tip1 node57 at(-.000085,300,1500), tip79 node56 at(300,0,1500). Tips1..79 radius about300 over angles pi/2..0, followed by tips80..119 radial side at angle0 down to radius270. This is a constant-depth circumferential arc with radial end, not a semielliptical front. Thus a30,theta/pi.5 and Front1 at angular symmetry/central crack station are supported. Original selection of semiellipse h1 table is invalid for this INP.
+
+Model load: assembly node2 ref node of *Rigid Body elset B_SET-7, *Cload SET-32,4,-4.36674e9; SET-32 consists only node2. Half cross-section x>=0 with XSYMM; axial symmetry boundary ZSYMM at z1500. The other axial half does not double the end moment; circumferential half does. Full end-section moment should be2*abs(Mref) if rigid region contains only this half cross-section (consistent with node bounds and no load scaling keyword). Need retain explicit engineering inference and ideally cross-sectional stress resultant check; do not infer factor2 from paper's quarter-model sentence alone. Then final M/ML about3, which makes paper Jp=24*1.52*3^6=26593.92 N/mm. FE total J UI26002.8, near value but NOT a validated error calculation: different elastic correction, h1 rounded, mesh/contour/material/source assumptions.
+
+No workbook changed during investigation. Next safe steps: resolve benchmark as uniform-depth Kamaya case; confirm load resultants and table choice; then edit B1=4366740000,B2=2911159580.44876,C6=A6*$B$1*2,D6=C6/$B$2 over rows6:29 IF full-section convention accepted. Do not implement one-sided C=A*B1 as full-section moment.
+
+Material INP confirmed DP200000,.3,200,5,2. Paper original E180000,alpha1.5,t40 and fully plastic h1 generation differ; use theoretical scaling only with defined procedure, not claim identical simulation protocol. Paper contours2-4 versus current2-10 also differs. Exact comparison needs Eq11 elastic correction and sigma definition, mesh and contour convergence.
