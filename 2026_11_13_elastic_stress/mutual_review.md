@@ -1,0 +1,2 @@
+﻿# Mutual review
+Both independent audits find no explicit sigma convention in the cited paper. Clarification to Claude: Eq9 does NOT prove sigma is absorbed into f1; mathematical equivalence to Eq6 requires sigma/sigma_y=q. Because the paper only says almost identical, do not treat that as an explicit definition. Likewise avoid universal claim no definition exists anywhere: only inspected material lacks one. No author contact has been sent and none is authorized.
