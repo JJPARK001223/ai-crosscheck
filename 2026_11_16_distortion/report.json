@@ -1,0 +1,269 @@
+{
+  "source_inp": "J:\\Desktop\\abaquse\\2026_11_16\\11_16_19_02\\Job-4.inp",
+  "source_dat": "J:\\Desktop\\abaquse\\2026_11_16\\11_16_19_02\\Job-4.dat",
+  "elements": 57963,
+  "distorted": 11869,
+  "aspect_gt100": 15061,
+  "warning_union": 23340,
+  "distorted_before_job1": 838,
+  "aspect_before_job1": 803,
+  "new_distorted_ids_vs_job1": 11792,
+  "new_aspect_ids_vs_job1": 14721,
+  "front1_direct_and_neighbors": [
+    {
+      "node_adjacency_layers": 1,
+      "elements": 20,
+      "distorted": 0,
+      "aspect_gt100": 8,
+      "previous_job1_distorted": 0,
+      "previous_job1_aspect": 20
+    },
+    {
+      "node_adjacency_layers": 2,
+      "elements": 80,
+      "distorted": 0,
+      "aspect_gt100": 16,
+      "previous_job1_distorted": 0,
+      "previous_job1_aspect": 40
+    },
+    {
+      "node_adjacency_layers": 3,
+      "elements": 180,
+      "distorted": 3,
+      "aspect_gt100": 24,
+      "previous_job1_distorted": 0,
+      "previous_job1_aspect": 60
+    },
+    {
+      "node_adjacency_layers": 4,
+      "elements": 320,
+      "distorted": 16,
+      "aspect_gt100": 32,
+      "previous_job1_distorted": 0,
+      "previous_job1_aspect": 80
+    }
+  ],
+  "whole_front_direct_and_neighbors": [
+    {
+      "node_adjacency_layers": 1,
+      "elements": 1180,
+      "distorted": 318,
+      "aspect_gt100": 383,
+      "previous_job1_distorted": 0,
+      "previous_job1_aspect": 780
+    },
+    {
+      "node_adjacency_layers": 2,
+      "elements": 2360,
+      "distorted": 634,
+      "aspect_gt100": 383,
+      "previous_job1_distorted": 1,
+      "previous_job1_aspect": 780
+    },
+    {
+      "node_adjacency_layers": 3,
+      "elements": 3540,
+      "distorted": 962,
+      "aspect_gt100": 383,
+      "previous_job1_distorted": 2,
+      "previous_job1_aspect": 780
+    },
+    {
+      "node_adjacency_layers": 4,
+      "elements": 4720,
+      "distorted": 1349,
+      "aspect_gt100": 383,
+      "previous_job1_distorted": 4,
+      "previous_job1_aspect": 780
+    }
+  ],
+  "near_front_centroid_bins": [
+    {
+      "centroid_distance_to_front_le_mm": 1,
+      "total": 1740,
+      "distorted": 515,
+      "aspect_gt100": 383
+    },
+    {
+      "centroid_distance_to_front_le_mm": 5,
+      "total": 8773,
+      "distorted": 3082,
+      "aspect_gt100": 383
+    },
+    {
+      "centroid_distance_to_front_le_mm": 10,
+      "total": 14989,
+      "distorted": 5306,
+      "aspect_gt100": 383
+    },
+    {
+      "centroid_distance_to_front_le_mm": 30,
+      "total": 21160,
+      "distorted": 6687,
+      "aspect_gt100": 383
+    },
+    {
+      "centroid_distance_to_front_le_mm": 60,
+      "total": 23831,
+      "distorted": 6962,
+      "aspect_gt100": 926
+    },
+    {
+      "centroid_distance_to_front_le_mm": 150,
+      "total": 26113,
+      "distorted": 7213,
+      "aspect_gt100": 1625
+    }
+  ],
+  "z_bins": [
+    {
+      "z_range_mm": [
+        0,
+        150
+      ],
+      "total": 3062,
+      "distorted": 491,
+      "aspect_gt100": 1360
+    },
+    {
+      "z_range_mm": [
+        150,
+        750
+      ],
+      "total": 13779,
+      "distorted": 2205,
+      "aspect_gt100": 5958
+    },
+    {
+      "z_range_mm": [
+        750,
+        1400
+      ],
+      "total": 13779,
+      "distorted": 2205,
+      "aspect_gt100": 5958
+    },
+    {
+      "z_range_mm": [
+        1400,
+        1490
+      ],
+      "total": 8487,
+      "distorted": 1432,
+      "aspect_gt100": 1032
+    },
+    {
+      "z_range_mm": [
+        1490,
+        1500
+      ],
+      "total": 18856,
+      "distorted": 5536,
+      "aspect_gt100": 753
+    }
+  ],
+  "interpretation_limits": [
+    "Job1 DAT is earlier-run warning baseline, not a remesh-convergence study",
+    "Node-sharing neighborhoods are NOT Abaqus contour integration domains",
+    "Centroid distance is not minimum element distance",
+    "Warning counts and geometric proximity do not prove J error"
+  ],
+  "distorted_centroid_summary": {
+    "r_min_max": [
+      270.0296982721028,
+      319.3529777120542
+    ],
+    "phi_deg_min_max": [
+      0.21682327647686103,
+      19.161567696958375
+    ],
+    "z_min_max": [
+      37.5,
+      1499.9549865000001
+    ],
+    "front_distance_percentiles_mm": [
+      0.10085917208536942,
+      2.1555847087693687,
+      14.167573782246832,
+      1175.0014026650315,
+      1463.132492593458
+    ],
+    "front1_distance_percentiles_mm": [
+      2.1475974940967326,
+      61.1834750217774,
+      87.88033339280939,
+      1176.3868500897045,
+      1466.4429349923141
+    ]
+  },
+  "aspect_centroid_summary": {
+    "r_min_max": [
+      268.41158143953606,
+      276.4037494449452
+    ],
+    "phi_deg_min_max": [
+      0.21681070914373832,
+      172.8493065723039
+    ],
+    "z_min_max": [
+      37.5,
+      1499.5984190000001
+    ],
+    "front_distance_percentiles_mm": [
+      0.42705653207855543,
+      125.13965384938003,
+      685.3844945329381,
+      1315.4332575280373,
+      1554.8002032340303
+    ],
+    "front1_distance_percentiles_mm": [
+      1.1976007618086517,
+      170.83652348698124,
+      701.293659894123,
+      1321.696983247295,
+      1560.969096106638
+    ]
+  },
+  "worst_angle_elements": [
+    [
+      52094,
+      3.11687
+    ],
+    [
+      48510,
+      3.61599
+    ],
+    [
+      48517,
+      3.62042
+    ],
+    [
+      48524,
+      3.63141
+    ],
+    [
+      981,
+      3.63414
+    ],
+    [
+      1181,
+      3.63414
+    ],
+    [
+      10063,
+      3.63414
+    ],
+    [
+      10263,
+      3.63414
+    ],
+    [
+      10463,
+      3.63414
+    ],
+    [
+      10663,
+      3.63414
+    ]
+  ]
+}
