@@ -1,0 +1,92 @@
+{
+  "source": "J:\\Desktop\\abaquse\\2026_11_16\\11_16_19_02\\Job-1.inp",
+  "output": "J:\\Desktop\\abaquse\\2026_11_16\\11_16_19_02\\r5_th05_a01_alpha2.inp",
+  "source_sha256": "7c32620fc5486fee76365c531184c121e98babb4fff85061900494e747c4892e",
+  "output_sha256": "fea036792c67d79198dc2eb458fc23a253c1df626fdb4f86119c47453b750270",
+  "source_unchanged": true,
+  "nodes": 249004,
+  "elements": 57963,
+  "Ri_mm": 269.99999915041695,
+  "Ro_mm": 330.0000688620799,
+  "t_mm": 60,
+  "Front1_radius_mm": 276.0000000000061,
+  "a_mm": 6.000000000006082,
+  "a_over_t": 0.10000000000010137,
+  "Rm_over_t": 5,
+  "theta_over_pi_unchanged": 0.5,
+  "alpha_unchanged": 2,
+  "changed_blocks": [
+    "part node coordinates only"
+  ],
+  "source_quality": {
+    "sample_points_per_element": 35,
+    "minimum_determinant_mm3": 0.0010532245259228363,
+    "minimum_scaled_jacobian": 0.04644687160420252,
+    "nonpositive_element_count": 0,
+    "nonpositive_elements": [],
+    "worst_element": 52094,
+    "worst_natural_coordinate": [
+      0.7745966692414834,
+      0.7745966692414834,
+      -0.7745966692414834
+    ],
+    "integrated_volume_mm3": 84823012.9469573,
+    "element_min_det_percentiles": [
+      0.0010532245259228363,
+      0.025207269309546254,
+      37.26891531971444,
+      631.7550886982496,
+      676.8937518410953
+    ]
+  },
+  "target_quality": {
+    "sample_points_per_element": 35,
+    "minimum_determinant_mm3": 9.761082690861695e-05,
+    "minimum_scaled_jacobian": 0.03025939011188061,
+    "nonpositive_element_count": 0,
+    "nonpositive_elements": [],
+    "worst_element": 52094,
+    "worst_natural_coordinate": [
+      0.7745966692414834,
+      0.7745966692414834,
+      -0.7745966692414834
+    ],
+    "integrated_volume_mm3": 84823012.85909335,
+    "element_min_det_percentiles": [
+      9.761082690861695e-05,
+      0.0033012865889320937,
+      15.036634362462362,
+      1751.945193336016,
+      2412.894317279759
+    ]
+  },
+  "tip_dense_quality": {
+    "sample_points_per_element": 1331,
+    "minimum_determinant_mm3": 3.396138028324991e-05,
+    "minimum_scaled_jacobian": 0.44813178840968987,
+    "nonpositive_element_count": 0,
+    "nonpositive_elements": [],
+    "worst_element": 57963,
+    "worst_natural_coordinate": [
+      0.0,
+      -0.95,
+      0.95
+    ],
+    "integrated_volume_mm3": null,
+    "element_min_det_percentiles": [
+      3.396138028324991e-05,
+      3.707501483092991e-05,
+      0.002555829212121754,
+      0.0031586951052999575,
+      0.0032509403006006094
+    ]
+  },
+  "tip_elements_checked": 1180,
+  "limitations": [
+    "No Abaqus data check or solve performed",
+    "Contour front radial depth changed; original crack shape retained",
+    "theta/pi remains .5, not PNG .1",
+    "CLOAD unchanged; M_L and M/M_L must be recalculated for modified geometry",
+    "Positive sampled Jacobians do not establish mesh convergence"
+  ]
+}
