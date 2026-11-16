@@ -1,0 +1,4532 @@
+{
+  "source": "J:\\Desktop\\abaquse\\04_h1표_참고자료\\moment_h1_계산.xlsx",
+  "sha256": "743399f79f85cecea491340440e4e9708c7c71ea512431f42899f731ac648a96",
+  "sheet": "m_h1_r5th01a010",
+  "cells": {
+    "A1": {
+      "value": "h1",
+      "formula": null
+    },
+    "B1": {
+      "value": null,
+      "formula": null
+    },
+    "C1": {
+      "value": null,
+      "formula": null
+    },
+    "D1": {
+      "value": null,
+      "formula": null
+    },
+    "E1": {
+      "value": null,
+      "formula": null
+    },
+    "F1": {
+      "value": null,
+      "formula": null
+    },
+    "G1": {
+      "value": null,
+      "formula": null
+    },
+    "A2": {
+      "value": "재료물성(mpa)",
+      "formula": null
+    },
+    "B2": {
+      "value": null,
+      "formula": null
+    },
+    "C2": {
+      "value": null,
+      "formula": null
+    },
+    "D2": {
+      "value": null,
+      "formula": null
+    },
+    "E2": {
+      "value": null,
+      "formula": null
+    },
+    "F2": {
+      "value": null,
+      "formula": null
+    },
+    "G2": {
+      "value": null,
+      "formula": null
+    },
+    "A3": {
+      "value": "알파=yield offset 계수",
+      "formula": null
+    },
+    "B3": {
+      "value": "항복응력",
+      "formula": null
+    },
+    "C3": {
+      "value": "포아송비",
+      "formula": null
+    },
+    "D3": {
+      "value": "E",
+      "formula": null
+    },
+    "E3": {
+      "value": "n",
+      "formula": null
+    },
+    "F3": {
+      "value": "항복변형률",
+      "formula": null
+    },
+    "G3": {
+      "value": "E'",
+      "formula": null
+    },
+    "A4": {
+      "value": "2",
+      "formula": null
+    },
+    "B4": {
+      "value": "200",
+      "formula": null
+    },
+    "C4": {
+      "value": "0.3",
+      "formula": null
+    },
+    "D4": {
+      "value": "200000",
+      "formula": null
+    },
+    "E4": {
+      "value": "1, 3, 5, 7, 10, 13",
+      "formula": null
+    },
+    "F4": {
+      "value": "1E-3",
+      "formula": "$B$4/$D$4"
+    },
+    "G4": {
+      "value": "219780.21978021978",
+      "formula": "$D$4/(1-$C$4^2)"
+    },
+    "A5": {
+      "value": null,
+      "formula": null
+    },
+    "B5": {
+      "value": null,
+      "formula": null
+    },
+    "C5": {
+      "value": null,
+      "formula": null
+    },
+    "D5": {
+      "value": null,
+      "formula": null
+    },
+    "E5": {
+      "value": null,
+      "formula": null
+    },
+    "F5": {
+      "value": null,
+      "formula": null
+    },
+    "G5": {
+      "value": null,
+      "formula": null
+    },
+    "A6": {
+      "value": null,
+      "formula": null
+    },
+    "B6": {
+      "value": null,
+      "formula": null
+    },
+    "C6": {
+      "value": null,
+      "formula": null
+    },
+    "D6": {
+      "value": null,
+      "formula": null
+    },
+    "E6": {
+      "value": null,
+      "formula": null
+    },
+    "F6": {
+      "value": null,
+      "formula": null
+    },
+    "G6": {
+      "value": null,
+      "formula": null
+    },
+    "A7": {
+      "value": null,
+      "formula": null
+    },
+    "B7": {
+      "value": null,
+      "formula": null
+    },
+    "C7": {
+      "value": null,
+      "formula": null
+    },
+    "D7": {
+      "value": null,
+      "formula": null
+    },
+    "E7": {
+      "value": null,
+      "formula": null
+    },
+    "F7": {
+      "value": null,
+      "formula": null
+    },
+    "G7": {
+      "value": null,
+      "formula": null
+    },
+    "A8": {
+      "value": null,
+      "formula": null
+    },
+    "B8": {
+      "value": null,
+      "formula": null
+    },
+    "C8": {
+      "value": null,
+      "formula": null
+    },
+    "D8": {
+      "value": null,
+      "formula": null
+    },
+    "E8": {
+      "value": null,
+      "formula": null
+    },
+    "F8": {
+      "value": null,
+      "formula": null
+    },
+    "G8": {
+      "value": null,
+      "formula": null
+    },
+    "A9": {
+      "value": "길이 치수",
+      "formula": null
+    },
+    "B9": {
+      "value": null,
+      "formula": null
+    },
+    "C9": {
+      "value": null,
+      "formula": null
+    },
+    "D9": {
+      "value": null,
+      "formula": null
+    },
+    "E9": {
+      "value": null,
+      "formula": null
+    },
+    "F9": {
+      "value": null,
+      "formula": null
+    },
+    "G9": {
+      "value": null,
+      "formula": null
+    },
+    "H9": {
+      "value": "FE result",
+      "formula": null
+    },
+    "I9": {
+      "value": "n=",
+      "formula": null
+    },
+    "J9": {
+      "value": "1",
+      "formula": null
+    },
+    "K9": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "L9": {
+      "value": "4.9739000000000004",
+      "formula": "IFERROR(IF(MAX($J$11:$J$34)<=3+0.000000001,INDEX($N$11:$N$34,MATCH(MAX($J$11:$J$34),$J$11:$J$34,0)),INDEX($N$11:$N$34,MATCH(3,$J$11:$J$34,1))+(INDEX($N$11:$N$34,MATCH(3,$J$11:$J$34,1)+1)-INDEX($N$11:$N$34,MATCH(3,$J$11:$J$34,1)))*(3-INDEX($J$11:$J$34,MATCH(3,$J$11:$J$34,1)))/(INDEX($J$11:$J$34,MATCH(3,$J$11:$J$34,1)+1)-INDEX($J$11:$J$34,MATCH(3,$J$11:$J$34,1)))),\"\")"
+    },
+    "M9": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "N9": {
+      "value": "3",
+      "formula": "MAX($J$11:$J$34)"
+    },
+    "O9": {
+      "value": null,
+      "formula": null
+    },
+    "Q9": {
+      "value": "FE result",
+      "formula": null
+    },
+    "R9": {
+      "value": "n=",
+      "formula": null
+    },
+    "S9": {
+      "value": "3",
+      "formula": null
+    },
+    "T9": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "U9": {
+      "value": "5.5506000000000002",
+      "formula": "IFERROR(IF(MAX($S$11:$S$34)<=3+0.000000001,INDEX($W$11:$W$34,MATCH(MAX($S$11:$S$34),$S$11:$S$34,0)),INDEX($W$11:$W$34,MATCH(3,$S$11:$S$34,1))+(INDEX($W$11:$W$34,MATCH(3,$S$11:$S$34,1)+1)-INDEX($W$11:$W$34,MATCH(3,$S$11:$S$34,1)))*(3-INDEX($S$11:$S$34,MATCH(3,$S$11:$S$34,1)))/(INDEX($S$11:$S$34,MATCH(3,$S$11:$S$34,1)+1)-INDEX($S$11:$S$34,MATCH(3,$S$11:$S$34,1)))),\"\")"
+    },
+    "V9": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "W9": {
+      "value": "3",
+      "formula": "MAX($S$11:$S$34)"
+    },
+    "X9": {
+      "value": null,
+      "formula": null
+    },
+    "A10": {
+      "value": "t",
+      "formula": null
+    },
+    "B10": {
+      "value": "a",
+      "formula": null
+    },
+    "C10": {
+      "value": "c",
+      "formula": null
+    },
+    "D10": {
+      "value": "ci(=c)",
+      "formula": null
+    },
+    "E10": {
+      "value": "c m(실제로 넣는 값)",
+      "formula": null
+    },
+    "F10": {
+      "value": "세타*rm으로 계산한거",
+      "formula": null
+    },
+    "G10": {
+      "value": null,
+      "formula": null
+    },
+    "H10": {
+      "value": "step",
+      "formula": null
+    },
+    "I10": {
+      "value": "load",
+      "formula": null
+    },
+    "J10": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "K10": {
+      "value": "Jtotal=Je",
+      "formula": null
+    },
+    "L10": {
+      "value": "Je",
+      "formula": null
+    },
+    "M10": {
+      "value": "Jp(=alpha*Je)",
+      "formula": null
+    },
+    "N10": {
+      "value": "h1",
+      "formula": null
+    },
+    "O10": {
+      "value": null,
+      "formula": null
+    },
+    "Q10": {
+      "value": "step",
+      "formula": null
+    },
+    "R10": {
+      "value": "load",
+      "formula": null
+    },
+    "S10": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "T10": {
+      "value": "Jtotal",
+      "formula": null
+    },
+    "U10": {
+      "value": "Je",
+      "formula": null
+    },
+    "V10": {
+      "value": "Jp",
+      "formula": null
+    },
+    "W10": {
+      "value": "h1",
+      "formula": null
+    },
+    "X10": {
+      "value": null,
+      "formula": null
+    },
+    "A11": {
+      "value": "80",
+      "formula": null
+    },
+    "B11": {
+      "value": "8",
+      "formula": "0.1*$A$11"
+    },
+    "C11": {
+      "value": "113.1",
+      "formula": null
+    },
+    "D11": {
+      "value": "113.1",
+      "formula": "$C$11"
+    },
+    "E11": {
+      "value": "125.66666666666667",
+      "formula": "$D$11*($A$13/$C$13)"
+    },
+    "F11": {
+      "value": "125.66666666666666",
+      "formula": "$D$21*$A$13"
+    },
+    "G11": {
+      "value": null,
+      "formula": null
+    },
+    "H11": {
+      "value": "0.01",
+      "formula": null
+    },
+    "I11": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$H11"
+    },
+    "J11": {
+      "value": "0.03",
+      "formula": "$I11/$B$17"
+    },
+    "K11": {
+      "value": "6.4461744000000008E-3",
+      "formula": null
+    },
+    "L11": {
+      "value": "6.4461744000000008E-3",
+      "formula": "$K11"
+    },
+    "M11": {
+      "value": "1.2892348800000002E-2",
+      "formula": "$A$4*$L11"
+    },
+    "N11": {
+      "value": "4.9739000000000004",
+      "formula": "IF($K11=\"\",\"\",$M11/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$J11^($J$9+1)))"
+    },
+    "O11": {
+      "value": null,
+      "formula": null
+    },
+    "Q11": {
+      "value": "0.01",
+      "formula": null
+    },
+    "R11": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$Q11"
+    },
+    "S11": {
+      "value": "0.03",
+      "formula": "$R11/$B$17"
+    },
+    "T11": {
+      "value": "6.5832704899200008E-3",
+      "formula": null
+    },
+    "U11": {
+      "value": "6.4461744E-3",
+      "formula": "$B$24*$B$4*$F$4*($A$11-$B$11)*$C$21*$S11^2"
+    },
+    "V11": {
+      "value": "1.3709608992000088E-4",
+      "formula": "$T11-$U11"
+    },
+    "W11": {
+      "value": "58.768900000000365",
+      "formula": "IF($T11=\"\",\"\",$V11/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$S11^($S$9+1)))"
+    },
+    "X11": {
+      "value": null,
+      "formula": null
+    },
+    "A12": {
+      "value": "rm",
+      "formula": null
+    },
+    "B12": {
+      "value": "PI*rm",
+      "formula": null
+    },
+    "C12": {
+      "value": "ri",
+      "formula": null
+    },
+    "D12": {
+      "value": "L",
+      "formula": null
+    },
+    "E12": {
+      "value": "ro",
+      "formula": null
+    },
+    "F12": {
+      "value": "면적관성모멘트 (I)",
+      "formula": null
+    },
+    "G12": {
+      "value": null,
+      "formula": null
+    },
+    "H12": {
+      "value": "0.02",
+      "formula": null
+    },
+    "I12": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "J12": {
+      "value": "0.06",
+      "formula": null
+    },
+    "K12": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "L12": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "M12": {
+      "value": "5.15693952E-2",
+      "formula": null
+    },
+    "N12": {
+      "value": "4.9738999999999995",
+      "formula": null
+    },
+    "O12": {
+      "value": null,
+      "formula": null
+    },
+    "Q12": {
+      "value": "0.02",
+      "formula": null
+    },
+    "R12": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "S12": {
+      "value": "0.06",
+      "formula": null
+    },
+    "T12": {
+      "value": "2.663813661696E-2",
+      "formula": null
+    },
+    "U12": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "V12": {
+      "value": "8.5343901696000035E-4",
+      "formula": null
+    },
+    "W12": {
+      "value": "22.865200000000005",
+      "formula": null
+    },
+    "X12": {
+      "value": null,
+      "formula": null
+    },
+    "A13": {
+      "value": "400",
+      "formula": "$C$13+$A$11/2"
+    },
+    "B13": {
+      "value": "1256.6370614359173",
+      "formula": "PI()*$A$13"
+    },
+    "C13": {
+      "value": "360",
+      "formula": null
+    },
+    "D13": {
+      "value": "4000",
+      "formula": "$A$13*10"
+    },
+    "E13": {
+      "value": "440",
+      "formula": "$A$13+$A$11/2"
+    },
+    "F13": {
+      "value": "16245803930.243538",
+      "formula": "PI()*($E$13^4-$C$13^4)/4"
+    },
+    "G13": {
+      "value": null,
+      "formula": null
+    },
+    "H13": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "I13": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "J13": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "K13": {
+      "value": "7.8965636400000025E-2",
+      "formula": null
+    },
+    "L13": {
+      "value": "7.8965636400000025E-2",
+      "formula": null
+    },
+    "M13": {
+      "value": "0.15793127280000005",
+      "formula": null
+    },
+    "N13": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O13": {
+      "value": null,
+      "formula": null
+    },
+    "Q13": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "R13": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "S13": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "T13": {
+      "value": "8.3981519208720032E-2",
+      "formula": null
+    },
+    "U13": {
+      "value": "7.8965636400000011E-2",
+      "formula": null
+    },
+    "V13": {
+      "value": "5.0158828087200208E-3",
+      "formula": null
+    },
+    "W13": {
+      "value": "14.328400000000054",
+      "formula": null
+    },
+    "X13": {
+      "value": null,
+      "formula": null
+    },
+    "A14": {
+      "value": null,
+      "formula": null
+    },
+    "B14": {
+      "value": null,
+      "formula": null
+    },
+    "C14": {
+      "value": null,
+      "formula": null
+    },
+    "D14": {
+      "value": null,
+      "formula": null
+    },
+    "E14": {
+      "value": null,
+      "formula": null
+    },
+    "F14": {
+      "value": null,
+      "formula": null
+    },
+    "G14": {
+      "value": null,
+      "formula": null
+    },
+    "H14": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "I14": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "J14": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "K14": {
+      "value": "0.2131266411000001",
+      "formula": null
+    },
+    "L14": {
+      "value": "0.2131266411000001",
+      "formula": null
+    },
+    "M14": {
+      "value": "0.42625328220000019",
+      "formula": null
+    },
+    "N14": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O14": {
+      "value": null,
+      "formula": null
+    },
+    "Q14": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "R14": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "S14": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "T14": {
+      "value": "0.24138324746739009",
+      "formula": null
+    },
+    "U14": {
+      "value": "0.21312664110000004",
+      "formula": null
+    },
+    "V14": {
+      "value": "2.8256606367390052E-2",
+      "formula": null
+    },
+    "W14": {
+      "value": "11.080800000000016",
+      "formula": null
+    },
+    "X14": {
+      "value": null,
+      "formula": null
+    },
+    "A15": {
+      "value": "하중(모멘트)",
+      "formula": null
+    },
+    "B15": {
+      "value": "한계하중공식계산",
+      "formula": null
+    },
+    "C15": {
+      "value": null,
+      "formula": null
+    },
+    "D15": {
+      "value": null,
+      "formula": null
+    },
+    "E15": {
+      "value": null,
+      "formula": null
+    },
+    "F15": {
+      "value": null,
+      "formula": null
+    },
+    "G15": {
+      "value": null,
+      "formula": null
+    },
+    "H15": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "I15": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "J15": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "K15": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "L15": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "M15": {
+      "value": "1.0734894805500002",
+      "formula": null
+    },
+    "N15": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O15": {
+      "value": null,
+      "formula": null
+    },
+    "Q15": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "R15": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "S15": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "T15": {
+      "value": "0.68583862711289745",
+      "formula": null
+    },
+    "U15": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "V15": {
+      "value": "0.14909388683789737",
+      "formula": null
+    },
+    "W15": {
+      "value": "9.2182999999999957",
+      "formula": null
+    },
+    "X15": {
+      "value": null,
+      "formula": null
+    },
+    "A16": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "B16": {
+      "value": "ML",
+      "formula": null
+    },
+    "C16": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "D16": {
+      "value": "M/ML=3 일때의 M",
+      "formula": null
+    },
+    "E16": {
+      "value": "M/2",
+      "formula": null
+    },
+    "F16": {
+      "value": "굽힘응력",
+      "formula": null
+    },
+    "G16": {
+      "value": null,
+      "formula": null
+    },
+    "H16": {
+      "value": "0.14124999999999999",
+      "formula": null
+    },
+    "I16": {
+      "value": "4271618804.1488838",
+      "formula": null
+    },
+    "J16": {
+      "value": "0.42374999999999996",
+      "formula": null
+    },
+    "K16": {
+      "value": "1.286112514275001",
+      "formula": null
+    },
+    "L16": {
+      "value": "1.286112514275001",
+      "formula": null
+    },
+    "M16": {
+      "value": "2.5722250285500019",
+      "formula": null
+    },
+    "N16": {
+      "value": "4.9739000000000049",
+      "formula": null
+    },
+    "O16": {
+      "value": null,
+      "formula": null
+    },
+    "Q16": {
+      "value": "0.14124999999999999",
+      "formula": null
+    },
+    "R16": {
+      "value": "4271618804.1488838",
+      "formula": null
+    },
+    "S16": {
+      "value": "0.42374999999999996",
+      "formula": null
+    },
+    "T16": {
+      "value": "2.0151886864708368",
+      "formula": null
+    },
+    "U16": {
+      "value": "1.2861125142749998",
+      "formula": null
+    },
+    "V16": {
+      "value": "0.72907617219583698",
+      "formula": null
+    },
+    "W16": {
+      "value": "7.851300000000017",
+      "formula": null
+    },
+    "X16": {
+      "value": null,
+      "formula": null
+    },
+    "A17": {
+      "value": "0.0~1.0",
+      "formula": null
+    },
+    "B17": {
+      "value": "10080516351.973768",
+      "formula": "4*$A$13^2*$A$11*$B$4*(COS($C$21*$D$21/2)-($C$21*SIN($D$21)/2))"
+    },
+    "C17": {
+      "value": "3",
+      "formula": null
+    },
+    "D17": {
+      "value": "30241549055.921303",
+      "formula": "$B$17*$C$17"
+    },
+    "E17": {
+      "value": "15120774527.960651",
+      "formula": "$D$17/2"
+    },
+    "F17": {
+      "value": "819.0595948184573",
+      "formula": "($D$17*$E$13)/$F$13"
+    },
+    "G17": {
+      "value": null,
+      "formula": null
+    },
+    "H17": {
+      "value": "0.19125",
+      "formula": null
+    },
+    "I17": {
+      "value": "5783696256.9449492",
+      "formula": null
+    },
+    "J17": {
+      "value": "0.57374999999999998",
+      "formula": null
+    },
+    "K17": {
+      "value": "2.3577890082750002",
+      "formula": null
+    },
+    "L17": {
+      "value": "2.3577890082750002",
+      "formula": null
+    },
+    "M17": {
+      "value": "4.7155780165500003",
+      "formula": null
+    },
+    "N17": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O17": {
+      "value": null,
+      "formula": null
+    },
+    "Q17": {
+      "value": "0.19125",
+      "formula": null
+    },
+    "R17": {
+      "value": "5783696256.9449492",
+      "formula": null
+    },
+    "S17": {
+      "value": "0.57374999999999998",
+      "formula": null
+    },
+    "T17": {
+      "value": "4.5714296457871662",
+      "formula": null
+    },
+    "U17": {
+      "value": "2.3577890082749997",
+      "formula": null
+    },
+    "V17": {
+      "value": "2.2136406375121664",
+      "formula": null
+    },
+    "W17": {
+      "value": "7.0929000000000029",
+      "formula": null
+    },
+    "X17": {
+      "value": null,
+      "formula": null
+    },
+    "A18": {
+      "value": null,
+      "formula": null
+    },
+    "B18": {
+      "value": null,
+      "formula": null
+    },
+    "C18": {
+      "value": null,
+      "formula": null
+    },
+    "D18": {
+      "value": null,
+      "formula": null
+    },
+    "E18": {
+      "value": null,
+      "formula": null
+    },
+    "F18": {
+      "value": null,
+      "formula": null
+    },
+    "G18": {
+      "value": null,
+      "formula": null
+    },
+    "H18": {
+      "value": "0.24124999999999999",
+      "formula": null
+    },
+    "I18": {
+      "value": "7295773709.7410145",
+      "formula": null
+    },
+    "J18": {
+      "value": "0.72375",
+      "formula": null
+    },
+    "K18": {
+      "value": "3.7517742222750008",
+      "formula": null
+    },
+    "L18": {
+      "value": "3.7517742222750008",
+      "formula": null
+    },
+    "M18": {
+      "value": "7.5035484445500016",
+      "formula": null
+    },
+    "N18": {
+      "value": "4.9739000000000013",
+      "formula": null
+    },
+    "O18": {
+      "value": null,
+      "formula": null
+    },
+    "Q18": {
+      "value": "0.24124999999999999",
+      "formula": null
+    },
+    "R18": {
+      "value": "7295773709.7410145",
+      "formula": null
+    },
+    "S18": {
+      "value": "0.72375",
+      "formula": null
+    },
+    "T18": {
+      "value": "8.9948691631788407",
+      "formula": null
+    },
+    "U18": {
+      "value": "3.7517742222749999",
+      "formula": null
+    },
+    "V18": {
+      "value": "5.2430949409038412",
+      "formula": null
+    },
+    "W18": {
+      "value": "6.6350000000000025",
+      "formula": null
+    },
+    "X18": {
+      "value": null,
+      "formula": null
+    },
+    "A19": {
+      "value": "조건",
+      "formula": null
+    },
+    "B19": {
+      "value": null,
+      "formula": null
+    },
+    "C19": {
+      "value": null,
+      "formula": null
+    },
+    "D19": {
+      "value": null,
+      "formula": null
+    },
+    "E19": {
+      "value": null,
+      "formula": null
+    },
+    "F19": {
+      "value": null,
+      "formula": null
+    },
+    "G19": {
+      "value": null,
+      "formula": null
+    },
+    "H19": {
+      "value": "0.29125000000000001",
+      "formula": null
+    },
+    "I19": {
+      "value": "8807851162.5370789",
+      "formula": null
+    },
+    "J19": {
+      "value": "0.87374999999999992",
+      "formula": null
+    },
+    "K19": {
+      "value": "5.4680681562750024",
+      "formula": null
+    },
+    "L19": {
+      "value": "5.4680681562750024",
+      "formula": null
+    },
+    "M19": {
+      "value": "10.936136312550005",
+      "formula": null
+    },
+    "N19": {
+      "value": "4.9739000000000022",
+      "formula": null
+    },
+    "O19": {
+      "value": null,
+      "formula": null
+    },
+    "Q19": {
+      "value": "0.29125000000000001",
+      "formula": null
+    },
+    "R19": {
+      "value": "8807851162.5370789",
+      "formula": null
+    },
+    "S19": {
+      "value": "0.87374999999999992",
+      "formula": null
+    },
+    "T19": {
+      "value": "16.120988608362381",
+      "formula": null
+    },
+    "U19": {
+      "value": "5.4680681562749989",
+      "formula": null
+    },
+    "V19": {
+      "value": "10.652920452087383",
+      "formula": null
+    },
+    "W19": {
+      "value": "6.3464000000000089",
+      "formula": null
+    },
+    "X19": {
+      "value": null,
+      "formula": null
+    },
+    "A20": {
+      "value": "rm/t",
+      "formula": null
+    },
+    "B20": {
+      "value": "th/pi",
+      "formula": null
+    },
+    "C20": {
+      "value": "a/t",
+      "formula": null
+    },
+    "D20": {
+      "value": "th",
+      "formula": null
+    },
+    "E20": {
+      "value": "a/c",
+      "formula": null
+    },
+    "F20": {
+      "value": null,
+      "formula": null
+    },
+    "G20": {
+      "value": null,
+      "formula": null
+    },
+    "H20": {
+      "value": "0.34125",
+      "formula": null
+    },
+    "I20": {
+      "value": "10319928615.333145",
+      "formula": null
+    },
+    "J20": {
+      "value": "1.0237499999999999",
+      "formula": null
+    },
+    "K20": {
+      "value": "7.5066708102749997",
+      "formula": null
+    },
+    "L20": {
+      "value": "7.5066708102749997",
+      "formula": null
+    },
+    "M20": {
+      "value": "15.013341620549999",
+      "formula": null
+    },
+    "N20": {
+      "value": "4.9738999999999995",
+      "formula": null
+    },
+    "O20": {
+      "value": null,
+      "formula": null
+    },
+    "Q20": {
+      "value": "0.34125",
+      "formula": null
+    },
+    "R20": {
+      "value": "10319928615.333145",
+      "formula": null
+    },
+    "S20": {
+      "value": "1.0237499999999999",
+      "formula": null
+    },
+    "T20": {
+      "value": "26.986252226818149",
+      "formula": null
+    },
+    "U20": {
+      "value": "7.5066708102749997",
+      "formula": null
+    },
+    "V20": {
+      "value": "19.479581416543148",
+      "formula": null
+    },
+    "W20": {
+      "value": "6.1576000000000013",
+      "formula": null
+    },
+    "X20": {
+      "value": null,
+      "formula": null
+    },
+    "A21": {
+      "value": "5",
+      "formula": "$A$13/$A$11"
+    },
+    "B21": {
+      "value": "0.10000235590940756",
+      "formula": "$C$11/(PI()*$C$13)"
+    },
+    "C21": {
+      "value": "0.1",
+      "formula": "$B$11/$A$11"
+    },
+    "D21": {
+      "value": "0.31416666666666665",
+      "formula": "$B$21*PI()"
+    },
+    "E21": {
+      "value": "7.0733863837312116E-2",
+      "formula": "$B$11/$C$11"
+    },
+    "F21": {
+      "value": null,
+      "formula": null
+    },
+    "G21": {
+      "value": null,
+      "formula": null
+    },
+    "H21": {
+      "value": "0.39124999999999999",
+      "formula": null
+    },
+    "I21": {
+      "value": "11832006068.12921",
+      "formula": null
+    },
+    "J21": {
+      "value": "1.1737499999999998",
+      "formula": null
+    },
+    "K21": {
+      "value": "9.8675821842750029",
+      "formula": null
+    },
+    "L21": {
+      "value": "9.8675821842750029",
+      "formula": null
+    },
+    "M21": {
+      "value": "19.735164368550006",
+      "formula": null
+    },
+    "N21": {
+      "value": "4.9739000000000022",
+      "formula": null
+    },
+    "O21": {
+      "value": null,
+      "formula": null
+    },
+    "Q21": {
+      "value": "0.39124999999999999",
+      "formula": null
+    },
+    "R21": {
+      "value": "11832006068.12921",
+      "formula": null
+    },
+    "S21": {
+      "value": "1.1737499999999998",
+      "formula": null
+    },
+    "T21": {
+      "value": "42.821828087474913",
+      "formula": null
+    },
+    "U21": {
+      "value": "9.8675821842749976",
+      "formula": null
+    },
+    "V21": {
+      "value": "32.954245903199919",
+      "formula": null
+    },
+    "W21": {
+      "value": "6.0286000000000062",
+      "formula": null
+    },
+    "X21": {
+      "value": null,
+      "formula": null
+    },
+    "F22": {
+      "value": null,
+      "formula": null
+    },
+    "H22": {
+      "value": "0.44124999999999998",
+      "formula": null
+    },
+    "I22": {
+      "value": "13344083520.925274",
+      "formula": null
+    },
+    "J22": {
+      "value": "1.3237499999999998",
+      "formula": null
+    },
+    "K22": {
+      "value": "12.550802278275",
+      "formula": null
+    },
+    "L22": {
+      "value": "12.550802278275",
+      "formula": null
+    },
+    "M22": {
+      "value": "25.101604556550001",
+      "formula": null
+    },
+    "N22": {
+      "value": "4.9739000000000013",
+      "formula": null
+    },
+    "O22": {
+      "value": null,
+      "formula": null
+    },
+    "Q22": {
+      "value": "0.44124999999999998",
+      "formula": null
+    },
+    "R22": {
+      "value": "13344083520.925274",
+      "formula": null
+    },
+    "S22": {
+      "value": "1.3237499999999998",
+      "formula": null
+    },
+    "T22": {
+      "value": "65.044875475679746",
+      "formula": null
+    },
+    "U22": {
+      "value": "12.550802278274995",
+      "formula": null
+    },
+    "V22": {
+      "value": "52.494073197404752",
+      "formula": null
+    },
+    "W22": {
+      "value": "5.9360000000000053",
+      "formula": null
+    },
+    "X22": {
+      "value": null,
+      "formula": null
+    },
+    "A23": {
+      "value": "Je 계산",
+      "formula": null
+    },
+    "B23": {
+      "value": null,
+      "formula": null
+    },
+    "C23": {
+      "value": null,
+      "formula": null
+    },
+    "D23": {
+      "value": null,
+      "formula": null
+    },
+    "E23": {
+      "value": null,
+      "formula": null
+    },
+    "F23": {
+      "value": null,
+      "formula": null
+    },
+    "H23": {
+      "value": "0.49125000000000002",
+      "formula": null
+    },
+    "I23": {
+      "value": "14856160973.72134",
+      "formula": null
+    },
+    "J23": {
+      "value": "1.4737499999999999",
+      "formula": null
+    },
+    "K23": {
+      "value": "15.556331092275011",
+      "formula": null
+    },
+    "L23": {
+      "value": "15.556331092275011",
+      "formula": null
+    },
+    "M23": {
+      "value": "31.112662184550022",
+      "formula": null
+    },
+    "N23": {
+      "value": "4.9739000000000031",
+      "formula": null
+    },
+    "O23": {
+      "value": null,
+      "formula": null
+    },
+    "Q23": {
+      "value": "0.49125000000000002",
+      "formula": null
+    },
+    "R23": {
+      "value": "14856160973.72134",
+      "formula": null
+    },
+    "S23": {
+      "value": "1.4737499999999999",
+      "formula": null
+    },
+    "T23": {
+      "value": "95.25517634744476",
+      "formula": null
+    },
+    "U23": {
+      "value": "15.556331092275",
+      "formula": null
+    },
+    "V23": {
+      "value": "79.698845255169758",
+      "formula": null
+    },
+    "W23": {
+      "value": "5.8663000000000016",
+      "formula": null
+    },
+    "X23": {
+      "value": null,
+      "formula": null
+    },
+    "A24": {
+      "value": "h1(n=1)",
+      "formula": null
+    },
+    "B24": {
+      "value": "4.9739000000000004",
+      "formula": "L9"
+    },
+    "C24": {
+      "value": null,
+      "formula": null
+    },
+    "D24": {
+      "value": null,
+      "formula": null
+    },
+    "E24": {
+      "value": null,
+      "formula": null
+    },
+    "F24": {
+      "value": null,
+      "formula": null
+    },
+    "H24": {
+      "value": "0.54125000000000001",
+      "formula": null
+    },
+    "I24": {
+      "value": "16368238426.517405",
+      "formula": null
+    },
+    "J24": {
+      "value": "1.6237499999999998",
+      "formula": null
+    },
+    "K24": {
+      "value": "18.884168626274999",
+      "formula": null
+    },
+    "L24": {
+      "value": "18.884168626274999",
+      "formula": null
+    },
+    "M24": {
+      "value": "37.768337252549998",
+      "formula": null
+    },
+    "N24": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O24": {
+      "value": null,
+      "formula": null
+    },
+    "Q24": {
+      "value": "0.54125000000000001",
+      "formula": null
+    },
+    "R24": {
+      "value": "16368238426.517405",
+      "formula": null
+    },
+    "S24": {
+      "value": "1.6237499999999998",
+      "formula": null
+    },
+    "T24": {
+      "value": "135.22775307761989",
+      "formula": null
+    },
+    "U24": {
+      "value": "18.884168626274995",
+      "formula": null
+    },
+    "V24": {
+      "value": "116.3435844513449",
+      "formula": null
+    },
+    "W24": {
+      "value": "5.8113000000000019",
+      "formula": null
+    },
+    "X24": {
+      "value": null,
+      "formula": null
+    },
+    "A25": {
+      "value": null,
+      "formula": null
+    },
+    "H25": {
+      "value": "0.59125000000000005",
+      "formula": null
+    },
+    "I25": {
+      "value": "17880315879.313473",
+      "formula": null
+    },
+    "J25": {
+      "value": "1.7737500000000002",
+      "formula": null
+    },
+    "K25": {
+      "value": "22.534314880275009",
+      "formula": null
+    },
+    "L25": {
+      "value": "22.534314880275009",
+      "formula": null
+    },
+    "M25": {
+      "value": "45.068629760550017",
+      "formula": null
+    },
+    "N25": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O25": {
+      "value": null,
+      "formula": null
+    },
+    "Q25": {
+      "value": "0.59125000000000005",
+      "formula": null
+    },
+    "R25": {
+      "value": "17880315879.313473",
+      "formula": null
+    },
+    "S25": {
+      "value": "1.7737500000000002",
+      "formula": null
+    },
+    "T25": {
+      "value": "186.9153925757727",
+      "formula": null
+    },
+    "U25": {
+      "value": "22.534314880275005",
+      "formula": null
+    },
+    "V25": {
+      "value": "164.38107769549771",
+      "formula": null
+    },
+    "W25": {
+      "value": "5.7662000000000031",
+      "formula": null
+    },
+    "X25": {
+      "value": null,
+      "formula": null
+    },
+    "A26": {
+      "value": null,
+      "formula": null
+    },
+    "H26": {
+      "value": "0.64124999999999999",
+      "formula": null
+    },
+    "I26": {
+      "value": "19392393332.109535",
+      "formula": null
+    },
+    "J26": {
+      "value": "1.9237499999999998",
+      "formula": null
+    },
+    "K26": {
+      "value": "26.50676985427501",
+      "formula": null
+    },
+    "L26": {
+      "value": "26.50676985427501",
+      "formula": null
+    },
+    "M26": {
+      "value": "53.01353970855002",
+      "formula": null
+    },
+    "N26": {
+      "value": "4.9739000000000031",
+      "formula": null
+    },
+    "O26": {
+      "value": null,
+      "formula": null
+    },
+    "Q26": {
+      "value": "0.64124999999999999",
+      "formula": null
+    },
+    "R26": {
+      "value": "19392393332.109535",
+      "formula": null
+    },
+    "S26": {
+      "value": "1.9237499999999998",
+      "formula": null
+    },
+    "T26": {
+      "value": "252.45304808720309",
+      "formula": null
+    },
+    "U26": {
+      "value": "26.506769854274996",
+      "formula": null
+    },
+    "V26": {
+      "value": "225.94627823292808",
+      "formula": null
+    },
+    "W26": {
+      "value": "5.7282000000000037",
+      "formula": null
+    },
+    "X26": {
+      "value": null,
+      "formula": null
+    },
+    "H27": {
+      "value": "0.69125000000000003",
+      "formula": null
+    },
+    "I27": {
+      "value": "20904470784.905602",
+      "formula": null
+    },
+    "J27": {
+      "value": "2.07375",
+      "formula": null
+    },
+    "K27": {
+      "value": "30.801533548275",
+      "formula": null
+    },
+    "L27": {
+      "value": "30.801533548275",
+      "formula": null
+    },
+    "M27": {
+      "value": "61.603067096549999",
+      "formula": null
+    },
+    "N27": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O27": {
+      "value": null,
+      "formula": null
+    },
+    "Q27": {
+      "value": "0.69125000000000003",
+      "formula": null
+    },
+    "R27": {
+      "value": "20904470784.905602",
+      "formula": null
+    },
+    "S27": {
+      "value": "2.07375",
+      "formula": null
+    },
+    "T27": {
+      "value": "334.13970454165889",
+      "formula": null
+    },
+    "U27": {
+      "value": "30.801533548275",
+      "formula": null
+    },
+    "V27": {
+      "value": "303.33817099338387",
+      "formula": null
+    },
+    "W27": {
+      "value": "5.6951999999999998",
+      "formula": null
+    },
+    "X27": {
+      "value": null,
+      "formula": null
+    },
+    "A28": {
+      "value": null,
+      "formula": null
+    },
+    "H28": {
+      "value": "0.74124999999999996",
+      "formula": null
+    },
+    "I28": {
+      "value": "22416548237.701664",
+      "formula": null
+    },
+    "J28": {
+      "value": "2.2237499999999999",
+      "formula": null
+    },
+    "K28": {
+      "value": "35.418605962275002",
+      "formula": null
+    },
+    "L28": {
+      "value": "35.418605962275002",
+      "formula": null
+    },
+    "M28": {
+      "value": "70.837211924550004",
+      "formula": null
+    },
+    "N28": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O28": {
+      "value": null,
+      "formula": null
+    },
+    "Q28": {
+      "value": "0.74124999999999996",
+      "formula": null
+    },
+    "R28": {
+      "value": "22416548237.701664",
+      "formula": null
+    },
+    "S28": {
+      "value": "2.2237499999999999",
+      "formula": null
+    },
+    "T28": {
+      "value": "434.44832034610278",
+      "formula": null
+    },
+    "U28": {
+      "value": "35.418605962274995",
+      "formula": null
+    },
+    "V28": {
+      "value": "399.02971438382781",
+      "formula": null
+    },
+    "W28": {
+      "value": "5.6659000000000015",
+      "formula": null
+    },
+    "X28": {
+      "value": null,
+      "formula": null
+    },
+    "A29": {
+      "value": null,
+      "formula": null
+    },
+    "H29": {
+      "value": "0.79125000000000001",
+      "formula": null
+    },
+    "I29": {
+      "value": "23928625690.49773",
+      "formula": null
+    },
+    "J29": {
+      "value": "2.3737499999999998",
+      "formula": null
+    },
+    "K29": {
+      "value": "40.357987096275011",
+      "formula": null
+    },
+    "L29": {
+      "value": "40.357987096275011",
+      "formula": null
+    },
+    "M29": {
+      "value": "80.715974192550021",
+      "formula": null
+    },
+    "N29": {
+      "value": "4.9739000000000022",
+      "formula": null
+    },
+    "O29": {
+      "value": null,
+      "formula": null
+    },
+    "Q29": {
+      "value": "0.79125000000000001",
+      "formula": null
+    },
+    "R29": {
+      "value": "23928625690.49773",
+      "formula": null
+    },
+    "S29": {
+      "value": "2.3737499999999998",
+      "formula": null
+    },
+    "T29": {
+      "value": "556.03847682090498",
+      "formula": null
+    },
+    "U29": {
+      "value": "40.357987096274996",
+      "formula": null
+    },
+    "V29": {
+      "value": "515.68048972462998",
+      "formula": null
+    },
+    "W29": {
+      "value": "5.6396000000000042",
+      "formula": null
+    },
+    "X29": {
+      "value": null,
+      "formula": null
+    },
+    "A30": {
+      "value": null,
+      "formula": null
+    },
+    "H30": {
+      "value": "0.84125000000000005",
+      "formula": null
+    },
+    "I30": {
+      "value": "25440703143.293797",
+      "formula": null
+    },
+    "J30": {
+      "value": "2.5237499999999997",
+      "formula": null
+    },
+    "K30": {
+      "value": "45.619676950275007",
+      "formula": null
+    },
+    "L30": {
+      "value": "45.619676950275007",
+      "formula": null
+    },
+    "M30": {
+      "value": "91.239353900550014",
+      "formula": null
+    },
+    "N30": {
+      "value": "4.9739000000000013",
+      "formula": null
+    },
+    "O30": {
+      "value": null,
+      "formula": null
+    },
+    "Q30": {
+      "value": "0.84125000000000005",
+      "formula": null
+    },
+    "R30": {
+      "value": "25440703143.293797",
+      "formula": null
+    },
+    "S30": {
+      "value": "2.5237499999999997",
+      "formula": null
+    },
+    "T30": {
+      "value": "701.72563403223171",
+      "formula": null
+    },
+    "U30": {
+      "value": "45.619676950274986",
+      "formula": null
+    },
+    "V30": {
+      "value": "656.10595708195672",
+      "formula": null
+    },
+    "W30": {
+      "value": "5.615600000000005",
+      "formula": null
+    },
+    "X30": {
+      "value": null,
+      "formula": null
+    },
+    "A31": {
+      "value": null,
+      "formula": null
+    },
+    "H31": {
+      "value": "0.89124999999999999",
+      "formula": null
+    },
+    "I31": {
+      "value": "26952780596.089859",
+      "formula": null
+    },
+    "J31": {
+      "value": "2.6737499999999996",
+      "formula": null
+    },
+    "K31": {
+      "value": "51.203675524275013",
+      "formula": null
+    },
+    "L31": {
+      "value": "51.203675524275013",
+      "formula": null
+    },
+    "M31": {
+      "value": "102.40735104855003",
+      "formula": null
+    },
+    "N31": {
+      "value": "4.9739000000000022",
+      "formula": null
+    },
+    "O31": {
+      "value": null,
+      "formula": null
+    },
+    "Q31": {
+      "value": "0.89124999999999999",
+      "formula": null
+    },
+    "R31": {
+      "value": "26952780596.089859",
+      "formula": null
+    },
+    "S31": {
+      "value": "2.6737499999999996",
+      "formula": null
+    },
+    "T31": {
+      "value": "874.50596002541852",
+      "formula": null
+    },
+    "U31": {
+      "value": "51.203675524274992",
+      "formula": null
+    },
+    "V31": {
+      "value": "823.3022845011435",
+      "formula": null
+    },
+    "W31": {
+      "value": "5.5935000000000024",
+      "formula": null
+    },
+    "X31": {
+      "value": null,
+      "formula": null
+    },
+    "A32": {
+      "value": null,
+      "formula": null
+    },
+    "H32": {
+      "value": "0.94125000000000003",
+      "formula": null
+    },
+    "I32": {
+      "value": "28464858048.885925",
+      "formula": null
+    },
+    "J32": {
+      "value": "2.8237499999999995",
+      "formula": null
+    },
+    "K32": {
+      "value": "57.109982818275007",
+      "formula": null
+    },
+    "L32": {
+      "value": "57.109982818275007",
+      "formula": null
+    },
+    "M32": {
+      "value": "114.21996563655001",
+      "formula": null
+    },
+    "N32": {
+      "value": "4.9739000000000013",
+      "formula": null
+    },
+    "O32": {
+      "value": null,
+      "formula": null
+    },
+    "Q32": {
+      "value": "0.94125000000000003",
+      "formula": null
+    },
+    "R32": {
+      "value": "28464858048.885925",
+      "formula": null
+    },
+    "S32": {
+      "value": "2.8237499999999995",
+      "formula": null
+    },
+    "T32": {
+      "value": "1077.547709405605",
+      "formula": null
+    },
+    "U32": {
+      "value": "57.109982818274986",
+      "formula": null
+    },
+    "V32": {
+      "value": "1020.4377265873301",
+      "formula": null
+    },
+    "W32": {
+      "value": "5.5730000000000048",
+      "formula": null
+    },
+    "X32": {
+      "value": null,
+      "formula": null
+    },
+    "A33": {
+      "value": null,
+      "formula": null
+    },
+    "H33": {
+      "value": "0.99125000000000008",
+      "formula": null
+    },
+    "I33": {
+      "value": "29976935501.681995",
+      "formula": null
+    },
+    "J33": {
+      "value": "2.9737500000000003",
+      "formula": null
+    },
+    "K33": {
+      "value": "63.338598832275032",
+      "formula": null
+    },
+    "L33": {
+      "value": "63.338598832275032",
+      "formula": null
+    },
+    "M33": {
+      "value": "126.67719766455006",
+      "formula": null
+    },
+    "N33": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O33": {
+      "value": null,
+      "formula": null
+    },
+    "Q33": {
+      "value": "0.99125000000000008",
+      "formula": null
+    },
+    "R33": {
+      "value": "29976935501.681995",
+      "formula": null
+    },
+    "S33": {
+      "value": "2.9737500000000003",
+      "formula": null
+    },
+    "T33": {
+      "value": "1314.175094278618",
+      "formula": null
+    },
+    "U33": {
+      "value": "63.338598832275018",
+      "formula": null
+    },
+    "V33": {
+      "value": "1250.836495446343",
+      "formula": null
+    },
+    "W33": {
+      "value": "5.5538000000000016",
+      "formula": null
+    },
+    "X33": {
+      "value": null,
+      "formula": null
+    },
+    "A34": {
+      "value": null,
+      "formula": null
+    },
+    "H34": {
+      "value": "1",
+      "formula": null
+    },
+    "I34": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "J34": {
+      "value": "3",
+      "formula": null
+    },
+    "K34": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "L34": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "M34": {
+      "value": "128.92348800000002",
+      "formula": null
+    },
+    "N34": {
+      "value": "4.9739000000000004",
+      "formula": null
+    },
+    "O34": {
+      "value": null,
+      "formula": null
+    },
+    "Q34": {
+      "value": "1",
+      "formula": null
+    },
+    "R34": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "S34": {
+      "value": "3",
+      "formula": null
+    },
+    "T34": {
+      "value": "1359.3057120000001",
+      "formula": null
+    },
+    "U34": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "V34": {
+      "value": "1294.8439680000001",
+      "formula": null
+    },
+    "W34": {
+      "value": "5.5506000000000002",
+      "formula": null
+    },
+    "X34": {
+      "value": null,
+      "formula": null
+    },
+    "A35": {
+      "value": null,
+      "formula": null
+    },
+    "A36": {
+      "value": null,
+      "formula": null
+    },
+    "H36": {
+      "value": "FE result",
+      "formula": null
+    },
+    "I36": {
+      "value": "n=",
+      "formula": null
+    },
+    "J36": {
+      "value": "5",
+      "formula": null
+    },
+    "K36": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "L36": {
+      "value": "5.664789216582836",
+      "formula": "IFERROR(IF(MAX($J$38:$J$52)<=3+0.000000001,INDEX($N$38:$N$52,MATCH(MAX($J$38:$J$52),$J$38:$J$52,0)),INDEX($N$38:$N$52,MATCH(3,$J$38:$J$52,1))+(INDEX($N$38:$N$52,MATCH(3,$J$38:$J$52,1)+1)-INDEX($N$38:$N$52,MATCH(3,$J$38:$J$52,1)))*(3-INDEX($J$38:$J$52,MATCH(3,$J$38:$J$52,1)))/(INDEX($J$38:$J$52,MATCH(3,$J$38:$J$52,1)+1)-INDEX($J$38:$J$52,MATCH(3,$J$38:$J$52,1)))),\"\")"
+    },
+    "M36": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "N36": {
+      "value": "3",
+      "formula": "MAX($J$38:$J$52)"
+    },
+    "O36": {
+      "value": null,
+      "formula": null
+    },
+    "Q36": {
+      "value": "FE result",
+      "formula": null
+    },
+    "R36": {
+      "value": "n=",
+      "formula": null
+    },
+    "S36": {
+      "value": "10",
+      "formula": null
+    },
+    "T36": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "U36": {
+      "value": "5.4862932774914484",
+      "formula": "IFERROR(IF(MAX($S$38:$S$52)<=3+0.000000001,INDEX($W$38:$W$52,MATCH(MAX($S$38:$S$52),$S$38:$S$52,0)),INDEX($W$38:$W$52,MATCH(3,$S$38:$S$52,1))+(INDEX($W$38:$W$52,MATCH(3,$S$38:$S$52,1)+1)-INDEX($W$38:$W$52,MATCH(3,$S$38:$S$52,1)))*(3-INDEX($S$38:$S$52,MATCH(3,$S$38:$S$52,1)))/(INDEX($S$38:$S$52,MATCH(3,$S$38:$S$52,1)+1)-INDEX($S$38:$S$52,MATCH(3,$S$38:$S$52,1)))),\"\")"
+    },
+    "V36": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "W36": {
+      "value": "3",
+      "formula": "MAX($S$38:$S$52)"
+    },
+    "X36": {
+      "value": null,
+      "formula": null
+    },
+    "H37": {
+      "value": "step",
+      "formula": null
+    },
+    "I37": {
+      "value": "load",
+      "formula": null
+    },
+    "J37": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "K37": {
+      "value": "Jtotal",
+      "formula": null
+    },
+    "L37": {
+      "value": "Je",
+      "formula": null
+    },
+    "M37": {
+      "value": "Jp",
+      "formula": null
+    },
+    "N37": {
+      "value": "h1",
+      "formula": null
+    },
+    "O37": {
+      "value": null,
+      "formula": null
+    },
+    "Q37": {
+      "value": "step",
+      "formula": null
+    },
+    "R37": {
+      "value": "load",
+      "formula": null
+    },
+    "S37": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "T37": {
+      "value": "Jtotal",
+      "formula": null
+    },
+    "U37": {
+      "value": "Je",
+      "formula": null
+    },
+    "V37": {
+      "value": "Jp",
+      "formula": null
+    },
+    "W37": {
+      "value": "h1",
+      "formula": null
+    },
+    "X37": {
+      "value": null,
+      "formula": null
+    },
+    "H38": {
+      "value": "0.01",
+      "formula": null
+    },
+    "I38": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$H38"
+    },
+    "J38": {
+      "value": "0.03",
+      "formula": "$I38/$B$17"
+    },
+    "K38": {
+      "value": "6.5574400000000003E-3",
+      "formula": null
+    },
+    "L38": {
+      "value": "6.4461744E-3",
+      "formula": "$B$24*$B$4*$F$4*($A$11-$B$11)*$C$21*$J38^2"
+    },
+    "M38": {
+      "value": "1.1126560000000035E-4",
+      "formula": "$K38-$L38"
+    },
+    "N38": {
+      "value": "52995.732357872439",
+      "formula": "IF($K38=\"\",\"\",$M38/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$J38^($J$36+1)))"
+    },
+    "O38": {
+      "value": null,
+      "formula": null
+    },
+    "Q38": {
+      "value": "0.01",
+      "formula": null
+    },
+    "R38": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$Q38"
+    },
+    "S38": {
+      "value": "0.03",
+      "formula": "$R38/$B$17"
+    },
+    "T38": {
+      "value": "6.5568099999999997E-3",
+      "formula": null
+    },
+    "U38": {
+      "value": "6.4461744E-3",
+      "formula": "$B$24*$B$4*$F$4*($A$11-$B$11)*$C$21*$S38^2"
+    },
+    "V38": {
+      "value": "1.1063559999999976E-4",
+      "formula": "$T38-$U38"
+    },
+    "W38": {
+      "value": "2168545834187.9231",
+      "formula": "IF($T38=\"\",\"\",$V38/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$S38^($S$36+1)))"
+    },
+    "X38": {
+      "value": null,
+      "formula": null
+    },
+    "H39": {
+      "value": "0.02",
+      "formula": null
+    },
+    "I39": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "J39": {
+      "value": "0.06",
+      "formula": null
+    },
+    "K39": {
+      "value": "2.62381E-2",
+      "formula": null
+    },
+    "L39": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "M39": {
+      "value": "4.5340240000000046E-4",
+      "formula": null
+    },
+    "N39": {
+      "value": "3374.3010307117847",
+      "formula": null
+    },
+    "O39": {
+      "value": null,
+      "formula": null
+    },
+    "Q39": {
+      "value": "0.02",
+      "formula": null
+    },
+    "R39": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "S39": {
+      "value": "0.06",
+      "formula": null
+    },
+    "T39": {
+      "value": "2.6227299999999999E-2",
+      "formula": null
+    },
+    "U39": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "V39": {
+      "value": "4.4260239999999867E-4",
+      "formula": null
+    },
+    "W39": {
+      "value": "4236015324.4707808",
+      "formula": null
+    },
+    "X39": {
+      "value": null,
+      "formula": null
+    },
+    "H40": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "I40": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "J40": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "K40": {
+      "value": "8.0544699999999997E-2",
+      "formula": null
+    },
+    "L40": {
+      "value": "7.8965636400000011E-2",
+      "formula": null
+    },
+    "M40": {
+      "value": "1.5790635999999858E-3",
+      "formula": null
+    },
+    "N40": {
+      "value": "409.13943423210065",
+      "formula": null
+    },
+    "O40": {
+      "value": null,
+      "formula": null
+    },
+    "Q40": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "R40": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "S40": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "T40": {
+      "value": "8.0327999999999997E-2",
+      "formula": null
+    },
+    "U40": {
+      "value": "7.8965636400000011E-2",
+      "formula": null
+    },
+    "V40": {
+      "value": "1.3623635999999856E-3",
+      "formula": null
+    },
+    "W40": {
+      "value": "27657839.622403838",
+      "formula": null
+    },
+    "X40": {
+      "value": null,
+      "formula": null
+    },
+    "H41": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "I41": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "J41": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "K41": {
+      "value": "0.21982299999999999",
+      "formula": null
+    },
+    "L41": {
+      "value": "0.21312664110000004",
+      "formula": null
+    },
+    "M41": {
+      "value": "6.696358899999949E-3",
+      "formula": null
+    },
+    "N41": {
+      "value": "88.249374930587706",
+      "formula": null
+    },
+    "O41": {
+      "value": null,
+      "formula": null
+    },
+    "Q41": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "R41": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "S41": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "T41": {
+      "value": "0.217277",
+      "formula": null
+    },
+    "U41": {
+      "value": "0.21312664110000004",
+      "formula": null
+    },
+    "V41": {
+      "value": "4.1503588999999563E-3",
+      "formula": null
+    },
+    "W41": {
+      "value": "358107.21612159547",
+      "formula": null
+    },
+    "X41": {
+      "value": null,
+      "formula": null
+    },
+    "H42": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "I42": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "J42": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "K42": {
+      "value": "0.57879400000000003",
+      "formula": null
+    },
+    "L42": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "M42": {
+      "value": "4.2049259724999954E-2",
+      "formula": null
+    },
+    "N42": {
+      "value": "34.692939568631324",
+      "formula": null
+    },
+    "O42": {
+      "value": null,
+      "formula": null
+    },
+    "Q42": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "R42": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "S42": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "T42": {
+      "value": "0.55306",
+      "formula": null
+    },
+    "U42": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "V42": {
+      "value": "1.631525972499992E-2",
+      "formula": null
+    },
+    "W42": {
+      "value": "8756.0069514860606",
+      "formula": null
+    },
+    "X42": {
+      "value": null,
+      "formula": null
+    },
+    "H43": {
+      "value": "0.141875",
+      "formula": null
+    },
+    "I43": {
+      "value": "4290519772.308835",
+      "formula": null
+    },
+    "J43": {
+      "value": "0.42562499999999998",
+      "formula": null
+    },
+    "K43": {
+      "value": "1.62283",
+      "formula": null
+    },
+    "L43": {
+      "value": "1.2975192213187499",
+      "formula": null
+    },
+    "M43": {
+      "value": "0.32531077868125013",
+      "formula": null
+    },
+    "N43": {
+      "value": "18.999544531595962",
+      "formula": null
+    },
+    "O43": {
+      "value": null,
+      "formula": null
+    },
+    "Q43": {
+      "value": "0.141875",
+      "formula": null
+    },
+    "R43": {
+      "value": "4290519772.308835",
+      "formula": null
+    },
+    "S43": {
+      "value": "0.42562499999999998",
+      "formula": null
+    },
+    "T43": {
+      "value": "1.39944",
+      "formula": null
+    },
+    "U43": {
+      "value": "1.2975192213187499",
+      "formula": null
+    },
+    "V43": {
+      "value": "0.10192077868125016",
+      "formula": null
+    },
+    "W43": {
+      "value": "426.15915579494452",
+      "formula": null
+    },
+    "X43": {
+      "value": null,
+      "formula": null
+    },
+    "H44": {
+      "value": "0.21781200000000001",
+      "formula": null
+    },
+    "I44": {
+      "value": "6586972282.9683313",
+      "formula": null
+    },
+    "J44": {
+      "value": "0.65343600000000002",
+      "formula": null
+    },
+    "K44": {
+      "value": "5.5595499999999998",
+      "formula": null
+    },
+    "L44": {
+      "value": "3.0581983999596885",
+      "formula": null
+    },
+    "M44": {
+      "value": "2.5013516000403113",
+      "formula": null
+    },
+    "N44": {
+      "value": "11.1574232769769",
+      "formula": null
+    },
+    "O44": {
+      "value": null,
+      "formula": null
+    },
+    "Q44": {
+      "value": "0.21781200000000001",
+      "formula": null
+    },
+    "R44": {
+      "value": "6586972282.9683313",
+      "formula": null
+    },
+    "S44": {
+      "value": "0.65343600000000002",
+      "formula": null
+    },
+    "T44": {
+      "value": "4.5287899999999999",
+      "formula": null
+    },
+    "U44": {
+      "value": "3.0581983999596885",
+      "formula": null
+    },
+    "V44": {
+      "value": "1.4705916000403114",
+      "formula": null
+    },
+    "W44": {
+      "value": "55.063772236434708",
+      "formula": null
+    },
+    "X44": {
+      "value": null,
+      "formula": null
+    },
+    "H45": {
+      "value": "0.31781300000000001",
+      "formula": null
+    },
+    "I45": {
+      "value": "9611157430.1095181",
+      "formula": null
+    },
+    "J45": {
+      "value": "0.95343900000000004",
+      "formula": null
+    },
+    "K45": {
+      "value": "22.7102",
+      "formula": null
+    },
+    "L45": {
+      "value": "6.510965090281319",
+      "formula": null
+    },
+    "M45": {
+      "value": "16.199234909718683",
+      "formula": null
+    },
+    "N45": {
+      "value": "7.4876328342561953",
+      "formula": null
+    },
+    "O45": {
+      "value": null,
+      "formula": null
+    },
+    "Q45": {
+      "value": "0.31781300000000001",
+      "formula": null
+    },
+    "R45": {
+      "value": "9611157430.1095181",
+      "formula": null
+    },
+    "S45": {
+      "value": "0.95343900000000004",
+      "formula": null
+    },
+    "T45": {
+      "value": "23.859100000000002",
+      "formula": null
+    },
+    "U45": {
+      "value": "6.510965090281319",
+      "formula": null
+    },
+    "V45": {
+      "value": "17.348134909718681",
+      "formula": null
+    },
+    "W45": {
+      "value": "10.177433297571953",
+      "formula": null
+    },
+    "X45": {
+      "value": null,
+      "formula": null
+    },
+    "H46": {
+      "value": "0.41781200000000002",
+      "formula": null
+    },
+    "I46": {
+      "value": "12635282094.152592",
+      "formula": null
+    },
+    "J46": {
+      "value": "1.253436",
+      "formula": null
+    },
+    "K46": {
+      "value": "84.209199999999996",
+      "formula": null
+    },
+    "L46": {
+      "value": "11.252884713610889",
+      "formula": null
+    },
+    "M46": {
+      "value": "72.956315286389099",
+      "formula": null
+    },
+    "N46": {
+      "value": "6.5321691182687118",
+      "formula": null
+    },
+    "O46": {
+      "value": null,
+      "formula": null
+    },
+    "Q46": {
+      "value": "0.41781200000000002",
+      "formula": null
+    },
+    "R46": {
+      "value": "12635282094.152592",
+      "formula": null
+    },
+    "S46": {
+      "value": "1.253436",
+      "formula": null
+    },
+    "T46": {
+      "value": "238.79400000000001",
+      "formula": null
+    },
+    "U46": {
+      "value": "11.252884713610889",
+      "formula": null
+    },
+    "V46": {
+      "value": "227.54111528638913",
+      "formula": null
+    },
+    "W46": {
+      "value": "6.5848152028339193",
+      "formula": null
+    },
+    "X46": {
+      "value": null,
+      "formula": null
+    },
+    "H47": {
+      "value": "0.51781200000000005",
+      "formula": null
+    },
+    "I47": {
+      "value": "15659436999.744722",
+      "formula": null
+    },
+    "J47": {
+      "value": "1.553436",
+      "formula": null
+    },
+    "K47": {
+      "value": "268.97699999999998",
+      "formula": null
+    },
+    "L47": {
+      "value": "17.284080190436491",
+      "formula": null
+    },
+    "M47": {
+      "value": "251.69291980956348",
+      "formula": null
+    },
+    "N47": {
+      "value": "6.2189679458597817",
+      "formula": null
+    },
+    "O47": {
+      "value": null,
+      "formula": null
+    },
+    "Q47": {
+      "value": "0.51781200000000005",
+      "formula": null
+    },
+    "R47": {
+      "value": "15659436999.744722",
+      "formula": null
+    },
+    "S47": {
+      "value": "1.553436",
+      "formula": null
+    },
+    "T47": {
+      "value": "2214.13",
+      "formula": null
+    },
+    "U47": {
+      "value": "17.284080190436491",
+      "formula": null
+    },
+    "V47": {
+      "value": "2196.8459198095638",
+      "formula": null
+    },
+    "W47": {
+      "value": "6.0003984474264911",
+      "formula": null
+    },
+    "X47": {
+      "value": null,
+      "formula": null
+    },
+    "H48": {
+      "value": "0.61781299999999995",
+      "formula": null
+    },
+    "I48": {
+      "value": "18683622146.885906",
+      "formula": null
+    },
+    "J48": {
+      "value": "1.8534389999999996",
+      "formula": null
+    },
+    "K48": {
+      "value": "728.80399999999997",
+      "formula": null
+    },
+    "L48": {
+      "value": "24.604590197804509",
+      "formula": null
+    },
+    "M48": {
+      "value": "704.19940980219542",
+      "formula": null
+    },
+    "N48": {
+      "value": "6.0316118509386314",
+      "formula": null
+    },
+    "O48": {
+      "value": null,
+      "formula": null
+    },
+    "Q48": {
+      "value": "0.61781299999999995",
+      "formula": null
+    },
+    "R48": {
+      "value": "18683622146.885906",
+      "formula": null
+    },
+    "S48": {
+      "value": "1.8534389999999996",
+      "formula": null
+    },
+    "T48": {
+      "value": "14753.5",
+      "formula": null
+    },
+    "U48": {
+      "value": "24.604590197804509",
+      "formula": null
+    },
+    "V48": {
+      "value": "14728.895409802195",
+      "formula": null
+    },
+    "W48": {
+      "value": "5.7678827229249015",
+      "formula": null
+    },
+    "X48": {
+      "value": null,
+      "formula": null
+    },
+    "H49": {
+      "value": "0.71781200000000001",
+      "formula": null
+    },
+    "I49": {
+      "value": "21707746810.928982",
+      "formula": null
+    },
+    "J49": {
+      "value": "2.1534359999999997",
+      "formula": null
+    },
+    "K49": {
+      "value": "1725.62",
+      "formula": null
+    },
+    "L49": {
+      "value": "33.214175784087679",
+      "formula": null
+    },
+    "M49": {
+      "value": "1692.4058242159122",
+      "formula": null
+    },
+    "N49": {
+      "value": "5.8927797484104687",
+      "formula": null
+    },
+    "O49": {
+      "value": null,
+      "formula": null
+    },
+    "Q49": {
+      "value": "0.71781200000000001",
+      "formula": null
+    },
+    "R49": {
+      "value": "21707746810.928982",
+      "formula": null
+    },
+    "S49": {
+      "value": "2.1534359999999997",
+      "formula": null
+    },
+    "T49": {
+      "value": "75280.2",
+      "formula": null
+    },
+    "U49": {
+      "value": "33.214175784087679",
+      "formula": null
+    },
+    "V49": {
+      "value": "75246.98582421591",
+      "formula": null
+    },
+    "W49": {
+      "value": "5.6577657251585327",
+      "formula": null
+    },
+    "X49": {
+      "value": null,
+      "formula": null
+    },
+    "H50": {
+      "value": "0.81781300000000001",
+      "formula": null
+    },
+    "I50": {
+      "value": "24731931958.070168",
+      "formula": null
+    },
+    "J50": {
+      "value": "2.4534389999999999",
+      "formula": null
+    },
+    "K50": {
+      "value": "3679.24",
+      "formula": null
+    },
+    "L50": {
+      "value": "43.113181336153318",
+      "formula": null
+    },
+    "M50": {
+      "value": "3636.1268186638463",
+      "formula": null
+    },
+    "N50": {
+      "value": "5.7888853284603687",
+      "formula": null
+    },
+    "O50": {
+      "value": null,
+      "formula": null
+    },
+    "Q50": {
+      "value": "0.81781300000000001",
+      "formula": null
+    },
+    "R50": {
+      "value": "24731931958.070168",
+      "formula": null
+    },
+    "S50": {
+      "value": "2.4534389999999999",
+      "formula": null
+    },
+    "T50": {
+      "value": "311447",
+      "formula": null
+    },
+    "U50": {
+      "value": "43.113181336153318",
+      "formula": null
+    },
+    "V50": {
+      "value": "311403.88681866386",
+      "formula": null
+    },
+    "W50": {
+      "value": "5.5770383516756246",
+      "formula": null
+    },
+    "X50": {
+      "value": null,
+      "formula": null
+    },
+    "H51": {
+      "value": "0.91781299999999999",
+      "formula": null
+    },
+    "I51": {
+      "value": "27756086863.6623",
+      "formula": null
+    },
+    "J51": {
+      "value": "2.7534389999999997",
+      "formula": null
+    },
+    "K51": {
+      "value": "7223.52",
+      "formula": null
+    },
+    "L51": {
+      "value": "54.301329225327706",
+      "formula": null
+    },
+    "M51": {
+      "value": "7169.2186707746723",
+      "formula": null
+    },
+    "N51": {
+      "value": "5.7125048566302024",
+      "formula": null
+    },
+    "O51": {
+      "value": null,
+      "formula": null
+    },
+    "Q51": {
+      "value": "0.91781299999999999",
+      "formula": null
+    },
+    "R51": {
+      "value": "27756086863.6623",
+      "formula": null
+    },
+    "S51": {
+      "value": "2.7534389999999997",
+      "formula": null
+    },
+    "T51": {
+      "value": "1096430",
+      "formula": null
+    },
+    "U51": {
+      "value": "54.301329225327706",
+      "formula": null
+    },
+    "V51": {
+      "value": "1096375.6986707747",
+      "formula": null
+    },
+    "W51": {
+      "value": "5.5199717911948616",
+      "formula": null
+    },
+    "X51": {
+      "value": null,
+      "formula": null
+    },
+    "H52": {
+      "value": "1",
+      "formula": null
+    },
+    "I52": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "J52": {
+      "value": "3",
+      "formula": null
+    },
+    "K52": {
+      "value": "11957.8",
+      "formula": null
+    },
+    "L52": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "M52": {
+      "value": "11893.338255999999",
+      "formula": null
+    },
+    "N52": {
+      "value": "5.664789216582836",
+      "formula": null
+    },
+    "O52": {
+      "value": null,
+      "formula": null
+    },
+    "Q52": {
+      "value": "1",
+      "formula": null
+    },
+    "R52": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "S52": {
+      "value": "3",
+      "formula": null
+    },
+    "T52": {
+      "value": "2799080",
+      "formula": null
+    },
+    "U52": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "V52": {
+      "value": "2799015.5382559998",
+      "formula": null
+    },
+    "W52": {
+      "value": "5.4862932774914484",
+      "formula": null
+    },
+    "X52": {
+      "value": null,
+      "formula": null
+    },
+    "H54": {
+      "value": "FE result",
+      "formula": null
+    },
+    "I54": {
+      "value": "n=",
+      "formula": null
+    },
+    "J54": {
+      "value": "7",
+      "formula": null
+    },
+    "K54": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "L54": {
+      "value": "5.6489387127639743",
+      "formula": "IFERROR(IF(MAX($J$56:$J$70)<=3+0.000000001,INDEX($N$56:$N$70,MATCH(MAX($J$56:$J$70),$J$56:$J$70,0)),INDEX($N$56:$N$70,MATCH(3,$J$56:$J$70,1))+(INDEX($N$56:$N$70,MATCH(3,$J$56:$J$70,1)+1)-INDEX($N$56:$N$70,MATCH(3,$J$56:$J$70,1)))*(3-INDEX($J$56:$J$70,MATCH(3,$J$56:$J$70,1)))/(INDEX($J$56:$J$70,MATCH(3,$J$56:$J$70,1)+1)-INDEX($J$56:$J$70,MATCH(3,$J$56:$J$70,1)))),\"\")"
+    },
+    "M54": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "N54": {
+      "value": "3",
+      "formula": "MAX($J$56:$J$70)"
+    },
+    "O54": {
+      "value": null,
+      "formula": null
+    },
+    "Q54": {
+      "value": "FE result",
+      "formula": null
+    },
+    "R54": {
+      "value": "n=",
+      "formula": null
+    },
+    "S54": {
+      "value": "13",
+      "formula": null
+    },
+    "T54": {
+      "value": "h1 입력값",
+      "formula": null
+    },
+    "U54": {
+      "value": "5.3282902443846991",
+      "formula": "IFERROR(IF(MAX($S$56:$S$70)<=3+0.000000001,INDEX($W$56:$W$70,MATCH(MAX($S$56:$S$70),$S$56:$S$70,0)),INDEX($W$56:$W$70,MATCH(3,$S$56:$S$70,1))+(INDEX($W$56:$W$70,MATCH(3,$S$56:$S$70,1)+1)-INDEX($W$56:$W$70,MATCH(3,$S$56:$S$70,1)))*(3-INDEX($S$56:$S$70,MATCH(3,$S$56:$S$70,1)))/(INDEX($S$56:$S$70,MATCH(3,$S$56:$S$70,1)+1)-INDEX($S$56:$S$70,MATCH(3,$S$56:$S$70,1)))),\"\")"
+    },
+    "V54": {
+      "value": "M/ML 끝",
+      "formula": null
+    },
+    "W54": {
+      "value": "3",
+      "formula": "MAX($S$56:$S$70)"
+    },
+    "X54": {
+      "value": null,
+      "formula": null
+    },
+    "H55": {
+      "value": "step",
+      "formula": null
+    },
+    "I55": {
+      "value": "load",
+      "formula": null
+    },
+    "J55": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "K55": {
+      "value": "Jtotal",
+      "formula": null
+    },
+    "L55": {
+      "value": "Je",
+      "formula": null
+    },
+    "M55": {
+      "value": "Jp",
+      "formula": null
+    },
+    "N55": {
+      "value": "h1",
+      "formula": null
+    },
+    "O55": {
+      "value": null,
+      "formula": null
+    },
+    "Q55": {
+      "value": "step",
+      "formula": null
+    },
+    "R55": {
+      "value": "load",
+      "formula": null
+    },
+    "S55": {
+      "value": "M/ML",
+      "formula": null
+    },
+    "T55": {
+      "value": "Jtotal",
+      "formula": null
+    },
+    "U55": {
+      "value": "Je",
+      "formula": null
+    },
+    "V55": {
+      "value": "Jp",
+      "formula": null
+    },
+    "W55": {
+      "value": "h1",
+      "formula": null
+    },
+    "X55": {
+      "value": null,
+      "formula": null
+    },
+    "H56": {
+      "value": "0.01",
+      "formula": null
+    },
+    "I56": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$H56"
+    },
+    "J56": {
+      "value": "0.03",
+      "formula": "$I56/$B$17"
+    },
+    "K56": {
+      "value": "6.5568099999999997E-3",
+      "formula": null
+    },
+    "L56": {
+      "value": "6.4461744E-3",
+      "formula": "$B$24*$B$4*$F$4*($A$11-$B$11)*$C$21*$J56^2"
+    },
+    "M56": {
+      "value": "1.1063559999999976E-4",
+      "formula": "$K56-$L56"
+    },
+    "N56": {
+      "value": "58550737.523073927",
+      "formula": "IF($K56=\"\",\"\",$M56/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$J56^($J$54+1)))"
+    },
+    "O56": {
+      "value": null,
+      "formula": null
+    },
+    "Q56": {
+      "value": "0.01",
+      "formula": null
+    },
+    "R56": {
+      "value": "302415490.55921304",
+      "formula": "$D$17*$Q56"
+    },
+    "S56": {
+      "value": "0.03",
+      "formula": "$R56/$B$17"
+    },
+    "T56": {
+      "value": "6.5568099999999997E-3",
+      "formula": null
+    },
+    "U56": {
+      "value": "6.4461744E-3",
+      "formula": "$B$24*$B$4*$F$4*($A$11-$B$11)*$C$21*$S56^2"
+    },
+    "V56": {
+      "value": "1.1063559999999976E-4",
+      "formula": "$T56-$U56"
+    },
+    "W56": {
+      "value": "8.0316512377330496E+16",
+      "formula": "IF($T56=\"\",\"\",$V56/($A$4*$B$4*$F$4*($A$11-$B$11)*$C$21*$S56^($S$54+1)))"
+    },
+    "X56": {
+      "value": null,
+      "formula": null
+    },
+    "H57": {
+      "value": "0.02",
+      "formula": null
+    },
+    "I57": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "J57": {
+      "value": "0.06",
+      "formula": null
+    },
+    "K57": {
+      "value": "2.6227799999999999E-2",
+      "formula": null
+    },
+    "L57": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "M57": {
+      "value": "4.4310239999999917E-4",
+      "formula": null
+    },
+    "N57": {
+      "value": "916012.94581618486",
+      "formula": null
+    },
+    "O57": {
+      "value": null,
+      "formula": null
+    },
+    "Q57": {
+      "value": "0.02",
+      "formula": null
+    },
+    "R57": {
+      "value": "604830981.11842608",
+      "formula": null
+    },
+    "S57": {
+      "value": "0.06",
+      "formula": null
+    },
+    "T57": {
+      "value": "2.6227199999999999E-2",
+      "formula": null
+    },
+    "U57": {
+      "value": "2.57846976E-2",
+      "formula": null
+    },
+    "V57": {
+      "value": "4.4250239999999927E-4",
+      "formula": null
+    },
+    "W57": {
+      "value": "19606751177546.105",
+      "formula": null
+    },
+    "X57": {
+      "value": null,
+      "formula": null
+    },
+    "H58": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "I58": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "J58": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "K58": {
+      "value": "8.0363299999999999E-2",
+      "formula": null
+    },
+    "L58": {
+      "value": "7.8965636400000011E-2",
+      "formula": null
+    },
+    "M58": {
+      "value": "1.3976635999999876E-3",
+      "formula": null
+    },
+    "N58": {
+      "value": "32847.004838705179",
+      "formula": null
+    },
+    "O58": {
+      "value": null,
+      "formula": null
+    },
+    "Q58": {
+      "value": "3.5000000000000003E-2",
+      "formula": null
+    },
+    "R58": {
+      "value": "1058454216.9572457",
+      "formula": null
+    },
+    "S58": {
+      "value": "0.10500000000000001",
+      "formula": null
+    },
+    "T58": {
+      "value": "8.0322400000000002E-2",
+      "formula": null
+    },
+    "U58": {
+      "value": "7.8965636400000011E-2",
+      "formula": null
+    },
+    "V58": {
+      "value": "1.3567635999999911E-3",
+      "formula": null
+    },
+    "W58": {
+      "value": "23793674102.459221",
+      "formula": null
+    },
+    "X58": {
+      "value": null,
+      "formula": null
+    },
+    "H59": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "I59": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "J59": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "K59": {
+      "value": "0.217753",
+      "formula": null
+    },
+    "L59": {
+      "value": "0.21312664110000004",
+      "formula": null
+    },
+    "M59": {
+      "value": "4.6263588999999605E-3",
+      "formula": null
+    },
+    "N59": {
+      "value": "2048.9626321990067",
+      "formula": null
+    },
+    "O59": {
+      "value": null,
+      "formula": null
+    },
+    "Q59": {
+      "value": "5.7500000000000002E-2",
+      "formula": null
+    },
+    "R59": {
+      "value": "1738889070.7154751",
+      "formula": null
+    },
+    "S59": {
+      "value": "0.17250000000000001",
+      "formula": null
+    },
+    "T59": {
+      "value": "0.217166",
+      "formula": null
+    },
+    "U59": {
+      "value": "0.21312664110000004",
+      "formula": null
+    },
+    "V59": {
+      "value": "4.0393588999999563E-3",
+      "formula": null
+    },
+    "W59": {
+      "value": "67900435.970538065",
+      "formula": null
+    },
+    "X59": {
+      "value": null,
+      "formula": null
+    },
+    "H60": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "I60": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "J60": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "K60": {
+      "value": "0.55842199999999997",
+      "formula": null
+    },
+    "L60": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "M60": {
+      "value": "2.1677259724999898E-2",
+      "formula": null
+    },
+    "N60": {
+      "value": "238.65957921279315",
+      "formula": null
+    },
+    "O60": {
+      "value": null,
+      "formula": null
+    },
+    "Q60": {
+      "value": "9.1249999999999998E-2",
+      "formula": null
+    },
+    "R60": {
+      "value": "2759541351.352819",
+      "formula": null
+    },
+    "S60": {
+      "value": "0.27374999999999999",
+      "formula": null
+    },
+    "T60": {
+      "value": "0.551894",
+      "formula": null
+    },
+    "U60": {
+      "value": "0.53674474027500008",
+      "formula": null
+    },
+    "V60": {
+      "value": "1.5149259724999919E-2",
+      "formula": null
+    },
+    "W60": {
+      "value": "396315.56908474449",
+      "formula": null
+    },
+    "X60": {
+      "value": null,
+      "formula": null
+    },
+    "H61": {
+      "value": "0.141875",
+      "formula": null
+    },
+    "I61": {
+      "value": "4290519772.308835",
+      "formula": null
+    },
+    "J61": {
+      "value": "0.42562499999999998",
+      "formula": null
+    },
+    "K61": {
+      "value": "1.47705",
+      "formula": null
+    },
+    "L61": {
+      "value": "1.2975192213187499",
+      "formula": null
+    },
+    "M61": {
+      "value": "0.17953077868125011",
+      "formula": null
+    },
+    "N61": {
+      "value": "57.880115988113637",
+      "formula": null
+    },
+    "O61": {
+      "value": null,
+      "formula": null
+    },
+    "Q61": {
+      "value": "0.141875",
+      "formula": null
+    },
+    "R61": {
+      "value": "4290519772.308835",
+      "formula": null
+    },
+    "S61": {
+      "value": "0.42562499999999998",
+      "formula": null
+    },
+    "T61": {
+      "value": "1.37727",
+      "formula": null
+    },
+    "U61": {
+      "value": "1.2975192213187499",
+      "formula": null
+    },
+    "V61": {
+      "value": "7.9750778681250134E-2",
+      "formula": null
+    },
+    "W61": {
+      "value": "4324.7662065356617",
+      "formula": null
+    },
+    "X61": {
+      "value": null,
+      "formula": null
+    },
+    "H62": {
+      "value": "0.21781200000000001",
+      "formula": null
+    },
+    "I62": {
+      "value": "6586972282.9683313",
+      "formula": null
+    },
+    "J62": {
+      "value": "0.65343600000000002",
+      "formula": null
+    },
+    "K62": {
+      "value": "4.9767000000000001",
+      "formula": null
+    },
+    "L62": {
+      "value": "3.0581983999596885",
+      "formula": null
+    },
+    "M62": {
+      "value": "1.9185016000403117",
+      "formula": null
+    },
+    "N62": {
+      "value": "20.042191968003785",
+      "formula": null
+    },
+    "O62": {
+      "value": null,
+      "formula": null
+    },
+    "Q62": {
+      "value": "0.21781200000000001",
+      "formula": null
+    },
+    "R62": {
+      "value": "6586972282.9683313",
+      "formula": null
+    },
+    "S62": {
+      "value": "0.65343600000000002",
+      "formula": null
+    },
+    "T62": {
+      "value": "4.2883100000000001",
+      "formula": null
+    },
+    "U62": {
+      "value": "3.0581983999596885",
+      "formula": null
+    },
+    "V62": {
+      "value": "1.2301116000403116",
+      "formula": null
+    },
+    "W62": {
+      "value": "165.08561063214611",
+      "formula": null
+    },
+    "X62": {
+      "value": null,
+      "formula": null
+    },
+    "H63": {
+      "value": "0.31781300000000001",
+      "formula": null
+    },
+    "I63": {
+      "value": "9611157430.1095181",
+      "formula": null
+    },
+    "J63": {
+      "value": "0.95343900000000004",
+      "formula": null
+    },
+    "K63": {
+      "value": "23.3477",
+      "formula": null
+    },
+    "L63": {
+      "value": "6.510965090281319",
+      "formula": null
+    },
+    "M63": {
+      "value": "16.836734909718679",
+      "formula": null
+    },
+    "N63": {
+      "value": "8.5609524666967047",
+      "formula": null
+    },
+    "O63": {
+      "value": null,
+      "formula": null
+    },
+    "Q63": {
+      "value": "0.31781300000000001",
+      "formula": null
+    },
+    "R63": {
+      "value": "9611157430.1095181",
+      "formula": null
+    },
+    "S63": {
+      "value": "0.95343900000000004",
+      "formula": null
+    },
+    "T63": {
+      "value": "24.221699999999998",
+      "formula": null
+    },
+    "U63": {
+      "value": "6.510965090281319",
+      "formula": null
+    },
+    "V63": {
+      "value": "17.710734909718681",
+      "formula": null
+    },
+    "W63": {
+      "value": "11.987905722639265",
+      "formula": null
+    },
+    "X63": {
+      "value": null,
+      "formula": null
+    },
+    "H64": {
+      "value": "0.41781200000000002",
+      "formula": null
+    },
+    "I64": {
+      "value": "12635282094.152592",
+      "formula": null
+    },
+    "J64": {
+      "value": "1.253436",
+      "formula": null
+    },
+    "K64": {
+      "value": "128.416",
+      "formula": null
+    },
+    "L64": {
+      "value": "11.252884713610889",
+      "formula": null
+    },
+    "M64": {
+      "value": "117.16311528638911",
+      "formula": null
+    },
+    "N64": {
+      "value": "6.6769959298333479",
+      "formula": null
+    },
+    "O64": {
+      "value": null,
+      "formula": null
+    },
+    "Q64": {
+      "value": "0.41781200000000002",
+      "formula": null
+    },
+    "R64": {
+      "value": "12635282094.152592",
+      "formula": null
+    },
+    "S64": {
+      "value": "1.253436",
+      "formula": null
+    },
+    "T64": {
+      "value": "441.916",
+      "formula": null
+    },
+    "U64": {
+      "value": "11.252884713610889",
+      "formula": null
+    },
+    "V64": {
+      "value": "430.66311528638909",
+      "formula": null
+    },
+    "W64": {
+      "value": "6.3287056174989313",
+      "formula": null
+    },
+    "X64": {
+      "value": null,
+      "formula": null
+    },
+    "H65": {
+      "value": "0.51781200000000005",
+      "formula": null
+    },
+    "I65": {
+      "value": "15659436999.744722",
+      "formula": null
+    },
+    "J65": {
+      "value": "1.553436",
+      "formula": null
+    },
+    "K65": {
+      "value": "626.01300000000003",
+      "formula": null
+    },
+    "L65": {
+      "value": "17.284080190436491",
+      "formula": null
+    },
+    "M65": {
+      "value": "608.72891980956354",
+      "formula": null
+    },
+    "N65": {
+      "value": "6.2328191180090391",
+      "formula": null
+    },
+    "O65": {
+      "value": null,
+      "formula": null
+    },
+    "Q65": {
+      "value": "0.51781200000000005",
+      "formula": null
+    },
+    "R65": {
+      "value": "15659436999.744722",
+      "formula": null
+    },
+    "S65": {
+      "value": "1.553436",
+      "formula": null
+    },
+    "T65": {
+      "value": "7870.48",
+      "formula": null
+    },
+    "U65": {
+      "value": "17.284080190436491",
+      "formula": null
+    },
+    "V65": {
+      "value": "7853.1959198095628",
+      "formula": null
+    },
+    "W65": {
+      "value": "5.7219864892771399",
+      "formula": null
+    },
+    "X65": {
+      "value": null,
+      "formula": null
+    },
+    "H66": {
+      "value": "0.61781299999999995",
+      "formula": null
+    },
+    "I66": {
+      "value": "18683622146.885906",
+      "formula": null
+    },
+    "J66": {
+      "value": "1.8534389999999996",
+      "formula": null
+    },
+    "K66": {
+      "value": "2421.35",
+      "formula": null
+    },
+    "L66": {
+      "value": "24.604590197804509",
+      "formula": null
+    },
+    "M66": {
+      "value": "2396.7454098021954",
+      "formula": null
+    },
+    "N66": {
+      "value": "5.9758961137611442",
+      "formula": null
+    },
+    "O66": {
+      "value": null,
+      "formula": null
+    },
+    "Q66": {
+      "value": "0.61781299999999995",
+      "formula": null
+    },
+    "R66": {
+      "value": "18683622146.885906",
+      "formula": null
+    },
+    "S66": {
+      "value": "1.8534389999999996",
+      "formula": null
+    },
+    "T66": {
+      "value": "90021",
+      "formula": null
+    },
+    "U66": {
+      "value": "24.604590197804509",
+      "formula": null
+    },
+    "V66": {
+      "value": "89996.395409802193",
+      "formula": null
+    },
+    "W66": {
+      "value": "5.5352401367179533",
+      "formula": null
+    },
+    "X66": {
+      "value": null,
+      "formula": null
+    },
+    "H67": {
+      "value": "0.71781200000000001",
+      "formula": null
+    },
+    "I67": {
+      "value": "21707746810.928982",
+      "formula": null
+    },
+    "J67": {
+      "value": "2.1534359999999997",
+      "formula": null
+    },
+    "K67": {
+      "value": "7792.3",
+      "formula": null
+    },
+    "L67": {
+      "value": "33.214175784087679",
+      "formula": null
+    },
+    "M67": {
+      "value": "7759.0858242159129",
+      "formula": null
+    },
+    "N67": {
+      "value": "5.8258904683111057",
+      "formula": null
+    },
+    "O67": {
+      "value": null,
+      "formula": null
+    },
+    "Q67": {
+      "value": "0.71781200000000001",
+      "formula": null
+    },
+    "R67": {
+      "value": "21707746810.928982",
+      "formula": null
+    },
+    "S67": {
+      "value": "2.1534359999999997",
+      "formula": null
+    },
+    "T67": {
+      "value": "720932",
+      "formula": null
+    },
+    "U67": {
+      "value": "33.214175784087679",
+      "formula": null
+    },
+    "V67": {
+      "value": "720898.78582421585",
+      "formula": null
+    },
+    "W67": {
+      "value": "5.4279300112927489",
+      "formula": null
+    },
+    "X67": {
+      "value": null,
+      "formula": null
+    },
+    "H68": {
+      "value": "0.81781300000000001",
+      "formula": null
+    },
+    "I68": {
+      "value": "24731931958.070168",
+      "formula": null
+    },
+    "J68": {
+      "value": "2.4534389999999999",
+      "formula": null
+    },
+    "K68": {
+      "value": "21745.3",
+      "formula": null
+    },
+    "L68": {
+      "value": "43.113181336153318",
+      "formula": null
+    },
+    "M68": {
+      "value": "21702.186818663846",
+      "formula": null
+    },
+    "N68": {
+      "value": "5.7399603634089615",
+      "formula": null
+    },
+    "O68": {
+      "value": null,
+      "formula": null
+    },
+    "Q68": {
+      "value": "0.81781300000000001",
+      "formula": null
+    },
+    "R68": {
+      "value": "24731931958.070168",
+      "formula": null
+    },
+    "S68": {
+      "value": "2.4534389999999999",
+      "formula": null
+    },
+    "T68": {
+      "value": "4426140",
+      "formula": null
+    },
+    "U68": {
+      "value": "43.113181336153318",
+      "formula": null
+    },
+    "V68": {
+      "value": "4426096.8868186641",
+      "formula": null
+    },
+    "W68": {
+      "value": "5.3675330190908213",
+      "formula": null
+    },
+    "X68": {
+      "value": null,
+      "formula": null
+    },
+    "H69": {
+      "value": "0.91781299999999999",
+      "formula": null
+    },
+    "I69": {
+      "value": "27756086863.6623",
+      "formula": null
+    },
+    "J69": {
+      "value": "2.7534389999999997",
+      "formula": null
+    },
+    "K69": {
+      "value": "54144.3",
+      "formula": null
+    },
+    "L69": {
+      "value": "54.301329225327706",
+      "formula": null
+    },
+    "M69": {
+      "value": "54089.998670774672",
+      "formula": null
+    },
+    "N69": {
+      "value": "5.6848735222208306",
+      "formula": null
+    },
+    "O69": {
+      "value": null,
+      "formula": null
+    },
+    "Q69": {
+      "value": "0.91781299999999999",
+      "formula": null
+    },
+    "R69": {
+      "value": "27756086863.6623",
+      "formula": null
+    },
+    "S69": {
+      "value": "2.7534389999999997",
+      "formula": null
+    },
+    "T69": {
+      "value": "22148300",
+      "formula": null
+    },
+    "U69": {
+      "value": "54.301329225327706",
+      "formula": null
+    },
+    "V69": {
+      "value": "22148245.698670775",
+      "formula": null
+    },
+    "W69": {
+      "value": "5.3418342915266246",
+      "formula": null
+    },
+    "X69": {
+      "value": null,
+      "formula": null
+    },
+    "H70": {
+      "value": "1",
+      "formula": null
+    },
+    "I70": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "J70": {
+      "value": "3",
+      "formula": null
+    },
+    "K70": {
+      "value": "106805",
+      "formula": null
+    },
+    "L70": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "M70": {
+      "value": "106740.538256",
+      "formula": null
+    },
+    "N70": {
+      "value": "5.6489387127639743",
+      "formula": null
+    },
+    "O70": {
+      "value": null,
+      "formula": null
+    },
+    "Q70": {
+      "value": "1",
+      "formula": null
+    },
+    "R70": {
+      "value": "30241549055.921303",
+      "formula": null
+    },
+    "S70": {
+      "value": "3",
+      "formula": null
+    },
+    "T70": {
+      "value": "73397000",
+      "formula": null
+    },
+    "U70": {
+      "value": "64.46174400000001",
+      "formula": null
+    },
+    "V70": {
+      "value": "73396935.538256004",
+      "formula": null
+    },
+    "W70": {
+      "value": "5.3282902443846991",
+      "formula": null
+    },
+    "X70": {
+      "value": null,
+      "formula": null
+    }
+  },
+  "scope": "XML stored formula and cached-value read only; no Excel recalculation or ODB linkage proof"
+}
