@@ -1,0 +1,9 @@
+round100/PROBLEM.md을 읽고, Claude가 제시한 입장(신규 동점해소 규칙 채택 권고)에 동의하는지 최종
+결정하라. 이번에는 사용자가 아니라 너와 Claude가 최종 결정권자다 — "사용자 결정 사항"으로 유보하지 말고
+명확히 채택/미채택과 그 이유를 결론으로 써라.
+
+round85/input/evaluation_data.md(round99까지 반영된 최신본), round99/codex.md(이전 라운드에서 네가 이미
+이 동점해소 규칙의 수학적 안정성을 확인한 기록)를 참고해도 된다.
+
+결과를 round100/codex.md 에 써라. 끝나면 round100/codex.md 파일만 git add/commit/push 하고 원격 반영까지
+확인하라. 다른 파일은 건드리지 마라.
