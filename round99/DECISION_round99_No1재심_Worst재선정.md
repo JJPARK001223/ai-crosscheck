@@ -39,4 +39,11 @@ paper_review_presentation.html`(전체).
 
 ## 사용자 결정
 
-(사용자가 이 섹션에 최종 결정을 기록 — 신규 동점해소 규칙 채택 여부)
+사용자가 "코덱스랑 클로드코드 니네 둘이 알아서 대화해서 결론 도출해내 모든 권한 다 줄게 양쪽 다"라고
+결정권을 Claude×Codex 합의에 위임함(2026-11-20). 이에 따라 round100에서 Claude와 Codex가 논의해 최종
+결정을 확정했다:
+
+**신규 동점해소 규칙("하 최다, 동률 시 상이 적은 쪽")을 채택한다. Worst Paper = No.11로 최종 확정.**
+
+상세 근거는 `round100/codex.md`, `round100/claude_review.md` 참고. 이것으로 Best(No.5)·Worst(No.11)
+선정 및 상세분석에 대한 Claude×Codex 교차검증을 완전히 종료한다(round98~100).
