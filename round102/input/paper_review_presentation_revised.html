@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>과학논문 작성법 — Best/Worst Paper 비교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+/* 디자인 출처: J:\Desktop\세미나 양식 (2025년 9월 기준).pptx 직접 열람(python-pptx로 치수·폰트·색상 확인).
+   4:3(10in x 7.5in), 제목은 상단 얇은 띠(색 블록 아님, 텍스트만), 본문, 하단 "[n] Reference"+쪽번호,
+   표지/닫는슬라이드는 짙은 배경 없이 흰 배경. 과도한 카드형 박스·그라디언트·필 배지를 제거하고
+   원본 PPT처럼 단정한 학술 발표 스타일로 구성(2026-11-20 전면 재작성).
+   색상은 pptx 테마(Office 2013-2022: dk2=#44546A 네이비, accent1=#4472C4 블루) 그대로 사용. */
+:root{
+  --page:#eceef1; --paper:#ffffff; --ink:#1b212b; --sub:#5b6472; --line:#d7dce3;
+  --navy:#44546A; --blue:#4472C4; --hi:#2f6b4a; --mid:#8a6a1f; --lo:#a24b3f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#101217; --paper:#1b2029; --ink:#e7e9ee; --sub:#9aa3b2; --line:#2b313c;
+    --navy:#aeb9d6; --blue:#8aa6e8; --hi:#7fc79e; --mid:#d8b45a; --lo:#e0897b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#101217; --paper:#1b2029; --ink:#e7e9ee; --sub:#9aa3b2; --line:#2b313c;
+  --navy:#aeb9d6; --blue:#8aa6e8; --hi:#7fc79e; --mid:#d8b45a; --lo:#e0897b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--page); color:var(--ink);
+  font-family:'Noto Sans KR','Pretendard',-apple-system,sans-serif;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:10px max(10px, env(safe-area-inset-left,0px)) 64px max(10px, env(safe-area-inset-right,0px));
+  overflow:hidden;
+}
+#stage{ width:min(90vw, 106vh); max-width:1180px; aspect-ratio:4/3; position:relative;
+  display:flex; align-items:center; justify-content:center; }
+.page{ width:100%; height:100%; }
+.page[hidden]{ display:none; }
+
+.slide{
+  background:var(--paper); border:1px solid var(--line); border-radius:4px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.08); overflow:hidden; display:flex; flex-direction:column;
+  width:100%; height:100%;
+}
+.slide-head{
+  flex:0 0 auto; padding:24px 40px 14px; border-bottom:2px solid var(--navy);
+  display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+}
+.slide-head h1{
+  margin:0; color:var(--navy); font-family:'Source Serif 4',Cambria,Georgia,serif;
+  font-weight:700; font-size:1.55rem; letter-spacing:-0.01em;
+}
+.slide-head .tag{ flex:0 0 auto; color:var(--sub); font-size:0.78rem; font-weight:600;
+  letter-spacing:0.07em; text-transform:uppercase; white-space:nowrap; }
+.slide-body{ padding:20px 40px 10px; font-size:1.1rem; line-height:1.56; flex:1 1 auto;
+  min-height:0; overflow-y:auto; color:var(--ink); }
+.slide-body h2{ font-size:1.16rem; margin:14px 0 8px; color:var(--navy); font-weight:700; }
+.slide-body h2:first-child{ margin-top:0; }
+.slide-body p{ margin:0 0 12px; }
+.slide-body ul{ margin:0 0 12px; padding-left:1.25em; }
+.slide-body li{ margin-bottom:8px; }
+.note{ color:var(--sub); font-size:0.92rem; }
+.tag-note{ font-style:normal; font-weight:700; }
+.tag-note.add{ color:var(--blue); }
+.slide-foot{
+  flex:0 0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:9px 40px; border-top:1px solid var(--line); font-size:0.76rem; color:var(--sub);
+  font-family:'Source Serif 4',Cambria,Georgia,serif;
+}
+.slide-foot .pg{ font-variant-numeric:tabular-nums; font-weight:700; color:var(--navy); }
+
+.title-slide, .closing-slide{
+  background:var(--paper); width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:0 50px; gap:14px;
+}
+.title-slide .k1{ color:var(--sub); font-size:1rem; letter-spacing:0.1em; text-transform:uppercase; }
+.title-slide h1{ color:var(--navy); font-family:'Source Serif 4',Cambria,Georgia,serif;
+  font-weight:700; font-size:2.6rem; margin:6px 0 0; }
+.title-slide h2{ color:var(--ink); font-family:'Source Serif 4',Cambria,Georgia,serif;
+  font-weight:600; font-size:1.5rem; margin:0; }
+.title-slide .meta{ margin-top:34px; font-size:1.15rem; font-weight:700; color:var(--ink);
+  display:flex; flex-direction:column; gap:5px; }
+.title-slide .meta .sub{ font-weight:400; color:var(--sub); font-size:1rem; }
+
+.closing-slide h1{ color:var(--navy); font-family:'Source Serif 4',Cambria,Georgia,serif;
+  font-weight:700; font-size:3rem; margin:0; }
+.closing-slide .qa{ font-size:1.3rem; color:var(--sub); font-weight:600; letter-spacing:0.08em; }
+.closing-slide .lab{ margin-top:30px; font-size:1.05rem; color:var(--ink); font-weight:600; }
+.closing-slide .url{ font-size:0.95rem; color:var(--blue); }
+
+table{ width:100%; border-collapse:collapse; font-size:1.12rem; margin:4px 0 10px; }
+th,td{ padding:13px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
+thead th{ font-size:0.82rem; text-transform:uppercase; letter-spacing:0.02em; color:var(--sub);
+  font-weight:700; border-bottom:2px solid var(--navy); padding:8px 5px; white-space:nowrap; }
+td.c, th.c{ text-align:center; padding-left:5px; padding-right:5px; }
+td.no{ font-variant-numeric:tabular-nums; color:var(--sub); text-align:center; width:26px; }
+.g-hi{ color:var(--hi); font-weight:700; }
+.g-mid{ color:var(--mid); font-weight:700; }
+.g-lo{ color:var(--lo); font-weight:700; }
+tr.best td{ background:rgba(47,107,74,0.07); }
+tr.worst td{ background:rgba(162,75,63,0.08); }
+.markline{ font-weight:700; font-size:0.74rem; }
+.markline.b{ color:var(--hi); }
+.markline.w{ color:var(--lo); }
+
+.paperinfo{ display:grid; grid-template-columns:120px 1fr; row-gap:8px; column-gap:14px; margin-bottom:10px; }
+.paperinfo dt{ color:var(--sub); font-weight:600; font-size:0.86rem; }
+.paperinfo dd{ margin:0; }
+.papertitle{ font-family:'Source Serif 4',Cambria,Georgia,serif; font-weight:700; font-size:1.18rem; line-height:1.4; }
+
+.eval8{ display:grid; grid-template-columns:1fr; gap:3px; }
+.eval8 .row{ display:grid; grid-template-columns:122px 1fr; gap:10px; padding:5px 0; border-bottom:1px dashed var(--line); }
+.eval8 .row:last-child{ border-bottom:none; }
+.eval8 .k{ color:var(--navy); font-weight:700; font-size:0.92rem; }
+.eval8 .v{ font-size:1rem; line-height:1.5; }
+
+/* 네비게이션 */
+#navbar{ position:fixed; left:0; right:0; bottom:0; height:52px; display:flex; align-items:center;
+  justify-content:center; gap:14px; background:var(--paper); border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px); }
+#navbar button{ font-family:inherit; font-size:0.86rem; border:1px solid var(--line); background:var(--paper);
+  color:var(--ink); border-radius:8px; padding:7px 14px; cursor:pointer; }
+#navbar button:hover{ background:var(--page); }
+#navbar button:disabled{ opacity:0.35; cursor:default; }
+#counter{ font-variant-numeric:tabular-nums; font-size:0.86rem; color:var(--sub); min-width:64px; text-align:center; }
+:root:fullscreen #stage{ width:min(90vw, 106vh); max-width:1180px; }
+:root:fullscreen body{ background:var(--page); }
+</style>
+</head>
+<body>
+
+<div id="stage"></div>
+<div id="navbar">
+  <button id="btnPrev" title="이전 (←)">◀ 이전</button>
+  <span id="counter">1 / 1</span>
+  <button id="btnNext" title="다음 (→)">다음 ▶</button>
+  <button id="btnFull" title="전체화면">⛶ 전체화면</button>
+</div>
+
+<div id="deck-source" hidden>
+
+<!-- 1. 표지 -->
+<section class="page">
+<div class="title-slide">
+  <div class="k1">서울과학기술대학교 · 신뢰성기반 기계설계연구실</div>
+  <h1>과학논문 작성법</h1>
+  <h2>Best Paper / Worst Paper 비교</h2>
+  <div class="meta">
+    <span>박준재</span>
+    <span class="sub">과학논문작성법 과제 · 2026.11.20</span>
+  </div>
+</div>
+</section>
+
+<!-- 2. Contents -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Contents</h1><span class="tag">Overview</span></div>
+  <div class="slide-body">
+    <ul style="font-size:1.25rem; line-height:2.1; list-style:decimal; padding-left:1.4em;">
+      <li>평가 기준</li>
+      <li>전체 논문에 대한 평가</li>
+      <li>Best Paper</li>
+      <li>Worst Paper</li>
+      <li>질의응답</li>
+    </ul>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">2</span></div>
+</div>
+</section>
+
+<!-- 3. 평가 기준 1/2 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>평가 기준 (1/2) — Title / Authors</h1><span class="tag">Criteria</span></div>
+  <div class="slide-body">
+    <p>가솔린 엔진 관련 SCI(E) 논문 15편(디젤·수소 엔진 3편 포함, 다음 장에서 설명)의 제목과 저자 정보를
+    9개 세부항목, 10점 만점으로 평가했다. 이 점수는
+    <b>서지정보 작성 관행</b>을 재는 척도이며, 본문 내용의 과학적 엄밀성과는 별개로 다룬다.</p>
+    <table>
+      <thead><tr><th>항목</th><th class="c">배점</th><th>판정 기준</th></tr></thead>
+      <tbody>
+        <tr><td>간결성</td><td class="c">2.0</td><td>제목이 10~15단어 내외로 간결한가</td></tr>
+        <tr><td>구체성</td><td class="c">1.5</td><td>핵심 변수·연료·엔진 조건이 제목에 명시됐는가</td></tr>
+        <tr><td>약어 비사용</td><td class="c">1.0</td><td>비표준 약어를 쓰지 않았는가</td></tr>
+        <tr><td>제목 구조 명료성</td><td class="c">0.5</td><td>제목 유형(서술형·콜론형 등)이 명확한가</td></tr>
+        <tr><td>교신저자 표시</td><td class="c">1.0</td><td>교신저자가 명시적으로 표기됐는가</td></tr>
+        <tr><td>공동 제1저자</td><td class="c">0.5</td><td>공동 기여 표기가 있는가(해당 시)</td></tr>
+        <tr><td>ORCID</td><td class="c">1.0</td><td>저자 ORCID가 명시됐는가</td></tr>
+        <tr><td>CRediT</td><td class="c">1.5</td><td>저자별 기여도(CRediT) 진술이 있는가</td></tr>
+        <tr><td>국제 공동연구</td><td class="c">1.0</td><td>2개국 이상 기관의 공동연구인가</td></tr>
+      </tbody>
+    </table>
+    <p class="note">출처: 평가기준_설명.md, SCI논문15편_Title_Authors_분석표.csv (원본 평가 기록)</p>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">3</span></div>
+</div>
+</section>
+
+<!-- 4. 평가 기준 2/2 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>평가 기준 (2/2) — Abstract·Introduction·Methodology·Results</h1><span class="tag">Criteria</span></div>
+  <div class="slide-body">
+    <p>본문 네 섹션은 숫자 점수가 아니라 <b>상/중/하</b> 3단계로 평가했다. 각 섹션마다 두 축을 본다.</p>
+    <ul>
+      <li><b>구체성</b> — 서술이 정량적 수치(%, 구체값, 장비 사양 등)로 뒷받침되는 밀도</li>
+      <li><b>연관성</b> — 그 섹션의 실제 내용이 논문 제목이 약속한 연구 범위와 얼마나 정확히 일치하는가</li>
+    </ul>
+    <p><b>판정 기준</b>: 상 = 제목의 핵심 변수가 수치·구체적 근거로 뒷받침됨 · 중 = 주제는 일치하나 근거가
+    제한적 · 하 = 정성적 서술에 머물러 뒷받침이 약함.</p>
+    <h2>두 척도를 합산하지 않는 이유</h2>
+    <p>Title/Authors(10점제)와 본문 4섹션(상/중/하)은 측정 대상과 단위가 다른 척도다. 두 숫자를 더해 하나의
+    총점을 만들지 않는다. Best/Worst 선정은 15편 전부에 동일 기준이 적용된 본문 8개 범주형 항목(4섹션×
+    구체성·연관성)을 1차 기준으로 쓰고, Title/Authors 점수는 참고용 보조지표로만 별도 제시한다.</p>
+    <p><b>연료 종류 배제 원칙</b> — 연료 종류(에탄올·메탄올·수소·디젤 등)는 어떤 선정·평가 단계에서도
+    가점·감점 요인으로 쓰지 않는다. 모든 판단은 "제목이 약속한 내용을 수치로 뒷받침했는가"만 본다.</p>
+    <p class="note">출처: ai-crosscheck round85~88 evaluation_data.md(Claude×Codex 교차검증 확정본)</p>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">4</span></div>
+</div>
+</section>
+
+<!-- 5. 전체 논문 평가 1/3 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>전체 논문에 대한 평가 (1/3) — No.1~No.5</h1><span class="tag">All Papers</span></div>
+  <div class="slide-body">
+    <table>
+      <thead>
+        <tr><th rowspan="2">No.</th><th rowspan="2">논문</th><th rowspan="2">Title/<br>Authors</th>
+          <th colspan="2" class="c">Abstract</th><th colspan="2" class="c">Introduction</th>
+          <th colspan="2" class="c">Methodology</th><th colspan="2" class="c">Results</th></tr>
+        <tr><th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th>
+          <th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="no">1</td><td>알코올 3종 블렌딩(시뮬레이션)</td><td class="c">7.65</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-mid">중</td><td class="c g-hi">상</td>
+          <td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-mid">중</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">2</td><td>CCV 추정 접근법</td><td class="c">5.45</td>
+          <td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">3</td><td>H2 첨가 메탄올-가솔린</td><td class="c">4.65</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">4</td><td>배플 GDI 수치해석</td><td class="c">7.15</td>
+          <td class="c g-lo">하</td><td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-mid">중</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr class="best"><td class="no">5</td><td>methanol/toluene/nitromethane 첨가제
+          <div class="markline b">BEST PAPER</div></td><td class="c">7.45</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+      </tbody>
+    </table>
+    <p class="note">논문명은 식별용 축약 제목(정식 제목은 source_inventory/paper_titles_full.md 참고). 번호는
+    평가 순서가 아닌 원래 논문 번호이며 재정렬하지 않았다.</p>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">5</span></div>
+</div>
+</section>
+
+<!-- 6. 전체 논문 평가 2/3 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>전체 논문에 대한 평가 (2/3) — No.6~No.10</h1><span class="tag">All Papers</span></div>
+  <div class="slide-body">
+    <table>
+      <thead>
+        <tr><th rowspan="2">No.</th><th rowspan="2">논문</th><th rowspan="2">Title/<br>Authors</th>
+          <th colspan="2" class="c">Abstract</th><th colspan="2" class="c">Introduction</th>
+          <th colspan="2" class="c">Methodology</th><th colspan="2" class="c">Results</th></tr>
+        <tr><th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th>
+          <th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="no">6</td><td>피스톤 형상 효과</td><td class="c">9.4</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">7</td><td>터보차저 회전관성</td><td class="c">8.25</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">8</td><td>propanol-나노입자 블렌드</td><td class="c">8.75</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-mid">중</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">9</td><td>phthalocyanines 블렌드</td><td class="c">7.15</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-mid">중</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">10</td><td>2행정 유니플로우 비교</td><td class="c">7.15</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-mid">중</td><td class="c g-hi">상</td></tr>
+      </tbody>
+    </table>
+    <p class="note">논문명은 식별용 축약 제목(정식 제목은 source_inventory/paper_titles_full.md 참고).</p>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">6</span></div>
+</div>
+</section>
+
+<!-- 7. 전체 논문 평가 3/3 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>전체 논문에 대한 평가 (3/3) — No.11~No.15</h1><span class="tag">All Papers</span></div>
+  <div class="slide-body">
+    <table>
+      <thead>
+        <tr><th rowspan="2">No.</th><th rowspan="2">논문</th><th rowspan="2">Title/<br>Authors</th>
+          <th colspan="2" class="c">Abstract</th><th colspan="2" class="c">Introduction</th>
+          <th colspan="2" class="c">Methodology</th><th colspan="2" class="c">Results</th></tr>
+        <tr><th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th>
+          <th class="c">구체성</th><th class="c">연관성</th><th class="c">구체성</th><th class="c">연관성</th></tr>
+      </thead>
+      <tbody>
+        <tr class="worst"><td class="no">11</td><td>토크 불균형 검출·완화
+          <div class="markline w">WORST PAPER</div></td><td class="c">7.55</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-lo">하</td><td class="c g-mid">중</td>
+          <td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-mid">중</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">12</td><td>배기열 회수(열화학)</td><td class="c">8.65</td>
+          <td class="c g-mid">중</td><td class="c g-mid">중</td><td class="c g-mid">중</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">13</td><td>Exergoeconomic 분석(디젤)</td><td class="c">7.45</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">14</td><td>수소 화염 불안정성</td><td class="c">9.15</td>
+          <td class="c g-lo">하</td><td class="c g-mid">중</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+        <tr><td class="no">15</td><td>PCCI 분사전략(디젤)</td><td class="c">7.45</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td>
+          <td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td><td class="c g-hi">상</td></tr>
+      </tbody>
+    </table>
+    <p class="note">논문명은 식별용 축약 제목(정식 제목은 source_inventory/paper_titles_full.md 참고). No.13·14·15는
+    디젤·수소 엔진 논문이나 연료 종류 배제 원칙에 따라 다른 12편과 동일 기준으로 평가했다.</p>
+  </div>
+  <div class="slide-foot"><span>과학논문 작성법 — Best/Worst Paper 비교</span><span class="pg">7</span></div>
+</div>
+</section>
+
+<!-- 8. Best 소개 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — 논문 소개</h1><span class="tag">Best · Overview</span></div>
+  <div class="slide-body">
+    <p class="papertitle">No.5 — "Effect of the use of methanol, toluene and nitromethane mixtures as fuel
+    additives in a gasoline engine on engine performance and exhaust emissions"</p>
+    <dl class="paperinfo">
+      <dt>저자</dt><dd>Hüseyin Özker, Samet Çelebi</dd>
+      <dt>저널·연도</dt><dd>Fuel, 391, 134819 (2025)</dd>
+      <dt>연구 목적</dt><dd>메탄올·톨루엔·니트로메탄 3종을 가솔린 엔진 연료 첨가제로 사용했을 때 성능(출력·
+        연비·효율)과 배출가스(CO·HC·CO2·NOx)에 미치는 영향을 규명한다.</dd>
+      <dt>연구 방법</dt><dd>단기통 가솔린 엔진(Honda GX200)에 9개 연료 블렌드(G100 기준 대비 메탄올·톨루엔
+        단독 및 니트로메탄과의 조합)를 적용해 0~100% 부하 조건에서 실측 비교했다.</dd>
+    </dl>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">8</span></div>
+</div>
+</section>
+
+<!-- 9. Best 선정 이유 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — 선정 이유</h1><span class="tag">Best · Rationale</span></div>
+  <div class="slide-body">
+    <p>No.5는 본문 8개 범주형 항목(Abstract·Introduction·Methodology·Results 각 구체성·연관성) 전부 "상"을
+    받았다. 8/8 상으로 동점인 후보가 No.3·No.15까지 두 편 더 있었는데, 이 셋을 가른 것은 <b>Abstract의
+    IMRaD 완결성</b>이었다.</p>
+    <p>No.5의 Abstract는 결과 문장에 "the highest gain in BSFC value was achieved with a 9.70%
+    decrease...highest gain in BTE value...17.14% increase"처럼 구체적 수치를 직접 포함하고(G90M10 블렌드,
+    100% 부하, G100 대비), 배경·목적·방법·결과·결론 5요소가 전부 명시적으로 드러나 IMRaD가 "완전"으로
+    판정됐다(1쪽). 반면 No.3은 배경 설명 없이 바로 목적으로 넘어가고, No.15는 결론 문장이 약해 각각
+    "부분"으로 판정됐다.</p>
+    <p>즉 단순히 "상 등급이 많아서"가 아니라, 같은 8/8 상 안에서도 <b>Abstract의 5요소 구성이 가장 완결된
+    논문</b>이라는 점이 Best 선정의 결정적 근거다. 다만 IMRaD 완결성은 "형식적으로 다섯 요소를 갖췄는가"를
+    보는 기준이며, 그 수치가 본문과 완전히 일치하는지는 별개 문제다(상세는 다음 장들 참고).</p>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">9</span></div>
+</div>
+</section>
+
+<!-- 10. Best - Title/Authors -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — Title / Authors 평가</h1><span class="tag">Best · 1/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">간결성(2)·구체성(1.5)·약어비사용(1)·구조명료성(0.5)·교신저자명시(1)·공동1저자(0.5)·ORCID(1)·CRediT(1.5)·국제공동(1), 총 10점</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">7.45 / 10 (15편 평균 7.55와 비슷)</div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">제목 23단어, 저자 2명(동일 대학, 튀르키예), CRediT statement가 17쪽에 저자별 역할(Writing·Methodology·Investigation 등)을 명시</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">핵심 변수(3종 첨가제·엔진·성능/배출)가 제목에 전부 명시돼 구체성 1.5/1.5 만점, 비표준 약어 없음(1.0/1.0), CRediT 1.5/1.5</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">23단어로 간결성 기준(10~15단어)을 초과해 간결성 1.0/2.0에 그침, ORCID 미표기로 0/1.0</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">간결성 −1.0, ORCID −1.0이 총점 7.45의 주된 감점 요인</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1쪽 제목·저자 정보, 17쪽 CRediT authorship contribution statement</div></div>
+      <div class="row"><div class="k">⑧ 종합 평가</div><div class="v">내용은 충실하나 제목 길이라는 형식 기준에서 감점된 사례다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">10</span></div>
+</div>
+</section>
+
+<!-- 11. Best - Abstract -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — Abstract 평가</h1><span class="tag">Best · 2/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(상/중/하, 수치 밀도), 연관성(제목 범위와의 연결), IMRaD 완결성(완전/부분)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-hi">상</span>, 연관성 <span class="g-hi">상</span>, IMRaD 완전</div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">290단어 단일단락(1쪽). 결과 문장에 "9.70% decrease", "17.14% increase", "56.8%", "60.92%", "102.53%" 등 5개 이상 수치를 직접 포함(G90M10·G90T5N5 등 특정 블렌드, 특정 부하 조건 기준)</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">배경→목적→방법→결과→결론 5요소가 모두 명시적으로 드러나고, 결과 수치 밀도가 매우 높다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">저널(Fuel, Elsevier) 공식 분량 규정은 1차 출처 접근 제한으로 확인하지 못해 "판정보류" 상태다(기존 기록과 동일)</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">범주형 등급이라 숫자 점수는 없다. 기존 "상" 등급의 근거(다수 수치)를 원문에서 전부 재확인했다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1쪽 Abstract 전문</div></div>
+      <div class="row"><div class="k">⑧ 종합 평가</div><div class="v">Abstract만 읽어도 핵심 결과 수치를 전부 파악할 수 있어, 15편 중 전달력이 가장 높은 Abstract 중 하나다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">11</span></div>
+</div>
+</section>
+
+<!-- 12. Best - Introduction -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — Introduction 평가</h1><span class="tag">Best · 3/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(선행연구 수치 인용 밀도), 연관성(제목 범위와의 연결)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-hi">상</span>, 연관성 <span class="g-hi">상</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">1~2쪽에서 메탄올·톨루엔·니트로메탄 개별 효과를 선행연구 수치와 함께 소개한 뒤, "세 첨가제를 함께 쓴 연구가 없다"는 공백을 제시(2쪽)</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">30% 톨루엔 배합, 약 2.5% 니트로메탄 배합 등 구체적 수치를 인용했고, 공백 진술이 제목의 3종 첨가제 범위와 정확히 연결된다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v"><span class="tag-note add">[추가 검토 의견]</span> 실제 시험 배합(Table 2)에는 메탄올+톨루엔+니트로메탄이 동시에 들어간 조합이 없다. 저자가 공백을 제시한 것과 이 논문이 그 공백을 직접 채운 것은 다른 이야기다</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">기존 "상" 등급의 근거(공백 제시+수치 인용)를 원문에서 확인했다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1~2쪽 Introduction, Table 2(연료 블렌드 구성)</div></div>
+      <div class="row"><div class="k">⑧ 종합 평가</div><div class="v">공백 제시가 명확하고 제목과 직결돼, Introduction의 핵심 기능을 잘 수행한다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">12</span></div>
+</div>
+</section>
+
+<!-- 13. Best - Methodology -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — Methodology 평가</h1><span class="tag">Best · 4/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(장비·정밀도·반복 횟수), 연관성(제목 범위와의 설계 일치)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-hi">상</span>, 연관성 <span class="g-hi">상</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">Honda GX200 단기통 엔진(Table 1), 9종 블렌드 구성표(Table 2), Kline&amp;McClintock RSS 불확도분석으로 BP·BSFC·BTE 불확도 ±2.5%, 배출가스 ±2%까지 수치 명시</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">측정기기·정밀도·반복 횟수(3회)까지 재현에 필요한 조건을 비교적 상세히 제공한다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v"><span class="tag-note add">[추가 검토 의견]</span> 단기통(196cc) 소형 엔진 결과의 대형 엔진 일반화 논의는 없다. Table 4는 저울 정밀도를 "0.01g"으로 적어 본문(3쪽 "0.1g")과 어긋난다(원문 자체의 내적 결함)</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">기존 "상" 등급의 근거를 원문에서 확인했다. 저울 정밀도 불일치는 이번 평가에서 등급을 바꿀 사유로 보지 않았다(평가자 판단)</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">2~5쪽 Materials and Methods, Table 1·4</div></div>
+      <div class="row"><div class="k">⑧ 종합 평가</div><div class="v">실험 조건을 비교적 상세히 제시했으나, 본문-표 수치가 어긋나는 대목이 있어 세부 수치는 표를 우선 확인할 필요가 있다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">13</span></div>
+</div>
+</section>
+
+<!-- 14. Best - Results -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — Results 평가</h1><span class="tag">Best · 5/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(수치 제시 밀도), 연관성(제목 범위와의 일치)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-hi">상</span>, 연관성 <span class="g-hi">상</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">BSFC·EGT·BTE·CO·HC·CO2·O2·NOx·λ 9개 변수를 Table 6~14에 부하별·블렌드별 %변화율로 제시. 예: "G90M10 블렌드, 100% 부하, G100 대비 BSFC 9.70% 감소"(5쪽). 같은 블렌드라도 50% 부하에서는 BSFC -15.06%로 조건에 따라 수치가 다르다(Table 6)</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">대부분의 수치에 메커니즘 설명(산소함량·연소속도 등)을 함께 제시해 결과-해석이 긴밀히 연결된다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v"><span class="tag-note add">[추가 검토 의견]</span> NOx가 무부하 조건에서 최대 1730.36% 증가(13쪽)하는데, 배출 규제기준 대비 어느 수준인지 비교가 없다. Table 6·8·10의 일부 값이 본문 서술과 어긋난다(원문 저자의 오류로 보이며, 이번 분석 과정에서 생긴 오류는 아니다 — 수치를 인용할 때는 표를 우선 참고하는 편이 안전하다는 것이 이번 검토의 판단이다)</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">기존 "상" 등급의 근거(수치 밀도)를 원문에서 확인했다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">4~15쪽 Results and Discussion, Table 6~14</div></div>
+      <div class="row"><div class="k">⑧ 종합 평가</div><div class="v">정량적 근거 밀도는 15편 중 최상위이나, 본문-표 불일치가 있어 수치 인용 시 표를 우선 참고하는 것이 안전하다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">14</span></div>
+</div>
+</section>
+
+<!-- 15. Best 종합평가 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Best Paper — 종합 평가</h1><span class="tag">Best · Conclusion</span></div>
+  <div class="slide-body">
+    <p>No.5는 8개 범주형 항목 전부 "상"을 받은 세 편(No.3·No.5·No.15) 중에서, Abstract의 IMRaD 5요소를
+    빠짐없이 갖춘 유일한 논문이라는 점에서 Best로 선정됐다.</p>
+    <p>이 논문이 다른 논문보다 우수한 핵심은 <b>Abstract와 Results에서 연구 결과를 수치로 직접 전달하는
+    쓰기 습관</b>이다. "G90M10 블렌드, 100% 부하에서 BSFC 9.70% 감소"처럼 어떤 조건에서 얼마나 달라졌는지가
+    문장 안에 바로 드러난다. 측정 불확도(±2.5% 이내)까지 수치로 제시해 실험 조건도 비교적 상세하다.</p>
+    <p>다만 단점도 있다. NOx 배출이 일부 조건에서 1730% 이상 증가하는데 이것이 실제로 문제가 되는 수준인지
+    규제기준과 비교하지 않았고, 원문 자체에 본문 서술과 표 수치가 어긋나는 대목이 여러 곳 있다(Table 6·
+    8·10). Best Paper라고 해서 원문의 모든 서술을 그대로 신뢰할 수 있는 것은 아니며, 수치를 인용할 때는
+    표를 직접 확인하는 습관이 필요하다.</p>
+  </div>
+  <div class="slide-foot"><span>Best Paper · No.5</span><span class="pg">15</span></div>
+</div>
+</section>
+
+<!-- 16. Worst 소개 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — 논문 소개</h1><span class="tag">Worst · Overview</span></div>
+  <div class="slide-body">
+    <p class="papertitle">No.11 — "Model-Based Unified Framework for Detection and Mitigation of Cyclic
+    Torque Imbalance in a Gasoline Engine"</p>
+    <dl class="paperinfo">
+      <dt>저자</dt><dd>Raheel Anjum, Ahmed Yar, Ghulam Murtaza, Qadeer Ahmed, A. I. Bhatti</dd>
+      <dt>저널·연도</dt><dd>Journal of Engineering for Gas Turbines and Power, 143(7), 071013 (2021)</dd>
+      <dt>연구 목적</dt><dd>가솔린 엔진의 사이클간 토크 불균형을 검출하고 완화하는 모델 기반 통합
+        프레임워크를 제안한다.</dd>
+      <dt>연구 방법</dt><dd>1계원리 엔진모델(FPEM)에 기반한 USOSM 관측기로 토크 불균형을 검출하고,
+        CESTA 기반 결함허용제어(FTC)로 완화하는 과정을 MATLAB/SIMULINK 수치 시뮬레이션으로 시연했다.</dd>
+    </dl>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">16</span></div>
+</div>
+</section>
+
+<!-- 17. Worst 선정 이유 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — 선정 이유</h1><span class="tag">Worst · Rationale</span></div>
+  <div class="slide-body">
+    <p>1차 평가에서는 No.1이 "하" 등급 3개로 최다였으나, 원문을 다시 대조하는 과정에서 No.1 Introduction의
+    "하" 등급 근거 문구가 부정확함이 발견돼 공식 재심했다(구체성 하→중, 연관성 하→상). 그 결과 No.1은
+    더 이상 "하" 최다가 아니게 됐다.</p>
+    <p>재집계 결과 No.4와 No.11이 "하" 2개로 동률 최다가 됐다. "하 개수가 같으면 상 개수가 더 적은 논문을
+    선정한다"는 동점해소 규칙(기존 평가기준에는 없던 신규 규칙으로, Claude×Codex가 독립 검토해 수학적
+    타당성을 확인했고 사용자가 최종 채택했다)을 적용하면 No.11(상 2개)이 No.4(상 4개)보다 낮게 평가돼
+    Worst로 선정됐다.</p>
+    <p>원문 근거: No.11의 Abstract는 "the desired objective is achieved"라는 문장으로만 결과를 서술해
+    수치가 전혀 없다(1쪽). Introduction도 선행연구를 검출 방법론으로만 분류·소개할 뿐 구체적 성능
+    수치는 인용하지 않는다(1~2쪽).</p>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">17</span></div>
+</div>
+</section>
+
+<!-- 18. Worst - Title/Authors -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — Title / Authors 평가</h1><span class="tag">Worst · 1/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">간결성(2)·구체성(1.5)·약어비사용(1)·구조명료성(0.5)·교신저자명시(1)·공동1저자(0.5)·ORCID(1)·CRediT(1.5)·국제공동(1), 총 10점</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">7.55 / 10</div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">제목 15단어, 저자 5명 — 파키스탄 2개 대학(Capital University of Science and Technology, National University of Sciences and Technology) + 미국 1개 대학(Ohio State University), 2개국 국제 공동연구. 본문에 ORCID·CRediT 표기는 없으나, 저자 기여도 관련 CRediT 점수는 원본 평가표에서 1.0/1.5가 부여돼 있다(평가기준_설명.md의 부분점수 규칙에 따름)</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">간결성 2.0/2.0 만점, 비표준 약어 없음(1.0/1.0), 국제공동연구 1.0/1.0, CRediT 1.0/1.5</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">교신저자 미표기로 교신저자명시 0.3/1.0, ORCID 미표기로 0/1.0</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">7.55 = 2.0+1.5+1.0+0.5+0.3+0.25+0+1.0+1.0(원본 9개 항목 합). 15편 평균(7.55)과 거의 동일 — Worst 선정이 서지정보 작성 관행 때문이 아님을 보여준다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1쪽 제목·저자·소속 정보</div></div>
+      <div class="row"><div class="k">⑧ 개선 방향</div><div class="v">교신저자를 명시하고 ORCID를 추가하면 어렵지 않게 개선할 수 있는 형식적 요소다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">18</span></div>
+</div>
+</section>
+
+<!-- 19. Worst - Abstract -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — Abstract 평가</h1><span class="tag">Worst · 2/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(상/중/하, 수치 밀도), 연관성(제목 범위와의 연결)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-lo">하</span>, 연관성 <span class="g-mid">중</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">1쪽 전문 — 방법론(FPEM·USOSM·CESTA)은 구체적으로 나열되나 "the desired objective is achieved by the proposed unified framework"로만 결과를 서술</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">배경→방법→결론 구조가 명확하고, 제안 방법론 자체는 구체적으로 명시된다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">요약문에 연구 결과를 나타내는 수치가 전혀 없다. 따라서 제안한 방법이 실제로 어느 정도의 성능을 보였는지 요약문만으로는 판단할 수 없다. 본문 Results에 있는 "15% 고장 크기" 같은 설정값도 Abstract에는 없다</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">결과 수치 부재가 구체성 "하"의 직접 근거다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1쪽 Abstract 전문</div></div>
+      <div class="row"><div class="k">⑧ 개선 방향</div><div class="v">본문 Results의 "연료질량 15% 감소", "추정오차 수렴" 같은 수치를 한두 개만 Abstract에 추가해도 전달력이 크게 개선됐을 것이다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">19</span></div>
+</div>
+</section>
+
+<!-- 20. Worst - Introduction -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — Introduction 평가</h1><span class="tag">Worst · 3/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(선행연구 수치 인용 밀도), 연관성(제목 범위와의 연결)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-lo">하</span>, 연관성 <span class="g-mid">중</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">1~2쪽에서 토크 불균형 검출을 위한 3가지 방법론(실린더압력·배기산소농도·엔진회전속도)을 선행연구 [1]~[14]로 분류·소개한 뒤, "통합 프레임워크가 제안된 바 없다"는 공백을 제시(2쪽). 엔진회전속도 방법론 설명에는 0.5·1·1.5차 고조파 같은 기술적 수치도 일부 포함된다</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">세 가지 검출 방법론을 체계적으로 분류·비교해 제안 프레임워크의 위치를 설명하고, 공백 제시가 제목과 일치한다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">인용된 선행연구 중 어느 것도 "정확도 몇 %", "오차율 몇 %" 같은 구체적 성능 결과 수치로 소개되지 않는다. 대부분 "~이 제안되었다"는 방법론 나열에 그친다</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">선행연구 수치 인용이 0건이라는 점이 구체성 "하"의 직접 근거다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">1~2쪽 Introduction, 참고문헌 [1]~[14]</div></div>
+      <div class="row"><div class="k">⑧ 개선 방향</div><div class="v">인용한 선행연구 중 하나라도 정량적 검출 성능(검출 정확도·수렴 시간 등)을 수치로 언급했다면 구체성이 개선됐을 것이다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">20</span></div>
+</div>
+</section>
+
+<!-- 21. Worst - Methodology -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — Methodology 평가</h1><span class="tag">Worst · 4/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(장비·조건 명시 밀도), 연관성(제목 범위와의 설계 일치)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-mid">중</span>, 연관성 <span class="g-hi">상</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">2~9쪽에서 라그랑지안 운동방정식·FPEM·USOSM 관측기·CESTA를 식(1)~(71)로 전개하고(핵심 함수 g1·g2·g3의 완전한 수식은 10~11쪽 Appendix) Lyapunov 안정성을 증명. 운전점(회전속도 108rad/s·부하토크 43.9N·m)은 수치로 제시하나 보어·스트로크 등 물리적 엔진 사양은 없음</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">완전한 수식을 Appendix에 공개하고 관측가능성·유계성·수렴성을 각각 정리로 증명한다(증명의 모든 세부 단계를 독립 재검증한 것은 아니다). 설계 자체는 제목(검출·완화 통합 프레임워크)과 정확히 일치한다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">실제 엔진 사양(보어·스트로크 등 물리적 파라미터) 없이 "a gasoline engine"이라는 추상적 대상에 수식을 적용한다. <span class="tag-note add">[추가 검토 의견]</span> 다만 3쪽에는 기반 모델(FPEM)이 선행문헌에서 시험장치 데이터로 검증됐다는 인용이 있어, 이 논문 안에 재검증이 없다는 것과 기반 모델 자체에 실험적 근거가 없다는 것은 다른 주장이다</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">물리적 엔진 파라미터 부재가 구체성 "중"의 근거이며, 설계가 제목과 일치해 연관성은 "상"이다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">2~9쪽 Section 2~5, 3쪽 선행문헌 [15]·[16] 인용, 10~11쪽 Appendix</div></div>
+      <div class="row"><div class="k">⑧ 개선 방향</div><div class="v">최소한의 가상 엔진 사양표를 제시하거나, 선행문헌의 핵심 검증 수치를 본문에 요약 인용했다면 구체성이 개선됐을 것이다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">21</span></div>
+</div>
+</section>
+
+<!-- 22. Worst - Results -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — Results 평가</h1><span class="tag">Worst · 5/5</span></div>
+  <div class="slide-body">
+    <div class="eval8">
+      <div class="row"><div class="k">① 평가 기준</div><div class="v">구체성(수치 제시 밀도), 연관성(제목 범위와의 일치)</div></div>
+      <div class="row"><div class="k">② 기존 평가 결과</div><div class="v">구체성 <span class="g-mid">중</span>, 연관성 <span class="g-hi">상</span></div></div>
+      <div class="row"><div class="k">③ 실제 확인 내용</div><div class="v">9~10쪽에서 t≥15s에 연료질량 15% 감소 고장을 주입하고(Fig.4·11), FPEM 관측기가 추정한 엔진 상태(Fig.5)·추정오차(Fig.6)를 거쳐 피스톤력을 재구성하고(Fig.7), CESTA 제어기가 목표값에 가깝게 유지함을 시연(Fig.8). Fig.6 설명 문단(9쪽)은 초기조건 불일치로 생긴 과도오차가 0.03초에 수렴했다고 명시한다</div></div>
+      <div class="row"><div class="k">④ 우수한 점</div><div class="v">고장 주입부터 검출·완화까지 전 과정을 8개 그림으로 일관되게 시연하고, 고장 크기(15%)와 초기 과도오차 수렴시간(0.03초)이라는 수치를 제시한다</div></div>
+      <div class="row"><div class="k">⑤ 부족한 점</div><div class="v">0.03초는 t=0 초기조건 과도현상의 수렴 "시간"일 뿐, 고장 발생(t=15s) 이후의 검출 지연시간이나 잔류오차 "크기"는 본문 문장에 수치로 제시되지 않는다. 비교 대상 데이터도 전부 시뮬레이션 자체가 생성한 값이라, 이 논문 안에는 실제 엔진 실측 데이터와의 비교가 없다</div></div>
+      <div class="row"><div class="k">⑥ 가점·감점 사유</div><div class="v">고장 이후의 검출·완화 성능을 비교 가능한 수치로 제시하지 않는 점이 구체성 "중"의 근거이며, 설계는 제목과 일치해 연관성은 "상"이다</div></div>
+      <div class="row"><div class="k">⑦ 원문 근거</div><div class="v">9~10쪽 Results and Discussion, Fig.4~11(Fig.5 상태추정·Fig.6 추정오차)</div></div>
+      <div class="row"><div class="k">⑧ 개선 방향</div><div class="v">고장 발생 이후의 잔류오차 크기·검출 지연시간을 본문에 수치로 명시하고, 가능하다면 선행 실측 데이터와 비교하는 절을 추가했다면 구체성이 개선됐을 것이다.</div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">22</span></div>
+</div>
+</section>
+
+<!-- 23. Worst 종합평가 -->
+<section class="page">
+<div class="slide">
+  <div class="slide-head"><h1>Worst Paper — 종합 평가</h1><span class="tag">Worst · Conclusion</span></div>
+  <div class="slide-body">
+    <p>No.11은 "하" 등급이 2개로 No.4와 동률이었으나, "상" 개수가 더 적어(2개 대 4개) 신규 동점해소
+    규칙에 따라 Worst로 선정됐다.</p>
+    <p>핵심 약점은 Abstract·Introduction·Results 세 섹션에서 일관되게 나타난다. 제안한 방법론(FPEM·
+    USOSM·CESTA)과 시뮬레이션 설계는 구체적으로 설명하지만, 그 결과가 "얼마나" 효과적이었는지는 제한적으로만
+    수치로 전달한다. Abstract에는 결과 수치가 하나도 없고, Introduction은 선행연구를 방법론 분류로만
+    소개한다. Results는 고장 크기(15%)와 초기 과도오차 수렴시간(0.03초)은 수치로 제시하지만, 고장 발생
+    이후의 검출 지연이나 잔류오차 크기 같은 성능 비교 수치는 본문 문장이 아닌 그래프로만 확인할 수 있다.</p>
+    <p>그렇다고 모든 항목이 부족한 것은 아니다. Methodology의 수학적 엄밀성(Lyapunov 안정성 증명, 완전한
+    수식 공개)은 15편 중 상위권이며, Methodology·Results의 연관성은 모두 "상"으로 연구 설계 자체는
+    제목이 약속한 범위와 정확히 일치한다. Title/Authors 점수(7.55)도 15편 평균과 같은 수준이다. 이
+    논문은 "연구 방법을 설명하는 능력"과 "그 결과를 수치로 명확히 전달하는 능력"이 같은 논문 안에서도
+    별개일 수 있음을 보여주는 사례다.</p>
+  </div>
+  <div class="slide-foot"><span>Worst Paper · No.11</span><span class="pg">23</span></div>
+</div>
+</section>
+
+<!-- 24. 질의응답 -->
+<section class="page">
+<div class="closing-slide">
+  <h1>질의응답</h1>
+  <div class="qa">Q &amp; A</div>
+  <div class="lab">서울과학기술대학교 · 신뢰성기반 기계설계연구실</div>
+  <div class="url">remsys.seoultech.ac.kr</div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  const source = document.getElementById('deck-source');
+  const pages = Array.from(source.querySelectorAll('.page'));
+  const stage = document.getElementById('stage');
+  pages.forEach(p => stage.appendChild(p));
+  source.remove();
+
+  let idx = 0;
+  const total = pages.length;
+  const counter = document.getElementById('counter');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnFull = document.getElementById('btnFull');
+
+  function render(){
+    pages.forEach((p,i)=>{ p.hidden = (i !== idx); });
+    counter.textContent = (idx+1) + ' / ' + total;
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx === total-1;
+  }
+  function go(n){ idx = Math.max(0, Math.min(total-1, n)); render(); }
+  btnPrev.addEventListener('click', ()=>go(idx-1));
+  btnNext.addEventListener('click', ()=>go(idx+1));
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ go(idx+1); e.preventDefault(); }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ go(idx-1); e.preventDefault(); }
+    else if(e.key === 'Home'){ go(0); }
+    else if(e.key === 'End'){ go(total-1); }
+  });
+  btnFull.addEventListener('click', ()=>{
+    try{
+      if(!document.fullscreenElement){
+        const p = document.documentElement.requestFullscreen();
+        if(p && p.catch) p.catch(()=>{});
+      } else {
+        const p = document.exitFullscreen();
+        if(p && p.catch) p.catch(()=>{});
+      }
+    }catch(err){}
+  });
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+round102/PROBLEM.md의 "수정한 항목" 1~12가 round102/input/paper_review_presentation_revised.html에
+실제로 정확히 반영됐는지 확인하라. 특히 2번(파키스탄 기관 수), 3번(0.03초/Fig5·6 구분), 8번(페이지 범위),
+11번(fullscreen CSS)은 반드시 원문·소스 코드를 직접 대조하라. J:\Desktop\수업과제\과학논문작성법 과제\의
+No.5·No.11 PDF를 다시 열어 확인해도 된다.
+
+결과를 round102/codex.md 에 써라. 반영이 안 됐거나 불완전한 항목이 있으면 구체적으로 지적하고, 새로
+발견한 오류가 있으면 추가하라. 끝나면 round102/codex.md 파일만 git add/commit/push 하고 원격 반영까지
+확인하라.
