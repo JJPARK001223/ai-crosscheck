@@ -1,0 +1,13 @@
+논문명,평가항목,평가의견,가점/감점사유,기존평가점수,원문파일경로,원문페이지/절번호,확인여부
+No.5,Title,23단어로 간결성기준(10~15단어) 초과,간결성 1.0/2.0 감점,7.45/10,"Effect of the use of methanol, toluene and nitromethane...pdf",1쪽 제목,CONFIRMED(원문 직접 대조)
+No.5,Abstract,"9.70%·17.14%·56.8%·60.92%·102.53% 등 5개 이상 수치 포함, IMRaD 완전",등급표상 상/완전(점수체계 없음),등급만 존재(점수없음),상동,1쪽 Abstract,CONFIRMED
+No.5,Introduction,"선행연구가 3개 첨가제를 함께 쓴 연구는 없다는 공백 명시(2쪽)",등급표상 상/상,등급만 존재,상동,1~2쪽 Section1,CONFIRMED
+No.5,Methodology,"Honda GX200 단기통 엔진 실측 + Kline&McClintock 불확도분석(±2.5%·±2%)",등급표상 상/상,등급만 존재,상동,2~4쪽 Section2,CONFIRMED
+No.5,Results,"Table6~14에 부하×블렌드별 %변화율 전부 제시, 본문도 수치 직접 인용",등급표상 상/상,등급만 존재,상동,4~15쪽 Section3,CONFIRMED
+No.5,Conclusion,"불릿형 요약 + 측정 미실시(실린더 내압) 자기한계 언급",기존 평가 항목 아님(신규 관찰),해당없음,상동,14~17쪽 Section4,CONFIRMED(신규 관찰)
+No.1,Title,21단어 단독저자 단독연구,간결성 2.0/2.0 만점이나 ORCID·CRediT 0,7.65/10,"A Comparison of Ethanol, Methanol, and Butanol...pdf",1쪽 제목,CONFIRMED
+No.1,Abstract,"decreased/increased만 사용, 수치 0개",등급표상 하/중,등급만 존재,상동,1쪽 Abstract,CONFIRMED
+No.1,Introduction,"연구공백 문장 명확하나 공백 직결 선행연구 인용은 상대적으로 적음; 단 '정량적 인용 거의 없음' 근거문구는 3건(29%·42%/25-45%/13%·15%·10.6%·9.8%)과 일부 불일치",등급표상 하/하,등급만 존재,상동,1~5쪽 Section1,"DISCREPANCY_FOUND(원문에 수치 인용 3건 확인, 기존 근거문구 '거의 없음'과 불일치 — round89 Codex 재검증 필요)"
+No.1,Methodology,"AVL BOOST 1D 모델, 보정·검증은 선행연구[49]로 위임, 본 논문 내 검증데이터 없음",등급표상 중/상,등급만 존재,상동,5~7쪽 Section2,CONFIRMED
+No.1,Results,"Fig.2~6 그래프만 제시, 본문은 정성적 서술만(수치 0개)",등급표상 중/상,등급만 존재,상동,7~12쪽 Section3,CONFIRMED
+No.1,Conclusion,"Results 정성적 문장 5개 반복, 신규 수치 없음",기존 평가 항목 아님(신규 관찰),해당없음,상동,12쪽 Section4,CONFIRMED(신규 관찰)

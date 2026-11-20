@@ -1,0 +1,12 @@
+round98/PROBLEM.md 의 "검증 항목" 1~6을 전부 수행한다.
+
+round98/input/ 에 있는 Claude의 1차 산출물(paper_list.csv, evaluation_criteria.md, best_paper_analysis.md,
+worst_paper_analysis.md, comparative_analysis.md, evidence_matrix.csv)을 PROBLEM.md에 명시된 원본 경로
+(J:\Desktop\수업과제\과학논문작성법 과제\ 의 PDF 15편, J:\Desktop\공학\ai-crosscheck\round85\input\evaluation_data.md)
+와 직접 대조해 독립적으로 검증하라. 특히 No.5와 No.1의 원본 PDF는 반드시 직접 열어 원문을 확인하라.
+
+PROBLEM.md 검증 항목 4번(No.1 Introduction 구체성 등급 근거 문구 "선행연구의 정량적 결과 인용은 거의 없음"이
+원문과 일치하는지)을 가장 꼼꼼히 확인하고, 독립적인 판단(근거 문구가 타당한지, 수정이 필요한지)을 제시하라.
+
+결과를 round98/codex.md 에 써라. 형식은 자유. 끝나면 round98/codex.md 파일만 git add/commit/push 하고
+원격 반영까지 확인하라. 다른 파일은 건드리지 마라.
