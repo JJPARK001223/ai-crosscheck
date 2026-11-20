@@ -1,0 +1,10 @@
+round101/PROBLEM.md 의 "검증 항목" 1~15를 전부 수행한다.
+
+round101/input/paper_review_presentation_revised.html을 실제로 열어(가능하면 브라우저로 렌더링해) 24개
+슬라이드를 전부 확인하고, round101/input/paper_list.csv · paper_titles_full.md ·
+J:\Desktop\공학\ai-crosscheck\round85\input\evaluation_data.md · 15편 원본 PDF(J:\Desktop\수업과제\
+과학논문작성법 과제\)와 대조하라. 특히 No.5(Best)·No.11(Worst) 두 논문의 원문은 반드시 직접 열어
+8-part 평가 내용(① ~ ⑧)이 원문과 일치하는지 확인하라.
+
+결과를 round101/codex.md 에 써라. 형식은 자유. 끝나면 round101/codex.md 파일만 git add/commit/push 하고
+원격 반영까지 확인하라. 다른 파일은 건드리지 마라.
