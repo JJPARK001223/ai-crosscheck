@@ -14,8 +14,8 @@
 ## No.1 — Processes(2021) — "A Comparison of Ethanol, Methanol, and Butanol Blending with Gasoline and Its Effect on Engine Performance and Emissions Using Engine Simulation"
 - Abstract 구체성: **하** — 정성적 서술 위주(decreased/increased만 표현), 구체 수치 없음
 - 논문-Abstract 연관성: **중** — 3가지 알코올 비교라는 제목 주제는 일치하나, Abstract는 정량적 수치 없이 서술에 그침
-- Introduction 구체성: **하** — 메탄올·에탄올·부탄올의 일반적 배경과 연료 물성표(Table 1)만 제시, 선행연구의 정량적 결과 인용은 거의 없음
-- 논문-Introduction 연관성: **하** — 알코올 연료 일반론 중심으로 전개되어, 3종 알코올-가솔린 블렌딩의 엔진 시뮬레이션 비교라는 제목의 구체적 범위와의 연결이 약함
+- Introduction 구체성: **중**(round99 재심 — 기존 "하"에서 수정, Claude 1차 재심 완료·Codex 재확인 대기) — 메탄올·에탄올·부탄올의 일반적 배경과 연료 물성표(Table 1)가 중심이나, 문헌[27,28](메탄올 엔진 효율 15~20%↑)·[39](PM 29%·42%↓)·[41](NOx 25~45%↓)·[44](HC 13%·15%↓, CO 10.6%·9.8%↓) 등 수치를 포함한 선행연구 인용이 4대목·8개 수치 존재. 전반적으로 정성적 서술 비중이 크지만 "거의 없음"은 아님(round98에서 Claude·Codex 모두 근거문구 오류를 확인)
+- 논문-Introduction 연관성: **중**(round99 재심 — 기존 "하"에서 수정, Claude 1차 재심 완료·Codex 재확인 대기) — 전반부는 알코올 연료 일반론 중심이나, "there is not enough information about the comparison of methanol, ethanol, and n-butanol blending with gasoline...in the same PFI SI engine and under the same conditions"(5쪽)라는 명시적 연구공백이 제목의 3종 알코올 비교 범위와 직접 연결됨. No.4 Introduction 연관성(중, 유사하게 일반배경 중심이나 구체적 연결 약함)과의 등급 일관성을 고려해 하에서 중으로 조정
 - Methodology 구체성: **중** — AVL BOOST 소프트웨어로 1D PFI 엔진 모델을 구성하고 2-zone Vibe 연소모델 지배방정식(1)-(4)과 엔진 사양표(보어 86mm, 압축비 10.5 등)를 제시하나, 모델의 보정·검증 자체는 저자의 선행연구[49]에 위임되어 본 논문 내에서 재현 가능한 검증 데이터는 제시되지 않음
 - 논문-Methodology 연관성: **상** — 1D AVL BOOST 시뮬레이션으로 에탄올·메탄올·부탄올-가솔린 블렌드가 출력·배출가스에 미치는 영향을 정량 분석하는 구성으로, 제목의 '엔진 시뮬레이션' 범위와 정확히 일치
 - Results 구체성: **중** — 브레이크 출력·BSFC의 증감 경향을 Figure 2·3으로 제시하지만, 본문 설명은 대부분 정성적 서술('slightly increased', 'decreased')이며 블렌드별 구체적 %수치 비교는 제한적
@@ -133,7 +133,7 @@
 - 논문-Results 연관성: **상** — 가솔린 대비 E25 블렌드의 배기열 개질 성능(H2/CO/CO2 생성)을 직접 비교검증하는 구성이, 제목의 '에탄올-가솔린 블렌드를 이용한 열화학적 배기에너지 회수—GDI엔진 성능'과 정확히 일치
 
 ## No.13 — Energy(2018) — "Exergoeconomic analysis of a DI diesel engine fueled with diesel/biodiesel (B5) emulsions containing aqueous nano cerium oxide" (가솔린이 아닌 디젤 엔진 논문)
-- Abstract 구체성: **상** — 48.61 USD/MJ·25-100%·3/5/7wt%·0/90ppm 등 다수 수치
+- Abstract 구체성: **상** — 48.81 USD/MJ·25-100%·3/5/7wt%·0/90ppm 등 다수 수치
 - 논문-Abstract 연관성: **상** — exergoeconomic 분석 결과가 Abstract의 구체적 비용·배출 수치로 뒷받침됨(주제 범위는 가솔린에서 벗어남)
 - Introduction 구체성: **상** — Caliskan&Hepbasli(연간 배기손실비용 1225.143 USD), Jena&Misra(팜바이오디젤 엑서지효율 26.02%) 등 Table 1로 선행연구 수치를 체계적으로 정리
 - 논문-Introduction 연관성: **상** — "엑서고이코노믹 방법을 디젤엔진 개선에 적용한 연구는 소수에 불과하다"는 명확한 공백을 제시, 제목과 직접 일치(주제 범위는 가솔린에서 벗어남)
