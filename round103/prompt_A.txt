@@ -1,0 +1,8 @@
+round103/PROBLEM.md를 읽고, 거기 적힌 검증 요청 1~7번을 round103/input/기말_발표자료_snapshot.pptx와
+PROBLEM.md에 적힌 원본 자료(CSV, md, No.5·No.11 PDF)를 직접 대조해서 독립적으로 수행하라. pptx 내용을
+읽으려면 python-pptx(또는 직접 압축 해제해 XML 파싱)를 써도 된다. 사전에 어떤 문제가 있는지 알려주지
+않으니 전부 직접 찾아야 한다.
+
+결과를 round103/codex.md 에 적어라. 각 항목은 슬라이드 번호·정확한 인용문·문제점·근거를 구체적으로 쓰고,
+새로 발견한 오류가 있으면 추가하라. 끝나면 round103/codex.md 파일만 git add/commit/push 하고 원격 반영까지
+확인하라. 다른 라운드 파일이나 다른 파일은 건드리지 마라.
